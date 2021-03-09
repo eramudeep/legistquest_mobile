@@ -6,7 +6,7 @@ import CustomLabel from '../../components/CustomLabel/CustomLabel'
 
 export default function TopicDetail({ navigation }) {
     return (
-        <Container isScrollable showHome showMenu>
+        <Container isScrollable showHome showMenu onHome={()=>navigation.navigate("Home")}>
             <View>
                 <CustomLabel text={"Supreme Court Bar Association V. Union Of India"} labelStyle={styles.title} />
                 <CustomLabel text={`DR. ANAND. J.

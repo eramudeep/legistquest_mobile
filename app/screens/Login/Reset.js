@@ -9,7 +9,7 @@ import { appColors } from '../../utils/appColors'
 
 export default function Reset({navigation}) {
     return (
-        <Container showFooter showHome showMenu>
+        <Container showFooter showHome showMenu onHome={()=>navigation.navigate("Home")}>
             <CustomLabel text={"Reset Password"} labelStyle={styles.headerText} />
             <View>
                 <CustomLabel text={"Email Address"} labelStyle={styles.label}/>

@@ -10,7 +10,7 @@ import ScrollableTab from '../../routing/ScrollableTab'
 
 export default function Topic({ navigation }) {
     return (
-        <Container showHome showMenu showFooter>
+        <Container showHome showMenu showFooter onHome={()=>navigation.navigate("Home")}>
             <View style={{flex:1}}>
                 <CustomInput containerStyle={{ marginTop: 0 }} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} />
                 <View style={{ flexDirection: "row", paddingBottom: scale(10) }}>

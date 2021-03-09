@@ -12,7 +12,7 @@ import getIcon from '../../utils/getIcon'
 
 export default function Login({ navigation }) {
     return (
-        <Container showFooter showHome showMenu>
+        <Container showFooter showHome showMenu onHome={()=>navigation.navigate("Home")} >
             <CustomLabel text={"Login to your account"} labelStyle={styles.headerText} />
             <View style={{flex:1}}>
                 <CustomLabel text={"Email Address"} labelStyle={styles.label} />

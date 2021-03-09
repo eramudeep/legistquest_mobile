@@ -5,11 +5,11 @@ import { appColors } from '../../utils/appColors'
 import CustomHeader from '../CustomHeader'
 import CustomLabel from '../CustomLabel/CustomLabel'
 
-export default function Container({ children,showFooter, isScrollable, bodyStyle,hideHeader ,showMenu,showBack,showHome,hideLogo,showSignin,onSignin}) {
+export default function Container({ children,showFooter, isScrollable, bodyStyle,hideHeader, onHome ,showMenu,showBack,showHome,hideLogo,showSignin,onSignin}) {
     return (
         <View style={styles.container}>
                 {!hideHeader &&
-                <CustomHeader onSignin={onSignin} showMenu={showMenu} showHome={showHome} showBack={showBack} hideLogo={hideLogo} showSignin={showSignin}/>}
+                <CustomHeader onSignin={onSignin} showMenu={showMenu} showHome={showHome} onHome={onHome} showBack={showBack} hideLogo={hideLogo} showSignin={showSignin}/>}
             {isScrollable ?
                 <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={"handled"}>
                     <View style={[styles.bodyStyle,bodyStyle]}>
