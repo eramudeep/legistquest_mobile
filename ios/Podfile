@@ -8,6 +8,8 @@ target 'react_native_redux_starter' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'react_native_redux_starterTests' do
     inherit! :complete
     # Pods for testing

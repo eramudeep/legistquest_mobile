@@ -9,13 +9,15 @@
 import React from 'react';
 import MainStack from './app/routing/MainStack';
 import { Provider } from "react-redux"
-import { StatusBar } from 'react-native'
+import { SafeAreaView, StatusBar } from 'react-native'
 import store from './app/redux/store';
 import DropdownAlert from 'react-native-dropdownalert';
 import { AlertHelper } from './app/utils/AlertHelper';
+import { appColors } from './app/utils/appColors';
 const App: () => React$Node = () => {
   return (
-    <Provider store={store}>
+    <SafeAreaView style={{flex:1,}}>
+      <Provider store={store}>
       <MainStack/>
       <DropdownAlert
           defaultContainer={{ padding: 8, paddingTop: StatusBar.currentHeight, flexDirection: 'row' }}
@@ -23,6 +25,7 @@ const App: () => React$Node = () => {
           onClose={() => AlertHelper.invokeOnClose()}
         />
     </Provider>
+    </SafeAreaView>
   )
 
 };
