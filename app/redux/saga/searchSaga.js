@@ -11,7 +11,12 @@ export function* workerSearchByQuery(action) {
   //console.log("results",JSON.parse( results));
   try {
     if(JSON.parse( results))
-    yield put({type: SET_SEARCH_QUERY_RESULTS, payload: JSON.parse( results)});
+    { let size=8;
+      if(JSON.parse( results).length < size){
+        size=JSON.parse( results).length-1
+      }
+      yield put({type: SET_SEARCH_QUERY_RESULTS, payload: JSON.parse( results).slice(0, size) });
+    }
   } catch (error) {
     console.log("error",error);
   }

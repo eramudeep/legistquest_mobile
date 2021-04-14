@@ -31,7 +31,7 @@ export default function CustomAutoComplete({
 
                  //listContainerStyle={{paddingHorizontal:0,zIndex:100,}}
                  keyExtractor={item =>  Math.random().toString(36).substring(7)}
-                listStyle={{borderWidth:0,paddingHorizontal:0}}
+                listStyle={{borderWidth:0,paddingHorizontal:0, marginTop:scale(25)}}
                 placeholder={ placeholder ? placeholder: "NONE"  }
                 onChangeText={onChangeText}
                 renderItem={({ item, i }) => { 

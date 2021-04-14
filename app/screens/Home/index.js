@@ -10,6 +10,7 @@ import {homeData} from '../../utils/MockData';
 import {connect} from 'react-redux';
 import {searchByQuery, resetSearchResults} from '../../redux/searchActions';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
+import { debounce } from "lodash";
 
 function Home({
   navigation,
@@ -21,14 +22,16 @@ function Home({
   const [searchIcon, setSearchIcon] = useState('search'); //spinner
   //const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
   const onChange = (change) => {
+    debouncedSearch(change); 
+  };
+  const debouncedSearch = debounce(function (change) {
     searchByQuery$(change);
     setQuery(change);
     setSearchIcon('spinner');
-  };
-  /* useEffect(() => {
-    setSearchResultsFiltred(searchResults)
-  }, [searchResults]) */
-  //console.log("searchResults",searchResults);
+    
+  }, 1000);
+
+  
   return (
     <Container
       showFooter
