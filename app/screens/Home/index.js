@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Keyboard,StyleSheet, Text, View, ScrollView} from 'react-native';
+import {Keyboard, StyleSheet, Text, View, ScrollView} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 import CustomIcon from '../../components/CustomIcon';
@@ -8,21 +8,26 @@ import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import {appColors} from '../../utils/appColors';
 import {homeData} from '../../utils/MockData';
 import {connect} from 'react-redux';
-import {searchByQuery} from '../../redux/searchActions';
+import {searchByQuery, resetSearchResults} from '../../redux/searchActions';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
 
-function Home({navigation, searchResults, searchByQuery$}) {
+function Home({
+  navigation,
+  resetSearchResults$,
+  searchResults,
+  searchByQuery$,
+}) {
   const [query, setQuery] = useState('');
-  const [searchIcon, setSearchIcon] = useState("search")//spinner
-   const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
+  const [searchIcon, setSearchIcon] = useState('search'); //spinner
+  //const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
   const onChange = (change) => {
     searchByQuery$(change);
     setQuery(change);
-    setSearchIcon("spinner")
+    setSearchIcon('spinner');
   };
-  useEffect(() => {
+  /* useEffect(() => {
     setSearchResultsFiltred(searchResults)
-  }, [searchResults])
+  }, [searchResults]) */
   //console.log("searchResults",searchResults);
   return (
     <Container
@@ -34,23 +39,20 @@ function Home({navigation, searchResults, searchByQuery$}) {
       onSignin={() => navigation.navigate('Login')}>
       <View style={{flex: 1, justifyContent: 'center'}}>
         <CustomIcon iconStyle={{width: scale(300), height: scale(100)}} />
-         
-          <CustomAutoComplete
-            defaultValue={query}
-            placeholder={'Search free text...'}
-            data={searchResultsFiltred}
-            onChangeText={onChange}
-            itemOnPress={(item) => { 
-              Keyboard.dismiss()
-              setQuery(item.Value);
-              setSearchResultsFiltred([]);
-              setSearchIcon("search")
-            }
-              
-            }
-            icon={searchIcon}
-          />
-         
+
+        <CustomAutoComplete
+          defaultValue={query}
+          placeholder={'Search free text...'}
+          data={[...searchResults]}
+          onChangeText={onChange}
+          itemOnPress={(item) => {
+            Keyboard.dismiss();
+            setQuery(item.Value);
+            resetSearchResults$();
+            setSearchIcon('search');
+          }}
+          icon={searchIcon}
+        />
 
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 
@@ -72,6 +74,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
   searchByQuery$: searchByQuery,
+  resetSearchResults$: resetSearchResults,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
