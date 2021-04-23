@@ -8,7 +8,7 @@ import CustomLabel from '../CustomLabel/CustomLabel'
 export default function Badge({text}) {
     return (
         <TouchableRipple style={styles.badge}>
-            <CustomLabel text={"Judgment"} labelStyle={styles.label}/>
+            <CustomLabel text={text ? text : "Judgment"} labelStyle={styles.label}/>
         </TouchableRipple>
     )
 }

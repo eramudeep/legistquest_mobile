@@ -6,8 +6,7 @@ import CustomLabel from '../../components/CustomLabel/CustomLabel';
 
 export default function TopicDetail({route, navigation}) {
   const {LinkText, HighlightedText} = route.params;
-  console.log('LinkText,HighlightedText', route.params);
-  return (
+   return (
     <Container
       isScrollable
       showHome
