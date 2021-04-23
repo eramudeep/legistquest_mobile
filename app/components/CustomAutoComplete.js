@@ -15,7 +15,8 @@ export default function CustomAutoComplete({
     onChangeText,
     data,
     defaultValue,
-    itemOnPress
+    itemOnPress,
+    onIconPress
 }) {
     //console.log("data",data);
 //const lang=useSelectedLang()
@@ -41,10 +42,10 @@ export default function CustomAutoComplete({
                         <Text>{Value}</Text> 
                     </TouchableOpacity>
                 )}} />
-                  { icon && <View style={styles.iconView}>
+                  { icon && <TouchableOpacity onPress={onIconPress} style={styles.iconView}>
               
               <FontAwesome5Icon name={icon} color={appColors.secondary} size={scale(18)} />
-          </View>}
+          </TouchableOpacity>}
         </View>
     );
 }

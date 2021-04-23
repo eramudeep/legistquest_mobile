@@ -5,12 +5,13 @@ import {SEARCH_QUERY, SET_SEARCH_QUERY_RESULTS} from '../searchActions';
 export function* workerSearchByQuery(action) {
   console.log('action', action.payload);
   const  QUERY =action.payload
-  
- const results = yield fetch(`${SEARCH_BY_KEY_WORDS}${QUERY}`)
+  const{type,text}=QUERY
+  console.log(`${SEARCH_BY_KEY_WORDS}type=${type}&searchString=${text}`);
+ const results = yield fetch(`${SEARCH_BY_KEY_WORDS}type=${type}&searchString=${text}`)
   .then(response => response.text()) 
   //console.log("results",JSON.parse( results));
   try {
-    if(JSON.parse( results))
+    if(results &&JSON.parse( results))
     { let size=8;
       if(JSON.parse( results).length < size){
         size=JSON.parse( results).length-1

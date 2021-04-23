@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Keyboard, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {Keyboard, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 import CustomIcon from '../../components/CustomIcon';
@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import {searchByQuery, resetSearchResults} from '../../redux/searchActions';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
 import { debounce } from "lodash";
+import { TYPE_FREE_TEXT } from '../../services/ApiList';
 
 function Home({
   navigation,
@@ -20,12 +21,13 @@ function Home({
 }) {
   const [query, setQuery] = useState('');
   const [searchIcon, setSearchIcon] = useState('search'); //spinner
+  const [searchType, setSearchType] = useState(TYPE_FREE_TEXT)
   //const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
   const onChange = (change) => {
     debouncedSearch(change); 
   };
   const debouncedSearch = debounce(function (change) {
-    searchByQuery$(change);
+    searchByQuery$({type:searchType,text:change});
     setQuery(change);
     setSearchIcon('spinner');
     
@@ -53,7 +55,9 @@ function Home({
             setQuery(item.Value);
             resetSearchResults$();
             setSearchIcon('search');
+            navigation.navigate("Topic")
           }}
+          // onIconPress={()=>navigation.navigate("Topic")}
           icon={searchIcon}
         />
 
@@ -61,10 +65,10 @@ function Home({
 
         {homeData.map((val, key) => {
           return (
-            <View key={key} style={styles.flexView}>
+            <TouchableOpacity key={key} style={styles.flexView} onPress={()=>setSearchType(val.key)}>
               <CustomLabel text={val.label} labelStyle={styles.label} />
-              <CustomLabel text={val.value} labelStyle={styles.label1} />
-            </View>
+              <CustomLabel text={val.value} labelStyle={[styles.label1,val.key===searchType&& {color:appColors.green}]} />
+            </TouchableOpacity>
           );
         })}
       </View>
