@@ -81,7 +81,7 @@ function Home({
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({ 
   searchResults: state.search.searchResults,
 });
 const mapDispatchToProps = {

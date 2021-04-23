@@ -26,7 +26,7 @@ export default function SearchResult({
     Judges,
     PartyName,
   } = searchData;
-
+console.log("searchData",searchData);
   const _renderJudge = ({item, index}) => {
     return <Badge key={index} text={removeHtmlTags(item)} />;
   };
@@ -70,10 +70,10 @@ export default function SearchResult({
          style={styles.bodyText}
         />
 
-      {/* <CustomLabel
+        {/* <CustomLabel
         text={HighlightedText?.replace(/<[^>]*>?/gm, '')}
         labelStyle={styles.bodyText}
-      /> */}
+      />  */} 
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <TouchableOpacity style={styles.footerBtn} onPress={onSearchCase}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />
