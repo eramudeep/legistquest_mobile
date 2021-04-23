@@ -16,7 +16,9 @@ export default function CustomAutoComplete({
     data,
     defaultValue,
     itemOnPress,
-    onIconPress
+    onIconPress,
+    onFocus,
+    onBlur
 }) {
     //console.log("data",data);
 //const lang=useSelectedLang()
@@ -29,7 +31,8 @@ export default function CustomAutoComplete({
                 data={data}
                 defaultValue={defaultValue}
                 inputContainerStyle={styles.input}
-
+                onFocus={onFocus&& onFocus}
+                onBlur={onBlur && onBlur}
                  //listContainerStyle={{paddingHorizontal:0,zIndex:100,}}
                  keyExtractor={item =>  Math.random().toString(36).substring(7)}
                 listStyle={{borderWidth:0,paddingHorizontal:0, marginTop:scale(25)}}

@@ -24,6 +24,7 @@ function Home({
   const [query, setQuery] = useState('');
   const [searchIcon, setSearchIcon] = useState('search'); //spinner
   const [searchType, setSearchType] = useState(TYPE_FREE_TEXT)
+  const [typing, setTyping] = useState(false)
   //const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
   const onChange = (change) => {
     debouncedSearch(change); 
@@ -50,13 +51,15 @@ function Home({
         <CustomAutoComplete
           defaultValue={query}
           placeholder={'Search free text...'}
-          data={[...searchResults]}
+          data={typing && [...searchResults]}
           onChangeText={onChange}
+          onFocus={()=>{setTyping(true)}} 
           itemOnPress={(item) => {
             getResultsByTopic$({selectedTopic:item.Value})
             Keyboard.dismiss();
             setQuery(item.Value);
-            resetSearchResults$();
+            setTyping(false)
+            //resetSearchResults$();
             setSearchIcon('search');
             navigation.navigate("Topic",{selectedTopic:item.Value})
           }}
