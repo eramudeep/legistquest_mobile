@@ -6,3 +6,8 @@ export const JUDGE_NAME = "bench";
 export const CITATION = "citation";
 export const SEARCH_BY_KEY_WORDS = `${BASE_URL}SearchByKeyWords?type=${TYPE_FREE_TEXT}&searchString=`;
 export const SEARCH_BY_WORD = `${BASE_URL}SearchByKeyWords?`;
+export const CASE_TEXT_API_URL=`${BASE_URL}GetResultBySelectedSearchResult?`
+
+ 
+
+

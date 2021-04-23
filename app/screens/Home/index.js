@@ -8,16 +8,18 @@ import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import {appColors} from '../../utils/appColors';
 import {homeData} from '../../utils/MockData';
 import {connect} from 'react-redux';
-import {searchByQuery, resetSearchResults} from '../../redux/searchActions';
+import {searchByQuery, resetSearchResults, getResultsByTopic} from '../../redux/searchActions';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
 import { debounce } from "lodash";
 import { TYPE_FREE_TEXT } from '../../services/ApiList';
+import { setSearchType as setSearchTypeLocal, } from '../../utils/searchTypeHelper';
 
 function Home({
   navigation,
   resetSearchResults$,
   searchResults,
   searchByQuery$,
+  getResultsByTopic$
 }) {
   const [query, setQuery] = useState('');
   const [searchIcon, setSearchIcon] = useState('search'); //spinner
@@ -51,11 +53,12 @@ function Home({
           data={[...searchResults]}
           onChangeText={onChange}
           itemOnPress={(item) => {
+            getResultsByTopic$({selectedTopic:item.Value})
             Keyboard.dismiss();
             setQuery(item.Value);
             resetSearchResults$();
             setSearchIcon('search');
-            navigation.navigate("Topic")
+            navigation.navigate("Topic",{selectedTopic:item.Value})
           }}
           // onIconPress={()=>navigation.navigate("Topic")}
           icon={searchIcon}
@@ -65,7 +68,9 @@ function Home({
 
         {homeData.map((val, key) => {
           return (
-            <TouchableOpacity key={key} style={styles.flexView} onPress={()=>setSearchType(val.key)}>
+            <TouchableOpacity key={key} style={styles.flexView} onPress={async ()=>{
+              setSearchTypeLocal(val.key)
+              setSearchType(val.key)}}>
               <CustomLabel text={val.label} labelStyle={styles.label} />
               <CustomLabel text={val.value} labelStyle={[styles.label1,val.key===searchType&& {color:appColors.green}]} />
             </TouchableOpacity>
@@ -82,6 +87,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   searchByQuery$: searchByQuery,
   resetSearchResults$: resetSearchResults,
+  getResultsByTopic$:getResultsByTopic
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
