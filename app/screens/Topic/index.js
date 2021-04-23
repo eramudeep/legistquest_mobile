@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {FlatList,ScrollView, StyleSheet, Text, View} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Badge from '../../components/Badge';
 import Container from '../../components/Container';
@@ -9,11 +9,18 @@ import {getResultsByTopic} from '../../redux/searchActions';
 import ScrollableTab from '../../routing/ScrollableTab';
 import {connect} from 'react-redux';
 
-function Topic({searchTopicResult,getResultsByTopic$, route, navigation}) {
-   
-console.log("searchTopicResult",searchTopicResult);
-   
-  return (
+function Topic({searchTopicResult,getResultsByTopic$, route, navigation}) { 
+const {selectedTopic} =route.params
+  
+const _renderSearchResult = ({item,index})=>{
+    return <SearchResult
+    selectedTopic={selectedTopic}
+    searchData={item}
+    key={index}
+    onPress={(LinkText,HighlightedText) => navigation.navigate('TopicDetail',{LinkText,HighlightedText})}
+  />
+}
+return (
     <Container
       showHome
       showMenu
@@ -34,18 +41,11 @@ console.log("searchTopicResult",searchTopicResult);
           </ScrollView>
         </View>
 
-        <ScrollView>
-          {searchTopicResult?.CaseDetails?.map((val, key) => {
-              
-            return (
-              <SearchResult
-                searchData={val}
-                key={key}
-                onPress={(LinkText,HighlightedText) => navigation.navigate('TopicDetail',{LinkText,HighlightedText})}
-              />
-            );
-          })}
-        </ScrollView>
+        <FlatList  
+         data={ searchTopicResult?.CaseDetails}
+         renderItem={_renderSearchResult}
+         keyExtractor={(item) => item.id}
+        /> 
       </View>
     </Container>
   );

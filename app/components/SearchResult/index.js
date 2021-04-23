@@ -7,12 +7,15 @@ import Badge from '../Badge';
 import Icon from '../CustomIcon/Icon';
 import CustomLabel from '../CustomLabel/CustomLabel';
 import {removeHtmlTags} from '../../utils/common'
+import Highlighter from 'react-native-highlight-words';
+
 export default function SearchResult({
   searchData,
   onPress,
   data,
   onJudges,
   onSearchCase,
+  selectedTopic
 }) {
   const [showJudges, setShowJudges] = useState(false);
   const {
@@ -25,7 +28,7 @@ export default function SearchResult({
   } = searchData;
 
   const _renderJudge = ({item, index}) => {
-    return <Badge text={removeHtmlTags(item)} />;
+    return <Badge key={index} text={removeHtmlTags(item)} />;
   };
   const _renderJudges = () => {
     return (
@@ -47,6 +50,7 @@ export default function SearchResult({
         borderBottomColor: appColors.gray,
         paddingVertical: scale(10),
       }}>
+       
       <CustomLabel
         onPress={() =>
           onPress &&
@@ -59,10 +63,17 @@ export default function SearchResult({
         text={`${CourtName} | ${DateOfJudgment}`}
         labelStyle={styles.subTitle}
       />
-      <CustomLabel
+       <Highlighter 
+         highlightStyle={{backgroundColor: appColors.higheLight, fontWeight:'700'}}
+         searchWords={[ ...selectedTopic?.split(" ")]}
+         textToHighlight={removeHtmlTags(HighlightedText)}
+         style={styles.bodyText}
+        />
+
+      {/* <CustomLabel
         text={HighlightedText?.replace(/<[^>]*>?/gm, '')}
         labelStyle={styles.bodyText}
-      />
+      /> */}
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <TouchableOpacity style={styles.footerBtn} onPress={onSearchCase}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />
