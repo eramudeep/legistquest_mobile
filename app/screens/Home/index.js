@@ -51,7 +51,7 @@ function Home({
         <CustomAutoComplete
           defaultValue={query}
           placeholder={'Search free text...'}
-          data={typing && [...searchResults]}
+          data={typing && [...searchResults]||[]}
           onChangeText={onChange}
           onFocus={()=>{setTyping(true)}} 
           itemOnPress={(item) => {

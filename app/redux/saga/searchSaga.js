@@ -1,6 +1,7 @@
 import {put, takeLatest} from 'redux-saga/effects';
 import {CASE_TEXT_API_URL, SEARCH_BY_KEY_WORDS } from '../../services/ApiList';
 import { getSearchType } from '../../utils/searchTypeHelper';
+import { IS_LOADING } from '../actionTypes';
 import {SET_RESULT_BY_TOPIC,GET_RESULT_BY_TOPIC, SEARCH_QUERY, SET_SEARCH_QUERY_RESULTS} from '../searchActions';
 
 export function* workerSearchByQuery(action) {
@@ -10,7 +11,7 @@ export function* workerSearchByQuery(action) {
   //console.log(`${SEARCH_BY_KEY_WORDS}type=${type}&searchString=${text}`);
  const results = yield fetch(`${SEARCH_BY_KEY_WORDS}type=${type}&searchString=${text}`)
   .then(response => response.text()) 
-  //console.log("results",JSON.parse( results));
+  // console.log("results",JSON.parse( results));
   try {
     if(results &&JSON.parse( results))
     { let size=8;
@@ -32,6 +33,7 @@ export function* watcherSearchByQuery() {
 
 
 export function* workerGetResultsByTopic(action) {
+  yield put({type: IS_LOADING, payload: true  });
   const searchType =yield getSearchType()
   const {selectedTopic}=action.payload
   //console.log('searchType', searchType,"selectedTopic",selectedTopic);
@@ -42,11 +44,12 @@ export function* workerGetResultsByTopic(action) {
 
   try {
     if(results &&JSON.parse( results))
-    {  
-       
+    {
       yield put({type: SET_RESULT_BY_TOPIC, payload: JSON.parse( results)  });
+      yield put({type: IS_LOADING, payload: false  });
     }
   } catch (error) {
+    yield put({type: IS_LOADING, payload: false  });
     console.log("error",error);
   }
 
