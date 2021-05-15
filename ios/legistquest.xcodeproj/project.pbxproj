@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* react_native_redux_starterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* react_native_redux_starterTests.m */; };
+		00E356F31AD99517003FC87E /* legistquestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* legistquestTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2C3434DFA8B0B6A1D00926D9 /* libPods-react_native_redux_starter-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C69044D34F353B8899886E3 /* libPods-react_native_redux_starter-tvOSTests.a */; };
+		2C3434DFA8B0B6A1D00926D9 /* libPods-legistquest-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C69044D34F353B8899886E3 /* libPods-legistquest-tvOSTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* react_native_redux_starterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* react_native_redux_starterTests.m */; };
-		44CF945464A81E29199A9251 /* libPods-react_native_redux_starter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9261202360CE762DC04D7863 /* libPods-react_native_redux_starter.a */; };
-		5709871026405C4314BAE56C /* libPods-react_native_redux_starter-react_native_redux_starterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C4DCF83B4433F01C80CB4C /* libPods-react_native_redux_starter-react_native_redux_starterTests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* legistquestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* legistquestTests.m */; };
+		44CF945464A81E29199A9251 /* libPods-legistquest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9261202360CE762DC04D7863 /* libPods-legistquest.a */; };
+		5709871026405C4314BAE56C /* libPods-legistquest-legistquestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C4DCF83B4433F01C80CB4C /* libPods-legistquest-legistquestTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		A326A67116B3F6A7360D5695 /* libPods-react_native_redux_starter-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D27CB88CB3C26A5376AAE35 /* libPods-react_native_redux_starter-tvOS.a */; };
+		A326A67116B3F6A7360D5695 /* libPods-legistquest-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D27CB88CB3C26A5376AAE35 /* libPods-legistquest-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,61 +28,61 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = react_native_redux_starter;
+			remoteInfo = legistquest;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "react_native_redux_starter-tvOS";
+			remoteInfo = "legistquest-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* react_native_redux_starterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = react_native_redux_starterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* legistquestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = legistquestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* react_native_redux_starterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = react_native_redux_starterTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* legistquestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = legistquestTests.m; sourceTree = "<group>"; };
 		0745A2FE5CB646189D378A8F /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* react_native_redux_starter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = react_native_redux_starter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = react_native_redux_starter/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = react_native_redux_starter/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = react_native_redux_starter/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = react_native_redux_starter/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = react_native_redux_starter/main.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* legistquest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = legistquest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = legistquest/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = legistquest/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = legistquest/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = legistquest/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = legistquest/main.m; sourceTree = "<group>"; };
 		1FACEC5BEA1547589061182C /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		205FA361BB6C4BD19D229346 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		22278DA94C818E8D87CB7B50 /* Pods-react_native_redux_starter-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter-tvOS.release.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter-tvOS/Pods-react_native_redux_starter-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		22278DA94C818E8D87CB7B50 /* Pods-legistquest-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest-tvOS.release.xcconfig"; path = "Target Support Files/Pods-legistquest-tvOS/Pods-legistquest-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		2C0E937774704FB1ABAD3F57 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* react_native_redux_starter-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "react_native_redux_starter-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* react_native_redux_starter-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "react_native_redux_starter-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* legistquest-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "legistquest-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* legistquest-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "legistquest-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8E9F43521F41C69696CC2B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		2FE0871EAA1B4264835008F7 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		39ED07D1303F431AB0B99F40 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		3E20B54C0CA538B94D6B3745 /* Pods-react_native_redux_starter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter.release.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter/Pods-react_native_redux_starter.release.xcconfig"; sourceTree = "<group>"; };
-		5B0D96BD6E820FB16FD0ACE0 /* Pods-react_native_redux_starter-react_native_redux_starterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter-react_native_redux_starterTests.release.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter-react_native_redux_starterTests/Pods-react_native_redux_starter-react_native_redux_starterTests.release.xcconfig"; sourceTree = "<group>"; };
-		5D27CB88CB3C26A5376AAE35 /* libPods-react_native_redux_starter-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react_native_redux_starter-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E20B54C0CA538B94D6B3745 /* Pods-legistquest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest.release.xcconfig"; path = "Target Support Files/Pods-legistquest/Pods-legistquest.release.xcconfig"; sourceTree = "<group>"; };
+		5B0D96BD6E820FB16FD0ACE0 /* Pods-legistquest-legistquestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest-legistquestTests.release.xcconfig"; path = "Target Support Files/Pods-legistquest-legistquestTests/Pods-legistquest-legistquestTests.release.xcconfig"; sourceTree = "<group>"; };
+		5D27CB88CB3C26A5376AAE35 /* libPods-legistquest-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-legistquest-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		663C1C1A15B4456787364A12 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		6E5AD3FF4FDB31160C507184 /* Pods-react_native_redux_starter-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter-tvOS/Pods-react_native_redux_starter-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6E5AD3FF4FDB31160C507184 /* Pods-legistquest-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-legistquest-tvOS/Pods-legistquest-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6F6483E019BC4F2AB0624B51 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		7B6EF3ABD6676CB9B95CBF46 /* Pods-react_native_redux_starter-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter-tvOSTests/Pods-react_native_redux_starter-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7ECD9DED745E626B2B552060 /* Pods-react_native_redux_starter-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter-tvOSTests/Pods-react_native_redux_starter-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = react_native_redux_starter/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9261202360CE762DC04D7863 /* libPods-react_native_redux_starter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react_native_redux_starter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C69044D34F353B8899886E3 /* libPods-react_native_redux_starter-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react_native_redux_starter-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B6EF3ABD6676CB9B95CBF46 /* Pods-legistquest-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-legistquest-tvOSTests/Pods-legistquest-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7ECD9DED745E626B2B552060 /* Pods-legistquest-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-legistquest-tvOSTests/Pods-legistquest-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = legistquest/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9261202360CE762DC04D7863 /* libPods-legistquest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-legistquest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C69044D34F353B8899886E3 /* libPods-legistquest-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-legistquest-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CC86F581CF74F7DA0683070 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		AA314C74FB89424389F7B795 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		B13582F744134823B11A95E7 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		BD2191734BEA44DC8381C857 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		C31B6B9C9A56439B8CECD7DD /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		C921B3619846EC666F4F7864 /* Pods-react_native_redux_starter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter.debug.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter/Pods-react_native_redux_starter.debug.xcconfig"; sourceTree = "<group>"; };
-		E1C4DCF83B4433F01C80CB4C /* libPods-react_native_redux_starter-react_native_redux_starterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react_native_redux_starter-react_native_redux_starterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C921B3619846EC666F4F7864 /* Pods-legistquest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest.debug.xcconfig"; path = "Target Support Files/Pods-legistquest/Pods-legistquest.debug.xcconfig"; sourceTree = "<group>"; };
+		E1C4DCF83B4433F01C80CB4C /* libPods-legistquest-legistquestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-legistquest-legistquestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC777CEBC23C4CBCB3014123 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F7F2F6C46A464BB284435A6B /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		FDE62B70FD7E00D5C9F01575 /* Pods-react_native_redux_starter-react_native_redux_starterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_native_redux_starter-react_native_redux_starterTests.debug.xcconfig"; path = "Target Support Files/Pods-react_native_redux_starter-react_native_redux_starterTests/Pods-react_native_redux_starter-react_native_redux_starterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FDE62B70FD7E00D5C9F01575 /* Pods-legistquest-legistquestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-legistquest-legistquestTests.debug.xcconfig"; path = "Target Support Files/Pods-legistquest-legistquestTests/Pods-legistquest-legistquestTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5709871026405C4314BAE56C /* libPods-react_native_redux_starter-react_native_redux_starterTests.a in Frameworks */,
+				5709871026405C4314BAE56C /* libPods-legistquest-legistquestTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44CF945464A81E29199A9251 /* libPods-react_native_redux_starter.a in Frameworks */,
+				44CF945464A81E29199A9251 /* libPods-legistquest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A326A67116B3F6A7360D5695 /* libPods-react_native_redux_starter-tvOS.a in Frameworks */,
+				A326A67116B3F6A7360D5695 /* libPods-legistquest-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,20 +114,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C3434DFA8B0B6A1D00926D9 /* libPods-react_native_redux_starter-tvOSTests.a in Frameworks */,
+				2C3434DFA8B0B6A1D00926D9 /* libPods-legistquest-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* react_native_redux_starterTests */ = {
+		00E356EF1AD99517003FC87E /* legistquestTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* react_native_redux_starterTests.m */,
+				00E356F21AD99517003FC87E /* legistquestTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = react_native_redux_starterTests;
+			path = legistquestTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -138,7 +138,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* react_native_redux_starter */ = {
+		13B07FAE1A68108700A75B9A /* legistquest */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -149,7 +149,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = react_native_redux_starter;
+			name = legistquest;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -157,10 +157,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				9261202360CE762DC04D7863 /* libPods-react_native_redux_starter.a */,
-				E1C4DCF83B4433F01C80CB4C /* libPods-react_native_redux_starter-react_native_redux_starterTests.a */,
-				5D27CB88CB3C26A5376AAE35 /* libPods-react_native_redux_starter-tvOS.a */,
-				9C69044D34F353B8899886E3 /* libPods-react_native_redux_starter-tvOSTests.a */,
+				9261202360CE762DC04D7863 /* libPods-legistquest.a */,
+				E1C4DCF83B4433F01C80CB4C /* libPods-legistquest-legistquestTests.a */,
+				5D27CB88CB3C26A5376AAE35 /* libPods-legistquest-tvOS.a */,
+				9C69044D34F353B8899886E3 /* libPods-legistquest-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,9 +175,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* react_native_redux_starter */,
+				13B07FAE1A68108700A75B9A /* legistquest */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* react_native_redux_starterTests */,
+				00E356EF1AD99517003FC87E /* legistquestTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C5665012DCE043798387710B /* Resources */,
@@ -191,10 +191,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* react_native_redux_starter.app */,
-				00E356EE1AD99517003FC87E /* react_native_redux_starterTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* react_native_redux_starter-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* react_native_redux_starter-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* legistquest.app */,
+				00E356EE1AD99517003FC87E /* legistquestTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* legistquest-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* legistquest-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,14 +202,14 @@
 		A1BF9CD1A273353208E79C95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C921B3619846EC666F4F7864 /* Pods-react_native_redux_starter.debug.xcconfig */,
-				3E20B54C0CA538B94D6B3745 /* Pods-react_native_redux_starter.release.xcconfig */,
-				FDE62B70FD7E00D5C9F01575 /* Pods-react_native_redux_starter-react_native_redux_starterTests.debug.xcconfig */,
-				5B0D96BD6E820FB16FD0ACE0 /* Pods-react_native_redux_starter-react_native_redux_starterTests.release.xcconfig */,
-				6E5AD3FF4FDB31160C507184 /* Pods-react_native_redux_starter-tvOS.debug.xcconfig */,
-				22278DA94C818E8D87CB7B50 /* Pods-react_native_redux_starter-tvOS.release.xcconfig */,
-				7B6EF3ABD6676CB9B95CBF46 /* Pods-react_native_redux_starter-tvOSTests.debug.xcconfig */,
-				7ECD9DED745E626B2B552060 /* Pods-react_native_redux_starter-tvOSTests.release.xcconfig */,
+				C921B3619846EC666F4F7864 /* Pods-legistquest.debug.xcconfig */,
+				3E20B54C0CA538B94D6B3745 /* Pods-legistquest.release.xcconfig */,
+				FDE62B70FD7E00D5C9F01575 /* Pods-legistquest-legistquestTests.debug.xcconfig */,
+				5B0D96BD6E820FB16FD0ACE0 /* Pods-legistquest-legistquestTests.release.xcconfig */,
+				6E5AD3FF4FDB31160C507184 /* Pods-legistquest-tvOS.debug.xcconfig */,
+				22278DA94C818E8D87CB7B50 /* Pods-legistquest-tvOS.release.xcconfig */,
+				7B6EF3ABD6676CB9B95CBF46 /* Pods-legistquest-tvOSTests.debug.xcconfig */,
+				7ECD9DED745E626B2B552060 /* Pods-legistquest-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -240,9 +240,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* react_native_redux_starterTests */ = {
+		00E356ED1AD99517003FC87E /* legistquestTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "react_native_redux_starterTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "legistquestTests" */;
 			buildPhases = (
 				A9DB6F00C64C9656B6940AC8 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -255,14 +255,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = react_native_redux_starterTests;
-			productName = react_native_redux_starterTests;
-			productReference = 00E356EE1AD99517003FC87E /* react_native_redux_starterTests.xctest */;
+			name = legistquestTests;
+			productName = legistquestTests;
+			productReference = 00E356EE1AD99517003FC87E /* legistquestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* react_native_redux_starter */ = {
+		13B07F861A680F5B00A75B9A /* legistquest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "react_native_redux_starter" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "legistquest" */;
 			buildPhases = (
 				8CD925D5C6F76C81809677CB /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -276,14 +276,14 @@
 			);
 			dependencies = (
 			);
-			name = react_native_redux_starter;
-			productName = react_native_redux_starter;
-			productReference = 13B07F961A680F5B00A75B9A /* react_native_redux_starter.app */;
+			name = legistquest;
+			productName = legistquest;
+			productReference = 13B07F961A680F5B00A75B9A /* legistquest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* react_native_redux_starter-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* legistquest-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "react_native_redux_starter-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "legistquest-tvOS" */;
 			buildPhases = (
 				FFCA8096FE6F8BECDF77A8F4 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -296,14 +296,14 @@
 			);
 			dependencies = (
 			);
-			name = "react_native_redux_starter-tvOS";
-			productName = "react_native_redux_starter-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* react_native_redux_starter-tvOS.app */;
+			name = "legistquest-tvOS";
+			productName = "legistquest-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* legistquest-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* react_native_redux_starter-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* legistquest-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "react_native_redux_starter-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "legistquest-tvOSTests" */;
 			buildPhases = (
 				C6431081FCC6213C52504EDC /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -315,9 +315,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "react_native_redux_starter-tvOSTests";
-			productName = "react_native_redux_starter-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* react_native_redux_starter-tvOSTests.xctest */;
+			name = "legistquest-tvOSTests";
+			productName = "legistquest-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* legistquest-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -346,7 +346,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "react_native_redux_starter" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "legistquest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -359,10 +359,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* react_native_redux_starter */,
-				00E356ED1AD99517003FC87E /* react_native_redux_starterTests */,
-				2D02E47A1E0B4A5D006451C7 /* react_native_redux_starter-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* react_native_redux_starter-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* legistquest */,
+				00E356ED1AD99517003FC87E /* legistquestTests */,
+				2D02E47A1E0B4A5D006451C7 /* legistquest-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* legistquest-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -422,7 +422,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_native_redux_starter-react_native_redux_starterTests/Pods-react_native_redux_starter-react_native_redux_starterTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-legistquest-legistquestTests/Pods-legistquest-legistquestTests-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -463,7 +463,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-react_native_redux_starter-react_native_redux_starterTests/Pods-react_native_redux_starter-react_native_redux_starterTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-legistquest-legistquestTests/Pods-legistquest-legistquestTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
@@ -495,7 +495,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-react_native_redux_starter-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-legistquest-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -508,7 +508,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-react_native_redux_starter/Pods-react_native_redux_starter-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-legistquest/Pods-legistquest-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -549,7 +549,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-react_native_redux_starter/Pods-react_native_redux_starter-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-legistquest/Pods-legistquest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A9DB6F00C64C9656B6940AC8 /* [CP] Check Pods Manifest.lock */ = {
@@ -567,7 +567,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-react_native_redux_starter-react_native_redux_starterTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-legistquest-legistquestTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -589,7 +589,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-react_native_redux_starter-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-legistquest-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -649,7 +649,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-react_native_redux_starter-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-legistquest-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -663,7 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* react_native_redux_starterTests.m in Sources */,
+				00E356F31AD99517003FC87E /* legistquestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,7 +689,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* react_native_redux_starterTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* legistquestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,12 +698,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* react_native_redux_starter */;
+			target = 13B07F861A680F5B00A75B9A /* legistquest */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* react_native_redux_starter-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* legistquest-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -711,14 +711,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDE62B70FD7E00D5C9F01575 /* Pods-react_native_redux_starter-react_native_redux_starterTests.debug.xcconfig */;
+			baseConfigurationReference = FDE62B70FD7E00D5C9F01575 /* Pods-legistquest-legistquestTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = react_native_redux_starterTests/Info.plist;
+				INFOPLIST_FILE = legistquestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -728,17 +728,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/react_native_redux_starter.app/react_native_redux_starter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/legistquest.app/legistquest";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B0D96BD6E820FB16FD0ACE0 /* Pods-react_native_redux_starter-react_native_redux_starterTests.release.xcconfig */;
+			baseConfigurationReference = 5B0D96BD6E820FB16FD0ACE0 /* Pods-legistquest-legistquestTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = react_native_redux_starterTests/Info.plist;
+				INFOPLIST_FILE = legistquestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -748,19 +748,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/react_native_redux_starter.app/react_native_redux_starter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/legistquest.app/legistquest";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C921B3619846EC666F4F7864 /* Pods-react_native_redux_starter.debug.xcconfig */;
+			baseConfigurationReference = C921B3619846EC666F4F7864 /* Pods-legistquest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = react_native_redux_starter/Info.plist;
+				INFOPLIST_FILE = legistquest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -768,7 +768,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = react_native_redux_starter;
+				PRODUCT_NAME = legistquest;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -777,12 +777,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E20B54C0CA538B94D6B3745 /* Pods-react_native_redux_starter.release.xcconfig */;
+			baseConfigurationReference = 3E20B54C0CA538B94D6B3745 /* Pods-legistquest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = react_native_redux_starter/Info.plist;
+				INFOPLIST_FILE = legistquest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -790,7 +790,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = react_native_redux_starter;
+				PRODUCT_NAME = legistquest;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -798,7 +798,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E5AD3FF4FDB31160C507184 /* Pods-react_native_redux_starter-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 6E5AD3FF4FDB31160C507184 /* Pods-legistquest-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -809,14 +809,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "react_native_redux_starter-tvOS/Info.plist";
+				INFOPLIST_FILE = "legistquest-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.react_native_redux_starter-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.legistquest-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -826,7 +826,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22278DA94C818E8D87CB7B50 /* Pods-react_native_redux_starter-tvOS.release.xcconfig */;
+			baseConfigurationReference = 22278DA94C818E8D87CB7B50 /* Pods-legistquest-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -837,14 +837,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "react_native_redux_starter-tvOS/Info.plist";
+				INFOPLIST_FILE = "legistquest-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.react_native_redux_starter-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.legistquest-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -854,7 +854,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B6EF3ABD6676CB9B95CBF46 /* Pods-react_native_redux_starter-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 7B6EF3ABD6676CB9B95CBF46 /* Pods-legistquest-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -864,24 +864,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "react_native_redux_starter-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "legistquest-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.react_native_redux_starter-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.legistquest-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/react_native_redux_starter-tvOS.app/react_native_redux_starter-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/legistquest-tvOS.app/legistquest-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7ECD9DED745E626B2B552060 /* Pods-react_native_redux_starter-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 7ECD9DED745E626B2B552060 /* Pods-legistquest-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -891,17 +891,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "react_native_redux_starter-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "legistquest-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.react_native_redux_starter-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.legistquest-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/react_native_redux_starter-tvOS.app/react_native_redux_starter-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/legistquest-tvOS.app/legistquest-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1022,7 +1022,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "react_native_redux_starterTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "legistquestTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1031,7 +1031,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "react_native_redux_starter" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "legistquest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1040,7 +1040,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "react_native_redux_starter-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "legistquest-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1049,7 +1049,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "react_native_redux_starter-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "legistquest-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1058,7 +1058,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "react_native_redux_starter" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "legistquest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

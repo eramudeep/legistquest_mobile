@@ -3,14 +3,14 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'react_native_redux_starter' do
+target 'legistquest' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'react_native_redux_starterTests' do
+  target 'legistquestTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -25,10 +25,10 @@ target 'react_native_redux_starter' do
   end
 end
 
-target 'react_native_redux_starter-tvOS' do
-  # Pods for react_native_redux_starter-tvOS
+target 'legistquest-tvOS' do
+  # Pods for legistquest-tvOS
 
-  target 'react_native_redux_starter-tvOSTests' do
+  target 'legistquest-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

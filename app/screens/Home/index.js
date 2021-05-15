@@ -69,7 +69,7 @@ function Home({
 
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 
-        {homeData.map((val, key) => {
+        {homeData?.map((val, key) => {
           return (
             <TouchableOpacity key={key} style={styles.flexView} onPress={async ()=>{
               setSearchTypeLocal(val.key)
