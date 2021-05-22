@@ -10,12 +10,12 @@ export function* workerSearchByQuery(action) {
    
   const  QUERY =action.payload
   const{type,text}=QUERY
-  AlertHelper.show("success","search","search started")
+  //AlertHelper.show("success","search","search started")
  const results = yield fetch(`${SEARCH_BY_KEY_WORDS}type=${type}&searchString=${text}`)
   .then(response => response.text()) 
   // console.log("results",JSON.parse( results));
   try {
-    AlertHelper.show("success","Got Result","search started")
+    //AlertHelper.show("success","Got Result","search started")
     if(results &&JSON?.parse( results))
     { let size=8;
       if(JSON?.parse( results).length < size){

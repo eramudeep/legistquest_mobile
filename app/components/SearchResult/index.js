@@ -26,7 +26,7 @@ export default function SearchResult({
     Judges,
     PartyName,
   } = searchData;
-console.log("searchData",searchData);
+ 
   const _renderJudge = ({item, index}) => {
     return <Badge key={index} text={removeHtmlTags(item)} />;
   };

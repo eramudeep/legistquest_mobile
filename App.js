@@ -15,9 +15,10 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { AlertHelper } from './app/utils/AlertHelper';
 import { PersistGate } from 'redux-persist/integration/react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Details from './app/screens/Details';
 const {store,persistor}=Reduxstore()
 const App: () => React$Node = () => { 
+   
   return (
     <SafeAreaView style={{flex:1,}}>
       <Provider store={store}>
@@ -30,14 +31,7 @@ const App: () => React$Node = () => {
         />
       </PersistGate>
 </Provider>
-     {/*  <Provider store={store}>
-      <MainStack/>
-      <DropdownAlert
-          defaultContainer={{ padding: 8, paddingTop: StatusBar.currentHeight, flexDirection: 'row' }}
-          ref={ref => AlertHelper.setDropDown(ref)}
-          onClose={() => AlertHelper.invokeOnClose()}
-        />
-    </Provider> */}
+     
     </SafeAreaView>
   )
 

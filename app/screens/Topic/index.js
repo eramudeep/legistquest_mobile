@@ -14,12 +14,12 @@ function Topic({searchTopicResult,getResultsByTopic$, route, navigation,isTopicL
 const {selectedTopic} =route.params
   
 const _renderSearchResult = ({item,index})=>{
-  console.log("index topic",index);
+   
     return <SearchResult
     selectedTopic={selectedTopic}
     searchData={item}
     key={index}
-    onPress={(LinkText,HighlightedText) => navigation.navigate('TopicDetail',{LinkText,HighlightedText})}
+    onPress={(LinkText,HighlightedText) => navigation.navigate('TopicDetail',{LinkText,HighlightedText, item})}
   />
 }
 return (
