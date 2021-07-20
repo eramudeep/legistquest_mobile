@@ -53,9 +53,9 @@ function CustomAutoComplete({
   };
 
   const OnSearchPress = () => {
-    getResultsByTopic$({selectedTopic: searchQuery.text});
+    getResultsByTopic$({selectedTopic: searchQuery?.text});
 
-    navigation?.navigate('Topic', {selectedTopic: searchQuery.text});
+    navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
   };
 
   console.log({searchQuery});

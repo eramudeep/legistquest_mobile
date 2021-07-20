@@ -15,15 +15,19 @@ export default function index({viewModel, item}) {
   };
   const _renderHeader = () => {
     return (
-      <View style={[styles.headerContainer, shadow]}>
+      <View style={[styles.headerContainer, shadow,]}>
+        <View style={{flex:1,backgroundColor:appColors.white,flexDirection:"row"}}>
         {_renderCaseTitle()}
+        </View>
+        <View style={{flex:1,flexDirection:"row",justifyContent:"space-around",backgroundColor:appColors.white}}>
         {_renderIcons()}
+        </View>
       </View>
     );
   };
   const _renderCaseTitle = () => {
     return (
-      <Text style={styles.caseTitle}>{`${viewModel?.Petitioner} V.\n ${viewModel?.Respondent}`}</Text>
+      <Text numberOfLines={2} style={styles.caseTitle}>{`${viewModel?.Petitioner} V.\n ${viewModel?.Respondent}`}</Text>
     );
   };
 
