@@ -3,6 +3,8 @@ import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomLabel from '../CustomLabel/CustomLabel';
+import ByBench from './ByBench';
+import ByYear from './ByYear';
 import RadioGroup from './RadioGroup';
 
 export default function FilterComp({label,Court}) {
@@ -23,7 +25,10 @@ export default function FilterComp({label,Court}) {
       {isOpen && (
         <View>
           <Pressable style={{margin: scale(10)}}>
-            <RadioGroup list={Court} />
+            {label=="Court" &&<RadioGroup list={Court} />}
+            {label=="Bench" &&<ByBench list={Court} />}
+            {label=="Year" &&<ByYear list={Court} />}
+            
           </Pressable>
         </View>
       )}

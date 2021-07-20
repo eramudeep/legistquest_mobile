@@ -80,34 +80,4 @@ export default function RadioGroup({list}) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  radioContUnChecked: {
-    borderWidth: scale(3),
-    borderColor: appColors.blue,
-    backgroundColor: appColors.white,
-    height: scale(22),
-    width: scale(22),
-    borderRadius: scale(15),
-    marginRight: scale(10),
-    alignItems: 'center',
-  },
-  radioContChecked: {
-    borderWidth: scale(8),
-    borderColor: appColors.blue,
-    backgroundColor: appColors.white,
-    height: scale(22),
-    width: scale(22),
-    borderRadius: scale(15),
-    marginRight: scale(10),
-    alignItems: 'center',
-  },
-  row: {
-    padding: scale(7),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    alignItems: 'center',
-    //backgroundColor:'red'
-  },
-});
+ 

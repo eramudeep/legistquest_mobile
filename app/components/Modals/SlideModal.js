@@ -14,7 +14,7 @@ export default function SlideModal({filterCourt,visible, onClose}) {
       onSwipeStart={() => console.log('swipe start')}
       onSwipeComplete={onClose}
       useNativeDriverForBackdrop
-      swipeDirection={['up', 'left', 'right', 'down']}
+      swipeDirection={[ 'left']}
       style={{margin: 0, marginRight: scale(40)}}>
       <View style={{flex: 1, backgroundColor: appColors.white}}>
          

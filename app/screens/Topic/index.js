@@ -69,23 +69,10 @@ function Topic({
 
     ],
     "Bench":  [
-      {
-        CourtName ,  CaseCount , CaseIds,
-        SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel
-      },
-      {
-        CourtName  : searchTopicResult?.OtherCourtList?.CourtName,  
-        CaseCount : searchTopicResult?.OtherCourtList?.CaseCount, 
-        CaseIds: searchTopicResult?.OtherCourtList?.CaseIds,
-        SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel
-      },
-      {
-        CourtName  : searchTopicResult?.SupremeCourtList?.CourtName,  
-        CaseCount : searchTopicResult?.SupremeCourtList?.CaseCount, 
-        CaseIds: searchTopicResult?.SupremeCourtList?.CaseIds,
-        SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel
-      }
-
+      ...searchTopicResult?.BenchList 
+    ],
+    "Year":[
+      ...searchTopicResult?.YearList 
     ]
   }
     //

@@ -8,22 +8,22 @@ export default function RButton({item,getName,_isSelected,toggleSelecttion,getCa
     return (
         <Pressable
           onPress={
-            () => toggleSelecttion(item) /* setSelected(getName(item)) */
+            () => toggleSelecttion&&toggleSelecttion(item) /* setSelected(getName(item)) */
           }
           style={styles.row}>
           <View style={{flexDirection: 'row'}}>
             <View
               style={
-                _isSelected(getName(item))
+                _isSelected&& _isSelected(getName&&getName(item))
                   ? [styles.radioContChecked]
                   : [styles.radioContUnChecked]
               }
             />
-            <CustomLabel text={getName(item)} />
+            <CustomLabel text={getName&&getName(item)} />
           </View>
           {/*can be used to show iDraf*/}
           {IsHaveSegregation && <Ionicons name="flower-outline" />}
-          <CustomLabel text={getCaseCount(item)} />
+          <CustomLabel text={getCaseCount&&getCaseCount(item)} />
         </Pressable>
     )
 }
