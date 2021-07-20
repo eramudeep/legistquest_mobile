@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   searchResults: state.search.searchResults,
-  searchQuery: state.search.searchedQuery,
+  searchQuery: state.search.searchQuery,
 });
 const mapDispatchToProps = {
   searchByQuery$: searchByQuery,

@@ -79,7 +79,7 @@ export default function index({viewModel, item}) {
         <Text style={styles.headingLabels}>V. </Text>
         <Text style={styles.headingLabels}>{viewModel?.Respondent}</Text> 
         <Text style={{fontWeight:"bold"}}>({viewModel?.CourtName})</Text>
-        <Text>{`${viewModel?.CaseNo} | ${viewModel.DateOfJudgement}`}</Text>
+        <Text>{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
         
       </View>
     );
