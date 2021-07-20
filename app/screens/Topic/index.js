@@ -16,7 +16,7 @@ import {getResultsByTopic} from '../../redux/searchActions';
 import ScrollableTab from '../../routing/ScrollableTab';
 import {connect} from 'react-redux';
 import {appColors} from '../../utils/appColors';
-import SlideModal from '../../components/Modals/SlideModal'; 
+import SlideModal from '../../components/Modals/SlideModal';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
 
 function Topic({
@@ -26,7 +26,7 @@ function Topic({
   navigation,
   isTopicLoading,
 }) {
-  const [loadMore, setLoadMore] = useState(false)
+  const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
   const _renderSearchResult = ({item, index}) => {
@@ -91,18 +91,18 @@ function Topic({
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}
             keyExtractor={(item) => item.id}
-            onEndReached={()=>setLoadMore(true)}
+            onEndReached={() => setLoadMore(true)}
             onEndReachedThreshold={1}
           />
         </View>
       )}
-     <View style={{padding: scale(5)}}>
-     <ActivityIndicator
-            size={'large'}
-            animating={loadMore}
-            color={appColors.black}
-          />
-     </View>
+      <View style={{padding: scale(5)}}>
+        <ActivityIndicator
+          size={'large'}
+          animating={loadMore}
+          color={appColors.black}
+        />
+      </View>
       <SlideModal visible={modalVisible} onClose={toggleModal} />
     </Container>
   );
