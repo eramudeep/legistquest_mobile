@@ -11,7 +11,8 @@ import {connect} from 'react-redux';
 import { appColors } from '../../utils/appColors';
 import SlideModal from '../../components/Modals/SlideModal';
 import { useState } from 'react';
-
+import CustomAutoComplete from '../../components/CustomAutoComplete';
+ 
 function Topic({searchTopicResult,getResultsByTopic$, route, navigation,isTopicLoading}) { 
 const {selectedTopic} =route.params
   const [modalVisible, setModalVisible] = useState(false)
@@ -39,11 +40,14 @@ return (
           <ActivityIndicator size={"large"} animating={isTopicLoading} color={appColors.black}/>
         </View>
         : <View style={{flex: 1}}>
-        <CustomInput
+        {/* <CustomInput
           containerStyle={{marginTop: 0}}
           placeholder={'Search Free Text...'}
           rightIcon={'search'}
           iconSize={scale(20)}
+        /> */}
+        <CustomAutoComplete 
+          navigation={navigation}
         />
         {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>

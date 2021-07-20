@@ -15,26 +15,13 @@ import { TYPE_FREE_TEXT } from '../../services/ApiList';
 import { setSearchType as setSearchTypeLocal, } from '../../utils/searchTypeHelper';
 
 function Home({
-  navigation,
-  resetSearchResults$,
-  searchResults,
-  searchByQuery$,
-  getResultsByTopic$
+  navigation 
 }) {
-  const [query, setQuery] = useState('');
-  const [searchIcon, setSearchIcon] = useState('search'); //spinner
+   
   const [searchType, setSearchType] = useState(TYPE_FREE_TEXT)
-  const [typing, setTyping] = useState(false)
+   
   //const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
-  const onChange = (change) => {
-    debouncedSearch(change); 
-  };
-  const debouncedSearch = debounce(function (change) {
-    searchByQuery$({type:searchType,text:change});
-    setQuery(change);
-    setSearchIcon('spinner');
-    
-  }, 1000);
+   
 
   
   return (
@@ -48,24 +35,7 @@ function Home({
       <View style={{flex: 1, justifyContent: 'center'}}>
         <CustomIcon iconStyle={{width: scale(300), height: scale(100)}} />
 
-        <CustomAutoComplete
-          defaultValue={query}
-          placeholder={'Search free text...'}
-          data={typing && [...searchResults]||[]}
-          onChangeText={onChange}
-          onFocus={()=>{setTyping(true)}} 
-          itemOnPress={(item) => {
-            getResultsByTopic$({selectedTopic:item.Value})
-            Keyboard.dismiss();
-            setQuery(item.Value);
-            setTyping(false)
-            //resetSearchResults$();
-            setSearchIcon('search');
-            navigation.navigate("Topic",{selectedTopic:item.Value})
-          }}
-          // onIconPress={()=>navigation.navigate("Topic")}
-          icon={searchIcon}
-        />
+        <CustomAutoComplete  navigation={navigation} />
 
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 
