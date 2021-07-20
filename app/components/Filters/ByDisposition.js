@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import RButton from './RButton';
 
-export default function ByBench({list}) {
+export default function ByDisposition({list}) {
   const [selectedBench, setSelectedBench] = useState();
   const getName = (item) => {
-    const {Bench} = item;
-    return Bench;
+    const {DecisionStatusName} = item;
+    return DecisionStatusName;
   };
   const getCaseCount = (item) => {
-    const {BenchCaseCount} = item;
-    return BenchCaseCount;
+    const {CaseCount} = item;
+    return CaseCount;
   };
 
   const _isSelected = (toCompareWith) => {
@@ -18,10 +18,9 @@ export default function ByBench({list}) {
   };
 
   const toggleSelecttion = (item) => {
-    const {Bench} = item;
-    if(Bench===selectedBench)
-   return setSelectedBench("");
-    setSelectedBench(Bench);
+    const {DecisionStatusName} = item;
+    if (DecisionStatusName === selectedBench) return setSelectedBench('');
+    setSelectedBench(DecisionStatusName);
   };
 
   return (

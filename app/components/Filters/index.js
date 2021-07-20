@@ -1,13 +1,26 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import FilterComp from './FilterComp';
-
-export default function index({Court}) {
+import {connect} from 'react-redux';
+import { toggleFilters } from '../../redux/filterActions';
+ 
+ function index({Court,filters,toggleFilters$}) {
   return (
     <View>
       {Object.keys(Court)?.map((item, key) => {
-        return <FilterComp label={item} Court={Court[item]} />;
+        return <FilterComp filters={filters} toggleFilters$={toggleFilters$} label={item} Court={Court[item]} />;
       })}
     </View>
   );
 }
+ 
+
+
+
+const mapStateToProps = (state) => ({
+  filters: state.filter.filters,
+});
+const mapDispatchToProps = {
+  toggleFilters$: toggleFilters,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(index);

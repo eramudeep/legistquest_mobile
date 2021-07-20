@@ -17,8 +17,8 @@ import ScrollableTab from '../../routing/ScrollableTab';
 import {connect} from 'react-redux';
 import {appColors} from '../../utils/appColors';
 import SlideModal from '../../components/Modals/SlideModal';
-import CustomAutoComplete from '../../components/CustomAutoComplete';
-
+import CustomAutoComplete from '../../components/CustomAutoComplete'; 
+import ResultFound from '../../components/ResultFound';
 function Topic({
   searchTopicResult,
   getResultsByTopic$,
@@ -45,9 +45,7 @@ function Topic({
     setModalVisible((prev) => !prev);
   };
 
-  const seniTizeCourtFilters= ()=>{
-   // const {  CourtName ,  CaseCount , CaseIds,} =searchTopicResult?.HighCourtList
-    
+  const seniTizeCourtFilters= ()=>{  
     return {
     "Court":  [
       {
@@ -78,6 +76,9 @@ function Topic({
     ],
     "Year":[
       ...searchTopicResult?.YearList 
+    ],
+    "Dispotions":[
+      ...searchTopicResult?.DecStatusList 
     ]
   }
     //
@@ -124,7 +125,7 @@ function Topic({
               Show Filters
             </Text>
           </View>
-
+        <ResultFound />
           <FlatList
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}

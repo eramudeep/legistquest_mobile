@@ -16,10 +16,20 @@ export default function CustomInput({
         containerStyle,
     value,
     iconSize,
-    iconColor
+    iconColor,
+    leftIcon,
+    leftIconColor
  }) {
     return (
         <View style={[styles.container,containerStyle]}>
+           
+           {
+                leftIcon &&
+                <TouchableOpacity style={{ marginLeft: scale(5),justifyContent:"center",width:scale(30),alignItems:"center"  }} onPress={onRightIcon}>
+                    <Icon name={leftIcon} size={iconSize} color={leftIconColor}  />
+                </TouchableOpacity>
+            }
+
             <TextInput
                 placeholder={placeholder || "placeholder"}
                 onChangeText={onChangeText}
@@ -47,7 +57,8 @@ const styles = StyleSheet.create({
         borderColor: appColors.gray,
         borderWidth: scale(0.6),
         marginVertical: scale(10),
-        flexDirection: "row"
+        flexDirection: "row",
+        height: scale(30)
     },
     input: {
         fontSize: scale(14),
