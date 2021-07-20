@@ -44,6 +44,52 @@ function Topic({
   const toggleModal = () => {
     setModalVisible((prev) => !prev);
   };
+
+  const seniTizeCourtFilters= ()=>{
+    const {  CourtName ,  CaseCount , CaseIds,} =searchTopicResult?.HighCourtList
+    
+    return {
+    "Court":  [
+      {
+        CourtName ,  CaseCount , CaseIds,
+        SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel
+      },
+      {
+        CourtName  : searchTopicResult?.OtherCourtList?.CourtName,  
+        CaseCount : searchTopicResult?.OtherCourtList?.CaseCount, 
+        CaseIds: searchTopicResult?.OtherCourtList?.CaseIds,
+        SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel
+      },
+      {
+        CourtName  : searchTopicResult?.SupremeCourtList?.CourtName,  
+        CaseCount : searchTopicResult?.SupremeCourtList?.CaseCount, 
+        CaseIds: searchTopicResult?.SupremeCourtList?.CaseIds,
+        SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel
+      }
+
+    ],
+    "Bench":  [
+      {
+        CourtName ,  CaseCount , CaseIds,
+        SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel
+      },
+      {
+        CourtName  : searchTopicResult?.OtherCourtList?.CourtName,  
+        CaseCount : searchTopicResult?.OtherCourtList?.CaseCount, 
+        CaseIds: searchTopicResult?.OtherCourtList?.CaseIds,
+        SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel
+      },
+      {
+        CourtName  : searchTopicResult?.SupremeCourtList?.CourtName,  
+        CaseCount : searchTopicResult?.SupremeCourtList?.CaseCount, 
+        CaseIds: searchTopicResult?.SupremeCourtList?.CaseIds,
+        SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel
+      }
+
+    ]
+  }
+    //
+  }
   return (
     <Container
       showHome
@@ -103,7 +149,7 @@ function Topic({
           color={appColors.black}
         />
       </View>
-      <SlideModal visible={modalVisible} onClose={toggleModal} />
+      <SlideModal filterCourt={ seniTizeCourtFilters()} visible={modalVisible} onClose={toggleModal} />
     </Container>
   );
 }

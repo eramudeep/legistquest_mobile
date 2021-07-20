@@ -1,40 +1,18 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
+import {View, Text, Pressable, StyleSheet, ScrollView} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import {appColors} from '../../utils/appColors';
 import CustomLabel from '../CustomLabel/CustomLabel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-const courtList = [
-  {
-    CourtName: 'HIGH COURT',
-    CaseCount: 2272,
-    CaseIds: '2-HC',
-    SubCourtList: [
-      {
-        SubCourtName: 'ALLAHABAD MAIN',
-        SubCourtCaseCount: 300,
-        SubCourtCaseIds: 7,
-        IsHaveSegregation: 'Y',
-      },
-      {
-        SubCourtName: 'LUCKNOW',
-        SubCourtCaseCount: 47,
-        SubCourtCaseIds: 10,
-        IsHaveSegregation: 'N',
-      },
-    ],
-  },
-  {
-    CourtName: 'SUPREME COURT',
-    CaseCount: 922,
-    CaseIds: '2-HC',
-  },
-];
-export default function RadioGroup() {
+import RButton from './RButton';
+
+export default function RadioGroup({list}) {
   const [selected, setSelected] = useState();
   const [selectedSubCourt, setSelectedSubCourt] = useState();
+  const [universalSelectedCourt, setUniversalSelectedCourt] = useState([]);
   const _isSelected = (toCompareWith) => {
     return selected === toCompareWith || selectedSubCourt === toCompareWith;
+    //return universalSelectedCourt.includes(toCompareWith)
   };
   const getName = (item) => {
     const {SubCourtName, CourtName} = item;
@@ -53,34 +31,41 @@ export default function RadioGroup() {
     setSelectedSubCourt(undefined);
     if (CourtName) return setSelected(getName(item));
     return setSelectedSubCourt(SubCourtName);
+    /* if (CourtName) 
+        return  setUniversalSelectedCourt([CourtName]) 
+        const tmpUniversalSelectedCourt =universalSelectedCourt
+        if(universalSelectedCourt.length >2)
+         tmpUniversalSelectedCourt.splice(-1,1)
+    return  setUniversalSelectedCourt([...tmpUniversalSelectedCourt,SubCourtName]) */
   };
+
   const RenderRadio = ({item}) => {
-    const {SubCourtCaseIds, CaseIds, IsHaveSegregation, SubCourtList} = item;
+    const {IsHaveSegregation, SubCourtList} = item;
     return (
       <>
-        <Pressable
-          onPress={
-            () => toggleSelecttion(item) /* setSelected(getName(item)) */
-          }
-          style={styles.row}>
-          <View style={{flexDirection: 'row'}}>
-            <View
-              style={
-                _isSelected(getName(item))
-                  ? [styles.radioContChecked]
-                  : [styles.radioContUnChecked]
-              }
-            />
-            <CustomLabel text={getName(item)} />
-          </View>
-          {/*can be used to show iDraf*/}
-          {IsHaveSegregation && <Ionicons name="flower-outline" />}
-          <CustomLabel text={getCaseCount(item)} />
-        </Pressable>
+        <RButton
+          item={item}
+          getName={getName}
+          _isSelected={_isSelected}
+          toggleSelecttion={toggleSelecttion}
+          getCaseCount={getCaseCount}
+          IsHaveSegregation={IsHaveSegregation}
+        />
+
         {_isSelected(getName(item)) && (
           <View style={{marginLeft: scale(10)}}>
             {SubCourtList?.map((subCourt, key) => {
-              return <RenderRadio item={subCourt} key={key} />;
+              return (
+                <RButton
+                  key={key}
+                  item={subCourt}
+                  getName={getName}
+                  _isSelected={_isSelected}
+                  toggleSelecttion={toggleSelecttion}
+                  getCaseCount={getCaseCount}
+                  IsHaveSegregation={IsHaveSegregation}
+                />
+              );
             })}
           </View>
         )}
@@ -88,11 +73,11 @@ export default function RadioGroup() {
     );
   };
   return (
-    <View>
-      {courtList?.map((item, key) => {
+    <ScrollView nestedScrollEnabled>
+      {list?.map((item, key) => {
         return <RenderRadio item={item} key={key} />;
       })}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -101,8 +86,8 @@ const styles = StyleSheet.create({
     borderWidth: scale(3),
     borderColor: appColors.blue,
     backgroundColor: appColors.white,
-    height: scale(25),
-    width: scale(25),
+    height: scale(22),
+    width: scale(22),
     borderRadius: scale(15),
     marginRight: scale(10),
     alignItems: 'center',
@@ -111,14 +96,14 @@ const styles = StyleSheet.create({
     borderWidth: scale(8),
     borderColor: appColors.blue,
     backgroundColor: appColors.white,
-    height: scale(25),
-    width: scale(25),
+    height: scale(22),
+    width: scale(22),
     borderRadius: scale(15),
     marginRight: scale(10),
     alignItems: 'center',
   },
   row: {
-    padding: scale(10),
+    padding: scale(7),
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',

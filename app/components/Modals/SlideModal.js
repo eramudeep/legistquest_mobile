@@ -5,7 +5,7 @@ import {scale} from 'react-native-size-matters';
 import { appColors } from '../../utils/appColors';
 import CustomInput from '../CustomInput';
 import Filters from '../Filters';
-export default function SlideModal({visible, onClose}) {
+export default function SlideModal({filterCourt,visible, onClose}) {
   return (
     <Modal
       animationIn="slideInLeft"
@@ -24,8 +24,8 @@ export default function SlideModal({visible, onClose}) {
             placeholder={'Search Free Text...'}
             rightIcon={'search'}
             iconSize={scale(20)}
-          />
-          <Filters />
+          /> 
+          <Filters  Court={filterCourt} />
         
       </View>
     </Modal>
