@@ -47,14 +47,14 @@ function CustomAutoComplete({
     getResultsByTopic$({selectedTopic: item.Value});
     Keyboard.dismiss();
     setTyping(false);
-    searchByQuery$({type: item?.key, text: item?.Value});
+    //console.log("item",item);
+    searchByQuery$({type: item?.Key, text: item?.Value});
     setSearchIcon('search');
     navigation?.navigate('Topic', {selectedTopic: item.Value});
   };
 
   const OnSearchPress = () => {
-    getResultsByTopic$({selectedTopic: searchQuery.text});
-
+    getResultsByTopic$({selectedTopic: searchQuery.text}); 
     navigation?.navigate('Topic', {selectedTopic: searchQuery.text});
   };
 

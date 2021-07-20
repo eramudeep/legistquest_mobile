@@ -11,7 +11,7 @@ export function* workerSearchByQuery(action) {
   const  QUERY =action.payload
   const{type,text}=QUERY
   //AlertHelper.show("success","search","search started")
- const results = yield fetch(`${SEARCH_BY_KEY_WORDS}type=${type}&searchString=${text}`)
+ const results = yield fetch(`${SEARCH_BY_KEY_WORDS}type=${type ? type: "freetext"}&searchString=${text}`)
   .then(response => response.text()) 
   // console.log("results",JSON.parse( results));
   try {

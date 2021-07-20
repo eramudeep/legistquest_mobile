@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Pressable, StyleSheet, ScrollView} from 'react-native';
-import {scale} from 'react-native-size-matters';
-import {appColors} from '../../utils/appColors';
-import CustomLabel from '../CustomLabel/CustomLabel';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {scale} from 'react-native-size-matters'; 
 import RButton from './RButton';
 
 export default function RadioGroup({list}) {
