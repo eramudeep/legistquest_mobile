@@ -18,6 +18,7 @@ import {
 import {appColors} from '../utils/appColors';
 import Autocomplete from './AutoComplete';
 import {debounce} from 'lodash';
+import { getPlacheHolder } from '../utils/common';
 //import useSelectedLang from '../../hooks/useSelectedLang';
 //import { translateIt } from '../../utils/TranslationHelper';
 
@@ -80,7 +81,7 @@ function CustomAutoComplete({
         //listContainerStyle={{paddingHorizontal:0,zIndex:100,}}
         keyExtractor={(item) => Math.random().toString(36).substring(7)}
         listStyle={{borderWidth: 0, paddingHorizontal: 0, marginTop: scale(25)}}
-        placeholder={placeholder ? placeholder : 'NONE'}
+        placeholder={getPlacheHolder(searchQuery?.type) }
         onChangeText={onChange /* onChangeText */}
         renderItem={({item, i}) => {
           const {Value} = item;
