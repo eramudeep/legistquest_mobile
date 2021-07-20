@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         borderColor: appColors.gray,
         height: scale(45),
         marginVertical: scale(10),
-        flexDirection:"row"
+        flexDirection:"row",
         // ...shadow
     }
 })

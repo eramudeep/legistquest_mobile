@@ -9,10 +9,12 @@ import {getResultsByTopic} from '../../redux/searchActions';
 import ScrollableTab from '../../routing/ScrollableTab';
 import {connect} from 'react-redux';
 import { appColors } from '../../utils/appColors';
+import SlideModal from '../../components/Modals/SlideModal';
+import { useState } from 'react';
 
 function Topic({searchTopicResult,getResultsByTopic$, route, navigation,isTopicLoading}) { 
 const {selectedTopic} =route.params
-  
+  const [modalVisible, setModalVisible] = useState(false)
 const _renderSearchResult = ({item,index})=>{
    
     return <SearchResult
@@ -22,11 +24,15 @@ const _renderSearchResult = ({item,index})=>{
     onPress={(LinkText,HighlightedText) => navigation.navigate('TopicDetail',{LinkText,HighlightedText, item})}
   />
 }
+const toggleModal=()=>{
+  setModalVisible(prev=>!prev)
+}
 return (
     <Container
       showHome
       showMenu
       showFooter
+      
       onHome={() => navigation.navigate('Home')}>
         {
           isTopicLoading ?<View>
@@ -39,12 +45,15 @@ return (
           rightIcon={'search'}
           iconSize={scale(20)}
         />
-        <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
+        {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {[1, 2, 3, 4, 5, 6, 7].map((val, key) => {
               return <Badge key={key} />;
             })}
           </ScrollView>
+        </View> */}
+        <View style={{backgroundColor:appColors.lighterGray,alignItems:"center",paddingVertical:scale(5), justifyContent:"center",flexDirection:"row"}}>
+             <Text style={{fontSize:scale(14)}} onPress={toggleModal}>Show Filters</Text>
         </View>
 
         <FlatList  
@@ -54,7 +63,7 @@ return (
         /> 
       </View>
         }       
-     
+     <SlideModal visible={modalVisible} onClose={toggleModal}/>
     </Container>
   );
 }

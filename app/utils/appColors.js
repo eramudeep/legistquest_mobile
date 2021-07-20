@@ -7,7 +7,8 @@ export const appColors = {
     blue:"#005ccb",
     green:"#008908",
    higheLight: "#dde0ff",
-   tabLabel:"#ed7e1f"
+   tabLabel:"#ed7e1f",
+   lighterGray:"#f1f5fa"
 }
 export const shadow = {
     shadowColor: "#000",

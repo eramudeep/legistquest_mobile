@@ -22,6 +22,7 @@
     "react-native-dropdownalert": "^4.3.0",
     "react-native-gesture-handler": "^1.9.0",
     "react-native-highlight-words": "^1.0.1",
+    "react-native-modal": "^12.0.2",
     "react-native-pager-view": "^5.1.9",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.2.0",

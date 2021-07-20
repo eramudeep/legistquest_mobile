@@ -1,4 +1,4 @@
-const BASE_URL = 'http://52.152.166.156/api/v1.0/';
+const BASE_URL = 'https://legitquest.com/api/v1.0/';
 export const TYPE_ACT = 'act-section';
 export const TYPE_FREE_TEXT = 'freetext';
 export const PARTY_NAME = "partyname";
