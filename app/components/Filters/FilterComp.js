@@ -6,29 +6,35 @@ import CustomLabel from '../CustomLabel/CustomLabel';
 import ByBench from './ByBench';
 import ByYear from './ByYear';
 import RadioGroup from './RadioGroup';
+import ByDisposition from './ByDisposition';
 
-export default function FilterComp({label,Court}) {
-  const [isOpen, setIsOpen] = useState();
+export default function FilterComp({toggleFilters$, filters, label, Court}) {
+  //const [isOpen, setIsOpen] = useState();
   const onPress = () => {
-    setIsOpen(!isOpen);
+    //setIsOpen(!isOpen);
+    toggleFilters$(label);
   };
+  const isFilterOpen = () => {
+    return filters?.includes(label);
+  };
+  //console.log("filters",filters);
   return (
-    <View>
+    <View style={{margin:scale(3)}}>
       <Pressable onPress={onPress} style={styles.pressableContainer}>
         <Ionicons
-          name={isOpen ? 'caret-down-outline' : 'caret-forward-outline'}
+          name={isFilterOpen() ? 'caret-down-outline' : 'caret-forward-outline'}
           size={scale(20)}
         />
         <CustomLabel text={`By ${label}`} labelStyle={styles.itemLabel} />
       </Pressable>
 
-      {isOpen && (
+      {isFilterOpen() && (
         <View>
           <Pressable style={{margin: scale(10)}}>
-            {label=="Court" &&<RadioGroup list={Court} />}
-            {label=="Bench" &&<ByBench list={Court} />}
-            {label=="Year" &&<ByYear list={Court} />}
-            
+            {label == 'Court' && <RadioGroup list={Court} />}
+            {label == 'Bench' && <ByBench list={Court} />}
+            {label == 'Year' && <ByYear list={Court} />}
+            {label == 'Dispotions' && <ByDisposition list={Court} />}
           </Pressable>
         </View>
       )}

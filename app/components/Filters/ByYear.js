@@ -19,6 +19,8 @@ export default function ByYear({list}) {
 
   const toggleSelecttion = (item) => {
     const {DisplayYear} = item;
+    if(DisplayYear===selectedYear)
+    return setSelectedYear("");
     setSelectedYear(DisplayYear);
   };
 
