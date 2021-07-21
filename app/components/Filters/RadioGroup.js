@@ -53,14 +53,9 @@ export default function RadioGroup({list}) {
           <View style={{marginLeft: scale(10)}}>
             {SubCourtList?.map((subCourt, key) => {
               return (
-                <RButton
-                  key={key}
+                <RenderRadio /// recursion :)
                   item={subCourt}
-                  getName={getName}
-                  _isSelected={_isSelected}
-                  toggleSelecttion={toggleSelecttion}
-                  getCaseCount={getCaseCount}
-                  IsHaveSegregation={IsHaveSegregation}
+                  key={key}  
                 />
               );
             })}

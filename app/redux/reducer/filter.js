@@ -4,14 +4,27 @@ const {
   TOGGLE_FILTER,
   ADD_REMOVE_BY_BENCH_FILTER,
   ADD_REMOVE_BY_YEAR_FILTER,
+  ADD_REMOVE_BY_DECISION_FILTER,
 } = require('../filterActions');
 const initialState = {
   filters: [],
   selectedByBench: [], // use as a comma seprated string
   selectedByYear: [], // use as a comma seprated string
+  selectedByDecStatus: [], // use as a comma seprated string
 };
 export default function (state = initialState, action) {
   switch (action.type) {
+    case ADD_REMOVE_BY_DECISION_FILTER:
+      const selectedByDecStatus = senitizeAnyArray(
+        action.payload,
+        state.selectedByDecStatus,
+        true,
+      );
+      return {
+        ...state,
+        selectedByDecStatus,
+      };
+
     case ADD_REMOVE_BY_YEAR_FILTER:
       const selectedByYear = senitizeAnyArray(
         action.payload,

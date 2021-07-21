@@ -2,6 +2,7 @@
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const ADD_REMOVE_BY_BENCH_FILTER = 'ADD_REMOVE_BY_BENCH_FILTER';
 export const ADD_REMOVE_BY_YEAR_FILTER = 'ADD_REMOVE_BY_YEAR_FILTER';
+export const ADD_REMOVE_BY_DECISION_FILTER = 'ADD_REMOVE_BY_DECISION_FILTER';
 export const toggleFilters = (filters) => ({
   type: TOGGLE_FILTER,
   payload: filters,
@@ -17,4 +18,10 @@ export const toggleByBench = (benchValue) => ({
 export const toggleByYear = (yearValue) => ({
   type: ADD_REMOVE_BY_YEAR_FILTER,
   payload: yearValue,
+});
+
+
+export const toggleByDecsion = (decsionValue) => ({
+  type: ADD_REMOVE_BY_DECISION_FILTER,
+  payload: decsionValue,
 });
