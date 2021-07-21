@@ -9,20 +9,22 @@ import {connect} from 'react-redux';
      if(!CaseCount)
      return null
     return (
-        <View style={{height: scale(25), borderBottomWidth:scale(0.3), marginTop: scale(10), flexDirection:'row', justifyContent:'space-between', flexWrap:'wrap'}}>
-            <View style={{flexDirection:'row'}}>
+        <View style={{ borderBottomWidth:scale(0.3), marginTop: scale(10), flexDirection:'row', justifyContent:'space-between', flexWrap:'wrap'}}>
+            <View style={{flexDirection:'row',flex:2,flexWrap:"wrap"}}>
                 <Text>Found :  </Text> 
                 <CustomLabel labelStyle={{padding:0, fontSize:scale(12) }} text={CaseCount} />
                 <Text> results for query  {searchQuery.text} </Text>
             </View>
-            
-           {/*  <Picker
+            <View style={{flex:1}}>
+            <Picker
                  selectedValue={"java"}
                 //onValueChange={(itemValue, itemIndex) =>   { setSelectedLanguage(itemValue) }}  
                 >
                 <Picker.Item label="Java" value="java" />
                 <Picker.Item label="JavaScript" value="js" />
-                </Picker> */}
+                </Picker> 
+            </View>
+            
 
         </View>
     )
