@@ -8,7 +8,7 @@ import { toggleFilters } from '../../redux/filterActions';
   return (
     <View>
       {Object.keys(Court)?.map((item, key) => {
-        return <FilterComp filters={filters} toggleFilters$={toggleFilters$} label={item} Court={Court[item]} />;
+        return <FilterComp key={key} filters={filters} toggleFilters$={toggleFilters$} label={item} Court={Court[item]} />;
       })}
     </View>
   );

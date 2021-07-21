@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
      if(!CaseCount)
      return null
     return (
-        <View style={{height: scale(25), borderBottomWidth:scale(0.3), margin: scale(10), flexDirection:'row', justifyContent:'space-between', flexWrap:'wrap'}}>
+        <View style={{height: scale(25), borderBottomWidth:scale(0.3), marginTop: scale(10), flexDirection:'row', justifyContent:'space-between', flexWrap:'wrap'}}>
             <View style={{flexDirection:'row'}}>
                 <Text>Found :  </Text> 
                 <CustomLabel labelStyle={{padding:0, fontSize:scale(12) }} text={CaseCount} />

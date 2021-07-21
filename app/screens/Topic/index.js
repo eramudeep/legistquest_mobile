@@ -19,6 +19,7 @@ import {appColors} from '../../utils/appColors';
 import SlideModal from '../../components/Modals/SlideModal';
 import CustomAutoComplete from '../../components/CustomAutoComplete'; 
 import ResultFound from '../../components/ResultFound';
+import Icon from '../../components/CustomIcon/Icon';
 function Topic({
   searchTopicResult,
   getResultsByTopic$,
@@ -121,7 +122,8 @@ function Topic({
               justifyContent: 'center',
               flexDirection: 'row',
             }}>
-            <Text style={{fontSize: scale(14)}} onPress={toggleModal}>
+            <Icon name={"filter"} size={scale(15)}  color={appColors.blue}/>
+            <Text style={{fontSize: scale(14), marginLeft: scale(10), color:appColors.blue }} onPress={toggleModal}>
               Show Filters
             </Text>
           </View>
