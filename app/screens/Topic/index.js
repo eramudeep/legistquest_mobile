@@ -46,12 +46,17 @@ function Topic({
   };
 
   const seniTizeCourtFilters= ()=>{
-    const {  CourtName ,  CaseCount , CaseIds,} =searchTopicResult?.HighCourtList
+   // const {  CourtName ,  CaseCount , CaseIds,} =searchTopicResult?.HighCourtList
     
     return {
     "Court":  [
       {
-        CourtName ,  CaseCount , CaseIds,
+        CourtName  : searchTopicResult?.HighCourtList?.CourtName,  
+        CaseCount : searchTopicResult?.HighCourtList?.CaseCount, 
+        CaseIds: searchTopicResult?.HighCourtList?.CaseIds,
+        SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel,
+
+       // CourtName ,  CaseCount , CaseIds,
         SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel
       },
       {

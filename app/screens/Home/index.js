@@ -15,7 +15,8 @@ import { TYPE_FREE_TEXT } from '../../services/ApiList';
 import { setSearchType as setSearchTypeLocal, } from '../../utils/searchTypeHelper';
 
 function Home({
-  navigation 
+  navigation,
+  searchByQuery$ 
 }) {
    
   const [searchType, setSearchType] = useState(TYPE_FREE_TEXT)
@@ -40,9 +41,11 @@ function Home({
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 
         {homeData?.map((val, key) => {
+          const{pl}=val
           return (
             <TouchableOpacity key={key} style={styles.flexView} onPress={async ()=>{
               setSearchTypeLocal(val.key)
+              searchByQuery$({type:val.key,text:""})
               setSearchType(val.key)}}>
               <CustomLabel text={val.label} labelStyle={styles.label} />
               <CustomLabel text={val.value} labelStyle={[styles.label1,val.key===searchType&& {color:appColors.green}]} />
