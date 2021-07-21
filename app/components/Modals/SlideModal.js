@@ -9,7 +9,7 @@ import CustomLabel from '../CustomLabel/CustomLabel';
 import Filters from '../Filters';
 
 export default function SlideModal({filterCourt,visible, onClose}) {
-  console.log({filterCourt});
+  //console.log({filterCourt});
   return (
     <Modal
       animationIn="slideInLeft"

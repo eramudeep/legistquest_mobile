@@ -80,7 +80,7 @@ export default function SearchResult({
           <CustomLabel text={'Search Within Case'} color={appColors.blue} />
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{
-            console.log("show judg");
+           // console.log("show judg");
             setShowJudges(!showJudges)}} style={styles.footerBtn}>
           <Icon name={'user-tie'} size={scale(14)} color={appColors.blue} />
           <CustomLabel text={'Judges'} color={appColors.blue} />

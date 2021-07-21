@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Keyboard, StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
-import CustomIcon from '../../components/CustomIcon';
-import CustomInput from '../../components/CustomInput';
+import CustomIcon from '../../components/CustomIcon'; 
 import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import {appColors} from '../../utils/appColors';
 import {homeData} from '../../utils/MockData';
 import {connect} from 'react-redux';
 import {searchByQuery, resetSearchResults, getResultsByTopic} from '../../redux/searchActions';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
-import { debounce } from "lodash";
+ 
 import { TYPE_FREE_TEXT } from '../../services/ApiList';
 import { setSearchType as setSearchTypeLocal, } from '../../utils/searchTypeHelper';
 

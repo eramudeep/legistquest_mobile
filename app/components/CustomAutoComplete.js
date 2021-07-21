@@ -65,7 +65,7 @@ function CustomAutoComplete({
     navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
   };
 
-  console.log({searchQuery});
+  //console.log({searchQuery});
   return (
     <View
       style={[

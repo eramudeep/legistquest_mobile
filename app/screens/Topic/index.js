@@ -21,6 +21,7 @@ import CustomAutoComplete from '../../components/CustomAutoComplete';
 import ResultFound from '../../components/ResultFound';
 import Icon from '../../components/CustomIcon/Icon';
 import { getPagination } from '../../redux/actions';
+import { filterListValues } from '../../utils/appConstants';
 function Topic({
   searchTopicResult,
   searchQuery,
@@ -34,7 +35,7 @@ function Topic({
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
   const [pageNo, setPageNo] = useState(1)
-  console.log("searchQuery",searchQuery);
+  //console.log("searchQuery",searchQuery);
   const _renderSearchResult = ({item, index}) => {
     return (
       <SearchResult
@@ -58,32 +59,50 @@ function Topic({
   };
 
   const seniTizeCourtFilters= ()=>{  
-    return {
-    "Court":  [
-      {
-        CourtName  : searchTopicResult?.HighCourtList?.CourtName,  
-        CaseCount : searchTopicResult?.HighCourtList?.CaseCount, 
-        CaseIds: searchTopicResult?.HighCourtList?.CaseIds,
-        SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel,
-
-       // CourtName ,  CaseCount , CaseIds,
-        SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel
-      },
-      {
-        CourtName  : searchTopicResult?.OtherCourtList?.CourtName,  
-        CaseCount : searchTopicResult?.OtherCourtList?.CaseCount, 
-        CaseIds: searchTopicResult?.OtherCourtList?.CaseIds,
-        SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel
-      },
-      {
-        CourtName  : searchTopicResult?.SupremeCourtList?.CourtName,  
-        CaseCount : searchTopicResult?.SupremeCourtList?.CaseCount, 
-        CaseIds: searchTopicResult?.SupremeCourtList?.CaseIds,
-        SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel
+    let filters ={
+      "Court":  [
+        {
+          CourtName  : searchTopicResult?.HighCourtList?.CourtName,  
+          CaseCount : searchTopicResult?.HighCourtList?.CaseCount, 
+          CaseIds: searchTopicResult?.HighCourtList?.CaseIds,
+          SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel,
+  
+         // CourtName ,  CaseCount , CaseIds,
+          SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel
+        },
+        {
+          CourtName  : searchTopicResult?.OtherCourtList?.CourtName,  
+          CaseCount : searchTopicResult?.OtherCourtList?.CaseCount, 
+          CaseIds: searchTopicResult?.OtherCourtList?.CaseIds,
+          SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel
+        },
+        {
+          CourtName  : searchTopicResult?.SupremeCourtList?.CourtName,  
+          CaseCount : searchTopicResult?.SupremeCourtList?.CaseCount, 
+          CaseIds: searchTopicResult?.SupremeCourtList?.CaseIds,
+          SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel
+        }
+  
+      ],
+    };
+    filterListValues?.map(item=>{
+      const {key,label}=item
+      if(searchTopicResult?.[label]){
+        filters[key]=[
+          ...searchTopicResult?.[label]
+        ]
       }
+    })
+  /* if(searchTopicResult?.BenchList ){
+    filters.Bench=[
+      ...searchTopicResult?.BenchList 
+    ]
+  } */
 
-    ],
-    /* "Bench":  [
+  return filters
+   /*  return {
+    
+    "Bench":  [
       ...searchTopicResult?.BenchList 
     ],
     "Year":[
@@ -91,8 +110,8 @@ function Topic({
     ],
     "Dispotions":[
       ...searchTopicResult?.DecStatusList 
-    ] */
-  }
+    ] 
+  }*/
     //
   }
   return (
