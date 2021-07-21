@@ -47,10 +47,15 @@ function Topic({
       />
     );
   };
+  const callbackFromSaga=()=>{
+    // alert("done")
+    setLoadMore(false)
+  }
   const getLoadMoreResults=async()=>{
     setLoadMore(true)
-    await getPaginationResults$({query:searchQuery.text,searchType:searchQuery?.type, pageNumber:pageNo+1})  
-    setLoadMore(false)
+    const respo= await getPaginationResults$({query:searchQuery.text,searchType:searchQuery?.type, pageNumber:pageNo+1,callback:callbackFromSaga})  
+    // 
+    console.log("respo resultttt=====????",respo);
     setPageNo(prev=>prev+1)
   }
   const toggleModal = () => {
@@ -142,9 +147,9 @@ function Topic({
           <FlatList
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.Id}
             onEndReached={getLoadMoreResults}
-            onEndReachedThreshold={1}
+            // onEndReachedThreshold={0.1}
           />
         </View>
       )}

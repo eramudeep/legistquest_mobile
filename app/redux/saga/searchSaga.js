@@ -27,7 +27,7 @@ export function* workerSearchByQuery(action) {
     AlertHelper.show("error","Error","error while searching")
     console.log("error",error);
   }
- 
+ return true
 }
 export function* watcherSearchByQuery() {
   yield takeLatest(SEARCH_QUERY, workerSearchByQuery);
@@ -65,7 +65,7 @@ export function* watcherSearchByPagination() {
 }
 
 export function* workerPageNumberChange(action) {
-  const {pageNumber,sortBy,query,searchType,filterList,activeFilters } =
+  const {pageNumber,sortBy,query,searchType,filterList,activeFilters ,callback} =
     action.payload;
   //console.log("action.payload", action.payload);
   const jsonData = {
@@ -115,7 +115,7 @@ export function* workerPageNumberChange(action) {
         yield put({type: SET_RESULT_BY_TOPIC, payload: {...JSON.parse( results),fromPagination: true }  });
       yield put({type: IS_LOADING, payload: false  });  
       
-
+      yield callback(true)
     }
   } catch (error) {
     console.log("error in workerPageNumberChange", error);
