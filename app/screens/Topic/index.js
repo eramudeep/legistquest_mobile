@@ -83,7 +83,7 @@ function Topic({
       }
 
     ],
-    "Bench":  [
+    /* "Bench":  [
       ...searchTopicResult?.BenchList 
     ],
     "Year":[
@@ -91,7 +91,7 @@ function Topic({
     ],
     "Dispotions":[
       ...searchTopicResult?.DecStatusList 
-    ]
+    ] */
   }
     //
   }

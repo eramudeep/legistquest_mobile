@@ -85,8 +85,10 @@ export function* workerPageNumberChange(action) {
     FilterValueList: filterList ? filterList.join(",") : "",
     ...activeFilters,
   };
-  console.log("workerPageNumberChange", jsonData);
+  
   var raw = JSON.stringify(jsonData);
+
+  console.log( {jsonData});
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   var requestOptions = {
@@ -94,19 +96,26 @@ export function* workerPageNumberChange(action) {
     headers: myHeaders,
     body: raw,
     redirect: "follow",
-  };
+  }; 
 
-  const results = yield fetch(
+   const results = yield fetch(
     SEARCH_RESULT_BY_PAGE_NUMBER,
     requestOptions
-  ).then(async (response) => response.text());
-  try {
-    console.log("result======",results);
+  ).then(async (response) => response.text());  
+
+  
+
+   
+  try { 
     if (results && JSON.parse(results)) {
-      yield put({
+      /* yield put({
         type: SET_SEARCH_QUERY_RESULTS,
         payload: { ...JSON.parse(results),},
-      });
+      }); */
+        yield put({type: SET_RESULT_BY_TOPIC, payload: {...JSON.parse( results),fromPagination: true }  });
+      yield put({type: IS_LOADING, payload: false  });  
+      
+
     }
   } catch (error) {
     console.log("error in workerPageNumberChange", error);
