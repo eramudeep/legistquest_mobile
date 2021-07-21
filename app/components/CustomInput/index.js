@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         borderWidth: scale(0.6),
         marginVertical: scale(10),
         flexDirection: "row",
-        height: scale(30)
+        height: scale(40)
     },
     input: {
         fontSize: scale(14),

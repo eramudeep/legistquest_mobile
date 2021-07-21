@@ -20,9 +20,12 @@ import SlideModal from '../../components/Modals/SlideModal';
 import CustomAutoComplete from '../../components/CustomAutoComplete'; 
 import ResultFound from '../../components/ResultFound';
 import Icon from '../../components/CustomIcon/Icon';
+import { getPagination } from '../../redux/actions';
 function Topic({
   searchTopicResult,
+  searchQuery,
   getResultsByTopic$,
+  getPaginationResults$,
   route,
   navigation,
   isTopicLoading,
@@ -30,6 +33,8 @@ function Topic({
   const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
+  const [pageNo, setPageNo] = useState(1)
+  console.log("searchQuery",searchQuery);
   const _renderSearchResult = ({item, index}) => {
     return (
       <SearchResult
@@ -42,6 +47,12 @@ function Topic({
       />
     );
   };
+  const getLoadMoreResults=async()=>{
+    setLoadMore(true)
+    await getPaginationResults$({query:searchQuery.text,searchType:searchQuery?.type, pageNumber:pageNo+1})  
+    setLoadMore(false)
+    setPageNo(prev=>prev+1)
+  }
   const toggleModal = () => {
     setModalVisible((prev) => !prev);
   };
@@ -132,7 +143,7 @@ function Topic({
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}
             keyExtractor={(item) => item.id}
-            onEndReached={() => setLoadMore(true)}
+            onEndReached={getLoadMoreResults}
             onEndReachedThreshold={1}
           />
         </View>
@@ -151,11 +162,14 @@ function Topic({
 
 const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
+  searchQuery: state.search.searchQuery,
   isTopicLoading: state.error.isloading,
+
 });
 const mapDispatchToProps = {
   getResultsByTopic$: getResultsByTopic,
+  getPaginationResults$:getPagination
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topic);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({}); 

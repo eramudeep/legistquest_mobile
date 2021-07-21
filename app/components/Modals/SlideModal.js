@@ -34,7 +34,7 @@ export default function SlideModal({filterCourt,visible, onClose}) {
              </Pressable>
           </View>
           <CustomInput
-            containerStyle={{marginTop: 0, backgroundColor:appColors.lighterGray}}
+            containerStyle={{marginTop: 0, backgroundColor:appColors.lighterGray,}}
             placeholder={'Filter within result...'}
             rightIcon={'times-circle'}
             iconSize={scale(17)}
