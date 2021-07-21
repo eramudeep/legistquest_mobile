@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Platform,
+  Dimensions
 } from 'react-native';
 import {scale} from 'react-native-size-matters';
 import {connect} from 'react-redux';
@@ -18,7 +19,8 @@ import {
 import {appColors} from '../utils/appColors';
 import Autocomplete from './AutoComplete';
 import {debounce} from 'lodash';
-import { getPlacheHolder } from '../utils/common';
+import { getPlacheHolder } from '../utils/common'; 
+const window = Dimensions.get('window');
 //import useSelectedLang from '../../hooks/useSelectedLang';
 //import { translateIt } from '../../utils/TranslationHelper';
 
@@ -36,6 +38,7 @@ function CustomAutoComplete({
   const [searchIcon, setSearchIcon] = useState('search'); //spinner
   const [typing, setTyping] = useState(false);
   const onChange = (change) => {
+    
     debouncedSearch(change);
   };
   const debouncedSearch = debounce(function (change) {
@@ -45,6 +48,7 @@ function CustomAutoComplete({
   }, 1000);
 
   const itemOnPress = (item) => {
+    onBlur&&onBlur(false)
     getResultsByTopic$({selectedTopic: item.Value});
     Keyboard.dismiss();
     setTyping(false);
@@ -70,18 +74,26 @@ function CustomAutoComplete({
         Platform.OS == 'ios' && {zIndex: 1000},
       ]}>
       <Autocomplete
+        keyboardShouldPersistTaps="always" 
         autoCapitalize="none"
         autoCorrect={false}
         data={/* data */ (typing && [...searchResults]) || []}
         defaultValue={searchQuery?.text}
         inputContainerStyle={styles.input}
         onFocus={() => {
-          setTyping(true);
+           setTyping(true);
+           onBlur &&onBlur(true)
         }}
-        onBlur={onBlur && onBlur}
-        //listContainerStyle={{paddingHorizontal:0,zIndex:100,}}
+        TextInput={
+         { onBlur:() => {
+             
+            setTyping(false);
+          }}
+        }
+        
+      //  listContainerStyle={{/* paddingHorizontal:0,zIndex:100, *//* backgroundColor:'red', padding:140 */}}
         keyExtractor={(item) => Math.random().toString(36).substring(7)}
-        listStyle={{borderWidth: 0, paddingHorizontal: 0, marginTop: scale(25)}}
+        listStyle={[{borderWidth: 0, paddingHorizontal: 0,  marginTop: scale(Platform.OS =="ios" ? 0: 25), maxHeight: scale(350), marginBottom:scale(30) }, Platform.OS =="ios" ? {width:window.width -120,} :{} ]}
         placeholder={getPlacheHolder(searchQuery?.type) }
         onChangeText={onChange /* onChangeText */}
         renderItem={({item, i}) => {
@@ -89,9 +101,9 @@ function CustomAutoComplete({
           return (
             <TouchableOpacity
               key={i}
-              style={{padding: scale(7)}}
+              style={{ padding: scale(5)}}
               onPress={() => itemOnPress(item)}>
-              <Text>{Value}</Text>
+              <Text style={{padding:5}}>{Value}</Text>
             </TouchableOpacity>
           );
         }}

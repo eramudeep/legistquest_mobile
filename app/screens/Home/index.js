@@ -20,7 +20,7 @@ function Home({
 }) {
    
   const [searchType, setSearchType] = useState(TYPE_FREE_TEXT)
-   
+   const [searching, setsearching] = useState( false)
   //const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
    
 
@@ -33,10 +33,10 @@ function Home({
       hideLogo
       showSignin
       onSignin={() => navigation.navigate('Login')}>
-      <View style={{flex: 1, justifyContent: 'center'}}>
+      <View style={[{flex: 1   }, searching ? {} :{justifyContent: 'center' }]}>
         <CustomIcon iconStyle={{width: scale(300), height: scale(100)}} />
 
-        <CustomAutoComplete  navigation={navigation} />
+        <CustomAutoComplete  onBlur={(val)=>{setsearching(val)}}  navigation={navigation} />
 
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 

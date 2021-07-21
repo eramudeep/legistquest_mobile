@@ -15,16 +15,16 @@ import {connect} from 'react-redux';
                 <CustomLabel labelStyle={{padding:0, fontSize:scale(12) }} text={CaseCount} />
                 <Text> results for query  {searchQuery.text} </Text>
             </View>
-            <View style={{flex:1}}>
+           {/*  <View style={{flex:1}}>
             <Picker
                  selectedValue={"java"}
-                //onValueChange={(itemValue, itemIndex) =>   { setSelectedLanguage(itemValue) }}  
+                 
                 >
                 <Picker.Item label="Java" value="java" />
                 <Picker.Item label="JavaScript" value="js" />
                 </Picker> 
             </View>
-            
+             */}
 
         </View>
     )
