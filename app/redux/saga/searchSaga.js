@@ -17,7 +17,7 @@ export function* workerSearchByQuery(action) {
   try {
     //AlertHelper.show("success","Got Result","search started")
     if(results &&JSON?.parse( results))
-    { let size=8;
+    { let size=25;
       if(JSON?.parse( results).length < size){
         size=JSON?.parse( results).length-1
       }

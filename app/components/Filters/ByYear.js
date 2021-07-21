@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
+import {toggleByYear} from '../../redux/filterActions';
 import RButton from './RButton';
-
-export default function ByYear({list}) {
+import {connect} from 'react-redux';
+function ByYear({list, toggleByYear$, selectedByYear}) {
   const [selectedYear, setSelectedYear] = useState();
   const getName = (item) => {
     const {DisplayYear} = item;
@@ -12,15 +13,15 @@ export default function ByYear({list}) {
     const {CaseCount} = item;
     return CaseCount;
   };
-
+  console.log({selectedByYear});
   const _isSelected = (toCompareWith) => {
     return selectedYear === toCompareWith;
   };
 
   const toggleSelecttion = (item) => {
     const {DisplayYear} = item;
-    if(DisplayYear===selectedYear)
-    return setSelectedYear("");
+    toggleByYear$(DisplayYear);
+    if (DisplayYear === selectedYear) return setSelectedYear('');
     setSelectedYear(DisplayYear);
   };
 
@@ -41,3 +42,11 @@ export default function ByYear({list}) {
     </ScrollView>
   );
 }
+
+const mapStateToProps = (state) => ({
+  selectedByYear: state.filter.selectedByYear,
+});
+const mapDispatchToProps = {
+  toggleByYear$: toggleByYear,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ByYear);

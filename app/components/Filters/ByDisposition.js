@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import RButton from './RButton';
-
-export default function ByDisposition({list}) {
+import {connect} from 'react-redux';
+import {toggleByDecsion} from '../../redux/filterActions';
+function ByDisposition({list, toggleByDecsion$,selectedByDecStatus}) {
   const [selectedBench, setSelectedBench] = useState();
   const getName = (item) => {
     const {DecisionStatusName} = item;
@@ -16,9 +17,11 @@ export default function ByDisposition({list}) {
   const _isSelected = (toCompareWith) => {
     return selectedBench === toCompareWith;
   };
+  console.log({selectedByDecStatus});
 
   const toggleSelecttion = (item) => {
     const {DecisionStatusName} = item;
+    toggleByDecsion$(DecisionStatusName);
     if (DecisionStatusName === selectedBench) return setSelectedBench('');
     setSelectedBench(DecisionStatusName);
   };
@@ -40,3 +43,11 @@ export default function ByDisposition({list}) {
     </ScrollView>
   );
 }
+
+const mapStateToProps = (state) => ({
+  selectedByDecStatus: state.filter.selectedByDecStatus,
+});
+const mapDispatchToProps = {
+  toggleByDecsion$: toggleByDecsion,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ByDisposition);

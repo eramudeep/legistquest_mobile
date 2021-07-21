@@ -87,7 +87,7 @@ class Autocomplete extends Component {
     onStartShouldSetResponderCapture: () => false,
     renderItem: ({ item }) => <Text>{item}</Text>,
     renderSeparator: null,
-    renderTextInput: props => <TextInput {...props} />,
+    renderTextInput: props => <TextInput   clearTextOnFocus {...props} />,
     flatListProps: {}
   };
 
@@ -200,7 +200,7 @@ class Autocomplete extends Component {
         </View>
         {!hideResults && (
           <View
-            style={listContainerStyle}
+            style={[  listContainerStyle]}
             onStartShouldSetResponderCapture={onStartShouldSetResponderCapture}
           >
             {showResults && this.renderResultList()}
@@ -230,7 +230,9 @@ const androidStyles = {
     backgroundColor: 'white',
     borderTopWidth: 0,
     margin: 10,
-    marginTop: 0
+    marginTop: 0,
+     
+     
   }
 };
 
