@@ -133,7 +133,29 @@ export function* workerPageNumberChange(action) {
     console.log('error in workerSearchWithFilters', error);
   }
 }
-
+export function* workerSearchWithFilters(action) {
+  const activeFilters = action.payload;   
+  const requestOptions =  getHeaders({...activeFilters}) 
+  console.log( activeFilters );
+  yield put({type: IS_LOADING, payload: true});
+  const results = yield fetch(
+    SEARCH_RESULT_WITH_FILTERS_API,
+    requestOptions,
+  ).then(async (response) => response.text());
+  console.log({results});
+  try {
+    if (results && JSON.parse(results)) {
+      yield put({
+        type: SET_RESULT_BY_TOPIC,
+        payload: {...JSON.parse(results)},
+      });
+      yield put({type: IS_LOADING, payload: false});
+    }
+  } catch (error) {
+    console.log("error in workerPageNumberChange", error);
+    console.log('error in workerSearchWithFilters', error);
+  }
+} 
 export function* watcherSearchWithFilters() {
   yield takeLatest(SEARCH_RESULT_WITH_FILTERS, workerSearchWithFilters);
 }
