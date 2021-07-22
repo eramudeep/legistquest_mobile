@@ -24,6 +24,8 @@ import { getPagination } from '../../redux/actions';
 import { filterListValues } from '../../utils/appConstants';
 import { TYPE_ACT } from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
+import FilterWithIn from '../../components/Filters/FilterWithIn';
+
 function Topic({
   searchTopicResult,
   searchQuery,
@@ -100,27 +102,8 @@ function Topic({
           ...searchTopicResult?.[label]
         ]
       }
-    })
-  /* if(searchTopicResult?.BenchList ){
-    filters.Bench=[
-      ...searchTopicResult?.BenchList 
-    ]
-  } */
-
-  return filters
-   /*  return {
-    
-    "Bench":  [
-      ...searchTopicResult?.BenchList 
-    ],
-    "Year":[
-      ...searchTopicResult?.YearList 
-    ],
-    "Dispotions":[
-      ...searchTopicResult?.DecStatusList 
-    ] 
-  }*/
-    //
+    }) 
+  return filters 
   }
   return (
     <Container
@@ -171,7 +154,9 @@ function Topic({
               Show Filters
             </Text>
           </View>
+        
         <ResultFound />
+        <FilterWithIn />
           <FlatList
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}
