@@ -22,6 +22,8 @@ import ResultFound from '../../components/ResultFound';
 import Icon from '../../components/CustomIcon/Icon';
 import { getPagination } from '../../redux/actions';
 import { filterListValues } from '../../utils/appConstants';
+import { TYPE_ACT } from '../../services/ApiList';
+import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 function Topic({
   searchTopicResult,
   searchQuery,
@@ -35,7 +37,7 @@ function Topic({
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
   const [pageNo, setPageNo] = useState(1)
-  //console.log("searchQuery",searchQuery);
+  console.log("searchQuery",searchQuery);
   const _renderSearchResult = ({item, index}) => {
     return (
       <SearchResult
@@ -141,7 +143,13 @@ function Topic({
           rightIcon={'search'}
           iconSize={scale(20)}
         /> */}
-          <CustomAutoComplete navigation={navigation} />
+
+        {searchQuery?.type===TYPE_ACT?
+        <AutoCompleteForAct navigation={navigation} />
+      :
+      <CustomAutoComplete navigation={navigation} />}
+          
+          
           {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {[1, 2, 3, 4, 5, 6, 7].map((val, key) => {

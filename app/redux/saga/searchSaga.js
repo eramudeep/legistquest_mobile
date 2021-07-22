@@ -3,6 +3,7 @@ import {
   CASE_TEXT_API_URL,
   PAGINATION_API,
   SEARCH_BY_KEY_WORDS,
+  SEARCH_BY_WORD,
   SEARCH_RESULT_BY_PAGE_NUMBER,
   SEARCH_RESULT_WITH_FILTERS_API,
 } from '../../services/ApiList';
@@ -23,7 +24,7 @@ export function* workerSearchByQuery(action) {
   const {type, text} = QUERY;
   //AlertHelper.show("success","search","search started")
   const results = yield fetch(
-    `${SEARCH_BY_KEY_WORDS}type=${
+    `${SEARCH_BY_WORD}type=${
       type ? type : 'freetext'
     }&searchString=${text}`,
   ).then((response) => response.text());
