@@ -204,7 +204,7 @@ const mapStateToProps = (state) => ({
     SearchText: state?.search?.searchQuery?.text,
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
-    FilterValueList: '', // SYNC WITH filterwithin result text filed in SlideModal
+    FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
     SortBy: '1', // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
     //PageNo:1 
   },

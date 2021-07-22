@@ -5,6 +5,7 @@ export const ADD_REMOVE_BY_YEAR_FILTER = 'ADD_REMOVE_BY_YEAR_FILTER';
 export const ADD_REMOVE_BY_DECISION_FILTER = 'ADD_REMOVE_BY_DECISION_FILTER';
 export const SEARCH_RESULT_WITH_FILTERS = 'SEARCH_RESULT_WITH_FILTERS';
 export const CLEAN_FILTERS = 'CLEAN_FILTERS';
+export const TOGGLE_FILTER_WITH_IN_RESULT = 'TOGGLE_FILTER_WITH_IN_RESULT';
 export const toggleFilters = (filters) => ({
   type: TOGGLE_FILTER,
   payload: filters,
@@ -28,4 +29,8 @@ export const toggleByDecsion = (decsionValue) => ({
 export const searchByFilters = (filters) => ({
   type: SEARCH_RESULT_WITH_FILTERS,
   payload: filters,
+});
+export const toggleFiltersWithInResult = (filter) => ({
+  type: TOGGLE_FILTER_WITH_IN_RESULT,
+  payload: filter,
 });
