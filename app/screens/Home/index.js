@@ -10,12 +10,13 @@ import {connect} from 'react-redux';
 import {searchByQuery, resetSearchResults, getResultsByTopic} from '../../redux/searchActions';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
  
-import { TYPE_FREE_TEXT } from '../../services/ApiList';
+import { TYPE_ACT, TYPE_FREE_TEXT } from '../../services/ApiList';
 import { setSearchType as setSearchTypeLocal, } from '../../utils/searchTypeHelper';
+import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 
 function Home({
   navigation,
-  searchByQuery$ 
+  searchByQuery$
 }) {
    
   const [searchType, setSearchType] = useState(TYPE_FREE_TEXT)
@@ -34,8 +35,14 @@ function Home({
       onSignin={() => navigation.navigate('Login')}>
       <View style={[{flex: 1   }, searching ? {} :{justifyContent: 'center' }]}>
         <CustomIcon iconStyle={{width: scale(300), height: scale(100)}} />
-
-        <CustomAutoComplete  onBlur={(val)=>{setsearching(val)}}  navigation={navigation} />
+{
+  searchType===TYPE_ACT?
+  <AutoCompleteForAct  onBlur={(val)=>{setsearching(val)}}  navigation={navigation} />
+  :
+  <CustomAutoComplete  onBlur={(val)=>{setsearching(val)}}  navigation={navigation} />
+}
+        
+        
 
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 
