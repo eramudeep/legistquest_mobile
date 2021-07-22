@@ -5,6 +5,7 @@ const {
   ADD_REMOVE_BY_BENCH_FILTER,
   ADD_REMOVE_BY_YEAR_FILTER,
   ADD_REMOVE_BY_DECISION_FILTER,
+  CLEAN_FILTERS
 } = require('../filterActions');
 const initialState = {
   filters: [],
@@ -14,6 +15,17 @@ const initialState = {
 };
 export default function (state = initialState, action) {
   switch (action.type) {
+    case CLEAN_FILTERS:
+       
+      return {
+        ...state,
+        selectedByBench: [], 
+        selectedByYear: [], 
+        selectedByDecStatus: [], 
+      };
+
+
+
     case ADD_REMOVE_BY_DECISION_FILTER:
       const selectedByDecStatus = senitizeAnyArray(
         action.payload,

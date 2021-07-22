@@ -10,7 +10,7 @@ import {AlertHelper} from '../../utils/AlertHelper';
 import { getHeaders } from '../../utils/common';
 import {getSearchType} from '../../utils/searchTypeHelper';
 import {GET_PAGINATION, IS_LOADING} from '../actionTypes';
-import { SEARCH_RESULT_WITH_FILTERS } from '../filterActions';
+import { SEARCH_RESULT_WITH_FILTERS,CLEAN_FILTERS } from '../filterActions';
 import {
   SET_RESULT_BY_TOPIC,
   GET_RESULT_BY_TOPIC,
@@ -52,6 +52,8 @@ export function* watcherSearchByQuery() {
 
 export function* workerGetResultsByTopic(action) {
   yield put({type: IS_LOADING, payload: true});
+  yield put({type: CLEAN_FILTERS});
+  
   const searchType = yield getSearchType();
   const {selectedTopic} = action.payload;
   const results = yield fetch(
