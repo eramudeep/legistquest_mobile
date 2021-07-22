@@ -22,6 +22,7 @@ export default function (state = initialState, action) {
         selectedByBench: [], 
         selectedByYear: [], 
         selectedByDecStatus: [], 
+        filters:[]
       };
 
 

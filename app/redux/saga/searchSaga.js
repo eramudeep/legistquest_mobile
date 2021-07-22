@@ -80,53 +80,21 @@ export function* watcherSearchByPagination() {
 }
 
 export function* workerPageNumberChange(action) {
-  const {pageNumber,sortBy,query,searchType,filterList,activeFilters ,callback} =
-    action.payload;
-  //console.log("action.payload", action.payload);
-  const jsonData = {
-    SearchText: query ? query : '',
-    SearchType: searchType ? searchType : 'freetext',
-    BenchArray: '',
-    Idrafarray: '',
-    Yeararray: '',
-    PageNo: pageNumber ? pageNumber : '',
-    Partyarray: '',
-    Decisionarray: '',
-    SelectedFilter: '',
-    Filter: '',
-    SortBy: sortBy ? sortBy : '1',
-    Courtarray: '',
-    RemoveFilter: '',
-    FilterValueList: filterList ? filterList.join(',') : '',
-    ...activeFilters,
-  };
 
-  var raw = JSON.stringify(jsonData);
-
-  
-  var myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-
-
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow',
-  };
-
-  //console.log( "jsonData", jsonData , "requestOptions",requestOptions);
+  const {pageNumber, filtersList, callback} = action.payload;
+    
+  const jsonData = { 
+    PageNo: pageNumber ? pageNumber : '',  
+    ...filtersList
+  };  
+  var requestOptions = getHeaders(jsonData) 
   const results = yield fetch(
     SEARCH_RESULT_BY_PAGE_NUMBER,
     requestOptions,
   ).then(async (response) => response.text());
 
   try {
-    if (results && JSON.parse(results)) {
-      /* yield put({
-        type: SET_SEARCH_QUERY_RESULTS,
-        payload: { ...JSON.parse(results),},
-      }); */
+    if (results && JSON.parse(results)) { 
         yield put({type: SET_RESULT_BY_TOPIC, payload: {...JSON.parse( results),fromPagination: true }  });
       yield put({type: IS_LOADING, payload: false  });  
       

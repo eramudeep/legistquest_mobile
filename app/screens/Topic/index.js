@@ -32,6 +32,7 @@ function Topic({
   route,
   navigation,
   isTopicLoading,
+  filtersList
 }) {
   const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
@@ -56,9 +57,9 @@ function Topic({
   }
   const getLoadMoreResults=async()=>{
     setLoadMore(true)
-    const respo= await getPaginationResults$({query:searchQuery.text,searchType:searchQuery?.type, pageNumber:pageNo+1,callback:callbackFromSaga})  
-    // 
-    console.log("respo resultttt=====????",respo);
+     
+    const respo= await getPaginationResults$({query:searchQuery.text,searchType:searchQuery?.type, pageNumber:pageNo+1,filtersList,callback:callbackFromSaga})  
+          
     setPageNo(prev=>prev+1)
   }
   const toggleModal = () => {
@@ -205,7 +206,7 @@ const mapStateToProps = (state) => ({
     RemoveFilter: '',
     FilterValueList: '', // SYNC WITH filterwithin result text filed in SlideModal
     SortBy: '1', // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
-    PageNo:1 
+    //PageNo:1 
   },
 
 });
