@@ -7,19 +7,30 @@ import ByBench from './ByBench';
 import ByYear from './ByYear';
 import RadioGroup from './RadioGroup';
 import ByDisposition from './ByDisposition';
-
-export default function FilterComp({toggleFilters$, filters, label, Court}) {
-  //const [isOpen, setIsOpen] = useState();
+import {connect} from 'react-redux';
+import {searchByFilters} from '../../redux/filterActions';
+function FilterComp({
+  filtersList,
+  searchByFilters$,
+  toggleFilters$,
+  filters,
+  label,
+  Court,
+}) {
   const onPress = () => {
-    //setIsOpen(!isOpen);
     toggleFilters$(label);
   };
   const isFilterOpen = () => {
     return filters?.includes(label);
   };
-  //console.log("filters",filters);
+
+  const applyFilters = () => {
+    //console.log('applyFilters', filtersList);
+     searchByFilters$(filtersList)
+     // start loading and end loading
+  };
   return (
-    <View style={{margin:scale(3)}}>
+    <View style={{margin: scale(3)}}>
       <Pressable onPress={onPress} style={styles.pressableContainer}>
         <Ionicons
           name={isFilterOpen() ? 'caret-down-outline' : 'caret-forward-outline'}
@@ -32,9 +43,15 @@ export default function FilterComp({toggleFilters$, filters, label, Court}) {
         <View>
           <Pressable style={{margin: scale(10)}}>
             {label == 'Court' && <RadioGroup list={Court} />}
-            {label == 'Bench' && <ByBench list={Court} />}
-            {label == 'Year' && <ByYear list={Court} />}
-            {label == 'Dispotions' && <ByDisposition list={Court} />}
+            {label == 'Bench' && (
+              <ByBench applyFilters={applyFilters} list={Court} />
+            )}
+            {label == 'Year' && (
+              <ByYear applyFilters={applyFilters} list={Court} />
+            )}
+            {label == 'Dispotions' && (
+              <ByDisposition applyFilters={applyFilters} list={Court} />
+            )}
           </Pressable>
         </View>
       )}
@@ -52,3 +69,28 @@ const styles = StyleSheet.create({
     padding: scale(0),
   },
 });
+
+const mapStateToProps = (state) => ({
+  filtersList: {
+    BenchArray: `${state.filter.selectedByBench?.toString()}`,
+    Yeararray: `${state.filter.selectedByYear?.toString()}`,
+    Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    SearchText: state?.search?.searchQuery?.text,
+    SearchType: state?.search?.searchQuery?.type,
+    RemoveFilter: '',
+    FilterValueList: '', // SYNC WITH filterwithin result text filed in SlideModal
+    SortBy: '1', // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component,
+   /*  SelectedFilter: "benchfilter",
+    PageNo:1,
+    Idrafarray:"",
+    Partyarray:"", 
+    Filter:"", 
+    Courtarray:"",   */
+  },
+
+   
+});
+const mapDispatchToProps = {
+  searchByFilters$: searchByFilters,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FilterComp);

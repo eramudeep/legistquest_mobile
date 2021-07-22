@@ -87,7 +87,7 @@ class Autocomplete extends Component {
     onStartShouldSetResponderCapture: () => false,
     renderItem: ({ item }) => <Text>{item}</Text>,
     renderSeparator: null,
-    renderTextInput: props => <TextInput   clearTextOnFocus {...props} />,
+    renderTextInput: props => <TextInput   returnKeyType="done"  clearTextOnFocus {...props} />,
     flatListProps: {}
   };
 

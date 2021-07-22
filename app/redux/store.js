@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  //blacklist: ['search','filter'] // navigation will not be persisted
+  blacklist: ['search','filter'] // navigation will not be persisted
 
    
 };

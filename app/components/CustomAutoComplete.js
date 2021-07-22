@@ -75,7 +75,7 @@ function CustomAutoComplete({
         Platform.OS == 'ios' && {zIndex: 1},
       ]}>
       <Autocomplete
-        keyboardShouldPersistTaps="always" 
+         
         autoCapitalize="none"
         autoCorrect={false}
         data={/* data */ (typing && [...searchResults]) || []}
@@ -97,7 +97,7 @@ function CustomAutoComplete({
         listStyle={[{borderWidth: 0, paddingHorizontal: 0,  marginTop: scale(Platform.OS =="ios" ? 0: 25), maxHeight: scale(350), marginBottom:scale(30) }, Platform.OS =="ios" ? {width:window.width -120,} :{} ]}
         placeholder={getPlacheHolder(searchQuery?.type) }
         onChangeText={onChange /* onChangeText */}
-        renderTextInput={(props)=>   <TextInput   clearTextOnFocus {...props} />}
+         
         renderItem={({item, i}) => {
           const {Value} = item;
           return (
