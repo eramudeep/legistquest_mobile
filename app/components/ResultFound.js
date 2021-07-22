@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { View, Text } from 'react-native'
 import { scale } from 'react-native-size-matters'
 import {Picker} from '@react-native-picker/picker';
+import RNPickerSelect from 'react-native-picker-select';
 import CustomLabel from './CustomLabel/CustomLabel';
 import {connect} from 'react-redux';
 import { sortData } from '../utils/MockData';
@@ -24,7 +25,7 @@ import { sortByOnly } from '../redux/filterActions';
             </View>
             <View style={{flex:1}}>
             <Text>Sort by :  </Text> 
-            <Picker
+            {/* <Picker
                  selectedValue={sortBy} 
                  onValueChange={(value)=>{onChangePicker(value)}}
                 >
@@ -33,7 +34,13 @@ import { sortByOnly } from '../redux/filterActions';
                         <Picker.Item key={key} label={val.label} value={val.value} />
                     )
                 })}
-                </Picker> 
+                </Picker>  */}
+                <RNPickerSelect
+            onValueChange={(value)=>{onChangePicker(value)}}
+            items={sortData}
+            value={sortBy}
+
+        />
             </View>
             
 
