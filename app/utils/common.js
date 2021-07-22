@@ -17,20 +17,23 @@ export const removeHtmlTags = (replaceFrom) => {
  * @returns {[]}
  * @description will return an array, this function will check the the passed [itemToCheck] params exist in array. if it exist, it will remove it otherwise it will push into it
  */
-export const senitizeAnyArray = (itemToCheck, arrayOfItem,allOverRide=false) => {
+export const senitizeAnyArray = (
+  itemToCheck,
+  arrayOfItem,
+  allOverRide = false,
+) => {
   let tmpFilters = arrayOfItem;
   if (tmpFilters?.includes(itemToCheck)) {
     //remove
     const index = tmpFilters.indexOf(itemToCheck);
-    if (index > -1 ) {
+    if (index > -1) {
       tmpFilters.splice(index, 1);
     }
 
     return [...tmpFilters];
   } else {
-    if(!allOverRide)
-    return [...tmpFilters, itemToCheck];
-    return [ itemToCheck];
+    if (!allOverRide) return [...tmpFilters, itemToCheck];
+    return [itemToCheck];
   }
 };
 export const getPlacheHolder = (searchType) => {
@@ -46,4 +49,17 @@ export const getPlacheHolder = (searchType) => {
     case CITATION:
       return 'Search through citation';
   }
+};
+export const getHeaders = (jsonData) => {
+  const raw = JSON.stringify(jsonData);
+  let myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow',
+  };
+
+  return requestOptions;
 };

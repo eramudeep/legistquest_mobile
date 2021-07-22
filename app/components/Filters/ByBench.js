@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import RButton from './RButton';
 import {connect} from 'react-redux';
-import { toggleByBench } from '../../redux/filterActions';
+import {toggleByBench} from '../../redux/filterActions';
 
-  function ByBench({list,toggleByBench$}) {
+function ByBench({selectedByBenchs,applyFilters, list, toggleByBench$}) {
   const [selectedBench, setSelectedBench] = useState();
   const getName = (item) => {
     const {Bench} = item;
@@ -16,17 +16,18 @@ import { toggleByBench } from '../../redux/filterActions';
   };
 
   const _isSelected = (toCompareWith) => {
-    return selectedBench === toCompareWith;
+    //return selectedBench === toCompareWith;
+   return selectedByBenchs?.includes(toCompareWith)
   };
 
-  const toggleSelecttion = (item) => { 
+  const toggleSelecttion = (item) => {
     const {Bench} = item;
-    toggleByBench$(Bench)
-    if(Bench===selectedBench)
-   return setSelectedBench("");
+    toggleByBench$(Bench);
+    applyFilters && applyFilters();
+    if (Bench === selectedBench) return setSelectedBench('');
     setSelectedBench(Bench);
   };
- 
+
   return (
     <ScrollView>
       {list?.map((item, key) => {
@@ -45,10 +46,11 @@ import { toggleByBench } from '../../redux/filterActions';
   );
 }
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
   searchResults: state.filter.searchResults,
+  selectedByBenchs:state.filter.selectedByBench
 });
 const mapDispatchToProps = {
-  toggleByBench$:toggleByBench 
+  toggleByBench$: toggleByBench,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ByBench);

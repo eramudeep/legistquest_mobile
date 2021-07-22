@@ -9,4 +9,4 @@ export const SEARCH_BY_WORD = `${BASE_URL}SearchByKeyWords?`;
 export const CASE_TEXT_API_URL=`${BASE_URL}GetResultBySelectedSearchResult?`
 export const DETAILS_API=`${BASE_URL}case/`
 export const SEARCH_RESULT_BY_PAGE_NUMBER=`${BASE_URL}GetResultBySelectedSearchResultPageNo`
- 
+export const SEARCH_RESULT_WITH_FILTERS_API=`${BASE_URL}GetCaseDetailsByBenchFilter`
