@@ -19,6 +19,7 @@ function SlideModal({
   const [filterVal, setFilterVal] = useState();
 
   const onSearchWithin = () => {
+    if(!filterVal) return
     toggleFiltersWithInResult$(filterVal);
     setFilterVal("")
   };

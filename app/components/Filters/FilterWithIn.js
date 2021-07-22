@@ -31,13 +31,14 @@ function FilterWithIn({filterWithInResult,toggleFiltersWithInResult$}) {
     );
   };
   // return <Card />;
+  console.log("filterWithInResult",filterWithInResult);
   if (filterWithInResult?.length < 1) return null;
   return (
     <View style={{marginTop: scale(10), marginBottom: scale(10)}}>
       <FlatList
         style={{height: scale(25)}}
         horizontal
-        data={filterWithInResult}
+        data={filterWithInResult||[]}
         ItemSeparatorComponent={() => <View style={{padding: scale(3)}} />}
         renderItem={({item}) => <Card item={item} />}
       />
