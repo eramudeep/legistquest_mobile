@@ -188,6 +188,17 @@ const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
   searchQuery: state.search.searchQuery,
   isTopicLoading: state.error.isloading,
+  filtersList: {
+    BenchArray: `${state.filter.selectedByBench?.toString()}`,
+    Yeararray: `${state.filter.selectedByYear?.toString()}`,
+    Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    SearchText: state?.search?.searchQuery?.text,
+    SearchType: state?.search?.searchQuery?.type,
+    RemoveFilter: '',
+    FilterValueList: '', // SYNC WITH filterwithin result text filed in SlideModal
+    SortBy: '1', // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
+    PageNo:1 
+  },
 
 });
 const mapDispatchToProps = {
