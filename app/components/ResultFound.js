@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import { sortData } from '../utils/MockData';
 import { sortByOnly } from '../redux/filterActions';
  function ResultFound({CaseCount,searchQuery,sortByOnly$,sortByF}) {
-     console.log("searchQuery",searchQuery,"sortByF",sortByF);
+     //console.log("searchQuery",searchQuery,"sortByF",sortByF);
      const [sortBy, setSortBy] = useState(sortByF)
      const onChangePicker=(value)=>{
         sortByOnly$({searchType:searchQuery?.type,searchText:searchQuery?.text,sortBy:value})

@@ -35,6 +35,8 @@ function CustomAutoComplete({
   searchByQuery$,
   getResultsByTopic$,
   navigation,
+  filterValueList,
+  SortBy
 }) {
   const [searchIcon, setSearchIcon] = useState('search'); //spinner
   const [typing, setTyping] = useState(false);
@@ -47,10 +49,10 @@ function CustomAutoComplete({
     //setQuery(change);
     setSearchIcon('spinner');
   }, 1000);
-
+  
   const itemOnPress = (item) => {
     onBlur&&onBlur(false)
-    getResultsByTopic$({selectedTopic: item.Value});
+    getResultsByTopic$({selectedTopic: item.Value,filterValueList, SortBy});
     Keyboard.dismiss();
     setTyping(false);
     //console.log("item",item);
@@ -60,7 +62,7 @@ function CustomAutoComplete({
   };
 
   const OnSearchPress = () => {
-    getResultsByTopic$({selectedTopic: searchQuery?.text});
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList, SortBy});
 
     navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
   };
@@ -78,7 +80,7 @@ function CustomAutoComplete({
          
         autoCapitalize="none"
         autoCorrect={false}
-        data={/* data */ (typing && [...searchResults]) || []}
+        data={  (typing && Array.isArray(searchResults) &&[...searchResults]) || []}
         defaultValue={searchQuery?.text}
         inputContainerStyle={styles.input}
         onFocus={() => {
@@ -172,6 +174,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   searchResults: state.search.searchResults,
   searchQuery: state.search.searchQuery,
+  filterValueList: `${state.filter.filterWithInResult?.toString()}`,
+  SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
 });
 const mapDispatchToProps = {
   searchByQuery$: searchByQuery,

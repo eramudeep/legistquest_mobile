@@ -31,7 +31,7 @@ function FilterWithIn({filterWithInResult,toggleFiltersWithInResult$}) {
     );
   };
   // return <Card />;
-  console.log("filterWithInResult",filterWithInResult);
+   
   if (filterWithInResult?.length < 1) return null;
   return (
     <View style={{marginTop: scale(10), marginBottom: scale(10)}}>

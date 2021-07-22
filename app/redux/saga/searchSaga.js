@@ -56,9 +56,9 @@ export function* workerGetResultsByTopic(action) {
   yield put({type: CLEAN_FILTERS});
   
   const searchType = yield getSearchType();
-  const {selectedTopic} = action.payload;
+  const {selectedTopic,filterValueList,SortBy} = action.payload; 
   const results = yield fetch(
-    `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&filter=&sortBy=1&formattedCitation=&removeFilter=&filterValueList=`,
+    `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&filter=&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=&filterValueList=${filterValueList ? filterValueList?.toString():''}`,
   ).then((response) => response.text());
 
   try {

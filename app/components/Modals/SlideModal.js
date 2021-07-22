@@ -9,24 +9,28 @@ import CustomInput from '../CustomInput';
 import CustomLabel from '../CustomLabel/CustomLabel';
 import Filters from '../Filters';
 import {connect} from 'react-redux';
+import { getResultsByTopic } from '../../redux/searchActions';
 function SlideModal({
   toggleFiltersWithInResult$,
   filterCourt,
   visible,
   onClose,
-  filterWithInResult
+  searchQuery,
+  filterWithInResult,
+  SortBy,
+  getResultsByTopic$
 }) {
   const [filterVal, setFilterVal] = useState();
 
   const onSearchWithin = () => {
     if(!filterVal) return
-    toggleFiltersWithInResult$(filterVal);
-    setFilterVal("")
+    toggleFiltersWithInResult$(filterVal);  
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString()});
+    setFilterVal("") 
   };
   const onChangeText = (change) => {
     setFilterVal(change);
-  };
-console.log({filterWithInResult});
+  }; 
   return (
     <Modal
       animationIn="slideInLeft"
@@ -72,7 +76,7 @@ console.log({filterWithInResult});
     </Modal>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   row: {
     borderBottomWidth: scale(0.5),
@@ -82,11 +86,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
-
+ 
 const mapStateToProps = (state) => ({
-  filterWithInResult: state.filter.filterWithInResult,  
+  searchQuery: state.search.searchQuery,
+  filterWithInResult: state.filter.filterWithInResult,   
+  SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
 });
 const mapDispatchToProps = {
   toggleFiltersWithInResult$: toggleFiltersWithInResult,
+  getResultsByTopic$: getResultsByTopic,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SlideModal);

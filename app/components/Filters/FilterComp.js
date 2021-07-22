@@ -78,8 +78,8 @@ const mapStateToProps = (state) => ({
     SearchText: state?.search?.searchQuery?.text,
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
-    FilterValueList: `${state.filter.filterWithInResult?.toString()}`, // SYNC WITH filterwithin result text filed in SlideModal
-    SortBy: '1', // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component,
+    FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
+    SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
    /*  SelectedFilter: "benchfilter",
     PageNo:1,
     Idrafarray:"",

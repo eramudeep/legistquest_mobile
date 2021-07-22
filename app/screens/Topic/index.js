@@ -177,7 +177,7 @@ function Topic({
     </Container>
   );
 }
-
+ 
 const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
   searchQuery: state.search.searchQuery,
@@ -190,7 +190,7 @@ const mapStateToProps = (state) => ({
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
-    SortBy: '1', // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
+    SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
     //PageNo:1 
   },
 
