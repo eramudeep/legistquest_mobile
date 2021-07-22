@@ -18,7 +18,8 @@ export default function CustomInput({
     iconSize,
     iconColor,
     leftIcon,
-    leftIconColor
+    leftIconColor,
+    defaultValue
  }) {
     return (
         <View style={[styles.container,containerStyle]}>
@@ -37,6 +38,7 @@ export default function CustomInput({
                 style={styles.input}
                 secureTextEntry={secureText}
                 value={value}
+                defaultValue={defaultValue}
 
             />
             {

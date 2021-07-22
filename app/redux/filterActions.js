@@ -6,6 +6,7 @@ export const ADD_REMOVE_BY_DECISION_FILTER = 'ADD_REMOVE_BY_DECISION_FILTER';
 export const SEARCH_RESULT_WITH_FILTERS = 'SEARCH_RESULT_WITH_FILTERS';
 export const SORT_BY_ONLY="SORT_BY_ONLY";
 export const CLEAN_FILTERS = 'CLEAN_FILTERS';
+export const TOGGLE_FILTER_WITH_IN_RESULT = 'TOGGLE_FILTER_WITH_IN_RESULT';
 export const toggleFilters = (filters) => ({
   type: TOGGLE_FILTER,
   payload: filters,
@@ -33,4 +34,8 @@ export const searchByFilters = (filters) => ({
 export const sortByOnly = (filters) => ({
   type: SORT_BY_ONLY,
   payload: filters,
+});
+export const toggleFiltersWithInResult = (filter) => ({
+  type: TOGGLE_FILTER_WITH_IN_RESULT,
+  payload: filter,
 });
