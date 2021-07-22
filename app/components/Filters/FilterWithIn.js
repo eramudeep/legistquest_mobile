@@ -5,11 +5,21 @@ import {appColors} from '../../utils/appColors';
 import Icon from '../CustomIcon/Icon';
 import {connect} from 'react-redux';
 import { toggleFiltersWithInResult } from '../../redux/filterActions';
-function FilterWithIn({filterWithInResult,toggleFiltersWithInResult$}) {
-  const Card = ({item}) => { 
+import { getResultsByTopic } from '../../redux/searchActions';
+function FilterWithIn({filterWithInResult,toggleFiltersWithInResult$,
+  searchQuery, 
+  SortBy,
+  getResultsByTopic$
+}) {
+
+  const removeFilter = (item)=>{
+    toggleFiltersWithInResult$(item)
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :SortBy?.toString(), keepFilters:true}); 
+  }
+  const Card = ({item}) => {  
     return (
       <Pressable
-      onPress={()=> toggleFiltersWithInResult$(item)}
+        onPress={()=> removeFilter(item)}
         style={{
           backgroundColor: appColors.lighterGray,
           flexDirection: 'row',
@@ -31,7 +41,7 @@ function FilterWithIn({filterWithInResult,toggleFiltersWithInResult$}) {
     );
   };
   // return <Card />;
-   
+   console.log({filterWithInResult});
   if (filterWithInResult?.length < 1) return null;
   return (
     <View style={{marginTop: scale(10), marginBottom: scale(10)}}>
@@ -48,8 +58,11 @@ function FilterWithIn({filterWithInResult,toggleFiltersWithInResult$}) {
 
 const mapStateToProps = (state) => ({
   filterWithInResult: state.filter.filterWithInResult,
+  searchQuery: state.search.searchQuery, 
+  SortBy: state.filter.sortBy?.toString(),
 });
 const mapDispatchToProps = {
     toggleFiltersWithInResult$: toggleFiltersWithInResult,  
+    getResultsByTopic$: getResultsByTopic,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FilterWithIn);

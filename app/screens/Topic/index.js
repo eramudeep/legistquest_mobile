@@ -121,12 +121,7 @@ function Topic({
         </View>
       ) : (
         <View style={{flex: 1}}>
-          {/* <CustomInput
-          containerStyle={{marginTop: 0}}
-          placeholder={'Search Free Text...'}
-          rightIcon={'search'}
-          iconSize={scale(20)}
-        /> */}
+           
 
         {searchQuery?.type===TYPE_ACT?
         <AutoCompleteForAct navigation={navigation} />
@@ -154,9 +149,9 @@ function Topic({
               Show Filters
             </Text>
           </View>
-        
+          <FilterWithIn />
         <ResultFound />
-        <FilterWithIn />
+        
           <FlatList
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}

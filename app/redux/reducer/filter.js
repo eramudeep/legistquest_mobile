@@ -19,7 +19,10 @@ const initialState = {
 };
 export default function (state = initialState, action) {
   switch (action.type) {
+    
     case CLEAN_FILTERS:
+      const {keepWithInResultFilter}=  action.payload
+       
       return {
         ...state,
         selectedByBench: [], 
@@ -30,18 +33,21 @@ export default function (state = initialState, action) {
         selectedByYear: [],
         selectedByDecStatus: [],
         filters: [],
-        filterWithInResult: [],
+        filterWithInResult: keepWithInResultFilter ? state.filterWithInResult : [],
       };
 
     case TOGGLE_FILTER_WITH_IN_RESULT:
+      //console.log("filterWithInResult",action.payload);
       const filterWithInResult = senitizeAnyArray(
         action.payload,
         state.filterWithInResult,
       );
+      console.log(">>>>",filterWithInResult);
       return {
         ...state,
-        filterWithInResult,
+        filterWithInResult:filterWithInResult,
       };
+      
 
     case ADD_REMOVE_BY_DECISION_FILTER:
       const selectedByDecStatus = senitizeAnyArray(

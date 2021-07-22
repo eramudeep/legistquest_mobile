@@ -52,11 +52,13 @@ export function* watcherSearchByQuery() {
 }
 
 export function* workerGetResultsByTopic(action) {
-  yield put({type: IS_LOADING, payload: true});
-  yield put({type: CLEAN_FILTERS});
+  
   
   const searchType = yield getSearchType();
-  const {selectedTopic,filterValueList,SortBy} = action.payload; 
+  const {selectedTopic,filterValueList,SortBy,keepFilters} = action.payload; 
+  yield put({type: IS_LOADING, payload: true});
+  if(!keepFilters)
+  yield put({type: CLEAN_FILTERS});
   const results = yield fetch(
     `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&filter=&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=&filterValueList=${filterValueList ? filterValueList?.toString():''}`,
   ).then((response) => response.text());

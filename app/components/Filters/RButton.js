@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Pressable,StyleSheet } from 'react-native'
+import { View, Pressable,StyleSheet ,Image} from 'react-native'
 import CustomLabel from '../CustomLabel/CustomLabel'
 import Ionicons from 'react-native-vector-icons/Ionicons'; 
 import { appColors } from '../../utils/appColors';
 import { scale } from 'react-native-size-matters';
+const idraf ="https://www.legitquest.com/lq/idraf-icon.png"
 export default function RButton({item,getName,_isSelected,toggleSelecttion,getCaseCount,IsHaveSegregation}) {
     return (
         <Pressable
@@ -19,10 +20,11 @@ export default function RButton({item,getName,_isSelected,toggleSelecttion,getCa
                   : [styles.radioContUnChecked]
               }
             />
-            <CustomLabel text={getName&&getName(item)} />
+            <CustomLabel text={getName&&getName(item)}  labelStyle={{fontSize:scale(13)}}/>
           </View>
           {/*can be used to show iDraf*/}
-          {IsHaveSegregation && <Ionicons name="flower-outline" />}
+           
+         { IsHaveSegregation&& <Image  style={{height:20, width:scale(40)}} source={{uri:idraf}} />}
           <CustomLabel text={getCaseCount&&getCaseCount(item)} />
         </Pressable>
     )

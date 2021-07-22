@@ -39,3 +39,10 @@ export const toggleFiltersWithInResult = (filter) => ({
   type: TOGGLE_FILTER_WITH_IN_RESULT,
   payload: filter,
 });
+
+
+export const resetFilters = (option) => ({
+  type: CLEAN_FILTERS,
+  payload: option,
+});
+

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Pressable, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {scale} from 'react-native-size-matters';
-import {toggleFiltersWithInResult} from '../../redux/filterActions';
+import {resetFilters, toggleFiltersWithInResult} from '../../redux/filterActions';
 import {appColors} from '../../utils/appColors';
 import Icon from '../CustomIcon/Icon';
 import CustomInput from '../CustomInput';
@@ -18,19 +18,24 @@ function SlideModal({
   searchQuery,
   filterWithInResult,
   SortBy,
-  getResultsByTopic$
+  getResultsByTopic$,
+  resetFilters$
 }) {
   const [filterVal, setFilterVal] = useState();
 
   const onSearchWithin = () => {
-    if(!filterVal) return
+    if(!filterVal) return 
     toggleFiltersWithInResult$(filterVal);  
-    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString()});
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString(), keepFilters:true});
     setFilterVal("") 
   };
   const onChangeText = (change) => {
     setFilterVal(change);
   }; 
+  const onClearFilter = ()=>{
+    resetFilters$({ keepWithInResultFilter:true})
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString(), keepFilters:true});
+  }
   return (
     <Modal
       animationIn="slideInLeft"
@@ -48,7 +53,7 @@ function SlideModal({
               <Icon name="filter" size={scale(18)} />
               <CustomLabel text={'SEARCH FILTER'} />
             </View>
-            <Pressable style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Pressable onPress={onClearFilter} style={{flexDirection: 'row', alignItems: 'center'}}>
               <Icon name="undo" size={scale(12)} color={appColors.blue} />
               <CustomLabel
                 text={'Clear'}
@@ -95,5 +100,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   toggleFiltersWithInResult$: toggleFiltersWithInResult,
   getResultsByTopic$: getResultsByTopic,
+  resetFilters$:resetFilters
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SlideModal);
