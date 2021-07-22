@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useMemo} from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -24,11 +24,11 @@ function FilterComp({
     return filters?.includes(label);
   };
 
-  const applyFilters = () => {
-    //console.log('applyFilters', filtersList);
-     searchByFilters$(filtersList)
-     // start loading and end loading
-  };
+  const applyFilters = (currentFilter) => { 
+     searchByFilters$({...filtersList,...currentFilter}) 
+  }; 
+   
+   
   return (
     <View style={{margin: scale(3)}}>
       <Pressable onPress={onPress} style={styles.pressableContainer}>
@@ -93,4 +93,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   searchByFilters$: searchByFilters,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(FilterComp);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo( FilterComp));

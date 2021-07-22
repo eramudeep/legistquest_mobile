@@ -3,7 +3,7 @@ import {View, ScrollView} from 'react-native';
 import {toggleByYear} from '../../redux/filterActions';
 import RButton from './RButton';
 import {connect} from 'react-redux';
-function ByYear({list, toggleByYear$, selectedByYear}) {
+function ByYear({applyFilters,list, toggleByYear$, selectedByYear}) {
   const [selectedYear, setSelectedYear] = useState();
   const getName = (item) => {
     const {DisplayYear} = item;
@@ -21,6 +21,7 @@ function ByYear({list, toggleByYear$, selectedByYear}) {
   const toggleSelecttion = (item) => {
     const {DisplayYear} = item;
     toggleByYear$(DisplayYear);
+    applyFilters && applyFilters({Yeararray: DisplayYear?.toString()});
     if (DisplayYear === selectedYear) return setSelectedYear('');
     setSelectedYear(DisplayYear);
   };

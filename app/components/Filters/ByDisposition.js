@@ -3,7 +3,7 @@ import {View, ScrollView} from 'react-native';
 import RButton from './RButton';
 import {connect} from 'react-redux';
 import {toggleByDecsion} from '../../redux/filterActions';
-function ByDisposition({list, toggleByDecsion$,selectedByDecStatus}) {
+function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus}) {
   const [selectedBench, setSelectedBench] = useState();
   const getName = (item) => {
     const {DecisionStatusName} = item;
@@ -20,8 +20,9 @@ function ByDisposition({list, toggleByDecsion$,selectedByDecStatus}) {
   console.log({selectedByDecStatus});
 
   const toggleSelecttion = (item) => {
-    const {DecisionStatusName} = item;
-    toggleByDecsion$(DecisionStatusName);
+    const {DecisionStatusName,StatusId} = item;
+    toggleByDecsion$(DecisionStatusName); 
+    applyFilters && applyFilters({Decisionarray: StatusId?.toString()});
     if (DecisionStatusName === selectedBench) return setSelectedBench('');
     setSelectedBench(DecisionStatusName);
   };

@@ -19,11 +19,12 @@ function ByBench({selectedByBenchs,applyFilters, list, toggleByBench$}) {
     //return selectedBench === toCompareWith;
    return selectedByBenchs?.includes(toCompareWith)
   };
-
+  //console.log("selectedByBenchs",selectedByBenchs);
+ 
   const toggleSelecttion = (item) => {
     const {Bench} = item;
     toggleByBench$(Bench);
-    applyFilters && applyFilters();
+    applyFilters && applyFilters({BenchArray: Bench?.toString()});
     if (Bench === selectedBench) return setSelectedBench('');
     setSelectedBench(Bench);
   };
