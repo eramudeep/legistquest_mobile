@@ -87,7 +87,7 @@ function CustomAutoComplete({
         }}
         TextInput={
          { onBlur:() => {
-             
+             console.log("blured ");
             setTyping(false);
           }}
         }

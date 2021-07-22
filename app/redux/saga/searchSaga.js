@@ -11,7 +11,7 @@ import {AlertHelper} from '../../utils/AlertHelper';
 import { getHeaders } from '../../utils/common';
 import {getSearchType} from '../../utils/searchTypeHelper';
 import {GET_PAGINATION, IS_LOADING} from '../actionTypes';
-import { SEARCH_RESULT_WITH_FILTERS,CLEAN_FILTERS } from '../filterActions';
+import { SEARCH_RESULT_WITH_FILTERS,CLEAN_FILTERS, SORT_BY_ONLY, sortByOnly } from '../filterActions';
 import {
   SET_RESULT_BY_TOPIC,
   GET_RESULT_BY_TOPIC,
@@ -161,4 +161,27 @@ export function* workerSearchWithFilters(action) {
 } 
 export function* watcherSearchWithFilters() {
   yield takeLatest(SEARCH_RESULT_WITH_FILTERS, workerSearchWithFilters);
+}
+
+export function* workerGetResultsBySort(action) {
+  yield put({type: IS_LOADING, payload: true});
+  // yield put({type: CLEAN_FILTERS});
+  
+  const {searchType,searchText,sortBy} = action.payload;
+  const results = yield fetch(
+    `${CASE_TEXT_API_URL}type=${searchType}&caseText=${searchText}&filter=&sortBy=${sortBy}&formattedCitation=&removeFilter=&filterValueList=`,
+  ).then((response) => response.text());
+
+  try {
+    if (results && JSON.parse(results)) {
+      yield put({type: SET_SEARCH_QUERY_RESULTS, payload: JSON.parse(results)});
+      yield put({type: IS_LOADING, payload: false});
+    }
+  } catch (error) {
+    yield put({type: IS_LOADING, payload: false});
+    console.log('error', error);
+  }
+}
+export function* watcherGetResultsBySort() {
+  yield takeLatest(SORT_BY_ONLY, workerGetResultsBySort);
 }

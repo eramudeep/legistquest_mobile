@@ -31,3 +31,8 @@ export const homeData=[{
     pl:"Act Name"
 },
 ]
+export const sortData=[
+    {label:"Relevance",value:1},
+    {label:"Newest",value:2},
+    {label:"Oldest",value:3},
+]

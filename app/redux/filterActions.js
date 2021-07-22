@@ -4,6 +4,7 @@ export const ADD_REMOVE_BY_BENCH_FILTER = 'ADD_REMOVE_BY_BENCH_FILTER';
 export const ADD_REMOVE_BY_YEAR_FILTER = 'ADD_REMOVE_BY_YEAR_FILTER';
 export const ADD_REMOVE_BY_DECISION_FILTER = 'ADD_REMOVE_BY_DECISION_FILTER';
 export const SEARCH_RESULT_WITH_FILTERS = 'SEARCH_RESULT_WITH_FILTERS';
+export const SORT_BY_ONLY="SORT_BY_ONLY";
 export const CLEAN_FILTERS = 'CLEAN_FILTERS';
 export const toggleFilters = (filters) => ({
   type: TOGGLE_FILTER,
@@ -27,5 +28,9 @@ export const toggleByDecsion = (decsionValue) => ({
 
 export const searchByFilters = (filters) => ({
   type: SEARCH_RESULT_WITH_FILTERS,
+  payload: filters,
+});
+export const sortByOnly = (filters) => ({
+  type: SORT_BY_ONLY,
   payload: filters,
 });

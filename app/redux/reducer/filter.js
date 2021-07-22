@@ -5,13 +5,15 @@ const {
   ADD_REMOVE_BY_BENCH_FILTER,
   ADD_REMOVE_BY_YEAR_FILTER,
   ADD_REMOVE_BY_DECISION_FILTER,
-  CLEAN_FILTERS
+  CLEAN_FILTERS,
+  SORT_BY_ONLY
 } = require('../filterActions');
 const initialState = {
   filters: [],
   selectedByBench: [], // use as a comma seprated string
   selectedByYear: [], // use as a comma seprated string
   selectedByDecStatus: [], // use as a comma seprated string
+  sortBy:1
 };
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -21,7 +23,8 @@ export default function (state = initialState, action) {
         ...state,
         selectedByBench: [], 
         selectedByYear: [], 
-        selectedByDecStatus: [], 
+        selectedByDecStatus: [],
+        sortBy:1
       };
 
 
@@ -75,7 +78,12 @@ export default function (state = initialState, action) {
         ...state,
         filters: tmpFilters,
       };
-
+      case SORT_BY_ONLY:
+        console.log("actttss",action.payload.sortBy);
+        return {
+          ...state,
+          sortBy:action.payload.sortBy,
+        };
     default:
       return state;
   }

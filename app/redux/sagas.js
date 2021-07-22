@@ -1,6 +1,6 @@
 import {  all } from "redux-saga/effects"
 import { workerGetError } from "./saga/errorSaga"
-import { watcherGetResultsByTopic, watcherSearchByPagination, watcherSearchByQuery, watcherSearchWithFilters, workerGetResultsByTopic } from "./saga/searchSaga"
+import { watcherGetResultsBySort, watcherGetResultsByTopic, watcherSearchByPagination, watcherSearchByQuery, watcherSearchWithFilters, workerGetResultsByTopic } from "./saga/searchSaga"
 
 
 //1 worker saga
@@ -19,6 +19,7 @@ export default function* rootSaga() {
     watcherSearchByQuery(),
     watcherGetResultsByTopic(),
     watcherSearchByPagination(),
-    watcherSearchWithFilters()
+    watcherSearchWithFilters(),
+    watcherGetResultsBySort()
   ])
 }
