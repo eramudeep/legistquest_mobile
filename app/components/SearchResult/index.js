@@ -6,7 +6,7 @@ import {appColors} from '../../utils/appColors';
 import Badge from '../Badge';
 import Icon from '../CustomIcon/Icon';
 import CustomLabel from '../CustomLabel/CustomLabel';
-import {removeHtmlTags} from '../../utils/common'
+import {removeHtmlTags, toTitleCase} from '../../utils/common'
 import Highlighter from 'react-native-highlight-words';
 
 export default function SearchResult({
@@ -56,7 +56,7 @@ export default function SearchResult({
           onPress &&
           onPress(LinkText, HighlightedText?.replace(/<[^>]*>?/gm, ''))
         }
-        text={LinkText}
+        text={toTitleCase( LinkText)}
         labelStyle={styles.title}
       />
       <CustomLabel

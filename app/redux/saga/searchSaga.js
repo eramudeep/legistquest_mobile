@@ -132,10 +132,9 @@ export function* workerSearchWithFilters(action) {
 export function* watcherSearchWithFilters() {
   yield takeLatest(SEARCH_RESULT_WITH_FILTERS, workerSearchWithFilters);
 }
-
+/* 
 export function* workerGetResultsBySort(action) {
-  yield put({type: IS_LOADING, payload: true});
-  // yield put({type: CLEAN_FILTERS});
+  yield put({type: IS_LOADING, payload: true}); 
   
   const {searchType,searchText,sortBy} = action.payload;
   const results = yield fetch(
@@ -154,4 +153,4 @@ export function* workerGetResultsBySort(action) {
 }
 export function* watcherGetResultsBySort() {
   yield takeLatest(SORT_BY_ONLY, workerGetResultsBySort);
-}
+} */

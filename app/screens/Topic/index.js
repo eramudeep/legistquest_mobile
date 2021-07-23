@@ -6,6 +6,7 @@ import {
   Text,
   View,
   ActivityIndicator,
+  Pressable,
 } from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Badge from '../../components/Badge';
@@ -17,12 +18,12 @@ import ScrollableTab from '../../routing/ScrollableTab';
 import {connect} from 'react-redux';
 import {appColors} from '../../utils/appColors';
 import SlideModal from '../../components/Modals/SlideModal';
-import CustomAutoComplete from '../../components/CustomAutoComplete'; 
+import CustomAutoComplete from '../../components/CustomAutoComplete';
 import ResultFound from '../../components/ResultFound';
 import Icon from '../../components/CustomIcon/Icon';
-import { getPagination } from '../../redux/actions';
-import { filterListValues } from '../../utils/appConstants';
-import { TYPE_ACT } from '../../services/ApiList';
+import {getPagination} from '../../redux/actions';
+import {filterListValues} from '../../utils/appConstants';
+import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import FilterWithIn from '../../components/Filters/FilterWithIn';
 
@@ -34,13 +35,13 @@ function Topic({
   route,
   navigation,
   isTopicLoading,
-  filtersList
+  filtersList,
 }) {
   const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
-  const [pageNo, setPageNo] = useState(1)
-  console.log("searchQuery",searchQuery);
+  const [pageNo, setPageNo] = useState(1);
+  console.log('searchQuery', searchQuery);
   const _renderSearchResult = ({item, index}) => {
     return (
       <SearchResult
@@ -53,58 +54,61 @@ function Topic({
       />
     );
   };
-  const callbackFromSaga=()=>{
+  const callbackFromSaga = () => {
     // alert("done")
-    setLoadMore(false)
-  }
-  const getLoadMoreResults=async()=>{
-    setLoadMore(true)
-     
-    const respo= await getPaginationResults$({query:searchQuery.text,searchType:searchQuery?.type, pageNumber:pageNo+1,filtersList,callback:callbackFromSaga})  
-          
-    setPageNo(prev=>prev+1)
-  }
+    setLoadMore(false);
+  };
+  const getLoadMoreResults = async () => {
+    setLoadMore(true);
+
+    const respo = await getPaginationResults$({
+      query: searchQuery.text,
+      searchType: searchQuery?.type,
+      pageNumber: pageNo + 1,
+      filtersList,
+      callback: callbackFromSaga,
+    });
+
+    setPageNo((prev) => prev + 1);
+  };
   const toggleModal = () => {
     setModalVisible((prev) => !prev);
   };
 
-  const seniTizeCourtFilters= ()=>{  
-    let filters ={
-      "Court":  [
+  const seniTizeCourtFilters = () => {
+    let filters = {
+      Court: [
         {
-          CourtName  : searchTopicResult?.HighCourtList?.CourtName,  
-          CaseCount : searchTopicResult?.HighCourtList?.CaseCount, 
+          CourtName: searchTopicResult?.HighCourtList?.CourtName,
+          CaseCount: searchTopicResult?.HighCourtList?.CaseCount,
           CaseIds: searchTopicResult?.HighCourtList?.CaseIds,
           SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel,
-  
-         // CourtName ,  CaseCount , CaseIds,
-          SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel
+
+          // CourtName ,  CaseCount , CaseIds,
+          SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel,
         },
         {
-          CourtName  : searchTopicResult?.OtherCourtList?.CourtName,  
-          CaseCount : searchTopicResult?.OtherCourtList?.CaseCount, 
+          CourtName: searchTopicResult?.OtherCourtList?.CourtName,
+          CaseCount: searchTopicResult?.OtherCourtList?.CaseCount,
           CaseIds: searchTopicResult?.OtherCourtList?.CaseIds,
-          SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel
+          SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel,
         },
         {
-          CourtName  : searchTopicResult?.SupremeCourtList?.CourtName,  
-          CaseCount : searchTopicResult?.SupremeCourtList?.CaseCount, 
+          CourtName: searchTopicResult?.SupremeCourtList?.CourtName,
+          CaseCount: searchTopicResult?.SupremeCourtList?.CaseCount,
           CaseIds: searchTopicResult?.SupremeCourtList?.CaseIds,
-          SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel
-        }
-  
+          SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel,
+        },
       ],
     };
-    filterListValues?.map(item=>{
-      const {key,label}=item
-      if(searchTopicResult?.[label]){
-        filters[key]=[
-          ...searchTopicResult?.[label]
-        ]
+    filterListValues?.map((item) => {
+      const {key, label} = item;
+      if (searchTopicResult?.[label]) {
+        filters[key] = [...searchTopicResult?.[label]];
       }
-    }) 
-  return filters 
-  }
+    });
+    return filters;
+  };
   return (
     <Container
       showHome
@@ -121,14 +125,12 @@ function Topic({
         </View>
       ) : (
         <View style={{flex: 1}}>
-           
+          {searchQuery?.type === TYPE_ACT ? (
+            <AutoCompleteForAct navigation={navigation} />
+          ) : (
+            <CustomAutoComplete navigation={navigation} />
+          )}
 
-        {searchQuery?.type===TYPE_ACT?
-        <AutoCompleteForAct navigation={navigation} />
-      :
-      <CustomAutoComplete navigation={navigation} />}
-          
-          
           {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {[1, 2, 3, 4, 5, 6, 7].map((val, key) => {
@@ -136,7 +138,8 @@ function Topic({
             })}
           </ScrollView>
         </View> */}
-          <View
+          <Pressable
+            onPress={toggleModal}
             style={{
               backgroundColor: appColors.lighterGray,
               alignItems: 'center',
@@ -144,14 +147,19 @@ function Topic({
               justifyContent: 'center',
               flexDirection: 'row',
             }}>
-            <Icon name={"filter"} size={scale(15)}  color={appColors.blue}/>
-            <Text style={{fontSize: scale(14), marginLeft: scale(10), color:appColors.blue }} onPress={toggleModal}>
+            <Icon name={'filter'} size={scale(15)} color={appColors.blue} />
+            <Text
+              style={{
+                fontSize: scale(14),
+                marginLeft: scale(10),
+                color: appColors.blue,
+              }}>
               Show Filters
             </Text>
-          </View>
+          </Pressable>
           <FilterWithIn />
-        <ResultFound />
-        
+          <ResultFound />
+
           <FlatList
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}
@@ -168,11 +176,15 @@ function Topic({
           color={appColors.black}
         />
       </View>
-      <SlideModal filterCourt={ seniTizeCourtFilters()} visible={modalVisible} onClose={toggleModal} />
+      <SlideModal
+        filterCourt={seniTizeCourtFilters()}
+        visible={modalVisible}
+        onClose={toggleModal}
+      />
     </Container>
   );
 }
- 
+
 const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
   searchQuery: state.search.searchQuery,
@@ -185,15 +197,14 @@ const mapStateToProps = (state) => ({
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
-    SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
-    //PageNo:1 
+    SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component,
+    //PageNo:1
   },
-
 });
 const mapDispatchToProps = {
   getResultsByTopic$: getResultsByTopic,
-  getPaginationResults$:getPagination
+  getPaginationResults$: getPagination,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topic);
 
-const styles = StyleSheet.create({}); 
+const styles = StyleSheet.create({});

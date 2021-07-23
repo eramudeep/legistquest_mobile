@@ -20,7 +20,8 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     
-    case CLEAN_FILTERS: 
+    case CLEAN_FILTERS:
+      // const {keepWithInResultFilter}=  action.payload
        
       return {
         ...state,
@@ -98,7 +99,7 @@ export default function (state = initialState, action) {
         filters: tmpFilters,
       };
       case SORT_BY_ONLY:
-        console.log("actttss",action.payload.sortBy);
+       // console.log("actttss",action.payload.sortBy);
         return {
           ...state,
           sortBy:action.payload.sortBy,

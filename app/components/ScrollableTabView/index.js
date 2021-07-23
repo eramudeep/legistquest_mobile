@@ -10,9 +10,9 @@ import {
 } from "react-native"
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
-import ViewPagerAndroid from '@react-native-community/viewpager'
+import ViewPagerAndroid from 'react-native-pager-view'
 import TimerMixin from 'react-timer-mixin'
-import ViewPager from '@react-native-community/viewpager'
+// import ViewPager from '@react-native-community/viewpager'
 import SceneComponent from './SceneComponent'
 import DefaultTabBar from './DefaultTabBar'
 import ScrollableTabBar from './ScrollableTabBar'
