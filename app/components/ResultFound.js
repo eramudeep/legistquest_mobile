@@ -7,16 +7,19 @@ import CustomLabel from './CustomLabel/CustomLabel';
 import {connect} from 'react-redux';
 import {sortData} from '../utils/MockData';
 import {sortByOnly} from '../redux/filterActions';
-function ResultFound({CaseCount, searchQuery, sortByOnly$, sortByF}) {
+import { getResultsByTopic } from '../redux/searchActions';
+
+function ResultFound({filterWithInResult,getResultsByTopic$,CaseCount, searchQuery, sortByOnly$, sortByF}) {
   //console.log("searchQuery",searchQuery,"sortByF",sortByF);
   const [sortBy, setSortBy] = useState(sortByF);
   const onChangePicker = (value) => {
     sortByOnly$({
-      searchType: searchQuery?.type,
-      searchText: searchQuery?.text,
+     /*  searchType: searchQuery?.type,
+      searchText: searchQuery?.text, */
       sortBy: value,
     });
     setSortBy(value);
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
   };
   if (!CaseCount) return null;
   return (
@@ -57,8 +60,10 @@ const mapStateToProps = (state) => ({
   CaseCount: state?.search?.searchTopicResult?.CaseCount,
   searchQuery: state.search.searchQuery,
   sortByF: state.filter.sortBy,
+  filterWithInResult: state.filter.filterWithInResult,   
 });
 const mapDispatchToProps = {
   sortByOnly$: sortByOnly,
+  getResultsByTopic$:getResultsByTopic
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ResultFound);

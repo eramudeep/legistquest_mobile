@@ -56,11 +56,20 @@ export function* workerGetResultsByTopic(action) {
   
   const searchType = yield getSearchType();
   const {selectedTopic,filterValueList,SortBy,keepFilters} = action.payload; 
+  console.log({filterValueList});
   yield put({type: IS_LOADING, payload: true});
   if(!keepFilters)
   yield put({type: CLEAN_FILTERS});
+  let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&filter=${filterValueList ? filterValueList[filterValueList?.length-1] :''}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=&filterValueList=${filterValueList ? filterValueList?.toString():''}`
+  console.log("URL",URL);
+  /* if(filterValueList.length >0){
+    if(filterValueList.length >0)
+      URL=`${URL}&filter=${filterValueList ? filterValueList[filterValueList?.length-1] :''}`
+    else
+      URL=`${URL}&filterValueList=${filterValueList ? filterValueList?.toString():''}` 
+  } */
   const results = yield fetch(
-    `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&filter=&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=&filterValueList=${filterValueList ? filterValueList?.toString():''}`,
+    URL,
   ).then((response) => response.text());
 
   try {

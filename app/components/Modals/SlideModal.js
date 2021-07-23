@@ -26,15 +26,15 @@ function SlideModal({
   const onSearchWithin = () => { 
     if(!filterVal) return 
     toggleFiltersWithInResult$(filterVal);  
-    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString(), keepFilters:true});
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult] , SortBy :SortBy?.toString(), keepFilters:true});
     setFilterVal("") 
   };
   const onChangeText = (change) => {
     setFilterVal(change);
   }; 
   const onClearFilter = ()=>{
-    resetFilters$({ keepWithInResultFilter:false})
-    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString(), keepFilters:true});
+    resetFilters$({ keepWithInResultFilter:true})
+    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult] , SortBy :SortBy?.toString(), keepFilters:true});
   }
   return (
     <Modal

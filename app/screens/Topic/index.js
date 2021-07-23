@@ -197,8 +197,7 @@ const mapStateToProps = (state) => ({
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
-    SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component,
-    //PageNo:1
+    SortBy: state.filter.sortBy?.toString() 
   },
 });
 const mapDispatchToProps = {
