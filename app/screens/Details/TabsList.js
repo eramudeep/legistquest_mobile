@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import { scale } from 'react-native-size-matters';
 import { appColors } from '../../utils/appColors';
-const tabsList =[
+export const tabsList =[
   {label:"Judgement",
   active:true
 },
