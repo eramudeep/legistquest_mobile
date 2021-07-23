@@ -23,7 +23,7 @@ function SlideModal({
 }) {
   const [filterVal, setFilterVal] = useState();
 
-  const onSearchWithin = () => {
+  const onSearchWithin = () => { 
     if(!filterVal) return 
     toggleFiltersWithInResult$(filterVal);  
     getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString(), keepFilters:true});
@@ -33,7 +33,7 @@ function SlideModal({
     setFilterVal(change);
   }; 
   const onClearFilter = ()=>{
-    resetFilters$({ keepWithInResultFilter:true})
+    resetFilters$({ keepWithInResultFilter:false})
     getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[filterVal,...filterWithInResult]?.toString(), SortBy :SortBy?.toString(), keepFilters:true});
   }
   return (

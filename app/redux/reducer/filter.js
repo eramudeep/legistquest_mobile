@@ -20,8 +20,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     
-    case CLEAN_FILTERS:
-      const {keepWithInResultFilter}=  action.payload
+    case CLEAN_FILTERS: 
        
       return {
         ...state,
@@ -33,7 +32,7 @@ export default function (state = initialState, action) {
         selectedByYear: [],
         selectedByDecStatus: [],
         filters: [],
-        filterWithInResult: keepWithInResultFilter ? state.filterWithInResult : [],
+        filterWithInResult: action?.payload?.keepWithInResultFilter ? state.filterWithInResult : [],
       };
 
     case TOGGLE_FILTER_WITH_IN_RESULT:
