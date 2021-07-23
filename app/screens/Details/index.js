@@ -25,12 +25,14 @@ import createReactClass from 'create-react-class';
 //     return <Text key={i}>{`rertab${i}`}</Text>;
 //   },
 // });
-const Child=(props)=> {
-  console.log("props child",props);
-  return <Text style={{fontSize:20}}>{`rertab`}</Text>;
+// const Child=(props)=> {
+//   console.log("props child",props);
+//   return <View style={{height:200}}>
+//     <Text style={{fontSize:20}}>{`rertab`}</Text>;
+//   </View>
 
   
-}
+// }
 const  tabs=[ 'short', 'list' ]
 export default function index({ viewModel, item }) {
   // console.log('viewModel', viewModel);
@@ -126,8 +128,18 @@ export default function index({ viewModel, item }) {
     <View style={{flex:1}}>
       {_renderIdraf()}
       {_renderHeader()}
-      {/* <TabsList />  */}
-      <ScrollableTabView 
+      <TabsList >
+        <View key={0}>
+          <Text></Text>
+        </View>
+        <View key={1}>
+          <Text></Text>
+        </View >
+        <View key={3}>
+          <Text></Text>
+        </View>
+        </TabsList> 
+      {/* <ScrollableTabView 
       tabBarActiveTextColor={appColors.tabLabel} 
       tabBarUnderlineStyle={{backgroundColor:appColors.tabLabel}}  
       tabBarInactiveTextColor={appColors.tabLabel} 
@@ -140,7 +152,7 @@ export default function index({ viewModel, item }) {
           key={i}
         />;
       })}   
-    </ScrollableTabView>
+    </ScrollableTabView> */}
      
     {_renderCaseHeading()} 
      {viewModel?.Judgement && _renderJudgement()}
