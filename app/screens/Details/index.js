@@ -1,26 +1,40 @@
 import React from 'react';
-import { View, Text, StyleSheet,useWindowDimensions  } from 'react-native';
+import { View, Text, StyleSheet,useWindowDimensions,ScrollView, TouchableHighlight  } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import Container from '../../components/Container';
-import TabsList from './TabsList';
+import TabsList, { tabsList } from './TabsList';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { appColors, shadow } from '../../utils/appColors';
 import Highlighter from 'react-native-highlight-words';
 import { removeHtmlTags } from '../../utils/common';
-import RenderPage from '../../components/Tabs/RenderPage';
-import { TabView, SceneMap } from 'react-native-tab-view';
-import PagerView from 'react-native-pager-view';
+import ScrollableTabView,{ScrollableTabBar } from '../../components/ScrollableTabView'
 import HTML from "react-native-render-html";
+import createReactClass from 'create-react-class';
 
+// const Child = createReactClass({
+//   onEnter() {
+//     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
+//   },
+
+//   onLeave() {
+//     console.log('leave: ' + this.props.i); // eslint-disable-line no-console
+//   },
+
+//   render() {
+//     const i = this.props.i;
+//     return <Text key={i}>{`rertab${i}`}</Text>;
+//   },
+// });
+const Child=(props)=> {
+  console.log("props child",props);
+  return <Text style={{fontSize:20}}>{`rertab`}</Text>;
+
+  
+}
+const  tabs=[ 'short', 'list' ]
 export default function index({ viewModel, item }) {
   // console.log('viewModel', viewModel);
-  const contentWidth = useWindowDimensions().width;
-
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'first', title: 'First' },
-    { key: 'second', title: 'Second' },
-  ]);
+  const contentWidth = useWindowDimensions().width; 
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
   };
@@ -103,42 +117,34 @@ export default function index({ viewModel, item }) {
       </View>
     );
   };
-  const renderScene = SceneMap({
-    first: <RenderPage>
-      {/* {_renderCaseHeading()}
-      {viewModel?.Judgement && _renderJudgement()} */}
-    </RenderPage>,
-    second: <RenderPage>
-    {/* {_renderCaseHeading()}
-    {viewModel?.Judgement && _renderJudgement()} */}
-  </RenderPage>,
   
-  });
-  // return(
-  //   <PagerView style={styles.pagerView} initialPage={0}>
-  //     <View key="1" style={{backgroundColor:"red",flex:1}}>
-  //       <Text>First page</Text>
-  //     </View>
-  //     <View key="2">
-  //       <Text>Second page</Text>
-  //     </View>
-  //   </PagerView>
-  // )
+  const handleChangeTab=({i, ref, from, })=> {
+    children[i].onEnter();
+    children[from].onLeave();
+  }
   return (
-    <>
+    <View style={{flex:1}}>
       {_renderIdraf()}
       {_renderHeader()}
-      <TabsList />
-      {/* <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{ width: layout.width }}
-    /> */}
-      {_renderCaseHeading()} 
+      {/* <TabsList />  */}
+      <ScrollableTabView 
+      tabBarActiveTextColor={appColors.tabLabel} 
+      tabBarUnderlineStyle={{backgroundColor:appColors.tabLabel}}  
+      tabBarInactiveTextColor={appColors.tabLabel} 
+      renderTabBar={() => <ScrollableTabBar />}>
+      {tabsList.map((tab, i) => {
+        return <Child
+          // ref={(ref) => (children[i] = ref)}
+          tabLabel={`${tab.label}`}
+          i={i}
+          key={i}
+        />;
+      })}   
+    </ScrollableTabView>
+     
+    {_renderCaseHeading()} 
      {viewModel?.Judgement && _renderJudgement()}
-
-    </>
+    </View>
   );
 }
 
@@ -165,5 +171,22 @@ const styles = StyleSheet.create({
   caseTitle: {
     fontWeight: 'bold',
   },
-  headingLabels: { fontSize: scale(25), fontWeight: 'bold' }
+  headingLabels: { fontSize: scale(25), fontWeight: 'bold' },
+  tabView: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.01)',
+  },
+  card: {
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    borderColor: 'rgba(0,0,0,0.1)',
+    margin: 5,
+    height: 150,
+    padding: 15,
+    shadowColor: '#ccc',
+    shadowOffset: { width: 2, height: 2, },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
 });

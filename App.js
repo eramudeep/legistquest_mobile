@@ -9,16 +9,18 @@
 import React from 'react';
 import MainStack from './app/routing/MainStack';
 import { Provider } from "react-redux"
-import { SafeAreaView, StatusBar } from 'react-native'
+import { SafeAreaView, StatusBar, View } from 'react-native'
 import  Reduxstore  from './app/redux/store';
 import DropdownAlert from 'react-native-dropdownalert';
 import { AlertHelper } from './app/utils/AlertHelper';
 import { PersistGate } from 'redux-persist/integration/react'
+import ScrollableTabView,{ScrollableTabBar } from './app/components/ScrollableTabView'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Details from './app/screens/Details';
 const {store,persistor}=Reduxstore()
 const App: () => React$Node = () => { 
    
+
   return (
     <SafeAreaView style={{flex:1,}}>
       <Provider store={store}>
