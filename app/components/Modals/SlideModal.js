@@ -41,7 +41,7 @@ function SlideModal({
       animationIn="slideInLeft"
       animationOut="slideOutLeft"
       isVisible={visible}
-      onSwipeStart={() => console.log('swipe start')}
+      //onSwipeStart={() => console.log('swipe start')}
       onSwipeComplete={onClose}
       useNativeDriverForBackdrop
       swipeDirection={['left']}

@@ -62,12 +62,12 @@ function CustomAutoComplete({
   };
 
   const OnSearchPress = () => {
-    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList, SortBy});
+    getResultsByTopic$({selectedTopic: searchQuery?.text,  SortBy});
 
     navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
   };
 
-  console.log({searchQuery});
+  //console.log({searchQuery});
   return (
     <View
       style={[

@@ -25,6 +25,7 @@ function FilterComp({
   };
 
   const applyFilters = (currentFilter) => { 
+    //console.log({...filtersList,...currentFilter});
      searchByFilters$({...filtersList,...currentFilter}) 
   }; 
    

@@ -41,7 +41,7 @@ function Topic({
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
   const [pageNo, setPageNo] = useState(1);
-  console.log('searchQuery', searchQuery);
+  //console.log('searchQuery', searchQuery);
   const _renderSearchResult = ({item, index}) => {
     return (
       <SearchResult

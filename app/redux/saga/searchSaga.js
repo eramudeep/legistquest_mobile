@@ -60,14 +60,14 @@ export function* workerGetResultsByTopic(action) {
   yield put({type: IS_LOADING, payload: true});
   if(!keepFilters)
   yield put({type: CLEAN_FILTERS});
-  let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&filter=${filterValueList ? filterValueList[filterValueList?.length-1] :''}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=&filterValueList=${filterValueList ? filterValueList?.toString():''}`
-  console.log("URL",URL);
-  /* if(filterValueList.length >0){
-    if(filterValueList.length >0)
+  let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=`
+  //console.log("URL",URL);
+   if(  filterValueList?.length >0){
+    if(filterValueList?.length <2)
       URL=`${URL}&filter=${filterValueList ? filterValueList[filterValueList?.length-1] :''}`
     else
       URL=`${URL}&filterValueList=${filterValueList ? filterValueList?.toString():''}` 
-  } */
+  }  
   const results = yield fetch(
     URL,
   ).then((response) => response.text());
@@ -118,13 +118,13 @@ export function* workerPageNumberChange(action) {
 export function* workerSearchWithFilters(action) {
   const activeFilters = action.payload;   
   const requestOptions =  getHeaders({...activeFilters}) 
-  console.log( activeFilters );
+  //console.log( activeFilters );
   yield put({type: IS_LOADING, payload: true});
   const results = yield fetch(
     SEARCH_RESULT_WITH_FILTERS_API,
     requestOptions,
   ).then(async (response) => response.text());
-  console.log({results});
+  //console.log({results});
   try {
     if (results && JSON.parse(results)) {
       yield put({

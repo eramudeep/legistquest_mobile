@@ -13,9 +13,10 @@ function ByYear({applyFilters,list, toggleByYear$, selectedByYear}) {
     const {CaseCount} = item;
     return CaseCount;
   };
-  console.log({selectedByYear});
+   //console.log({selectedByYear});
   const _isSelected = (toCompareWith) => {
-    return selectedYear === toCompareWith;
+    return selectedByYear?.includes(toCompareWith)
+    //return selectedYear === toCompareWith;
   };
 
   const toggleSelecttion = (item) => {
