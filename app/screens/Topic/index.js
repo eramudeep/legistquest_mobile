@@ -26,7 +26,7 @@ import {filterListValues} from '../../utils/appConstants';
 import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import FilterWithIn from '../../components/Filters/FilterWithIn';
-
+const coutLists=["SupremeCourtList", "HighCourtList","OtherCourtList"]
 function Topic({
   searchTopicResult,
   searchQuery,
@@ -77,32 +77,21 @@ function Topic({
 
   const seniTizeCourtFilters = () => {
     let filters = {
-      Court: [
-        {
-          CourtName: searchTopicResult?.HighCourtList?.CourtName,
-          CaseCount: searchTopicResult?.HighCourtList?.CaseCount,
-          CaseIds: searchTopicResult?.HighCourtList?.CaseIds,
-          SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel,
-
-          // CourtName ,  CaseCount , CaseIds,
-          SubCourtList: searchTopicResult?.HighCourtList?.CaseListViewModel,
-        },
-        {
-          CourtName: searchTopicResult?.OtherCourtList?.CourtName,
-          CaseCount: searchTopicResult?.OtherCourtList?.CaseCount,
-          CaseIds: searchTopicResult?.OtherCourtList?.CaseIds,
-          SubCourtList: searchTopicResult?.OtherCourtList?.CaseListViewModel,
-        },
-        {
-          CourtName: searchTopicResult?.SupremeCourtList?.CourtName,
-          CaseCount: searchTopicResult?.SupremeCourtList?.CaseCount,
-          CaseIds: searchTopicResult?.SupremeCourtList?.CaseIds,
-          SubCourtList: searchTopicResult?.SupremeCourtList?.CaseListViewModel,
-        },
-      ],
+        
     };
+    console.log("searchTopicResult",searchTopicResult);
+    let Court=[]
+    coutLists?.map((courtName)=>{
+        if(searchTopicResult?.[courtName]){
+            const { CourtName ,  CaseCount , CaseIds,CaseListViewModel} =searchTopicResult?.[courtName]
+            Court.push({ CourtName ,  CaseCount , CaseIds,SubCourtList:CaseListViewModel })
+        }
+    })
+     
+    filters={...filters,Court}
+    //filters.Court=Court
     filterListValues?.map((item) => {
-      const {key, label} = item;
+      const {key, label} = item; 
       if (searchTopicResult?.[label]) {
         filters[key] = [...searchTopicResult?.[label]];
       }

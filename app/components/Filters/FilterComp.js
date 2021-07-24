@@ -43,7 +43,7 @@ function FilterComp({
       {isFilterOpen() && (
         <View>
           <Pressable style={{margin: scale(10)}}>
-            {label == 'Court' && <RadioGroup list={Court} />}
+            {label == 'Court' && <RadioGroup applyFilters={applyFilters} list={Court} />}
             {label == 'Bench' && (
               <ByBench applyFilters={applyFilters} list={Court} />
             )}
@@ -81,6 +81,7 @@ const mapStateToProps = (state) => ({
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
     SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
+    Courtarray: `${state.filter.selectedByCourt?.toString()}` 
    /*  SelectedFilter: "benchfilter",
     PageNo:1,
     Idrafarray:"",

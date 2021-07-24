@@ -3,10 +3,13 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const ADD_REMOVE_BY_BENCH_FILTER = 'ADD_REMOVE_BY_BENCH_FILTER';
 export const ADD_REMOVE_BY_YEAR_FILTER = 'ADD_REMOVE_BY_YEAR_FILTER';
 export const ADD_REMOVE_BY_DECISION_FILTER = 'ADD_REMOVE_BY_DECISION_FILTER';
+export const ADD_REMOVE_BY_COURT_FILTER = 'ADD_REMOVE_BY_COURT_FILTER';
 export const SEARCH_RESULT_WITH_FILTERS = 'SEARCH_RESULT_WITH_FILTERS';
 export const SORT_BY_ONLY="SORT_BY_ONLY";
 export const CLEAN_FILTERS = 'CLEAN_FILTERS';
 export const TOGGLE_FILTER_WITH_IN_RESULT = 'TOGGLE_FILTER_WITH_IN_RESULT';
+
+ 
 export const toggleFilters = (filters) => ({
   type: TOGGLE_FILTER,
   payload: filters,
@@ -16,6 +19,12 @@ export const toggleByBench = (benchValue) => ({
   type: ADD_REMOVE_BY_BENCH_FILTER,
   payload: benchValue,
 });
+
+export const toggleByCourt = (courtValue) => ({
+  type: ADD_REMOVE_BY_COURT_FILTER,
+  payload: courtValue,
+});
+
 
 export const toggleByYear = (yearValue) => ({
   type: ADD_REMOVE_BY_YEAR_FILTER,

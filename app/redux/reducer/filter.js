@@ -8,46 +8,57 @@ const {
   CLEAN_FILTERS,
   SORT_BY_ONLY,
   TOGGLE_FILTER_WITH_IN_RESULT,
+  ADD_REMOVE_BY_COURT_FILTER,
 } = require('../filterActions');
 const initialState = {
   filters: [],
   selectedByBench: [], // use as a comma seprated string
   selectedByYear: [], // use as a comma seprated string
   selectedByDecStatus: [], // use as a comma seprated string
-  sortBy:1,
+  selectedByCourt: [], // use as a comma seprated string
+  sortBy: 1,
   filterWithInResult: [], // use as a comma seprated string
 };
 export default function (state = initialState, action) {
   switch (action.type) {
-    
     case CLEAN_FILTERS:
       // const {keepWithInResultFilter}=  action.payload
-       
+
       return {
         ...state,
-        selectedByBench: [], 
-        selectedByYear: [], 
-        selectedByDecStatus: [],
-        sortBy:1,
         selectedByBench: [],
         selectedByYear: [],
         selectedByDecStatus: [],
+        sortBy: 1,
+        selectedByBench: [],
+        selectedByYear: [],
+        selectedByCourt: [],
+        selectedByDecStatus: [],
         filters: [],
-        filterWithInResult: action?.payload?.keepWithInResultFilter ? state.filterWithInResult : [],
+        filterWithInResult: action?.payload?.keepWithInResultFilter
+          ? state.filterWithInResult
+          : [],
       };
-
+    case ADD_REMOVE_BY_COURT_FILTER:
+      const selectedByCourt = senitizeAnyArray(
+        action.payload,
+        state.selectedByCourt,
+      ); 
+      return {
+        ...state,
+        selectedByCourt,
+      };
     case TOGGLE_FILTER_WITH_IN_RESULT:
       //console.log("filterWithInResult",action.payload);
       const filterWithInResult = senitizeAnyArray(
         action.payload,
         state.filterWithInResult,
       );
-      console.log(">>>>",filterWithInResult);
+      console.log('>>>>', filterWithInResult);
       return {
         ...state,
-        filterWithInResult:filterWithInResult,
+        filterWithInResult: filterWithInResult,
       };
-      
 
     case ADD_REMOVE_BY_DECISION_FILTER:
       const selectedByDecStatus = senitizeAnyArray(
@@ -98,12 +109,12 @@ export default function (state = initialState, action) {
         ...state,
         filters: tmpFilters,
       };
-      case SORT_BY_ONLY:
-       // console.log("actttss",action.payload.sortBy);
-        return {
-          ...state,
-          sortBy:action.payload.sortBy,
-        };
+    case SORT_BY_ONLY:
+      // console.log("actttss",action.payload.sortBy);
+      return {
+        ...state,
+        sortBy: action.payload.sortBy,
+      };
     default:
       return state;
   }

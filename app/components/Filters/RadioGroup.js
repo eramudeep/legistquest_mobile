@@ -1,14 +1,19 @@
 import React, {useState} from 'react';
 import {View, Text, Pressable, StyleSheet, ScrollView} from 'react-native';
-import {scale} from 'react-native-size-matters'; 
+import {scale} from 'react-native-size-matters';
 import RButton from './RButton';
-
-export default function RadioGroup({list}) {
+import {connect} from 'react-redux';
+import { toggleByCourt } from '../../redux/filterActions';
+function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
+  console.log("listlistlist",list);
   const [selected, setSelected] = useState();
+  const [CaseIdss, setCaseIds] = useState()
   const [selectedSubCourt, setSelectedSubCourt] = useState();
+  const [selectedSubSubCourt, setSelectedSubSubCourt] = useState();
   const [universalSelectedCourt, setUniversalSelectedCourt] = useState([]);
   const _isSelected = (toCompareWith) => {
-    return selected === toCompareWith || selectedSubCourt === toCompareWith;
+   return selectedByCourt?.includes(toCompareWith)
+    //return selected === toCompareWith || selectedSubCourt === toCompareWith || selectedSubSubCourt === toCompareWith ;
     //return universalSelectedCourt.includes(toCompareWith)
   };
   const getName = (item) => {
@@ -24,10 +29,31 @@ export default function RadioGroup({list}) {
   };
 
   const toggleSelecttion = (item) => {
-    const {SubCourtName, CourtName} = item;
-    setSelectedSubCourt(undefined);
-    if (CourtName) return setSelected(getName(item));
-    return setSelectedSubCourt(SubCourtName);
+    const {SubCourtName, CourtName,CaseIds,SubCourtCaseIds} = item;
+    console.log({item});
+    
+    if (CourtName) {
+      setCaseIds(CaseIds)
+      applyFilters && applyFilters({Courtarray:  CaseIds?.toString()}); 
+      setSelectedSubCourt(undefined);   
+      setSelectedSubSubCourt(undefined)
+      toggleByCourt$(getName(item))
+      toggleByCourt$(CaseIds)
+      return setSelected(getName(item));
+    } else {
+      if(selectedSubCourt){
+        applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()},${selectedSubSubCourt?.toString()}`});
+        setSelectedSubSubCourt(SubCourtName)
+        toggleByCourt$(SubCourtName) 
+        
+      }else{
+        applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
+        toggleByCourt$(SubCourtName)
+       return setSelectedSubCourt(SubCourtName)
+      }
+      //applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
+      //return setSelectedSubCourt(SubCourtName);
+    }
     /* if (CourtName) 
         return  setUniversalSelectedCourt([CourtName]) 
         const tmpUniversalSelectedCourt =universalSelectedCourt
@@ -46,7 +72,7 @@ export default function RadioGroup({list}) {
           _isSelected={_isSelected}
           toggleSelecttion={toggleSelecttion}
           getCaseCount={getCaseCount}
-          IsHaveSegregation={IsHaveSegregation}
+          IsHaveSegregation={IsHaveSegregation==="Y"}
         />
 
         {_isSelected(getName(item)) && (
@@ -55,7 +81,7 @@ export default function RadioGroup({list}) {
               return (
                 <RenderRadio /// recursion :)
                   item={subCourt}
-                  key={key}  
+                  key={key}
                 />
               );
             })}
@@ -72,4 +98,12 @@ export default function RadioGroup({list}) {
     </ScrollView>
   );
 }
- 
+
+const mapStateToProps = (state) => ({
+  selectedByCourt:  state.filter.selectedByCourt, 
+   
+});
+const mapDispatchToProps = {
+  toggleByCourt$: toggleByCourt,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo( RadioGroup));
