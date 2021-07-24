@@ -37,6 +37,9 @@ export const senitizeAnyArray = (
   }
 };
 export const getPlacheHolder = (searchType) => {
+
+ 
+
   switch (searchType) {
     case TYPE_ACT:
       return 'Act Name';
@@ -48,6 +51,8 @@ export const getPlacheHolder = (searchType) => {
       return 'Judge Name';
     case CITATION:
       return 'Search through citation';
+      default:
+      return 'Search free text..';
   }
 };
 export const getHeaders = (jsonData) => {
@@ -72,4 +77,16 @@ export function toTitleCase(str) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     }
   );
+}
+
+
+export function cleanString(params) {
+  return  params.replace(/;\s*$/, "");
+  }
+
+
+export function truncateString(params) {
+  
+var length = 203; 
+ return params.substring(0,length);
 }

@@ -4,6 +4,8 @@ export const ADD_REMOVE_BY_BENCH_FILTER = 'ADD_REMOVE_BY_BENCH_FILTER';
 export const ADD_REMOVE_BY_YEAR_FILTER = 'ADD_REMOVE_BY_YEAR_FILTER';
 export const ADD_REMOVE_BY_DECISION_FILTER = 'ADD_REMOVE_BY_DECISION_FILTER';
 export const ADD_REMOVE_BY_COURT_FILTER = 'ADD_REMOVE_BY_COURT_FILTER';
+
+export const ADD_REMOVE_BY_IDRAF = 'ADD_REMOVE_BY_IDRAF';
 export const SEARCH_RESULT_WITH_FILTERS = 'SEARCH_RESULT_WITH_FILTERS';
 export const SORT_BY_ONLY="SORT_BY_ONLY";
 export const CLEAN_FILTERS = 'CLEAN_FILTERS';
@@ -21,10 +23,15 @@ export const toggleByBench = (benchValue) => ({
 });
 
 export const toggleByCourt = (courtValue) => ({
+
   type: ADD_REMOVE_BY_COURT_FILTER,
   payload: courtValue,
 });
 
+export const toggleByIdraf = (idrafValue) => ({
+  type: ADD_REMOVE_BY_IDRAF,
+  payload: idrafValue,
+});
 
 export const toggleByYear = (yearValue) => ({
   type: ADD_REMOVE_BY_YEAR_FILTER,

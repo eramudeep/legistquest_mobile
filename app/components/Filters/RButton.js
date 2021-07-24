@@ -25,7 +25,7 @@ export default function RButton({item,getName,_isSelected,toggleSelecttion,getCa
           {/*can be used to show iDraf*/}
            
          { IsHaveSegregation&& <Image  style={{height:20, width:scale(40)}} source={{uri:idraf}} />}
-          <CustomLabel text={getCaseCount&&getCaseCount(item)} />
+          {getCaseCount&&getCaseCount(item)&&<CustomLabel text={getCaseCount&&getCaseCount(item)} />}
         </Pressable>
     )
 }

@@ -4,11 +4,12 @@ import { scale } from 'react-native-size-matters'
 import TouchableRipple from 'react-native-touch-ripple'
 import { appColors } from '../../utils/appColors'
 import CustomLabel from '../CustomLabel/CustomLabel'
-
-export default function Badge({text}) {
+import HTML from "react-native-render-html";
+export default function Badge({renderHtml,  text}) {
     return (
         <TouchableRipple style={styles.badge}>
-            <CustomLabel text={text ? text : "Judgment"} labelStyle={styles.label}/>
+
+            {renderHtml ?  <HTML  source={{ html:text }}   />  :<CustomLabel text={text ? text : ""} labelStyle={styles.label}/>}
         </TouchableRipple>
     )
 }

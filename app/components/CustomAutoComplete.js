@@ -47,7 +47,7 @@ function CustomAutoComplete({
   const debouncedSearch = debounce(function (change) {
     searchByQuery$({type: searchQuery?.type, text: change});
     //setQuery(change);
-    setSearchIcon('spinner');
+   // setSearchIcon('spinner');
   }, 1000);
   
   const itemOnPress = (item) => {
@@ -85,6 +85,7 @@ function CustomAutoComplete({
         inputContainerStyle={styles.input}
         onFocus={() => {
            setTyping(true);
+           searchByQuery$({type: searchQuery?.type, text: ""});
            onBlur &&onBlur(true)
         }}
         TextInput={

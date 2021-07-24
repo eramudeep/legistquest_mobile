@@ -30,7 +30,7 @@ function ByBench({selectedByBenchs,applyFilters, list, toggleByBench$}) {
   };
 
   return (
-    <ScrollView>
+    <View>
       {list?.map((item, key) => {
         return (
           <RButton
@@ -43,7 +43,7 @@ function ByBench({selectedByBenchs,applyFilters, list, toggleByBench$}) {
           />
         );
       })}
-    </ScrollView>
+    </View>
   );
 }
 

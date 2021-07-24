@@ -26,6 +26,7 @@ import {filterListValues} from '../../utils/appConstants';
 import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import FilterWithIn from '../../components/Filters/FilterWithIn';
+ 
 const coutLists=["SupremeCourtList", "HighCourtList","OtherCourtList"]
 function Topic({
   searchTopicResult,
@@ -86,9 +87,9 @@ function Topic({
             const { CourtName ,  CaseCount , CaseIds,CaseListViewModel} =searchTopicResult?.[courtName]
             Court.push({ CourtName ,  CaseCount , CaseIds,SubCourtList:CaseListViewModel })
         }
-    })
-     
+    }) 
     filters={...filters,Court}
+
     //filters.Court=Court
     filterListValues?.map((item) => {
       const {key, label} = item; 
@@ -96,6 +97,15 @@ function Topic({
         filters[key] = [...searchTopicResult?.[label]];
       }
     });
+
+    let IdrafList=[]
+    if(searchTopicResult?.IdrafList?.length > 0){
+      searchTopicResult?.IdrafList?.map(item=>{
+        IdrafList.push( {CaseCount:item, StatusId:item})
+      }) 
+      filters.iDRAF =IdrafList
+    }
+    console.log({IdrafList});
     return filters;
   };
   return (
@@ -127,7 +137,8 @@ function Topic({
             })}
           </ScrollView>
         </View> */}
-          <Pressable
+         <View style={{width:'30%'}}>
+         <Pressable
             onPress={toggleModal}
             style={{
               backgroundColor: appColors.lighterGray,
@@ -143,9 +154,10 @@ function Topic({
                 marginLeft: scale(10),
                 color: appColors.blue,
               }}>
-              Show Filters
+              Filters
             </Text>
           </Pressable>
+         </View>
           <FilterWithIn />
           <ResultFound />
 
@@ -165,11 +177,11 @@ function Topic({
           color={appColors.black}
         />
       </View>
-      <SlideModal
+       <SlideModal
         filterCourt={seniTizeCourtFilters()}
         visible={modalVisible}
         onClose={toggleModal}
-      />
+      />  
     </Container>
   );
 }

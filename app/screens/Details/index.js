@@ -44,11 +44,11 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
  
   const _renderHeader = () => {
     return (
-      <View style={[styles.headerContainer, shadow,]}>
-        <View style={{ flex: 1, backgroundColor: appColors.white, flexDirection: "row" }}>
+      <View style={[styles.headerContainer,/*  shadow, */]}>
+        {/* <View style={{ flex: 1, backgroundColor: appColors.white, flexDirection: "row" }}>
           {_renderCaseTitle()}
-        </View>
-        <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", backgroundColor: appColors.white }}>
+        </View> */}
+        <View style={{padding:scale(5), flex: 1, flexDirection: "row", justifyContent: "space-around", backgroundColor: appColors.white }}>
           {_renderIcons()}
         </View>
       </View>
@@ -148,7 +148,7 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
         <Text style={styles.headingLabels}>V. </Text>
         <Text style={styles.headingLabels}>{viewModel?.Respondent}</Text>
         <Text style={{ fontWeight: "bold" }}>({viewModel?.CourtName})</Text>
-        <Text>{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
+        <Text style={{marginTop:scale(6)}} >{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
 
       </View>
     );
@@ -226,7 +226,12 @@ const styles = StyleSheet.create({
   caseTitle: {
     fontWeight: 'bold',
   },
-  headingLabels: { fontSize: scale(25), fontWeight: 'bold' },
+  headingLabels: {
+     
+     fontSize: scale(18), 
+    fontWeight: 'bold',
+    marginBottom:scale(5)
+  },
   tabView: {
     flex: 1,
     padding: 10,

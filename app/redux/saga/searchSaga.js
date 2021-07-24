@@ -32,7 +32,7 @@ export function* workerSearchByQuery(action) {
   try {
     //AlertHelper.show("success","Got Result","search started")
     if (results && JSON?.parse(results)) {
-      let size = 25;
+      let size = 50;
       if (JSON?.parse(results).length < size) {
         size = JSON?.parse(results).length - 1;
       }

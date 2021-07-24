@@ -9,6 +9,7 @@ const {
   SORT_BY_ONLY,
   TOGGLE_FILTER_WITH_IN_RESULT,
   ADD_REMOVE_BY_COURT_FILTER,
+  ADD_REMOVE_BY_IDRAF,
 } = require('../filterActions');
 const initialState = {
   filters: [],
@@ -16,6 +17,7 @@ const initialState = {
   selectedByYear: [], // use as a comma seprated string
   selectedByDecStatus: [], // use as a comma seprated string
   selectedByCourt: [], // use as a comma seprated string
+  selectedByIdraf: [], // use as a comma seprated string
   sortBy: 1,
   filterWithInResult: [], // use as a comma seprated string
 };
@@ -33,7 +35,8 @@ export default function (state = initialState, action) {
         selectedByBench: [],
         selectedByYear: [],
         selectedByCourt: [],
-        selectedByDecStatus: [],
+
+        selectedByIdraf: [],
         filters: [],
         filterWithInResult: action?.payload?.keepWithInResultFilter
           ? state.filterWithInResult
@@ -43,7 +46,7 @@ export default function (state = initialState, action) {
       const selectedByCourt = senitizeAnyArray(
         action.payload,
         state.selectedByCourt,
-      ); 
+      );
       return {
         ...state,
         selectedByCourt,
@@ -54,10 +57,20 @@ export default function (state = initialState, action) {
         action.payload,
         state.filterWithInResult,
       );
-      console.log('>>>>', filterWithInResult);
+
       return {
         ...state,
         filterWithInResult: filterWithInResult,
+      };
+    case ADD_REMOVE_BY_IDRAF:
+      const selectedByIdraf = senitizeAnyArray(
+        action.payload,
+        state.selectedByIdraf,
+        true,
+      );
+      return {
+        ...state,
+        selectedByIdraf,
       };
 
     case ADD_REMOVE_BY_DECISION_FILTER:

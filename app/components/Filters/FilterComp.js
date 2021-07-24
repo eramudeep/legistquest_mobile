@@ -1,5 +1,5 @@
 import React, {useEffect,useMemo} from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
+import {View, Text, Pressable, StyleSheet,ScrollView} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomLabel from '../CustomLabel/CustomLabel';
@@ -7,6 +7,8 @@ import ByBench from './ByBench';
 import ByYear from './ByYear';
 import RadioGroup from './RadioGroup';
 import ByDisposition from './ByDisposition';
+import ByIdraf from './ByIdraf';
+
 import {connect} from 'react-redux';
 import {searchByFilters} from '../../redux/filterActions';
 function FilterComp({
@@ -31,7 +33,7 @@ function FilterComp({
    
    
   return (
-    <View style={{margin: scale(3)}}>
+    <ScrollView style={{margin: scale(3)}}>
       <Pressable onPress={onPress} style={styles.pressableContainer}>
         <Ionicons
           name={isFilterOpen() ? 'caret-down-outline' : 'caret-forward-outline'}
@@ -39,7 +41,7 @@ function FilterComp({
         />
         <CustomLabel text={`By ${label}`} labelStyle={styles.itemLabel} />
       </Pressable>
-
+ 
       {isFilterOpen() && (
         <View>
           <Pressable style={{margin: scale(10)}}>
@@ -53,10 +55,14 @@ function FilterComp({
             {label == 'Dispotions' && (
               <ByDisposition applyFilters={applyFilters} list={Court} />
             )}
+            {label == 'iDRAF' && (
+              <ByIdraf applyFilters={applyFilters} list={Court} />
+            )}
+             
           </Pressable>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -81,7 +87,8 @@ const mapStateToProps = (state) => ({
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
     SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
-    Courtarray: `${state.filter.selectedByCourt?.toString()}` 
+    Courtarray: `${state.filter.selectedByCourt?.toString()}`, 
+    Idrafarray:""
    /*  SelectedFilter: "benchfilter",
     PageNo:1,
     Idrafarray:"",

@@ -6,8 +6,9 @@ import {appColors} from '../../utils/appColors';
 import Badge from '../Badge';
 import Icon from '../CustomIcon/Icon';
 import CustomLabel from '../CustomLabel/CustomLabel';
-import {removeHtmlTags, toTitleCase} from '../../utils/common'
+import {cleanString, removeHtmlTags, toTitleCase, truncateString} from '../../utils/common'
 import Highlighter from 'react-native-highlight-words';
+import HTML from "react-native-render-html";
 
 export default function SearchResult({
   searchData,
@@ -26,9 +27,9 @@ export default function SearchResult({
     Judges,
     PartyName,
   } = searchData;
- 
+  
   const _renderJudge = ({item, index}) => {
-    return <Badge key={index} text={removeHtmlTags(item)} />;
+    return <Badge key={index} text={  item } renderHtml />; 
   };
   const _renderJudges = () => {
     return (
@@ -36,7 +37,7 @@ export default function SearchResult({
         <FlatList
          showsHorizontalScrollIndicator={false}
           horizontal
-          data={Judges?.split(';')}
+          data={ cleanString( Judges)?.split(';')}
           renderItem={_renderJudge}
           keyExtractor={(item) => item.id}
         />
@@ -66,7 +67,7 @@ export default function SearchResult({
        <Highlighter 
          highlightStyle={{backgroundColor: appColors.higheLight, fontWeight:'700'}}
          searchWords={[ ...selectedTopic?.split(" ")]}
-         textToHighlight={removeHtmlTags(HighlightedText)}
+         textToHighlight={truncateString( removeHtmlTags(HighlightedText))}
          style={styles.bodyText}
         />
 
@@ -75,10 +76,10 @@ export default function SearchResult({
         labelStyle={styles.bodyText}
       />  */} 
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <TouchableOpacity style={styles.footerBtn} onPress={onSearchCase}>
+        {/* <TouchableOpacity style={styles.footerBtn} onPress={onSearchCase}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />
           <CustomLabel text={'Search Within Case'} color={appColors.blue} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={()=>{
            // console.log("show judg");
             setShowJudges(!showJudges)}} style={styles.footerBtn}>
@@ -96,11 +97,16 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: appColors.blue,
     paddingBottom: 0,
+    padding: 0,
   },
   subTitle: {
-    fontWeight: '600',
+    fontWeight: '500',
     color: appColors.green,
     paddingTop: 0,
+    padding: 0,
+    marginBottom:scale(5),
+    marginTop:scale(5),
+    fontSize:scale(12)
   },
   bodyText: {},
   footerBtn: {

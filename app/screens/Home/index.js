@@ -28,10 +28,11 @@ function Home({
   return (
     <Container
       showFooter
-      showHome
+      showHome 
       showMenu
       hideLogo
       showSignin
+      isScrollable
       onSignin={() => navigation.navigate('Login')}>
       <View style={[{flex: 1   }, searching ? {} :{justifyContent: 'center' }]}>
         <CustomIcon iconStyle={{width: scale(300), height: scale(100)}} />
