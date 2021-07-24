@@ -28,14 +28,14 @@ export const tabsList = [
     active: false
   }
 ]
-export default function TabsList({children}) {
+export default function DynamicTabs({children,tabs}) {
   console.log("children");
   const [currentTab, setCurrentTab] = useState(0)
   const _renderTab = (item, key) => {
-    const { label, active } = item
+    // const { label, active } = item
     return (
       <TouchableOpacity onPress={() => setCurrentTab(key)} key={key} style={[styles.tabContiner, currentTab == key ? styles.activeTabStyle : {}]}>
-        <Text style={styles.tabLabl}>{label}</Text>
+        <Text style={styles.tabLabl}>{item}</Text>
       </TouchableOpacity>
     );
   };
@@ -55,7 +55,7 @@ export default function TabsList({children}) {
   const _renderTabs = () => {
     return (
       <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.tabsContainer}>
-        {[...tabsList]?.map((item, key) => {
+        {[...tabs]?.map((item, key) => {
           return _renderTab(item, key);
         })}
       </ScrollView>

@@ -4,21 +4,44 @@ import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import Details from '../Details';
-import {DETAILS_API} from '../../services/ApiList';
+import {DETAILS_API, GETOCRDATABYCITEDIN} from '../../services/ApiList';
 import LoadingModal from '../../components/Modals/LoadingModal';
 
 export default function TopicDetail({route, navigation}) {
   const {LinkText, HighlightedText, item} = route.params;
   const [viewModel, setViewModel] = useState();
   const [isLoading, setIsLoading] = useState(true)
-  const getDetailsScreenData = async () => {
-    const {LinkText, EncryptedId} = item;
-    const label = parseParam(LinkText);
-    const URL = `${DETAILS_API}${label}/${EncryptedId}`;
+  const [citiedInData, setCitiedInData] = useState()
+  const getDetailsScreenData = async (data) => {
+   
+    let Ltext
+    let EncID
+    if(data){
+      setIsLoading(true)
+      const {LinkText, EncryptedId} = data;
+      Ltext=LinkText
+      EncID=EncryptedId
+    }
+    else{
+      const {LinkText, EncryptedId} = item;
+      Ltext=LinkText
+      EncID=EncryptedId
+    }
+    
+    const label = parseParam(Ltext);
+    const URL = `${DETAILS_API}${label}/${EncID}`;
 
     const respounce = await fetch(URL);
     const result = await respounce.json();
+    console.log("result?.viewModel",result?.viewModel);
+    //>>get citied in<<<
+const citiedUrl=`${GETOCRDATABYCITEDIN}?caseId=${result?.viewModel?.EncryptedId}&status=${result?.viewModel?.Status}`
+console.log("citiedUrl",citiedUrl);
+const respounceCitied = await fetch(citiedUrl);
+const resultCitied = await respounceCitied.json();
+// console.log("resss",respounceCitied);
     setViewModel(result?.viewModel);
+    setCitiedInData(resultCitied)
     setIsLoading(false)
   }; 
   const parseParam = (str) => {
@@ -52,7 +75,7 @@ export default function TopicDetail({route, navigation}) {
           text={HighlightedText}
           labelStyle={styles.bodyText}
         /> */}
-        <Details viewModel={viewModel} item={item} />
+        <Details viewModel={viewModel} item={item} citiedInData={citiedInData} onPressCitiedCase={getDetailsScreenData}/>
       </View>
       <LoadingModal visible={isLoading}/>
     </Container>

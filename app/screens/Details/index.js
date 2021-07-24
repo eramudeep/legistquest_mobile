@@ -10,6 +10,7 @@ import { removeHtmlTags } from '../../utils/common';
 import ScrollableTabView,{ScrollableTabBar } from '../../components/ScrollableTabView'
 import HTML from "react-native-render-html";
 import createReactClass from 'create-react-class';
+import CitiedIn from './CitiedIn';
 
 // const Child = createReactClass({
 //   onEnter() {
@@ -34,7 +35,7 @@ import createReactClass from 'create-react-class';
   
 // }
 const  tabs=[ 'short', 'list' ]
-export default function index({ viewModel, item }) {
+export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}) {
   // console.log('viewModel', viewModel);
   const contentWidth = useWindowDimensions().width; 
   const keywordToHigeLight = (query) => {
@@ -64,7 +65,7 @@ export default function index({ viewModel, item }) {
       return <FontAwesome5 key={key} name={item} size={15} />;
     });
   };
-  const _renderIdraf = () => {
+  const _renderIdraf = () => { 
     return (
       <View style={styles.idrafContainer}>
         <FontAwesome5 color={appColors.tabLabel} name={'gem'} size={15} />
@@ -100,6 +101,39 @@ export default function index({ viewModel, item }) {
       </View>
     );
   };
+ 
+  const _renderBench = () => {
+    return (
+      <View style={{   flex:1 }}>
+        <Text style={[styles.headingLabels,{alignSelf:"center",}]}>Bench List</Text>
+       <View style={styles.underLine}/>
+              <HTML containerStyle={{padding:20}} contentWidth={contentWidth}  source={{ html: viewModel?.Bench }}   />
+
+      </View>
+    );
+  };
+  const _renderCitiation = () => {
+    return (
+      <View style={{   flex:1 }}>
+        <Text style={[styles.headingLabels,{alignSelf:"center",}]}>Eq Citation</Text>
+       <View style={styles.underLine}/>
+              <HTML containerStyle={{padding:20}} contentWidth={contentWidth}  source={{ html: viewModel?.Citation }}   />
+
+      </View>
+    );
+  };
+  const _renderAdvocates = () => {
+    
+    return (
+      <View style={{   flex:1 }}>
+       <Text style={[styles.headingLabels,{alignSelf:"center",}]}>Advocates List</Text>
+       <View style={styles.underLine}/>
+              <HTML containerStyle={{padding:20}} contentWidth={contentWidth}  source={{ html: viewModel?.Advocates }}   />
+
+      </View>
+    );
+  };
+
   const _renderCaseHeading = () => {
     return (
       <View
@@ -129,14 +163,25 @@ export default function index({ viewModel, item }) {
       {_renderIdraf()}
       {_renderHeader()}
       <TabsList >
-        <View key={0}>
-          <Text></Text>
+        <View key={0}> 
+    {_renderCaseHeading()} 
+     {viewModel?.Judgement && _renderJudgement()}
         </View>
         <View key={1}>
           <Text></Text>
         </View >
+        <View key={2}>
+         <CitiedIn onPress={onPressCitiedCase} data={citiedInData}/>
+        </View>
         <View key={3}>
-          <Text></Text>
+        {_renderAdvocates()}
+         
+        </View>
+        <View key={4}>
+        {_renderBench()}
+        </View>
+        <View key={5}>
+          {_renderCitiation()}
         </View>
         </TabsList> 
       {/* <ScrollableTabView 
@@ -153,9 +198,7 @@ export default function index({ viewModel, item }) {
         />;
       })}   
     </ScrollableTabView> */}
-     
-    {_renderCaseHeading()} 
-     {viewModel?.Judgement && _renderJudgement()}
+   
     </View>
   );
 }
@@ -201,4 +244,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
   },
+  underLine:{
+    width:scale(60),
+    borderBottomWidth:scale(2),
+    borderBottomColor:appColors.secondary,
+    marginBottom:scale(20),
+    alignSelf:"center"
+},
 });
