@@ -60,7 +60,7 @@ function Topic({
     setLoadMore(false);
   };
   const getLoadMoreResults = async () => {
-    console.log("searchTopicResult?.CaseCount",searchTopicResult?.CaseCount);
+    // console.log("searchTopicResult?.CaseCount",searchTopicResult?.CaseCount);
     if(searchTopicResult?.CaseCount<=10) return
     setLoadMore(true);
 
@@ -82,7 +82,7 @@ function Topic({
     let filters = {
         
     };
-    console.log("searchTopicResult",searchTopicResult);
+    // console.log("searchTopicResult",searchTopicResult);
     let Court=[]
     coutLists?.map((courtName)=>{
         if(searchTopicResult?.[courtName]){
@@ -107,7 +107,7 @@ function Topic({
       }) 
       filters.iDRAF =IdrafList
     }
-    console.log({IdrafList});
+    // console.log({IdrafList});
     return filters;
   };
   return (

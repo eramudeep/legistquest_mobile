@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet,useWindowDimensions,ScrollView, TouchableHighlight  } from 'react-native';
+import { View, Text, StyleSheet, useWindowDimensions, ScrollView, TouchableHighlight } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import Container from '../../components/Container';
 import Highcharts from '../../components/Highcharts';
@@ -8,10 +8,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { appColors, shadow } from '../../utils/appColors';
 import Highlighter from 'react-native-highlight-words';
 import { removeHtmlTags } from '../../utils/common';
-import ScrollableTabView,{ScrollableTabBar } from '../../components/ScrollableTabView'
+import ScrollableTabView, { ScrollableTabBar } from '../../components/ScrollableTabView'
 import HTML from "react-native-render-html";
 import createReactClass from 'create-react-class';
 import CitiedIn from './CitiedIn';
+import { WebView } from 'react-native-webview';
 
 // const Child = createReactClass({
 //   onEnter() {
@@ -33,23 +34,23 @@ import CitiedIn from './CitiedIn';
 //     <Text style={{fontSize:20}}>{`rertab`}</Text>;
 //   </View>
 
-  
+
 // }
-const  tabs=[ 'short', 'list' ]
-export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}) {
+const tabs = ['short', 'list']
+export default function index({ viewModel, item, onPressCitiedCase, citiedInData }) {
   // console.log('viewModel', viewModel);
-  const contentWidth = useWindowDimensions().width; 
+  const contentWidth = useWindowDimensions().width;
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
   };
- 
+
   const _renderHeader = () => {
     return (
       <View style={[styles.headerContainer,/*  shadow, */]}>
         {/* <View style={{ flex: 1, backgroundColor: appColors.white, flexDirection: "row" }}>
           {_renderCaseTitle()}
         </View> */}
-        <View style={{padding:scale(5), flex: 1, flexDirection: "row", justifyContent: "space-around", backgroundColor: appColors.white }}>
+        <View style={{ padding: scale(5), flex: 1, flexDirection: "row", justifyContent: "space-around", backgroundColor: appColors.white }}>
           {_renderIcons()}
         </View>
       </View>
@@ -66,7 +67,7 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
       return <FontAwesome5 key={key} name={item} size={15} />;
     });
   };
-  const _renderIdraf = () => { 
+  const _renderIdraf = () => {
     return (
       <View style={styles.idrafContainer}>
         <FontAwesome5 color={appColors.tabLabel} name={'gem'} size={15} />
@@ -83,10 +84,12 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
   };
   const _renderJudgement = () => {
     return (
-      <View style={{   flex:1 }}>
-        {viewModel?.OcrDtoList.length>0?
-        <Highcharts OcrDtoList={viewModel?.OcrDtoList}/> 
-        :<View/>}
+      <View style={{ flex: 1 }}>
+        {viewModel?.OcrDtoList.length > 0 ?
+
+          <View />
+
+          : <View />}
         {/* <Highlighter
           highlightStyle={{
             backgroundColor: appColors.higheLight,
@@ -100,39 +103,39 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
           ]}
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
-              <HTML containerStyle={{padding:20}} contentWidth={contentWidth}  source={{ html: viewModel?.Judgement }}   />
+        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
 
       </View>
     );
   };
- 
+
   const _renderBench = () => {
     return (
-      <View style={{   flex:1 }}>
-        <Text style={[styles.headingLabels,{alignSelf:"center",}]}>Bench List</Text>
-       <View style={styles.underLine}/>
-              <HTML containerStyle={{padding:20}} contentWidth={contentWidth}  source={{ html: viewModel?.Bench }}   />
+      <View style={{ flex: 1 }}>
+        <Text style={[styles.headingLabels, { alignSelf: "center", }]}>Bench List</Text>
+        <View style={styles.underLine} />
+        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Bench }} />
 
       </View>
     );
   };
   const _renderCitiation = () => {
     return (
-      <View style={{   flex:1 }}>
-        <Text style={[styles.headingLabels,{alignSelf:"center",}]}>Eq Citation</Text>
-       <View style={styles.underLine}/>
-              <HTML containerStyle={{padding:20}} contentWidth={contentWidth}  source={{ html: viewModel?.Citation }}   />
+      <View style={{ flex: 1 }}>
+        <Text style={[styles.headingLabels, { alignSelf: "center", }]}>Eq Citation</Text>
+        <View style={styles.underLine} />
+        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Citation }} />
 
       </View>
     );
   };
   const _renderAdvocates = () => {
-    
+
     return (
-      <View style={{   flex:1 }}>
-       <Text style={[styles.headingLabels,{alignSelf:"center",}]}>Advocates List</Text>
-       <View style={styles.underLine}/>
-              <HTML containerStyle={{padding:20}} contentWidth={contentWidth}  source={{ html: viewModel?.Advocates }}   />
+      <View style={{ flex: 1 }}>
+        <Text style={[styles.headingLabels, { alignSelf: "center", }]}>Advocates List</Text>
+        <View style={styles.underLine} />
+        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} />
 
       </View>
     );
@@ -152,42 +155,42 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
         <Text style={styles.headingLabels}>V. </Text>
         <Text style={styles.headingLabels}>{viewModel?.Respondent}</Text>
         <Text style={{ fontWeight: "bold" }}>({viewModel?.CourtName})</Text>
-        <Text style={{marginTop:scale(6)}} >{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
+        <Text style={{ marginTop: scale(6) }} >{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
 
       </View>
     );
   };
-  
-  const handleChangeTab=({i, ref, from, })=> {
+
+  const handleChangeTab = ({ i, ref, from, }) => {
     children[i].onEnter();
     children[from].onLeave();
   }
   return (
-    <View style={{flex:1}}>
+    <View style={{ flex: 1 }}>
       {_renderIdraf()}
       {_renderHeader()}
       <TabsList >
-        <View key={0}> 
-    {_renderCaseHeading()} 
-     {viewModel?.Judgement && _renderJudgement()}
+        <View key={0}>
+          {_renderCaseHeading()}
+          {viewModel?.Judgement && _renderJudgement()}
         </View>
         <View key={1}>
           <Text></Text>
         </View >
         <View key={2}>
-         <CitiedIn onPress={onPressCitiedCase} data={citiedInData}/>
+          <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />
         </View>
         <View key={3}>
-        {_renderAdvocates()}
-         
+          {_renderAdvocates()}
+
         </View>
         <View key={4}>
-        {_renderBench()}
+          {_renderBench()}
         </View>
         <View key={5}>
           {_renderCitiation()}
         </View>
-        </TabsList> 
+      </TabsList>
       {/* <ScrollableTabView 
       tabBarActiveTextColor={appColors.tabLabel} 
       tabBarUnderlineStyle={{backgroundColor:appColors.tabLabel}}  
@@ -202,7 +205,7 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
         />;
       })}   
     </ScrollableTabView> */}
-   
+
     </View>
   );
 }
@@ -215,7 +218,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   pagerView: {
-    flex: 1,backgroundColor:"blue"
+    flex: 1, backgroundColor: "blue"
   },
   idrafContainer: {
     flexDirection: 'row',
@@ -231,10 +234,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   headingLabels: {
-     
-     fontSize: scale(18), 
+
+    fontSize: scale(18),
     fontWeight: 'bold',
-    marginBottom:scale(5)
+    marginBottom: scale(5)
   },
   tabView: {
     flex: 1,
@@ -253,11 +256,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
   },
-  underLine:{
-    width:scale(60),
-    borderBottomWidth:scale(2),
-    borderBottomColor:appColors.secondary,
-    marginBottom:scale(20),
-    alignSelf:"center"
-},
+  underLine: {
+    width: scale(60),
+    borderBottomWidth: scale(2),
+    borderBottomColor: appColors.secondary,
+    marginBottom: scale(20),
+    alignSelf: "center"
+  },
 });

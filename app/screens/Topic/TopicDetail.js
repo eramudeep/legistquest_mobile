@@ -13,11 +13,12 @@ export default function TopicDetail({route, navigation}) {
   const [isLoading, setIsLoading] = useState(true)
   const [citiedInData, setCitiedInData] = useState()
   const getDetailsScreenData = async (data) => {
-   
+    setIsLoading(true)
+    console.log("in get detail");
     let Ltext
     let EncID
     if(data){
-      setIsLoading(true)
+      
       const {LinkText, EncryptedId} = data;
       Ltext=LinkText
       EncID=EncryptedId
@@ -27,13 +28,14 @@ export default function TopicDetail({route, navigation}) {
       Ltext=LinkText
       EncID=EncryptedId
     }
-    
+    console.log("in get detail 2",Ltext,EncID);
     const label = parseParam(Ltext);
     const URL = `${DETAILS_API}${label}/${EncID}`;
 
     const respounce = await fetch(URL);
+    // console.log("in get detail 3",respounce);
     const result = await respounce.json();
-    // console.log("result?.viewModel",result?.viewModel);
+    console.log("result?.viewModel",result?.viewModel);
     //>>get citied in<<<
 const citiedUrl=`${GETOCRDATABYCITEDIN}?caseId=${result?.viewModel?.EncryptedId}&status=${result?.viewModel?.Status}`
 console.log("citiedUrl",citiedUrl);
@@ -43,6 +45,7 @@ const resultCitied = await respounceCitied.json();
     setViewModel(result?.viewModel);
     setCitiedInData(resultCitied)
     setIsLoading(false)
+    console.log("end get detail");
   }; 
   const parseParam = (str) => {
     str?.replace(/./g, '');
