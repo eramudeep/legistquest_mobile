@@ -67,7 +67,7 @@ export default function SearchResult({
        <Highlighter 
          highlightStyle={{backgroundColor: appColors.higheLight, fontWeight:'700'}}
          searchWords={[ ...selectedTopic?.split(" ")]}
-         textToHighlight={truncateString( removeHtmlTags(HighlightedText))}
+         textToHighlight={`${truncateString( removeHtmlTags(HighlightedText))}`}
          style={styles.bodyText}
         />
 

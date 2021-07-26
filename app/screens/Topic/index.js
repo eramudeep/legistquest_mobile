@@ -60,6 +60,8 @@ function Topic({
     setLoadMore(false);
   };
   const getLoadMoreResults = async () => {
+    console.log("searchTopicResult?.CaseCount",searchTopicResult?.CaseCount);
+    if(searchTopicResult?.CaseCount<=10) return
     setLoadMore(true);
 
     const respo = await getPaginationResults$({
@@ -110,6 +112,7 @@ function Topic({
   };
   return (
     <Container
+    isScrollable
       showHome
       showMenu
       showFooter

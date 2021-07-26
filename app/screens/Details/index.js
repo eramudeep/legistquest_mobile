@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet,useWindowDimensions,ScrollView, TouchableHighlight  } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import Container from '../../components/Container';
+import Highcharts from '../../components/Highcharts';
 import TabsList, { tabsList } from './TabsList';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { appColors, shadow } from '../../utils/appColors';
@@ -83,6 +84,9 @@ export default function index({ viewModel, item,onPressCitiedCase ,citiedInData}
   const _renderJudgement = () => {
     return (
       <View style={{   flex:1 }}>
+        {viewModel?.OcrDtoList.length>0?
+        <Highcharts OcrDtoList={viewModel?.OcrDtoList}/> 
+        :<View/>}
         {/* <Highlighter
           highlightStyle={{
             backgroundColor: appColors.higheLight,
