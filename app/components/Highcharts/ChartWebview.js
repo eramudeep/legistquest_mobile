@@ -82,7 +82,10 @@ export default function ChartWebview({html}) {
         
     </figure>`
     return (
-        <WebView source={{ html: renderHtml }} />
+        <View style={{flex:1}}>
+            <Text>cjart</Text>
+            <WebView  source={{html: ``}}  style={{flex:1}}/>
+        </View>
     )
 }
 

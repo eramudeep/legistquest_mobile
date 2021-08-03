@@ -110,6 +110,7 @@ function SlideModal({
             onRightIcon={onSearchWithin}
             defaultValue={filterVal}
           />
+          {/* {console.log("-->>",filterCourt)} */}
           <Filters Court={filterCourt} />
         </View>
       </View>

@@ -26,10 +26,12 @@ export default function SearchResult({
     DateOfJudgment,
     Judges,
     PartyName,
+    OtherStatusImgUrl,
+    DistinguishedImgUrl 
   } = searchData;
-  
+  // console.log("OtherStatusImgUrl",OtherStatusImgUrl);
   const _renderJudge = ({item, index}) => {
-    return <Badge key={index} text={  item } renderHtml />; 
+    return <Badge key={index} text={item} renderHtml  labelStyle={{color:appColors.black}}/>;  
   };
   const _renderJudges = () => {
     return (
@@ -57,6 +59,7 @@ export default function SearchResult({
           onPress &&
           onPress(LinkText, HighlightedText?.replace(/<[^>]*>?/gm, ''))
         }
+        otherStatus={searchData?.OtherStatusImgUrl?searchData?.OtherStatusImgUrl:searchData?.DistinguishedImgUrl ?searchData?.DistinguishedImgUrl :false}
         text={toTitleCase( LinkText)}
         labelStyle={styles.title}
       />

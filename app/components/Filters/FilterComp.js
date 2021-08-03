@@ -52,7 +52,7 @@ function FilterComp({
             {label == 'Year' && (
               <ByYear applyFilters={applyFilters} list={Court} />
             )}
-            {label == 'Dispotions' && (
+            {label == 'Dispositions' && (
               <ByDisposition applyFilters={applyFilters} list={Court} />
             )}
             {label == 'iDRAF' && (

@@ -24,7 +24,7 @@ function ResultFound({filterWithInResult,getResultsByTopic$,CaseCount, searchQue
   if (!CaseCount) return null;
   return (
     <View style={styles.cont}>
-      <View style={{flexDirection: 'row', flex: 2, flexWrap: 'wrap'}}>
+      <View style={{flexDirection: 'row', flex: 1.2, flexWrap: 'wrap'}}>
         <Text>Found : </Text>
         <CustomLabel
           labelStyle={{padding: 0, fontSize: scale(12)}}
@@ -32,9 +32,8 @@ function ResultFound({filterWithInResult,getResultsByTopic$,CaseCount, searchQue
         />
         <Text> results for query {searchQuery.text} </Text>
       </View>
-      <View style={{flex: 1}}>
-        <Text>Sort by : </Text>
-
+      <View style={{flex: 1,}}>
+        <Text style={{marginLeft:scale(10)}}>Sort by : </Text>
         <RNPickerSelect
           onValueChange={(value) => {
             onChangePicker(value);

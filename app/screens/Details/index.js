@@ -47,9 +47,9 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
   const _renderHeader = () => {
     return (
       <View style={[styles.headerContainer,/*  shadow, */]}>
-        {/* <View style={{ flex: 1, backgroundColor: appColors.white, flexDirection: "row" }}>
+        <View style={{ flex: 1, backgroundColor: appColors.white, flexDirection: "row" }}>
           {_renderCaseTitle()}
-        </View> */}
+        </View>
         <View style={{ padding: scale(5), flex: 1, flexDirection: "row", justifyContent: "space-around", backgroundColor: appColors.white }}>
           {_renderIcons()}
         </View>
@@ -175,10 +175,10 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
           {viewModel?.Judgement && _renderJudgement()}
         </View>
         <View key={1}>
-          <Text></Text>
+        <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />
         </View >
         <View key={2}>
-          <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />
+          {/* <CitiedIn onPress={onPressCitiedCase} data={citiedInData} /> */}
         </View>
         <View key={3}>
           {_renderAdvocates()}

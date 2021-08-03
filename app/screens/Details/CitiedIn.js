@@ -4,7 +4,7 @@ import { scale } from 'react-native-size-matters';
 import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import { appColors } from '../../utils/appColors';
 import DynamicTabs from './DynamicTabs';
-
+import Highcharts from '../../components/Highcharts'
 export default function CitiedIn({ data, onPress }) {
     console.log("data", data);
     const [tabs, setTabs] = useState([])
@@ -46,7 +46,8 @@ export default function CitiedIn({ data, onPress }) {
     }
     return (
         <View>
-            
+             <Highcharts/>
+             <Text>---------------------</Text>
             <DynamicTabs tabs={tabs}>
                 {tabsData.map((val, key) => {
                     console.log("val", val);

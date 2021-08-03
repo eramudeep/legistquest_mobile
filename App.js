@@ -17,10 +17,11 @@ import { PersistGate } from 'redux-persist/integration/react'
 import ScrollableTabView,{ScrollableTabBar } from './app/components/ScrollableTabView'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Details from './app/screens/Details';
+import ChartWebview from './app/components/Highcharts/index';
 const {store,persistor}=Reduxstore()
 const App: () => React$Node = () => { 
    
-
+// return<ChartWebview/>
   return (
     <SafeAreaView style={{flex:1,}}>
       <Provider store={store}>
