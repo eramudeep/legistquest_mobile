@@ -8,7 +8,8 @@ import ClickableIcon from '../CustomIcon/ClickableIcon'
 import Icon from '../CustomIcon/Icon'
 import CustomLabel from '../CustomLabel/CustomLabel'
 
-export default function CustomHeader({ showHome, showMenu, showBack, onHome, onMenu ,hideLogo,showSignin,onSignin}) {
+export default function CustomHeader({ showHome,signInLabel, showMenu, showBack, onHome, onMenu ,hideLogo,showSignin,onSignin}) {
+   console.log("digning",signInLabel);
     return (
         <View style={styles.header}>
             <View style={styles.icon}>
@@ -19,7 +20,7 @@ export default function CustomHeader({ showHome, showMenu, showBack, onHome, onM
                 <CustomIcon iconStyle={{ width: scale(130), }} />}
             </View>
             {showSignin&&<View style={{marginRight:scale(10)}}>
-                <CustomLabel onPress={onSignin} text={"Sign In"} labelStyle={{color:appColors.blue,fontWeight:"600"}}/>
+                <CustomLabel onPress={onSignin} text={signInLabel} labelStyle={{color:appColors.blue,fontWeight:"600"}}/>
             </View>}
             <View style={styles.icon}>
                 {showMenu && <TouchableRipple onPress={onMenu} style={styles.iconS}>

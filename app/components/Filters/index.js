@@ -15,10 +15,6 @@ import { toggleFilters } from '../../redux/filterActions';
     </ScrollView>
   );
 }
- 
-
-
-
 const mapStateToProps = (state) => ({
   filters: state.filter.filters,
 });

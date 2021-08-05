@@ -69,7 +69,7 @@ function AutoCompleteForAct({
 
   //console.log({searchQuery});
   return (
-      <View style={{flexDirection:"row",margin:scale(5)}}>
+      <View style={{margin:scale(5)}}>
     <View
       style={[
         styles.container,

@@ -11,3 +11,5 @@ export const DETAILS_API=`${BASE_URL}case/`
 export const SEARCH_RESULT_BY_PAGE_NUMBER=`${BASE_URL}GetResultBySelectedSearchResultPageNo`
 export const SEARCH_RESULT_WITH_FILTERS_API=`${BASE_URL}GetCaseDetailsByBenchFilter`
 export const GETOCRDATABYCITEDIN=`${BASE_URL}GetOcrDataByCitedIn`
+export const LOGIN_API=`https://login.legitquest.com/api/v1.0/customers/login`
+export const LOGOUT_API=`https://login.legitquest.com/api/v1.0/customers/logout`

@@ -22,9 +22,17 @@ function ResultFound({filterWithInResult,getResultsByTopic$,CaseCount, searchQue
     getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
   };
   if (!CaseCount) return null;
+  // return(
+  //   <View style={styles.cont}>
+  //     <View style={{flex:1,backgroundColor:"red"}}>
+  //     <Text>df</Text>
+  //     </View>
+
+  //   </View>
+  // )
   return (
     <View style={styles.cont}>
-      <View style={{flexDirection: 'row', flex: 1.2, flexWrap: 'wrap'}}>
+      <View style={{flexDirection:"row",flexWrap:"wrap",}}>
         <Text>Found : </Text>
         <CustomLabel
           labelStyle={{padding: 0, fontSize: scale(12)}}
@@ -33,13 +41,15 @@ function ResultFound({filterWithInResult,getResultsByTopic$,CaseCount, searchQue
         <Text> results for query {searchQuery.text} </Text>
       </View>
       <View style={{flex: 1,}}>
-        <Text style={{marginLeft:scale(10)}}>Sort by : </Text>
+        <Text style={{marginTop:scale(5)}}>Sort by : </Text>
         <RNPickerSelect
           onValueChange={(value) => {
             onChangePicker(value);
           }}
           items={sortData}
           value={sortBy}
+          // style={pickerSelectStyles}
+          fixAndroidTouchableBug
         />
       </View>
     </View>
@@ -50,9 +60,33 @@ const styles = StyleSheet.create({
     borderBottomWidth: scale(0.3),
     paddingVertical: scale(10),
     marginTop: scale(10),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
+    flex:1,
+    // backgroundColor:"pink"
+  },
+});
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    flex:1,
+    fontSize: 28,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'blue',
+    paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
 const mapStateToProps = (state) => ({

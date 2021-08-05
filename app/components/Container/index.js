@@ -18,6 +18,7 @@ export default function Container({
   hideLogo,
   showSignin,
   onSignin,
+  signInLabel
 }) {
   return (
     <View style={styles.container}>
@@ -30,6 +31,7 @@ export default function Container({
           showBack={showBack}
           hideLogo={hideLogo}
           showSignin={showSignin}
+          signInLabel={signInLabel}
         />
       )}
       {isScrollable ? (
