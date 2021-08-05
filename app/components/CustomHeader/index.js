@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useMemo} from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { scale } from 'react-native-size-matters'
 import TouchableRipple from 'react-native-touch-ripple'
@@ -8,7 +8,7 @@ import ClickableIcon from '../CustomIcon/ClickableIcon'
 import Icon from '../CustomIcon/Icon'
 import CustomLabel from '../CustomLabel/CustomLabel'
 
-export default function CustomHeader({ showHome,signInLabel, showMenu, showBack, onHome, onMenu ,hideLogo,showSignin,onSignin}) {
+function CustomHeader({ showHome,signInLabel, showMenu, showBack, onHome, onMenu ,hideLogo,showSignin,onSignin}) {
    console.log("digning",signInLabel);
     return (
         <View style={styles.header}>
@@ -59,3 +59,4 @@ const styles = StyleSheet.create({
         borderRadius:scale(20),overflow:"hidden"
     },
 })
+export default React.memo(CustomHeader)

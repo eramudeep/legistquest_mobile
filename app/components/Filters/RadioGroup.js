@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, Pressable, StyleSheet, ScrollView, FlatList} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import RButton from './RButton';
 import {connect} from 'react-redux';
 import { toggleByCourt } from '../../redux/filterActions';
 function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
-  console.log("listlistlist",list);
+   console.log("listlistlist");
   const [selected, setSelected] = useState();
   const [CaseIdss, setCaseIds] = useState()
   const [selectedSubCourt, setSelectedSubCourt] = useState();
@@ -63,6 +63,7 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
   };
 
   const RenderRadio = ({item}) => {
+     
     const {IsHaveSegregation, SubCourtList} = item;
     return (
       <>
@@ -89,14 +90,8 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
         )}
       </>
     );
-  };
-  return (
-    <ScrollView nestedScrollEnabled>
-      {list?.map((item, key) => {
-        return <RenderRadio item={item} key={key} />;
-      })}
-    </ScrollView>
-  );
+  }; 
+  return <FlatList keyExtractor={(item,index)=>  `${new Date().getTime()}_${item.CourtName}`}   renderItem={({item,index})=><RenderRadio item={item} key={index} /> } data={list}  />
 }
 
 const mapStateToProps = (state) => ({
@@ -106,4 +101,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   toggleByCourt$: toggleByCourt,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo( RadioGroup));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(RadioGroup));

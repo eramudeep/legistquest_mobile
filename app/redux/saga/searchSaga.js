@@ -71,7 +71,7 @@ export function* workerGetResultsByTopic(action) {
   const results = yield fetch(
     URL,
   ).then((response) => response.text());
-
+ 
   try {
     if (results && JSON.parse(results)) {
       yield put({type: SET_RESULT_BY_TOPIC, payload: JSON.parse(results)});
@@ -127,6 +127,7 @@ export function* workerSearchWithFilters(action) {
   //console.log({results});
   try {
     if (results && JSON.parse(results)) {
+      
       yield put({
         type: SET_RESULT_BY_TOPIC,
         payload: {...JSON.parse(results)},

@@ -26,7 +26,8 @@ import {filterListValues} from '../../utils/appConstants';
 import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import FilterWithIn from '../../components/Filters/FilterWithIn';
- 
+import Filters from '../../components/Filters';
+
 const coutLists=["SupremeCourtList", "HighCourtList","OtherCourtList"]
 function Topic({
   searchTopicResult,
@@ -163,14 +164,16 @@ function Topic({
          </View>
           <FilterWithIn />
           <ResultFound />
-
-          <FlatList
+        {/* <Filters  Court={seniTizeCourtFilters()}/> */}
+           <FlatList
             data={searchTopicResult?.CaseDetails}
             renderItem={_renderSearchResult}
-            keyExtractor={(item) => item.Id}
-            onEndReached={getLoadMoreResults}
-            // onEndReachedThreshold={0.1}
-          />
+            keyExtractor={(item) =>`${new Date().getTime()}_${item.Id}`}
+            //onEndReached={getLoadMoreResults}
+            //onEndReachedThreshold={15}
+
+            
+          />  
         </View>
       )}
       <View style={{padding: scale(5)}}>
@@ -180,11 +183,11 @@ function Topic({
           color={appColors.black}
         />
       </View>
-       <SlideModal
+        <SlideModal
         filterCourt={seniTizeCourtFilters()}
         visible={modalVisible}
         onClose={toggleModal}
-      />  
+      />    
     </Container>
   );
 }

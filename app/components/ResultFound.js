@@ -6,20 +6,21 @@ import RNPickerSelect from 'react-native-picker-select';
 import CustomLabel from './CustomLabel/CustomLabel';
 import {connect} from 'react-redux';
 import {sortData} from '../utils/MockData';
-import {sortByOnly} from '../redux/filterActions';
+import {searchByFilters, sortByOnly} from '../redux/filterActions';
 import { getResultsByTopic } from '../redux/searchActions';
 
-function ResultFound({filterWithInResult,getResultsByTopic$,CaseCount, searchQuery, sortByOnly$, sortByF}) {
+function ResultFound({filtersList,searchByFilters$,filterWithInResult,getResultsByTopic$,CaseCount, searchQuery, sortByOnly$, sortByF}) {
   //console.log("searchQuery",searchQuery,"sortByF",sortByF);
   const [sortBy, setSortBy] = useState(sortByF);
   const onChangePicker = (value) => {
-    sortByOnly$({
-     /*  searchType: searchQuery?.type,
-      searchText: searchQuery?.text, */
+    sortByOnly$({ 
       sortBy: value,
     });
     setSortBy(value);
-    getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
+    console.log({filtersList});
+    searchByFilters$({...filtersList,SortBy: value?.toString() })
+
+    //getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
   };
   if (!CaseCount) return null;
   // return(
@@ -88,15 +89,27 @@ const pickerSelectStyles = StyleSheet.create({
     color: 'blue',
     paddingRight: 30, // to ensure the text is never behind the icon
   },
-});
+}); 
 const mapStateToProps = (state) => ({
   CaseCount: state?.search?.searchTopicResult?.CaseCount,
   searchQuery: state.search.searchQuery,
   sortByF: state.filter.sortBy,
   filterWithInResult: state.filter.filterWithInResult,   
+  filtersList: {
+    Courtarray: `${state.filter.selectedByCourt?.toString()}`, 
+    BenchArray: `${state.filter.selectedByBench?.toString()}`,
+    Yeararray: `${state.filter.selectedByYear?.toString()}`,
+    Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    SearchText: state?.search?.searchQuery?.text,
+    SearchType: state?.search?.searchQuery?.type,
+    RemoveFilter: '',
+    FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
+    SortBy: state.filter.sortBy?.toString() 
+  },
 });
 const mapDispatchToProps = {
   sortByOnly$: sortByOnly,
-  getResultsByTopic$:getResultsByTopic
+  getResultsByTopic$:getResultsByTopic,
+  searchByFilters$: searchByFilters,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ResultFound);

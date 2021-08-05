@@ -27,8 +27,8 @@ function FilterComp({
   };
 
   const applyFilters = (currentFilter) => { 
-    //console.log({...filtersList,...currentFilter});
-     searchByFilters$({...filtersList,...currentFilter}) 
+    //console.log("applyFilters" );
+    searchByFilters$({...filtersList,...currentFilter}) 
   }; 
    
    
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   filtersList: {
+    //Courtarray: `${state.filter.selectedByCourt?.toString()}`, 
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
     Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,

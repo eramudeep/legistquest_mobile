@@ -64,7 +64,7 @@ function Home({
 
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 
-        {homeData?.map((val, key) => {
+        {!searching && homeData?.map((val, key) => {
           const { pl } = val
           return (
             <TouchableOpacity key={key} style={styles.flexView} onPress={async () => {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   label: {
     flex: 2,
   },
-  flexView: { flexDirection: 'row' },
+  flexView: { flexDirection: 'row'  },
   label1: {
     flex: 1,
     color: appColors.blue,
