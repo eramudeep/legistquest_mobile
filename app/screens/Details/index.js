@@ -13,7 +13,7 @@ import HTML from "react-native-render-html";
 import createReactClass from 'create-react-class';
 import CitiedIn from './CitiedIn';
 import { WebView } from 'react-native-webview';
-
+import CustomChart from '../../components/CustomChart';
 // const Child = createReactClass({
 //   onEnter() {
 //     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
@@ -38,7 +38,7 @@ import { WebView } from 'react-native-webview';
 // }
 const tabs = ['short', 'list']
 export default function index({ viewModel, item, onPressCitiedCase, citiedInData }) {
-  // console.log('viewModel', viewModel);
+    console.log('viewModel', viewModel);
   const contentWidth = useWindowDimensions().width;
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
@@ -103,6 +103,10 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
           ]}
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
+        <View style={{marginBottom:scale(20)}}>
+          <CustomChart dataSet={viewModel?.CitedDtoList} />
+        </View>
+        
         <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
 
       </View>
@@ -191,20 +195,7 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
           {_renderCitiation()}
         </View>
       </TabsList>
-      {/* <ScrollableTabView 
-      tabBarActiveTextColor={appColors.tabLabel} 
-      tabBarUnderlineStyle={{backgroundColor:appColors.tabLabel}}  
-      tabBarInactiveTextColor={appColors.tabLabel} 
-      renderTabBar={() => <ScrollableTabBar />}>
-      {tabsList.map((tab, i) => {
-        return <Child
-          // ref={(ref) => (children[i] = ref)}
-          tabLabel={`${tab.label}`}
-          i={i}
-          key={i}
-        />;
-      })}   
-    </ScrollableTabView> */}
+       
 
     </View>
   );

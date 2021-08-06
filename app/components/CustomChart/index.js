@@ -2,19 +2,19 @@ import React from 'react';
 import {View, Text, Pressable, Animated} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import {appColors} from '../../utils/appColors';
-import {getRandomColor} from '../../utils/common';
+import {getRandomColor, multipleyDecider} from '../../utils/common';
 
-export default function index() {
+export default function index({dataSet}) {
   let collapse = new Animated.Value(1);
    
-  const _renderColumn = (label, value, color, onPress) => {
+  const RenderColumn = ({label, value, color, onPress}) => {
      
     return (
       <View style={{alignItems: 'center'}}>
         <Text>{value} </Text>
         <Animated.View
           style={{
-            height: value * 2,/* collapse.interpolate({
+            height: value * multipleyDecider(value),/* collapse.interpolate({
               inputRange: [0, 1],
               outputRange: [0, value * 2],
             }), */
@@ -28,26 +28,28 @@ export default function index() {
       </View>
     );
   };
+  const sentiseData = ()=>{
+    const data = dataSet?.map((item)=> {
+      return {
+        label :item?.caseStatus,
+        value : item?.ocrCount
+      }
+    })
+    return data
+  }
   return (
-    <View>
-      {/*  <ImageBackground
-        style={{width: '100%', height: 200, alignItems: 'center', justifyContent:'flex-end' }}
-        source={{
-          uri: 'https://i.stack.imgur.com/0JD7P.png',
-        }}> */}
+    <View> 
       <View
         style={{
-          //backgroundColor: 'red',
+           
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'flex-end',
         }}>
-        {_renderColumn('Cited Total', 32, getRandomColor())}
-        {_renderColumn('Cited Total', 42)}
-        {_renderColumn('Cited Total', 34, getRandomColor())}
-        {_renderColumn('Cited Total', 13)}
-      </View>
-      {/* </ImageBackground> */}
+         {sentiseData()?.map((item,key)=>{
+           return  <RenderColumn key={key} {...item} /* label='Cited Total' value={32} color={getRandomColor()} */ />
+         })} 
+      </View> 
     </View>
   );
 }
