@@ -127,6 +127,9 @@ const onPressIcon=(item)=>{
           ]}
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
+        <View style={{marginBottom:scale(20)}}>
+        <CustomChart dataSet={viewModel.OcrDtoList} />
+        </View>
         <HTML containerStyle={{ padding: 20 }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
