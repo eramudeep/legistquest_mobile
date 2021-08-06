@@ -64,7 +64,8 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
 
   const RenderRadio = ({item}) => {
      
-    const {IsHaveSegregation, SubCourtList} = item;
+    const {IsHaveSegregation, SubCourtList,CourtName} = item;
+    console.log({CourtName});
     return (
       <>
         <RButton
@@ -76,11 +77,11 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
           IsHaveSegregation={IsHaveSegregation==="Y"}
         />
 
-        {_isSelected(getName(item)) && (
+        {CourtName !="SUPREME COURT" && _isSelected(getName(item)) && (
           <View style={{marginLeft: scale(10)}}>
             {SubCourtList?.map((subCourt, key) => {
               return (
-                <RenderRadio /// recursion :)
+                <RenderRadio  
                   item={subCourt}
                   key={key}
                 />

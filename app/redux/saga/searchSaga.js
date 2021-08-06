@@ -124,7 +124,7 @@ export function* workerSearchWithFilters(action) {
     SEARCH_RESULT_WITH_FILTERS_API,
     requestOptions,
   ).then(async (response) => response.text());
-  //console.log({results});
+  console.log({activeFilters });
   try {
     if (results && JSON.parse(results)) {
       

@@ -4,7 +4,7 @@ import RButton from './RButton';
 import {connect} from 'react-redux';
 import {toggleByBench, toggleByIdraf} from '../../redux/filterActions';
 
-function ByIdraf({selectedByBenchs,applyFilters, list, toggleByIdraf$}) {
+function ByIdraf({selectedByIdraf,selectedByBenchs,applyFilters, list, toggleByIdraf$}) {
   const [selectedIdraf, setSelectedIdraf] = useState();
   const getName = (item) => {
     const {CaseCount} = item; 
@@ -16,7 +16,7 @@ function ByIdraf({selectedByBenchs,applyFilters, list, toggleByIdraf$}) {
   };
 
   const _isSelected = (toCompareWith) => { 
-   return selectedIdraf?.includes(toCompareWith)
+   return selectedByIdraf?.includes(toCompareWith)
   }; 
  
   const toggleSelecttion = (item) => {
@@ -43,10 +43,11 @@ function ByIdraf({selectedByBenchs,applyFilters, list, toggleByIdraf$}) {
     </View>
   );
 }
-
+ 
 const mapStateToProps = (state) => ({
   searchResults: state.filter.searchResults,
-  selectedByBenchs:state.filter.selectedByBench
+  selectedByBenchs:state.filter.selectedByBench,
+  selectedByIdraf : state.filter.selectedByIdraf
 });
 const mapDispatchToProps = {
     toggleByIdraf$: toggleByIdraf,

@@ -43,13 +43,20 @@ function Topic({
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
   const [pageNo, setPageNo] = useState(1);
+  const [showSearchWithIn, setShowSearchWithIn] = useState(false)
+
+const toggleSearchWithin =()=>{
+  setShowSearchWithIn(!showSearchWithIn)
+}
   // console.log('searchQuery', searchTopicResult?.CaseDetails);
   const _renderSearchResult = ({item, index}) => {
+     
     return (
       <SearchResult
         selectedTopic={selectedTopic}
         searchData={item}
         key={index}
+        onSearchCase={toggleSearchWithin}
         onPress={(LinkText, HighlightedText) =>
           navigation.navigate('TopicDetail', {LinkText, HighlightedText, item})
         }

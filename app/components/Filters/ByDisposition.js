@@ -13,17 +13,23 @@ function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus}
     const {CaseCount} = item;
     return CaseCount;
   };
-
+ 
   const _isSelected = (toCompareWith) => {
-    return selectedBench === toCompareWith;
+    
+    return   selectedByDecStatus?.includes( toCompareWith);
   };
-  console.log({selectedByDecStatus});
+  console.log({selectedBench}); 
 
-  const toggleSelecttion = (item) => {
-    const {DecisionStatusName,StatusId} = item;
-    toggleByDecsion$(DecisionStatusName); 
-    applyFilters && applyFilters({Decisionarray: StatusId?.toString()});
-    if (DecisionStatusName === selectedBench) return setSelectedBench('');
+  const toggleSelecttion = (item) => { 
+    const {DecisionStatusName,StatusId} = item; 
+    toggleByDecsion$(DecisionStatusName);  
+    if (DecisionStatusName === selectedBench) {
+      applyFilters && applyFilters({Decisionarray: ""});
+      return setSelectedBench('');
+    }
+    else{
+      applyFilters && applyFilters({Decisionarray: `${StatusId?.toString()},`});
+    }
     setSelectedBench(DecisionStatusName);
   };
 

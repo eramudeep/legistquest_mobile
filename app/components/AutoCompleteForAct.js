@@ -50,7 +50,7 @@ function AutoCompleteForAct({
     setSearchIcon('spinner');
   }, 1000);
 
-  const itemOnPress = (item) => {
+  const itemOnPress = (item,navigateNow=true) => {
     onBlur&&onBlur(false)
     getResultsByTopic$({selectedTopic: item.Value});
     Keyboard.dismiss();
@@ -58,11 +58,12 @@ function AutoCompleteForAct({
     //console.log("item",item);
     searchByQuery$({type: searchQuery?.type, text: `${item?.Value}${sectionName?`+ ${sectionName}`:""}`});
     setSearchIcon('search');
-    navigation?.navigate('Topic', {selectedTopic: item.Value});
+    if(navigateNow)
+     navigation?.navigate('Topic', {selectedTopic: item.Value});
   };
 
   const OnSearchPress = () => {
-    getResultsByTopic$({selectedTopic: searchQuery?.text+sectionName});
+    getResultsByTopic$({selectedTopic: encodeURI( searchQuery?.text+sectionName)});
 
     navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
   };
@@ -108,7 +109,8 @@ function AutoCompleteForAct({
             <TouchableOpacity
               key={i}
               style={ { padding: scale(5)}}
-              onPress={() => itemOnPress(item)}>
+              onPress={() => itemOnPress(item,false)}
+              >
               <Text style={{padding:5}}>{Value}</Text>
             </TouchableOpacity>
           );
