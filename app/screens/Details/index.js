@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, useWindowDimensions, ScrollView, TouchableHighlight, Pressable } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import Container from '../../components/Container';
@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
 import { setIsNightMode } from '../../redux/actions';
 
 import CustomChart from '../../components/CustomChart';
+import ReportModal from '../../components/Modals/ReportModal';
 // const Child = createReactClass({
 //   onEnter() {
 //     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
@@ -42,7 +43,15 @@ import CustomChart from '../../components/CustomChart';
 // }
 const tabs = ['short', 'list']
  function index({ viewModel, item, onPressCitiedCase, citiedInData ,setIsNightMode$,isNightmode}) {
-  console.log('viewModel', isNightmode);
+  const [isVisible, setIsVisible] = useState(false)
+  const [selectAll, setSelectAll] = useState(false)
+  const [content, setContent] = useState(false)
+  const [segregation, setSegregation] = useState(false)
+  const [Judge, setJudge] = useState(false)
+  const [court, setCourt] = useState(false)
+  const [citation, setCitation] = useState(false)
+  const [other, setOther] = useState(false)
+const [discription, setDiscription] = useState()
   const contentWidth = useWindowDimensions().width;
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
@@ -69,7 +78,9 @@ const onPressIcon=(item)=>{
   if(item==="moon"){
     setIsNightMode$(!isNightmode)
   }
-
+  if(item==="frown"){
+    setIsVisible(true)
+  }
 }
   const _renderIcons = () => {
     return ['download', 'bookmark', 'moon', 'frown'].map((item, key) => {
@@ -225,7 +236,25 @@ const onPressIcon=(item)=>{
         </View>
       </TabsList>
        
-
+<ReportModal 
+visible={isVisible}
+ onClose={()=>setIsVisible(false)}
+ isCitation={citation}
+ isContent={content}
+ isCourt={court}
+ isJudge={Judge}
+ isOthers={other}
+ isSegregation={segregation}
+ isSelectAll={selectAll}
+ onCitation={()=>setCitation(prev=>!prev)}
+ onContent={()=>setContent(prev=>!prev)}
+ onCourt={()=>setCourt(prev=>!prev)}
+ onJudge={()=>setJudge(prev=>!prev)}
+ onOthers={()=>setOther(prev=>!prev)}
+ onSegergation={()=>setSegregation(prev=>!prev)}
+ onSelectAll={()=>setSelectAll(prev=>!prev)}
+ onchangeDisc={val=>setDiscription(val)}
+ />
     </View>
   );
 }
