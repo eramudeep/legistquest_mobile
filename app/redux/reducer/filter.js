@@ -31,9 +31,7 @@ export default function (state = initialState, action) {
         selectedByBench: [],
         selectedByYear: [],
         selectedByDecStatus: [],
-        sortBy: 1,
-        selectedByBench: [],
-        selectedByYear: [],
+        sortBy: 1,  
         selectedByCourt: [],
 
         selectedByIdraf: [],
@@ -46,7 +44,7 @@ export default function (state = initialState, action) {
       const selectedByCourt = senitizeAnyArray(
         action.payload,
         state.selectedByCourt,
-      );
+      ); 
       return {
         ...state,
         selectedByCourt,
@@ -101,6 +99,7 @@ export default function (state = initialState, action) {
         state.selectedByBench,
         true,
       );
+      
       return {
         ...state,
         selectedByBench,

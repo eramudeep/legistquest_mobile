@@ -275,12 +275,13 @@ const mapStateToProps = (state) => ({
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
     Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    Idrafarray : `${state.filter.selectedByIdraf?.toString()}`, 
     SearchText: state?.search?.searchQuery?.text,
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
     SortBy: state.filter.sortBy?.toString(),
-  },
+  }, 
   sortByF: state.filter.sortBy,
 });
 const mapDispatchToProps = {

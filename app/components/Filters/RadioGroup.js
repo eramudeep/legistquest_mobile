@@ -42,12 +42,14 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
       return setSelected(getName(item));
     } else {
       if(selectedSubCourt){
+        console.log("in 1 else");
         applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()},${selectedSubSubCourt?.toString()}`});
         setSelectedSubSubCourt(SubCourtName)
         toggleByCourt$(SubCourtName) 
         
       }else{
-        applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
+        console.log("in 2 else");
+        applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()},${SubCourtName?.toString()}`});
         toggleByCourt$(SubCourtName)
        return setSelectedSubCourt(SubCourtName)
       }
@@ -65,7 +67,7 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
   const RenderRadio = ({item}) => {
      
     const {IsHaveSegregation, SubCourtList,CourtName} = item;
-    console.log({CourtName});
+    //console.log({CourtName});
     return (
       <>
         <RButton

@@ -9,7 +9,7 @@ import Icon from '../CustomIcon/Icon'
 import CustomLabel from '../CustomLabel/CustomLabel'
 
 function CustomHeader({ showHome,signInLabel, showMenu, showBack, onHome, onMenu ,hideLogo,showSignin,onSignin}) {
-   console.log("digning",signInLabel);
+   //console.log("digning",signInLabel);
     return (
         <View style={styles.header}>
             <View style={styles.icon}>

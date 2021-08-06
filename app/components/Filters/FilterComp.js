@@ -27,8 +27,8 @@ function FilterComp({
   };
 
   const applyFilters = (currentFilter) => { 
-    //console.log("applyFilters" );
-    searchByFilters$({...filtersList,...currentFilter}) 
+   //   console.log("applyFilters" ,{...filtersList,...currentFilter});
+   searchByFilters$({...filtersList,...currentFilter}) 
   }; 
    
    
@@ -48,7 +48,7 @@ function FilterComp({
             {label == 'Court' && <RadioGroup applyFilters={applyFilters} list={Court} />}
             {label == 'Bench' && (
               <ByBench applyFilters={applyFilters} list={Court} />
-            )}
+            )} 
             {label == 'Year' && (
               <ByYear applyFilters={applyFilters} list={Court} />
             )}
@@ -78,18 +78,18 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  filtersList: {
-    //Courtarray: `${state.filter.selectedByCourt?.toString()}`, 
+  filtersList: { 
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
     Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
-    SearchText: state?.search?.searchQuery?.text,
+    Idrafarray : `${state.filter.selectedByIdraf?.toString()}`, 
+    SearchText: state?.search?.searchQuery?.text, 
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
     SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
     Courtarray: `${state.filter.selectedByCourt?.toString()}`, 
-    Idrafarray:""
+     
    /*  SelectedFilter: "benchfilter",
     PageNo:1,
     Idrafarray:"",
