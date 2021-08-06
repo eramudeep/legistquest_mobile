@@ -90,3 +90,14 @@ export function truncateString(params) {
 var length = 203; 
  return params.substring(0,length);
 }
+
+export function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+ 

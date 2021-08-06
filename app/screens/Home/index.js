@@ -9,7 +9,7 @@ import { homeData } from '../../utils/MockData';
 import { connect } from 'react-redux';
 import { searchByQuery, resetSearchResults, getResultsByTopic } from '../../redux/searchActions';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
-
+import CustomChart from '../../components/CustomChart';
 import { TYPE_ACT, TYPE_FREE_TEXT } from '../../services/ApiList';
 import { setSearchType as setSearchTypeLocal, } from '../../utils/searchTypeHelper';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
@@ -51,7 +51,9 @@ function Home({
       signInLabel={userToken ? "Logout" : "Sign In"}
       isScrollable
       onSignin={onSignin}>
+
       <View style={[{ flex: 1 }, searching ? {} : { justifyContent: 'center' }]}>
+         <CustomChart />
         <CustomIcon iconStyle={{ width: scale(300), height: scale(100) }} />
         {
           searchType === TYPE_ACT ?
