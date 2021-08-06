@@ -7,6 +7,7 @@ import Details from '../Details';
 import {DETAILS_API, GETOCRDATABYCITEDIN} from '../../services/ApiList';
 import LoadingModal from '../../components/Modals/LoadingModal';
 
+
 export default function TopicDetail({route, navigation}) {
   const {LinkText, HighlightedText, item} = route.params;
   const [viewModel, setViewModel] = useState();

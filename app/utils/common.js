@@ -100,4 +100,17 @@ export function getRandomColor() {
   return color;
 }
 
+
+export function multipleyDecider(value) {
+  if(value <5){
+     return 5
+  }
+  if(value <=7){
+    return 3
+ }
+ return 2
+}
+
+ 
+
  

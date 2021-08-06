@@ -53,7 +53,7 @@ function Home({
       onSignin={onSignin}>
 
       <View style={[{ flex: 1 }, searching ? {} : { justifyContent: 'center' }]}>
-         <CustomChart />
+         {/* <CustomChart /> */}
         <CustomIcon iconStyle={{ width: scale(300), height: scale(100) }} />
         {
           searchType === TYPE_ACT ?
