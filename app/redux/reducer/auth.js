@@ -1,6 +1,7 @@
-const { USER_LOGIN_SUCCESS, USER_LOGOUT, } = require("../actionTypes");
+const { USER_LOGIN_SUCCESS, USER_LOGOUT, IS_NIGHTMODE, } = require("../actionTypes");
 const initialState = {
-    userData:{}
+    userData:{},
+    isNightmode:false
 }
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -15,6 +16,11 @@ export default function (state = initialState, action) {
                     ...state,
                     userData:{}
                 }
+                case IS_NIGHTMODE:
+                    return{
+                        ...state,
+                        isNightmode:action.payload
+                    }
         default:
             return  state
     }

@@ -1,5 +1,5 @@
 
-import { GET_PAGINATION, IS_LOADING, SET_ERROR, USER_LOGIN} from "./actionTypes";
+import { GET_PAGINATION, IS_LOADING, IS_NIGHTMODE, SET_ERROR, USER_LOGIN} from "./actionTypes";
 
 export const setError=(data)=>({
     type:SET_ERROR,
@@ -19,6 +19,10 @@ export const setError=(data)=>({
   })
   export const getUserLogout=(data)=>({
     type:USER_LOGIN,
+    payload:data
+  })
+  export const setIsNightMode=(data)=>({
+    type:IS_NIGHTMODE,
     payload:data
   })
   /* here you can add your action */

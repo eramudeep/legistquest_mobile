@@ -5,7 +5,8 @@ import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import { appColors } from '../../utils/appColors';
 import DynamicTabs from './DynamicTabs';
 import Highcharts from '../../components/Highcharts'
-export default function CitiedIn({ data, onPress }) {
+import { connect } from 'react-redux';
+ function CitiedIn({ data, onPress,isNightmode }) {
     console.log("data", data);
     const [tabs, setTabs] = useState([])
     const [tabsData, setTabsData] = useState([])
@@ -33,11 +34,11 @@ export default function CitiedIn({ data, onPress }) {
                     labelStyle={{ color: appColors.secondary }}
                 />
                 <View style={{}}>
-                    <Text style={styles.text}>
+                    <Text style={[styles.text,{color:isNightmode?appColors.white:appColors.black}]}>
                         {`${CourtName} | ${DateOfJudgment} | ${CaseNo}`}
                        {OcrStatus&& <Text style={{ fontWeight: "bold", color: appColors.red }}>{` | ${OcrStatus}`}</Text>}
                     </Text>
-                    <Text style={styles.text}>
+                    <Text style={[styles.text,{color:isNightmode?appColors.white:appColors.black}]}> 
                         {`${Judgment}`}
                     </Text>
                 </View>
@@ -77,3 +78,11 @@ const styles = StyleSheet.create({
         padding: scale(5)
     },
 })
+const mapStateToProps = (state) => ({
+    isNightmode:state.auth.isNightmode
+   
+  });
+  const mapDispatchToProps = {
+    
+  };
+  export default connect(mapStateToProps, mapDispatchToProps)(CitiedIn);

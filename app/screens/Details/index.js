@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, useWindowDimensions, ScrollView, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, useWindowDimensions, ScrollView, TouchableHighlight, Pressable } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import Container from '../../components/Container';
 import Highcharts from '../../components/Highcharts';
 import TabsList, { tabsList } from './TabsList';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import { appColors, shadow } from '../../utils/appColors';
 import Highlighter from 'react-native-highlight-words';
 import { removeHtmlTags } from '../../utils/common';
@@ -13,6 +14,8 @@ import HTML from "react-native-render-html";
 import createReactClass from 'create-react-class';
 import CitiedIn from './CitiedIn';
 import { WebView } from 'react-native-webview';
+import { connect } from 'react-redux';
+import { setIsNightMode } from '../../redux/actions';
 
 // const Child = createReactClass({
 //   onEnter() {
@@ -37,8 +40,8 @@ import { WebView } from 'react-native-webview';
 
 // }
 const tabs = ['short', 'list']
-export default function index({ viewModel, item, onPressCitiedCase, citiedInData }) {
-  // console.log('viewModel', viewModel);
+ function index({ viewModel, item, onPressCitiedCase, citiedInData ,setIsNightMode$,isNightmode}) {
+  console.log('viewModel', isNightmode);
   const contentWidth = useWindowDimensions().width;
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
@@ -61,10 +64,19 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
       <Text numberOfLines={2} style={styles.caseTitle}>{`${viewModel?.Petitioner} V.\n ${viewModel?.Respondent}`}</Text>
     );
   };
+const onPressIcon=(item)=>{
+  if(item==="moon"){
+    setIsNightMode$(!isNightmode)
+  }
 
+}
   const _renderIcons = () => {
     return ['download', 'bookmark', 'moon', 'frown'].map((item, key) => {
-      return <FontAwesome5 key={key} name={item} size={15} />;
+   
+      if(isNightmode && key==2){
+        return <Pressable onPress={()=>onPressIcon(item)}><Fontisto key={key} name={"day-sunny"} size={15} /></Pressable>;
+      }
+      return <Pressable onPress={()=>onPressIcon(item)}><FontAwesome5 key={key} name={item} size={15} /></Pressable>;
     });
   };
   const _renderIdraf = () => {
@@ -103,7 +115,12 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
           ]}
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
-        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
+        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+          body: {
+            whiteSpace: 'normal',
+            color:isNightmode? appColors.white:appColors.black
+          },
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
 
       </View>
     );
@@ -112,9 +129,14 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
   const _renderBench = () => {
     return (
       <View style={{ flex: 1 }}>
-        <Text style={[styles.headingLabels, { alignSelf: "center", }]}>Bench List</Text>
+        <Text style={[styles.headingLabels, { alignSelf: "center",color:isNightmode?appColors.white:appColors.black }]}>Bench List</Text>
         <View style={styles.underLine} />
-        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Bench }} />
+        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+          body: {
+            whiteSpace: 'normal',
+            color:isNightmode? appColors.white:appColors.black
+          },
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Bench }} />
 
       </View>
     );
@@ -122,9 +144,14 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
   const _renderCitiation = () => {
     return (
       <View style={{ flex: 1 }}>
-        <Text style={[styles.headingLabels, { alignSelf: "center", }]}>Eq Citation</Text>
+        <Text style={[styles.headingLabels, { alignSelf: "center",color:isNightmode?appColors.white:appColors.black }]}>Eq Citation</Text>
         <View style={styles.underLine} />
-        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Citation }} />
+        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+          body: {
+            whiteSpace: 'normal',
+            color:isNightmode? appColors.white:appColors.black
+          },
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Citation }} />
 
       </View>
     );
@@ -133,9 +160,14 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
 
     return (
       <View style={{ flex: 1 }}>
-        <Text style={[styles.headingLabels, { alignSelf: "center", }]}>Advocates List</Text>
+        <Text style={[styles.headingLabels, { alignSelf: "center",color:isNightmode?appColors.white:appColors.black }]}>Advocates List</Text>
         <View style={styles.underLine} />
-        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} />
+        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+          body: {
+            whiteSpace: 'normal',
+            color:isNightmode? appColors.white:appColors.black
+          },
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} />
 
       </View>
     );
@@ -151,11 +183,11 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
           marginTop: scale(10),
           marginBottom: scale(10)
         }}>
-        <Text style={styles.headingLabels}>{viewModel?.Petitioner}</Text>
-        <Text style={styles.headingLabels}>V. </Text>
-        <Text style={styles.headingLabels}>{viewModel?.Respondent}</Text>
-        <Text style={{ fontWeight: "bold" }}>({viewModel?.CourtName})</Text>
-        <Text style={{ marginTop: scale(6) }} >{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
+        <Text style={[styles.headingLabels, { color: isNightmode? appColors.white:appColors.black }]}>{viewModel?.Petitioner}</Text>
+        <Text style={[styles.headingLabels, { color: isNightmode? appColors.white:appColors.black }]}>V. </Text>
+        <Text style={[styles.headingLabels, { color: isNightmode? appColors.white:appColors.black }]}>{viewModel?.Respondent}</Text>
+        <Text style={{ fontWeight: "bold", color: isNightmode? appColors.white:appColors.black }}>({viewModel?.CourtName})</Text>
+        <Text style={{ marginTop: scale(6), color: isNightmode? appColors.white:appColors.black }} >{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
 
       </View>
     );
@@ -170,24 +202,24 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
       {_renderIdraf()}
       {_renderHeader()}
       <TabsList >
-        <View key={0}>
+        <View key={0} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
           {_renderCaseHeading()}
           {viewModel?.Judgement && _renderJudgement()}
         </View>
-        <View key={1}>
-        <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />
+        <View key={1} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
+          <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />
         </View >
-        <View key={2}>
+        <View key={2} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
           {/* <CitiedIn onPress={onPressCitiedCase} data={citiedInData} /> */}
         </View>
-        <View key={3}>
+        <View key={3} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
           {_renderAdvocates()}
 
         </View>
-        <View key={4}>
+        <View key={4} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
           {_renderBench()}
         </View>
-        <View key={5}>
+        <View key={5} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
           {_renderCitiation()}
         </View>
       </TabsList>
@@ -211,6 +243,10 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
 }
 
 const styles = StyleSheet.create({
+  tabComp:{ 
+    backgroundColor: appColors.blue,
+    paddingHorizontal:scale(5) 
+  },
   headerContainer: {
     flex: 2,
     maxHeight: scale(30),
@@ -264,3 +300,12 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
 });
+
+const mapStateToProps = (state) => ({
+  isNightmode:state.auth.isNightmode
+ 
+});
+const mapDispatchToProps = {
+  setIsNightMode$: setIsNightMode,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(index);
