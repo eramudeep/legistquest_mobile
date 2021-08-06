@@ -14,13 +14,10 @@ import HTML from "react-native-render-html";
 import createReactClass from 'create-react-class';
 import CitiedIn from './CitiedIn';
 import { WebView } from 'react-native-webview';
-<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { setIsNightMode } from '../../redux/actions';
 
-=======
 import CustomChart from '../../components/CustomChart';
->>>>>>> 0b7eb36ff324177ce356c1da4d65b41162e0eff4
 // const Child = createReactClass({
 //   onEnter() {
 //     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
@@ -44,13 +41,8 @@ import CustomChart from '../../components/CustomChart';
 
 // }
 const tabs = ['short', 'list']
-<<<<<<< HEAD
  function index({ viewModel, item, onPressCitiedCase, citiedInData ,setIsNightMode$,isNightmode}) {
   console.log('viewModel', isNightmode);
-=======
-export default function index({ viewModel, item, onPressCitiedCase, citiedInData }) {
-    console.log('viewModel', viewModel);
->>>>>>> 0b7eb36ff324177ce356c1da4d65b41162e0eff4
   const contentWidth = useWindowDimensions().width;
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
@@ -124,20 +116,12 @@ const onPressIcon=(item)=>{
           ]}
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
-<<<<<<< HEAD
         <HTML containerStyle={{ padding: 20 }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
           },
         }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
-=======
-        <View style={{marginBottom:scale(20)}}>
-          <CustomChart  dataSet={viewModel?.CitedDtoList} />
-        </View>
-        
-        <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
->>>>>>> 0b7eb36ff324177ce356c1da4d65b41162e0eff4
 
       </View>
     );
