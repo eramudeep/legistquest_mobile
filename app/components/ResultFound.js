@@ -41,30 +41,19 @@ function ResultFound({filtersList,searchByFilters$,filterWithInResult,getResults
         />
         <Text> results for query {searchQuery.text} </Text>
       </View>
-      {/* <View style={{flex: 1,}}>
-        <Text style={{marginTop:scale(5)}}>Sort by : </Text>
-        <RNPickerSelect
-          onValueChange={(value) => {
-            onChangePicker(value);
-          }}
-          items={sortData}
-          value={sortBy}
-          // style={pickerSelectStyles}
-          fixAndroidTouchableBug
-        />
-      </View> */}
+       
     </View>
   );
 }
 const styles = StyleSheet.create({
   cont: {
     borderBottomWidth: scale(0.3),
-    paddingVertical: scale(20),
+    paddingVertical: scale(10),
     //marginTop: scale(10), 
      
     // flexDirection: 'row',
     // flexWrap: 'wrap',
-    flex:1,
+    //flex:1,
     //backgroundColor:"pink"
   },
 });

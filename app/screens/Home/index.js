@@ -53,10 +53,10 @@ function Home({
       onSignin={onSignin}>
 
       <View style={[{ flex: 1 }, searching ? {} : { justifyContent: 'center' }]}>
-         <Pressable onPress={()=>navigation.navigate("SearchBox")}>
+         {/* <Pressable onPress={()=>navigation.navigate("SearchBox")}>
            <Text>Click</Text>
-         </Pressable>
-         {/* <CustomChart /> */}
+         </Pressable> */}
+          
         <CustomIcon iconStyle={{ width: scale(300), height: scale(100) }} />
         {
           searchType === TYPE_ACT ?
