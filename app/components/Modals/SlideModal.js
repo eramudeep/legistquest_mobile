@@ -45,7 +45,7 @@ function SlideModal({
     resetFilters$({keepWithInResultFilter: true});
     getResultsByTopic$({
       selectedTopic: searchQuery?.text,
-      filterValueList: [filterVal, ...filterWithInResult],
+      filterValueList: [/* filterVal, ...filterWithInResult */],
       SortBy: SortBy?.toString(),
       keepFilters: true,
     });

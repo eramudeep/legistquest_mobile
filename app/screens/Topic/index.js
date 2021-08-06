@@ -137,7 +137,7 @@ function Topic({
       sortBy: value,
     });
     setSortBy(value);
-    console.log({filtersList});
+    //console.log({filtersList});
     searchByFilters$({...filtersList, SortBy: value?.toString()});
 
     //getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
@@ -270,7 +270,8 @@ const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
   searchQuery: state.search.searchQuery,
   isTopicLoading: state.error.isloading,
-  filtersList: {
+  filtersList: { 
+    Courtarray  :`${state.filter.selectedByCourt?.toString()}`, 
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
     Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
