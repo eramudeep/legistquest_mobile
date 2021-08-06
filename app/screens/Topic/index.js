@@ -177,7 +177,7 @@ function Topic({
             style={{
               width: '100%',
               justifyContent: 'space-between',
-              flexDirection: 'row',
+              flexDirection: 'row',backgroundColor:appColors.lighterGray,alignItems:"center",paddingHorizontal:scale(5)
             }}>
             <View style={{width: '50%', borderRightWidth: scale(0.6)}}>
               <Pressable
@@ -205,14 +205,11 @@ function Topic({
               style={{
                 width: '50%',
                 justifyContent: 'center',
-                alignItems: 'center',
-                alignContent: 'center',
+                // alignItems: 'center',
+                // alignContent: 'center',
                 backgroundColor: appColors.lighterGray,
-                flexDirection: 'row',
+                // flexDirection: 'row',
               }}>
-              <View style={{marginRight: scale(12)}}>
-                <Icon name={'sort'} size={scale(15)} color={appColors.blue} />
-              </View>
               <RNPickerSelect
                 style={{viewContainer: {justifyContent: 'center'}, inputIOS:{fontSize:scale(14), color:appColors.blue} }}
                 onValueChange={(value) => {
@@ -220,7 +217,10 @@ function Topic({
                 }}
                 items={sortData}
                 value={sortBy}
-                // style={pickerSelectStyles}
+              Icon={()=><Icon name={'sort'} size={scale(15)} color={appColors.blue} />}
+                style={{inputAndroid:{color:appColors.blue,},
+                iconContainer:{marginTop:scale(13)},
+              inputIOS:{color:appColors.blue}}}
                 fixAndroidTouchableBug
               />
             </View>

@@ -19,6 +19,8 @@ import { setIsNightMode } from '../../redux/actions';
 
 import CustomChart from '../../components/CustomChart';
 import ReportModal from '../../components/Modals/ReportModal';
+import DownloadModal from '../../components/Modals/DownloadModal';
+import { downloadFile } from '../../services/downloadFile';
 // const Child = createReactClass({
 //   onEnter() {
 //     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
@@ -51,12 +53,19 @@ const tabs = ['short', 'list']
   const [court, setCourt] = useState(false)
   const [citation, setCitation] = useState(false)
   const [other, setOther] = useState(false)
+  const [showDownModal, setShowDownModal] = useState(false)
 const [discription, setDiscription] = useState()
+const [fontsize, setFontsize] = useState(4)
   const contentWidth = useWindowDimensions().width;
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
   };
+const onDownload=async()=>{
+  // console.log("viewModel",viewModel);
+  const{EncryptedId,CourtName,CaseId,CaseNo,PageID,PlainJudgment}=viewModel
+// await downloadFile(PageID,CourtName,fontsize,PlainJudgment)
 
+}
   const _renderHeader = () => {
     return (
       <View style={[styles.headerContainer,/*  shadow, */]}>
@@ -81,11 +90,14 @@ const onPressIcon=(item)=>{
   if(item==="frown"){
     setIsVisible(true)
   }
+  if(item==="download"){
+setShowDownModal(true)
+  }
 }
   const _renderIcons = () => {
-    return ['download', 'bookmark', 'moon', 'frown'].map((item, key) => {
+    return ['download', 'moon', 'frown'].map((item, key) => {
    
-      if(isNightmode && key==2){
+      if(isNightmode && key==1){
         return <Pressable onPress={()=>onPressIcon(item)}><Fontisto key={key} name={"day-sunny"} size={15} /></Pressable>;
       }
       return <Pressable onPress={()=>onPressIcon(item)}><FontAwesome5 key={key} name={item} size={15} /></Pressable>;
@@ -255,6 +267,7 @@ visible={isVisible}
  onSelectAll={()=>setSelectAll(prev=>!prev)}
  onchangeDisc={val=>setDiscription(val)}
  />
+ <DownloadModal visible={showDownModal} onDownload={onDownload} onClose={()=>setShowDownModal(false)} pickerValue={fontsize} onChangePicker={(value)=>setFontsize(value)}/>
     </View>
   );
 }
