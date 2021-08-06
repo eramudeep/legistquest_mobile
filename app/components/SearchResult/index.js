@@ -89,7 +89,8 @@ export default function SearchResult({
     return (
       <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
         <CustomInput
-          onChangeText={(chnage) => setSearchWithiNQuery(chnage)}
+          onChangeText={(chnage) => {
+            setSearchWithiNQuery(chnage)}}
           placeholder="Type your text here"
           containerStyle={{width: '70%'}}
         />

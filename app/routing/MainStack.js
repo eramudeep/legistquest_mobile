@@ -7,7 +7,8 @@ import Login from '../screens/Login/Login';
 import Reset from '../screens/Login/Reset';
 import Topic from '../screens/Topic';
 import TopicDetail from '../screens/Topic/TopicDetail';
-
+import SearchBox from '../components/SearchBox';
+ 
 const Stack = createStackNavigator();
 
 export default function MainStack() {
@@ -20,6 +21,8 @@ export default function MainStack() {
       <Stack.Screen name="Reset" component={Reset} />
       <Stack.Screen name="Topic" component={Topic} />
       <Stack.Screen name="TopicDetail" component={TopicDetail} />
+      <Stack.Screen name="SearchBox" component={SearchBox} />
+      
     </Stack.Navigator>
     </NavigationContainer>
   );

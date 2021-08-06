@@ -37,9 +37,6 @@ export const senitizeAnyArray = (
   }
 };
 export const getPlacheHolder = (searchType) => {
-
- 
-
   switch (searchType) {
     case TYPE_ACT:
       return 'Act Name';
@@ -51,7 +48,7 @@ export const getPlacheHolder = (searchType) => {
       return 'Judge Name';
     case CITATION:
       return 'Search through citation';
-      default:
+    default:
       return 'Search free text..';
   }
 };
@@ -69,26 +66,19 @@ export const getHeaders = (jsonData) => {
   return requestOptions;
 };
 
-
 export function toTitleCase(str) {
-  return str.replace(
-    /\w\S*/g,
-    function(txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    }
-  );
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
 
-
 export function cleanString(params) {
-  return  params.replace(/;\s*$/, "");
-  }
-
+  return params.replace(/;\s*$/, '');
+}
 
 export function truncateString(params) {
-  
-var length = 203; 
- return params.substring(0,length);
+  var length = 203;
+  return params.substring(0, length);
 }
 
 export function getRandomColor() {
@@ -100,17 +90,23 @@ export function getRandomColor() {
   return color;
 }
 
-
 export function multipleyDecider(value) {
-  if(value <5){
-     return 5
+  if (value < 5) {
+    return 5;
   }
-  if(value <=7){
-    return 3
- }
- return 2
+  if (value <= 7) {
+    return 3;
+  }
+  return 2;
 }
 
- 
-
- 
+export function getUniId(length=5) {
+  var result = '';
+  var characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}

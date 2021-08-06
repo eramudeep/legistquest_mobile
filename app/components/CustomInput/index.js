@@ -19,7 +19,8 @@ export default function CustomInput({
     iconColor,
     leftIcon,
     leftIconColor,
-    defaultValue
+    defaultValue,
+    onFocus,onBlur,autoFocus
  }) {
     return (
         <View style={[styles.container,containerStyle]}>
@@ -39,6 +40,9 @@ export default function CustomInput({
                 secureTextEntry={secureText}
                 value={value}
                 defaultValue={defaultValue}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                autoFocus={autoFocus}
 
             />
             {

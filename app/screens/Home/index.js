@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Keyboard, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Keyboard, StyleSheet, Text, View, ScrollView, TouchableOpacity,Pressable } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import Container from '../../components/Container';
 import CustomIcon from '../../components/CustomIcon';
@@ -14,6 +14,7 @@ import { setSearchType as setSearchTypeLocal, } from '../../utils/searchTypeHelp
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import { getUserLogout } from '../../redux/actions';
 import { AlertHelper } from '../../utils/AlertHelper';
+import SearchBox from '../../components/SearchBox'
 
 function Home({
   navigation,
@@ -52,7 +53,10 @@ function Home({
       onSignin={onSignin}>
 
       <View style={[{ flex: 1 }, searching ? {} : { justifyContent: 'center' }]}>
-         {/* <CustomChart /> */}
+         {/* <Pressable onPress={()=>navigation.navigate("SearchBox")}>
+           <Text>Click</Text>
+         </Pressable> */}
+          
         <CustomIcon iconStyle={{ width: scale(300), height: scale(100) }} />
         {
           searchType === TYPE_ACT ?
