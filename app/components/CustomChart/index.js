@@ -4,7 +4,7 @@ import {scale} from 'react-native-size-matters';
 import {appColors} from '../../utils/appColors';
 import {getRandomColor, multipleyDecider} from '../../utils/common';
 
-export default function index({dataSet}) {
+export default function index({onPress,dataSet}) {
   let collapse = new Animated.Value(1);
    
   const RenderColumn = ({label, value, color, onPress}) => {
@@ -47,7 +47,7 @@ export default function index({dataSet}) {
           alignItems: 'flex-end',
         }}>
          {sentiseData()?.map((item,key)=>{
-           return  <RenderColumn key={key} {...item} /* label='Cited Total' value={32} color={getRandomColor()} */ />
+           return  <RenderColumn onPress={onPress} key={key} {...item} /* label='Cited Total' value={32} color={getRandomColor()} */ />
          })} 
       </View> 
     </View>

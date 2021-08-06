@@ -104,7 +104,7 @@ export default function index({ viewModel, item, onPressCitiedCase, citiedInData
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
         <View style={{marginBottom:scale(20)}}>
-          <CustomChart dataSet={viewModel?.CitedDtoList} />
+          <CustomChart  dataSet={viewModel?.CitedDtoList} />
         </View>
         
         <HTML containerStyle={{ padding: 20 }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
