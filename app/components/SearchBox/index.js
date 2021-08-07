@@ -49,23 +49,17 @@ function index({
   const onChangeText = (chnage) => {
     setSearchedQuery(chnage);
     debouncedSearch(chnage);
-  };
-  const getQuery = () => {
-    if (searchQuery.type === TYPE_ACT && sectionText?.length > 2) {
-      return `${searchedQuery}+${sectionText}`;
-    }
-    return searchedQuery;
-  };
+  }; 
   const onItemPress = (item) => {
     const SEARCH_QUERY = item?.Value; // getQuery(); 
-    if (SEARCH_QUERY?.length > 2 && searchQuery.type != TYPE_ACT) {
+    if (SEARCH_QUERY?.length > 2 /* && searchQuery.type != TYPE_ACT */) {
       getResultsByTopic$({
         selectedTopic: SEARCH_QUERY,
         filterValueList,
         SortBy,
       });
       return navigation?.navigate('Topic', {selectedTopic: SEARCH_QUERY});
-    } else if (searchQuery.type === TYPE_ACT && sectionText?.length > 2) {
+    } /* else if (searchQuery.type === TYPE_ACT && sectionText?.length >=1) {
       console.log('searchQuery.text', searchQuery.text);
       getResultsByTopic$({
         selectedTopic:   searchQuery.text ,
@@ -73,9 +67,10 @@ function index({
         SortBy,
       });
       return navigation?.navigate('Topic', {selectedTopic: SEARCH_QUERY});
-    }  else{
+    }  else if(searchQuery.type != TYPE_ACT){
       AlertHelper.show('error', 'Search should be minimum 3 alphabets...');
-    }  
+    }   */
+    AlertHelper.show('error', 'Search should be minimum 3 alphabets...');
   };
   const _renderItem = ({item, index}) => {
     const {Value} = item;
@@ -119,11 +114,11 @@ function index({
           autoFocus
           placeholder={getPlacheHolder(searchQuery.type)}
           onSubmitEditing={() => {
-            searchQuery.type != TYPE_ACT && onItemPress({Value: searchedQuery});
+            /* searchQuery.type != TYPE_ACT && */ onItemPress({Value: searchedQuery});
           }}
         />
       </View>
-      {searchQuery.type === TYPE_ACT && (
+      {/* searchQuery.type === TYPE_ACT && (
         <CustomInput
           defaultValue={sectionText}
           onChangeText={(change) => {
@@ -132,7 +127,7 @@ function index({
 
             searchByQuery$({
               type: searchQuery?.type,
-              text: `${searchedQuery}${encodeURIComponent("+")}${change}`,
+              text: `${searchedQuery}%20${encodeURIComponent("+")}%20${change}`,
             });
           }}
           onRightIcon={clear}
@@ -144,7 +139,7 @@ function index({
           placeholder={'Section'}
           onSubmitEditing={() => onItemPress()}
         />
-      )}
+      ) */}
       <FlatList
         keyExtractor={(item) =>
           `${new Date().getTime()}_${item.Value}_${getUniId()}`

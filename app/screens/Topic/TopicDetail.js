@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View,ActivityIndicator} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import Details from '../Details';
 import {DETAILS_API, GETOCRDATABYCITEDIN} from '../../services/ApiList';
 import LoadingModal from '../../components/Modals/LoadingModal';
+import { appColors } from '../../utils/appColors';
 
 
 export default function TopicDetail({route, navigation}) {
@@ -69,6 +70,8 @@ const resultCitied = await respounceCitied.json();
       isScrollable
       showHome
       showMenu
+      showSignin
+      //bodyStyle={{backgroundColor:appColors.lighterGray}}
       onHome={() => navigation.navigate('Home')}>
       <View>
         {/* <CustomLabel
@@ -79,9 +82,16 @@ const resultCitied = await respounceCitied.json();
           text={HighlightedText}
           labelStyle={styles.bodyText}
         /> */}
-        <Details viewModel={viewModel} item={item} citiedInData={citiedInData} onPressCitiedCase={getDetailsScreenData}/>
+        {isLoading ?  <View style={{backgroundColor:appColors.white,flex:1,justifyContent:"center",alignItems:"center"}}>
+          <ActivityIndicator size="large" color={appColors.secondary} />
+          </View>
+           : <Details viewModel={viewModel} item={item} citiedInData={citiedInData} onPressCitiedCase={getDetailsScreenData}/>
+          }
+
+        
       </View>
-      <LoadingModal visible={isLoading}/>
+      {/* <LoadingModal visible={isLoading}/> */}
+      
     </Container>
   );
 }

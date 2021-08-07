@@ -8,12 +8,13 @@ import Reset from '../screens/Login/Reset';
 import Topic from '../screens/Topic';
 import TopicDetail from '../screens/Topic/TopicDetail';
 import SearchBox from '../components/SearchBox';
- 
+//import { navigationRef } from './RootNavigation';
+
 const Stack = createStackNavigator();
 
 export default function MainStack() {
   return (
-      <NavigationContainer>
+      <NavigationContainer  >
     <Stack.Navigator initialRouteName={"Home"} screenOptions={{headerShown:false}}>
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Home" component={Home} />

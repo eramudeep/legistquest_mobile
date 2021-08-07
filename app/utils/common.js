@@ -97,10 +97,13 @@ export function multipleyDecider(value) {
   if (value <= 7) {
     return 13;
   }
+  if (value >=50) {
+    return 2;
+  }
   return 12;
 }
 
-export function getUniId(length=5) {
+export function getUniId(length = 5) {
   var result = '';
   var characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -110,3 +113,14 @@ export function getUniId(length=5) {
   }
   return result;
 }
+
+export function noEmptyElements(array) {
+  var filtered = array.filter(function (el) {
+    return el != null || el === '';
+  });
+
+  return filtered;
+}
+
+
+ 

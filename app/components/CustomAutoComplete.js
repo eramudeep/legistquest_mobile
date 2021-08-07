@@ -104,7 +104,7 @@ function CustomAutoComplete({
       //  listContainerStyle={{/* paddingHorizontal:0,zIndex:100, *//* backgroundColor:'red', padding:140 */}}
         keyExtractor={(item) => Math.random().toString(36).substring(7)}
         listStyle={[{borderWidth: 0, paddingHorizontal: 0,  marginTop: scale(Platform.OS =="ios" ? 0: 25), maxHeight: scale(350), marginBottom:scale(30) }, Platform.OS =="ios" ? {width:window.width -120,} :{} ]}
-        placeholder={searchQuery?.text? searchQuery?.text : getPlacheHolder(searchQuery?.type) }
+        placeholder={searchQuery?.text?decodeURIComponent( searchQuery?.text ): getPlacheHolder(searchQuery?.type) }
         onChangeText={onChange /* onChangeText */}
          
         renderItem={({item, i}) => {

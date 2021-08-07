@@ -39,7 +39,7 @@ function ResultFound({filtersList,searchByFilters$,filterWithInResult,getResults
           labelStyle={{padding: 0, fontSize: scale(12)}}
           text={CaseCount}
         />
-        <Text> results for query {searchQuery.text} </Text>
+        <Text> results for query {decodeURIComponent(searchQuery.text)} </Text>
       </View>
        
     </View>

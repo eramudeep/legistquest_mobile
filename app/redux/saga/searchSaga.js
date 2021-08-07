@@ -60,13 +60,9 @@ export function* workerGetResultsByTopic(action) {
   //console.log({filterValueList});
   yield put({type: IS_LOADING, payload: true});
   if(!keepFilters)
-  yield put({type: CLEAN_FILTERS});
-  if (selectedTopic.includes("+")) {
-    //QUERY = `${QUERY} ${encodeURIComponent("+")} ${section.value}`;
-    //selectedTopic =selectedTopic 
-  }
-  let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${  selectedTopic}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=`
-  //console.log("URL",URL);
+  yield put({type: CLEAN_FILTERS}); 
+  let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=`
+  console.log("URL",URL);
    if(  filterValueList?.length >0){
     if(filterValueList?.length <2)
       URL=`${URL}&filter=${filterValueList ? filterValueList[filterValueList?.length-1] :''}`

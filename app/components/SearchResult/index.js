@@ -8,6 +8,7 @@ import Icon from '../CustomIcon/Icon';
 import CustomLabel from '../CustomLabel/CustomLabel';
 import {
   cleanString,
+  noEmptyElements,
   removeHtmlTags,
   toTitleCase,
   truncateString,
@@ -71,13 +72,14 @@ export default function SearchResult({
   };
 
   const _renderJudges = () => {
+    
     return (
       <View>
         <FlatList
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{padding: scale(3)}} />}
           //horizontal
-          data={cleanString(Judges)?.split('<BR />')}
+          data={  cleanString(Judges)?.includes("<BR />") ? noEmptyElements( cleanString(Judges)?.split('<BR />') ): noEmptyElements(cleanString(Judges)?.split('<br />'))  || [] }
           renderItem={_renderJudge}
           keyExtractor={(item) => item.id}
         />

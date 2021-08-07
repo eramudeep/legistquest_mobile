@@ -40,7 +40,7 @@ function Home({
     if (res.status == true) {
       AlertHelper.show("success", "Success", "User Logout successful")
     }
-  }
+  } 
   return (
     <Container
       showFooter
@@ -78,6 +78,7 @@ function Home({
               setSearchTypeLocal(val.key)
               searchByQuery$({ type: val.key, text: "" })
               setSearchType(val.key)
+              return navigation.navigate("SearchBox")
             }}>
               <CustomLabel text={val.label} labelStyle={styles.label} />
               <CustomLabel text={val.value} labelStyle={[styles.label1, val.key === searchType && { color: appColors.green }]} />

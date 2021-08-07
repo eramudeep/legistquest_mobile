@@ -15,7 +15,7 @@ import getIcon from '../../utils/getIcon'
 
 const swtich = ["Individual", "Corporate"]
 function Login({ navigation,userLogin$ }) { 
-    const [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState(1)
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [customerCode, setcustomerCode] = useState()
@@ -30,7 +30,7 @@ function Login({ navigation,userLogin$ }) {
     const callback=(respo)=>{
         console.log("log",respo);
        if(respo.status==true){ 
-           AlertHelper.show("success","Success","Login Successfull")
+           AlertHelper.show("success","Success","You have successfully logged in.")
            navigation.navigate("Home")
         }
         else{
@@ -66,7 +66,7 @@ function Login({ navigation,userLogin$ }) {
                         <CustomIcon />
                         <CustomLabel text={"Keep me signed in"} labelStyle={styles.label} />
                     </View> */}
-                    <CustomLabel text={"Forgot Password?"} labelStyle={[styles.label, { color: appColors.blue }]} onPress={() => navigation.navigate("Reset")} />
+                   {/*  <CustomLabel text={"Forgot Password?"} labelStyle={[styles.label, { color: appColors.blue }]} onPress={() => navigation.navigate("Reset")} /> */}
                 </View>
                 <CustomButton onPress={onLogin} label={"Take me in!"} />
                 {/* <CustomLabel text={"Or Login with:"} labelStyle={styles.labelOr} /> */}

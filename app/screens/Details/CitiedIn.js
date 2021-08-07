@@ -47,8 +47,8 @@ import { connect } from 'react-redux';
     }
     return (
         <View>
-             <Highcharts/>
-             <Text>---------------------</Text>
+              
+              
             <DynamicTabs tabs={tabs}>
                 {tabsData.map((val, key) => {
                     console.log("val", val);

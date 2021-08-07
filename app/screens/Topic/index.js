@@ -33,7 +33,7 @@ import {sortData} from '../../utils/MockData';
 import {searchByFilters, sortByOnly} from '../../redux/filterActions';
 import CustomLabel from '../../components/CustomLabel/CustomLabel';
 
-const coutLists = ['SupremeCourtList', 'HighCourtList', 'OtherCourtList'];
+const courtLists = ['SupremeCourtList', 'HighCourtList', 'OtherCourtList'];
 function Topic({
   sortByF,
   searchByFilters$,
@@ -46,6 +46,7 @@ function Topic({
   navigation,
   isTopicLoading,
   filtersList,
+  userToken
 }) {
   const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
@@ -101,7 +102,7 @@ function Topic({
     let filters = {};
     // console.log("searchTopicResult",searchTopicResult);
     let Court = [];
-    coutLists?.map((courtName) => {
+    courtLists?.map((courtName) => {
       if (searchTopicResult?.[courtName]) {
         const {CourtName, CaseCount, CaseIds, CaseListViewModel} =
           searchTopicResult?.[courtName];
@@ -144,7 +145,7 @@ function Topic({
 
     //getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
   };
-
+console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
   return (
     <Container
       bodyStyle={{padding: scale(0)}}
@@ -152,6 +153,8 @@ function Topic({
       showHome
       showMenu
       showFooter
+      showSignin
+      //signInLabel={userToken ?  }
       onHome={() => navigation.navigate('Home')}>
       {isTopicLoading ? (
         <View>
@@ -254,12 +257,12 @@ function Topic({
                   height: scale(500),
                 }}>
                 <CustomLabel
-                  text={`No result found for query '${searchQuery?.text}'`}
+                  text={`No result found for query '${ searchQuery?.text}'`}
                   labelStyle={{color: appColors.tabLabel}}
                 />
               </View>
             )}
-            data={searchTopicResult?.CaseDetails}
+            data={searchTopicResult?.CaseDetails /* | [...searchTopicResult?.CaseDetails] */}
             renderItem={_renderSearchResult}
             keyExtractor={(item) =>
               `${new Date().getTime()}_${item.Id}_${item.EncryptedId}_${
@@ -313,6 +316,7 @@ const mapStateToProps = (state) => ({
     SortBy: state.filter.sortBy?.toString(),
   },
   sortByF: state.filter.sortBy,
+  userToken: state.auth.userData?.data?.userToken
 });
 const mapDispatchToProps = {
   getResultsByTopic$: getResultsByTopic,

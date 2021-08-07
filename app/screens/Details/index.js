@@ -21,6 +21,7 @@ import CustomChart from '../../components/CustomChart';
 import ReportModal from '../../components/Modals/ReportModal';
 import DownloadModal from '../../components/Modals/DownloadModal';
 import { downloadFile } from '../../services/downloadFile';
+import Badge from '../../components/Badge';
 // const Child = createReactClass({
 //   onEnter() {
 //     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
@@ -45,6 +46,9 @@ import { downloadFile } from '../../services/downloadFile';
 // }
 const tabs = ['short', 'list']
  function index({ viewModel, item, onPressCitiedCase, citiedInData ,setIsNightMode$,isNightmode}) {
+  const deciddedBgColor =    isNightmode?appColors.white:appColors.black
+  const deciddedTextColor =   isNightmode?appColors.black:appColors.white
+  console.log({deciddedTextColor});
   const [isVisible, setIsVisible] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
   const [content, setContent] = useState(false)
@@ -63,15 +67,15 @@ const [fontsize, setFontsize] = useState(4)
 const onDownload=async()=>{
   // console.log("viewModel",viewModel);
   const{EncryptedId,CourtName,CaseId,CaseNo,PageID,PlainJudgment}=viewModel
-// await downloadFile(PageID,CourtName,fontsize,PlainJudgment)
+  await downloadFile(PageID,CourtName,fontsize,PlainJudgment)
 
 }
   const _renderHeader = () => {
     return (
       <View style={[styles.headerContainer,/*  shadow, */]}>
-        <View style={{ flex: 1, backgroundColor: appColors.white, flexDirection: "row" }}>
+       {/*  <View style={{ flex: 1, backgroundColor: appColors.white, flexDirection: "row" }}>
           {_renderCaseTitle()}
-        </View>
+        </View> */}
         <View style={{ padding: scale(5), flex: 1, flexDirection: "row", justifyContent: "space-around", backgroundColor: appColors.white }}>
           {_renderIcons()}
         </View>
@@ -95,7 +99,7 @@ setShowDownModal(true)
   }
 }
   const _renderIcons = () => {
-    return ['download', 'moon', 'frown'].map((item, key) => {
+    return [/* 'download', */ 'moon', /* 'frown' */].map((item, key) => {
    
       if(isNightmode && key==1){
         return <Pressable onPress={()=>onPressIcon(item)}><Fontisto key={key} name={"day-sunny"} size={15} /></Pressable>;
@@ -140,12 +144,13 @@ setShowDownModal(true)
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
         <View style={{marginBottom:scale(20)}}>
-        <CustomChart dataSet={viewModel.OcrDtoList} />
+        <CustomChart dataSet={viewModel?.OcrDtoList} />
         </View>
-        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+        <HTML containerStyle={{ padding: 20,  }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
-            color:isNightmode? appColors.white:appColors.black
+            color:isNightmode? appColors.white :appColors.grayDark,
+            //backgroundColor:appColors.lighterGray
           },
         }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
 
@@ -156,14 +161,15 @@ setShowDownModal(true)
   const _renderBench = () => {
     return (
       <View style={{ flex: 1 }}>
-        <Text style={[styles.headingLabels, { alignSelf: "center",color:isNightmode?appColors.white:appColors.black }]}>Bench List</Text>
+        <Text style={[styles.headingLabels, { alignSelf: "center",color:deciddedBgColor }]}>Bench List</Text>
         <View style={styles.underLine} />
-        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+        {/* <HTML containerStyle={{ padding: 20 }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
           },
-        }} contentWidth={contentWidth} source={{ html: viewModel?.Bench }} />
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Bench }} /> */}
+         <Badge badgeStyle={{paddingVertical:scale(10),marginBottom:scale(5)}}  text={removeHtmlTags( viewModel?.Bench)} />
 
       </View>
     );
@@ -171,7 +177,7 @@ setShowDownModal(true)
   const _renderCitiation = () => {
     return (
       <View style={{ flex: 1 }}>
-        <Text style={[styles.headingLabels, { alignSelf: "center",color:isNightmode?appColors.white:appColors.black }]}>Eq Citation</Text>
+        <Text style={[styles.headingLabels, { alignSelf: "center",color:deciddedBgColor }]}>Eq Citation</Text>
         <View style={styles.underLine} />
         <HTML containerStyle={{ padding: 20 }} tagsStyles={{
           body: {
@@ -187,14 +193,20 @@ setShowDownModal(true)
 
     return (
       <View style={{ flex: 1 }}>
-        <Text style={[styles.headingLabels, { alignSelf: "center",color:isNightmode?appColors.white:appColors.black }]}>Advocates List</Text>
+        <Text style={[styles.headingLabels, { alignSelf: "center",color:deciddedBgColor }]}>Advocates List</Text>
         <View style={styles.underLine} />
-        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+        {/* <HTML containerStyle={{ padding: 20 }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
           },
-        }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} />
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} /> */}
+        {
+          viewModel?.Advocates?.split(",")?.map((item,key)=>{ 
+            
+            return <Badge badgeStyle={{paddingVertical:scale(10),marginBottom:scale(5)}} text={removeHtmlTags(item)} />
+          })
+        }
 
       </View>
     );
@@ -208,14 +220,15 @@ setShowDownModal(true)
           justifyContent: 'center',
           alignItems: 'center',
           marginTop: scale(10),
-          marginBottom: scale(10)
+           
+          borderBottomWidth:scale(0.5)
         }}>
-        <Text style={[styles.headingLabels, { color: isNightmode? appColors.white:appColors.black }]}>{viewModel?.Petitioner}</Text>
-        <Text style={[styles.headingLabels, { color: isNightmode? appColors.white:appColors.black }]}>V. </Text>
-        <Text style={[styles.headingLabels, { color: isNightmode? appColors.white:appColors.black }]}>{viewModel?.Respondent}</Text>
-        <Text style={{ fontWeight: "bold", color: isNightmode? appColors.white:appColors.black }}>({viewModel?.CourtName})</Text>
-        <Text style={{ marginTop: scale(6), color: isNightmode? appColors.white:appColors.black }} >{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
-
+        <Text style={[styles.headingLabels, { color: deciddedBgColor }]}>{viewModel?.Petitioner}</Text>
+        <Text style={[styles.headingLabels, { color: deciddedBgColor }]}>V. </Text>
+        <Text style={[styles.headingLabels, { color: deciddedBgColor }]}>{viewModel?.Respondent}</Text>
+        <Text style={{ fontWeight: "bold", color: deciddedBgColor }}>({viewModel?.CourtName})</Text>
+        <Text style={{marginBottom:scale(10), marginTop: scale(6), color: deciddedBgColor, textAlign:'center' }} >{`${viewModel?.CaseNo} | ${viewModel?.DateOfJudgement}`}</Text>
+         
       </View>
     );
   };
@@ -226,27 +239,30 @@ setShowDownModal(true)
   }
   return (
     <View style={{ flex: 1 }}>
-      {_renderIdraf()}
+      {/* _renderIdraf() */}
       {_renderHeader()}
-      <TabsList >
-        <View key={0} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
+      <TabsList  >
+        <View key={0} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
           {_renderCaseHeading()}
           {viewModel?.Judgement && _renderJudgement()}
         </View>
-        <View key={1} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
+        <View key={1} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
+           <View style={{marginTop:scale(20)}}>
+           <CustomChart dataSet={viewModel?.OcrDtoList} />
+           </View>
           <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />
         </View >
-        <View key={2} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
+        <View key={2} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
           {/* <CitiedIn onPress={onPressCitiedCase} data={citiedInData} /> */}
         </View>
-        <View key={3} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
+        <View key={3} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
           {_renderAdvocates()}
 
         </View>
-        <View key={4} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
+        <View key={4} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
           {_renderBench()}
         </View>
-        <View key={5} style={{...styles.tabComp,backgroundColor:isNightmode?appColors.black:appColors.white}}>
+        <View key={5} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
           {_renderCitiation()}
         </View>
       </TabsList>

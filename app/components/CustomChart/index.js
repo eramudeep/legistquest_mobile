@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Pressable, Animated} from 'react-native';
 import {scale} from 'react-native-size-matters';
-import {appColors} from '../../utils/appColors';
+import {appColors,shadowLight} from '../../utils/appColors';
 import {getRandomColor, multipleyDecider} from '../../utils/common';
 
 export default function index({onPress,dataSet}) {
@@ -18,7 +18,7 @@ export default function index({onPress,dataSet}) {
               inputRange: [0, 1],
               outputRange: [0, value * 2],
             }), */
-            width: scale(20),
+            width: scale(  30 ),
             backgroundColor: color ? color : getRandomColor(),
           }}>
           <Pressable onPress={() => onPress && onPress(label, value)} />
@@ -45,6 +45,10 @@ export default function index({onPress,dataSet}) {
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'flex-end',
+          backgroundColor:appColors.white,
+          ...shadowLight,
+          //maxHeight:scale(500),
+          //overflow:'hidden'
         }}>
          {sentiseData()?.map((item,key)=>{
            return  <RenderColumn onPress={onPress} key={key} {...item} /* label='Cited Total' value={32} color={getRandomColor()} */ />
