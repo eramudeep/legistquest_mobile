@@ -9,14 +9,14 @@ import {
   Pressable,
 } from 'react-native';
 import {scale} from 'react-native-size-matters';
- 
+
 import Container from '../../components/Container';
- 
+
 import SearchResult from '../../components/SearchResult';
 import {getResultsByTopic} from '../../redux/searchActions';
- 
+
 import {connect} from 'react-redux';
-import {appColors,shadowLight} from '../../utils/appColors';
+import {appColors, shadowLight} from '../../utils/appColors';
 import SlideModal from '../../components/Modals/SlideModal';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
 import ResultFound from '../../components/ResultFound';
@@ -26,7 +26,7 @@ import {filterListValues} from '../../utils/appConstants';
 import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import FilterWithIn from '../../components/Filters/FilterWithIn';
- 
+
 import RNPickerSelect from 'react-native-picker-select';
 import {sortData} from '../../utils/MockData';
 import {searchByFilters, sortByOnly} from '../../redux/filterActions';
@@ -146,7 +146,7 @@ function Topic({
 
   return (
     <Container
-      bodyStyle={{padding: scale(0),}}
+      bodyStyle={{padding: scale(0)}}
       //isScrollable
       showHome
       showMenu
@@ -161,7 +161,7 @@ function Topic({
           />
         </View>
       ) : (
-        <View style={{flex: 1, paddingTop:scale(20)  }}>
+        <View style={{flex: 1, paddingTop: scale(20)}}>
           {searchQuery?.type === TYPE_ACT ? (
             <AutoCompleteForAct navigation={navigation} />
           ) : (
@@ -177,13 +177,12 @@ function Topic({
         </View> */}
           <View
             style={{
-              marginTop:scale(15),
+              marginTop: scale(15),
               width: '100%',
               justifyContent: 'space-between',
               flexDirection: 'row',
-              borderWidth:scale(0.5),
-              borderColor:appColors.blue, 
-              
+              borderWidth: scale(0.5),
+              borderColor: appColors.blue,
             }}>
             <View style={{width: '50%', borderRightWidth: scale(0.6)}}>
               <Pressable
@@ -214,36 +213,52 @@ function Topic({
                 // alignItems: 'center',
                 // alignContent: 'center',
                 backgroundColor: appColors.lighterGray,
-                // flexDirection: 'row',
+                  flexDirection: 'row',
               }}>
               <RNPickerSelect
-                style={{
-                  viewContainer: {justifyContent: 'center'},
-                  inputIOS: {fontSize: scale(14), color: appColors.blue},
-                }}
+                 
                 onValueChange={(value) => {
                   onChangePicker(value);
                 }}
                 items={sortData}
                 value={sortBy}
-              Icon={()=><Icon name={'sort'} size={scale(15)} color={appColors.blue} />}
-                style={{inputAndroid:{color:appColors.blue,},
-                iconContainer:{marginTop:scale(13)},
-              inputIOS:{color:appColors.blue}}}
+                Icon={() => (
+                  <Icon name={'sort'} size={scale(15)} color={appColors.blue} />
+                )}
+                style={{
+                  inputAndroid: {color: appColors.blue},
+                  //iconContainer: {marginTop: scale(13)}, 
+                  viewContainer: {justifyContent: 'center' , width:'50%' },
+                  inputIOS: {fontSize: scale(14), color: appColors.blue},
+                }}
                 fixAndroidTouchableBug
               />
             </View>
           </View>
-          <View style={{paddingTop:scale(10), paddingHorizontal:scale(10),backgroundColor:appColors.white, marginBottom:scale(5), ...shadowLight}}>
-          <FilterWithIn />
-          <ResultFound /> 
+          <View
+            style={{
+              paddingTop: scale(10),
+              paddingHorizontal: scale(10),
+              backgroundColor: appColors.white,
+              marginBottom: scale(5),
+              ...shadowLight,
+            }}>
+            <FilterWithIn />
+            <ResultFound />
           </View>
           {/* <Filters  Court={seniTizeCourtFilters()}/> */}
           <FlatList
             ListEmptyComponent={() => (
-              <View style={{justifyContent:'center', alignItems:'center', height:scale(500)}}> 
-              <CustomLabel text={`No result found for query '${searchQuery?.text}'`}  labelStyle={{color:appColors.tabLabel}} />
-                 
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: scale(500),
+                }}>
+                <CustomLabel
+                  text={`No result found for query '${searchQuery?.text}'`}
+                  labelStyle={{color: appColors.tabLabel}}
+                />
               </View>
             )}
             data={searchTopicResult?.CaseDetails}
@@ -308,6 +323,6 @@ const mapDispatchToProps = {
   sortByOnly$: sortByOnly,
   searchByFilters$: searchByFilters,
 };
-export default connect(mapStateToProps, mapDispatchToProps)( Topic);
+export default connect(mapStateToProps, mapDispatchToProps)(Topic);
 
 const styles = StyleSheet.create({});
