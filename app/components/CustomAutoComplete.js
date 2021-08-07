@@ -21,6 +21,7 @@ import {appColors} from '../utils/appColors';
 import Autocomplete from './AutoComplete';
 import {debounce} from 'lodash';
 import { getPlacheHolder } from '../utils/common'; 
+import { AlertHelper } from '../utils/AlertHelper';
 const window = Dimensions.get('window');
 //import useSelectedLang from '../../hooks/useSelectedLang';
 //import { translateIt } from '../../utils/TranslationHelper';
@@ -62,9 +63,13 @@ function CustomAutoComplete({
   };
 
   const OnSearchPress = () => {
-    getResultsByTopic$({selectedTopic: searchQuery?.text,  SortBy:1}); /// on reset 
+    
+    if( searchQuery?.text?.length > 2){
+       getResultsByTopic$({selectedTopic: searchQuery?.text,  SortBy:1}); /// on reset 
 
-    navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
+   return navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
+    }
+   return AlertHelper.show("error", "Search should be minimum 3 alphabets...")
   };
 
   //console.log({searchQuery});

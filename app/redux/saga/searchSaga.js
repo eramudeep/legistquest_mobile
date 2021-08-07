@@ -28,7 +28,7 @@ export function* workerSearchByQuery(action) {
     }&searchString=${text}`
   const results = yield fetch(URL  ,
   ).then((response) => response.text());
-  console.log({URL});
+  //console.log({URL});
   // console.log("results",JSON.parse( results));
   try {
     //AlertHelper.show("success","Got Result","search started")
@@ -57,11 +57,15 @@ export function* workerGetResultsByTopic(action) {
   
   const searchType = yield getSearchType();
   const {selectedTopic,filterValueList,SortBy,keepFilters} = action.payload; 
-  console.log({filterValueList});
+  //console.log({filterValueList});
   yield put({type: IS_LOADING, payload: true});
   if(!keepFilters)
   yield put({type: CLEAN_FILTERS});
-  let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=`
+  if (selectedTopic.includes("+")) {
+    //QUERY = `${QUERY} ${encodeURIComponent("+")} ${section.value}`;
+    //selectedTopic =selectedTopic 
+  }
+  let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${  selectedTopic}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=`
   //console.log("URL",URL);
    if(  filterValueList?.length >0){
     if(filterValueList?.length <2)

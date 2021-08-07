@@ -162,11 +162,7 @@ function Topic({
         </View>
       ) : (
         <View style={{flex: 1, paddingTop: scale(20)}}>
-          {searchQuery?.type === TYPE_ACT ? (
-            <AutoCompleteForAct navigation={navigation} />
-          ) : (
-            <CustomAutoComplete navigation={navigation} />
-          )}
+           <CustomAutoComplete navigation={navigation} />
 
           {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>

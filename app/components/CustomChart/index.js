@@ -18,7 +18,7 @@ export default function index({onPress,dataSet}) {
               inputRange: [0, 1],
               outputRange: [0, value * 2],
             }), */
-            width: scale(40),
+            width: scale(20),
             backgroundColor: color ? color : getRandomColor(),
           }}>
           <Pressable onPress={() => onPress && onPress(label, value)} />

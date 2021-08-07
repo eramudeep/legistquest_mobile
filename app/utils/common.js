@@ -92,12 +92,12 @@ export function getRandomColor() {
 
 export function multipleyDecider(value) {
   if (value < 5) {
-    return 5;
+    return 15;
   }
   if (value <= 7) {
-    return 3;
+    return 13;
   }
-  return 2;
+  return 12;
 }
 
 export function getUniId(length=5) {

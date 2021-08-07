@@ -49,23 +49,25 @@ function Home({
       hideLogo
       showSignin
       signInLabel={userToken ? "Logout" : "Sign In"}
-      isScrollable
-      onSignin={onSignin}>
+      //isScrollable
+      onSignin={onSignin}> 
 
-      <View style={[{ flex: 1 }, searching ? {} : { justifyContent: 'center' }]}>
+      <View style={[{ flex: 1 } ,  { justifyContent: 'center'  }]}>
          {/* <Pressable onPress={()=>navigation.navigate("SearchBox")}>
            <Text>Click</Text>
          </Pressable> */}
           
-        <CustomIcon iconStyle={{ width: scale(300), height: scale(100) }} />
-        {
+        <CustomIcon iconStyle={{ width:  "100%", height: scale(100) }} />
+        { /* 
           searchType === TYPE_ACT ?
-            <AutoCompleteForAct onBlur={(val) => { setsearching(val) }} navigation={navigation} />
+            <AutoCompleteForAct onBlur={(val) => { setsearching(val) }} navigation={navigation}  />
             :
             <CustomAutoComplete onBlur={(val) => { setsearching(val) }} navigation={navigation} />
-        }
+         */ }
 
-
+      <View style={{marginBottom:scale(20)}}>
+      <CustomAutoComplete onBlur={(val) => { setsearching(val) }} navigation={navigation} />
+      </View>
 
         {/* <CustomInput onChangeText={onChange} placeholder={"Search Free Text..."} rightIcon={"search"} iconSize={scale(20)} onRightIcon={()=>navigation.navigate("Topic")}/> */}
 
