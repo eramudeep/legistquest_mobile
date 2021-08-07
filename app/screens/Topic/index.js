@@ -211,14 +211,11 @@ function Topic({
               style={{
                 width: '50%',
                 justifyContent: 'center',
-                alignItems: 'center',
-                alignContent: 'center',
+                // alignItems: 'center',
+                // alignContent: 'center',
                 backgroundColor: appColors.lighterGray,
-                flexDirection: 'row',
+                // flexDirection: 'row',
               }}>
-              <View style={{marginRight: scale(12)}}>
-                <Icon name={'sort'} size={scale(15)} color={appColors.blue} />
-              </View>
               <RNPickerSelect
                 style={{
                   viewContainer: {justifyContent: 'center'},
@@ -229,7 +226,10 @@ function Topic({
                 }}
                 items={sortData}
                 value={sortBy}
-                // style={pickerSelectStyles}
+              Icon={()=><Icon name={'sort'} size={scale(15)} color={appColors.blue} />}
+                style={{inputAndroid:{color:appColors.blue,},
+                iconContainer:{marginTop:scale(13)},
+              inputIOS:{color:appColors.blue}}}
                 fixAndroidTouchableBug
               />
             </View>
