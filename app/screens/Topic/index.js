@@ -7,6 +7,7 @@ import {
   View,
   ActivityIndicator,
   Pressable,
+  Platform,
 } from 'react-native';
 import {scale} from 'react-native-size-matters';
 
@@ -176,14 +177,16 @@ function Topic({
           </ScrollView>
         </View> */}
           <View
-            style={{
+            style={[{
               marginTop: scale(15),
               width: '100%',
               justifyContent: 'space-between',
               flexDirection: 'row',
               borderWidth: scale(0.5),
               borderColor: appColors.blue,
-            }}>
+              backgroundColor:appColors.lighterGray,
+              alignItems:"center"
+            },Platform.OS==="android" &&{height:scale(50),}]}>
             <View style={{width: '50%', borderRightWidth: scale(0.6)}}>
               <Pressable
                 onPress={toggleModal}
@@ -207,14 +210,15 @@ function Topic({
             </View>
 
             <View
-              style={{
-                width: '50%',
+              style={[{
+                flex:1,
                 justifyContent: 'center',
-                // alignItems: 'center',
+                alignItems: 'center',
                 // alignContent: 'center',
                 backgroundColor: appColors.lighterGray,
                   flexDirection: 'row',
-              }}>
+              },Platform.OS==="android"&&{flexDirection:"column"}]}>
+                
               <RNPickerSelect
                  
                 onValueChange={(value) => {
@@ -222,13 +226,11 @@ function Topic({
                 }}
                 items={sortData}
                 value={sortBy}
-                Icon={() => (
-                  <Icon name={'sort'} size={scale(15)} color={appColors.blue} />
-                )}
+                Icon={() =><Icon name={'sort'} size={scale(15)} color={appColors.blue} />}
                 style={{
                   inputAndroid: {color: appColors.blue},
-                  //iconContainer: {marginTop: scale(13)}, 
-                  viewContainer: {justifyContent: 'center' , width:'50%' },
+                  iconContainer: {marginRight: scale(30)}, 
+                  viewContainer: {justifyContent: 'center',marginLeft:Platform.OS==="android"?scale(20):0 },
                   inputIOS: {fontSize: scale(14), color: appColors.blue},
                 }}
                 fixAndroidTouchableBug
