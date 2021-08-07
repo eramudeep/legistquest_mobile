@@ -4,7 +4,7 @@ import {scale} from 'react-native-size-matters';
 import {appColors,higheShadow} from '../../utils/appColors';
 import CustomHeader from '../CustomHeader';
 import CustomLabel from '../CustomLabel/CustomLabel';
-
+import {version as currentVersion} from '../../../package.json';
 export default function Container({
   children,
   showFooter,
@@ -47,7 +47,7 @@ export default function Container({
         <View style={{backgroundColor: appColors.white, ...higheShadow }}> 
           <CustomLabel
             text={
-              '©2020 - LQ Global Services Private Limited. All rights reserved'
+              `©2021 - LQ Global Services Private Limited. All rights reserved (${currentVersion})`
             }
             labelStyle={{
               fontSize: scale(8),

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import TouchableRipple from 'react-native-touch-ripple';
-import {appColors} from '../../utils/appColors';
+import {appColors,shadow} from '../../utils/appColors';
 import Badge from '../Badge';
 import Icon from '../CustomIcon/Icon';
 import CustomLabel from '../CustomLabel/CustomLabel';
@@ -75,7 +75,7 @@ export default function SearchResult({
       <View>
         <FlatList
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{padding: scale(5)}} />}
+          ItemSeparatorComponent={() => <View style={{padding: scale(3)}} />}
           //horizontal
           data={cleanString(Judges)?.split('<BR />')}
           renderItem={_renderJudge}
@@ -105,9 +105,13 @@ export default function SearchResult({
   return (
     <View
       style={{
-        borderBottomWidth: scale(1),
+         //borderBottomWidth: scale(1),
         borderBottomColor: appColors.gray,
         paddingVertical: scale(10),
+         backgroundColor:'#fff',
+        marginBottom:scale(10),
+         ...shadow,
+         paddingHorizontal:scale(10)
       }}>
       <CustomLabel
         onPress={() =>
@@ -142,7 +146,7 @@ export default function SearchResult({
         text={HighlightedText?.replace(/<[^>]*>?/gm, '')}
         labelStyle={styles.bodyText}
       />  */}
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between',paddingVertical:scale(5)}}>
         <TouchableOpacity style={styles.footerBtn} onPress={toggleSearchWithin}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />
           <CustomLabel text={'Search Within Case'} color={appColors.blue} />
@@ -177,7 +181,7 @@ export default function SearchResult({
 
 const styles = StyleSheet.create({
   title: {
-    fontWeight: '700',
+    fontWeight: '500',
     color: appColors.blue,
     paddingBottom: 0,
     padding: 0,
@@ -191,7 +195,9 @@ const styles = StyleSheet.create({
     marginTop: scale(5),
     fontSize: scale(12),
   },
-  bodyText: {},
+  bodyText: {
+    color: appColors.grayDark
+  },
   footerBtn: {
     flexDirection: 'row',
     alignItems: 'center',

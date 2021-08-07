@@ -47,7 +47,7 @@ function ResultFound({filtersList,searchByFilters$,filterWithInResult,getResults
 }
 const styles = StyleSheet.create({
   cont: {
-    borderBottomWidth: scale(0.3),
+    //borderBottomWidth: scale(0.3),
     paddingVertical: scale(10),
     //marginTop: scale(10), 
      

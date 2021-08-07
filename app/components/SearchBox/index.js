@@ -6,12 +6,15 @@ import CustomInput from '../CustomInput';
 import CustomLabel from '../CustomLabel/CustomLabel';
 import {connect} from 'react-redux';
 import {debounce} from 'lodash';
+import TouchRipple from 'react-native-touch-ripple'
 import {
   getResultsByTopic,
   resetSearchResults,
   searchByQuery,
 } from '../../redux/searchActions';
 import { getPlacheHolder, getUniId } from '../../utils/common';
+import { appColors } from '../../utils/appColors';
+import { AlertHelper } from '../../utils/AlertHelper';
 
 function index({
   searchResults,
@@ -37,26 +40,28 @@ function index({
     //setQuery(change);
     // setSearchIcon('spinner');
   }, 1000);
-
+ 
   const onChangeText = (chnage) => {
     debouncedSearch(chnage);
     setSearchedQuery(chnage);
   };
-  const onItemPress = (item) => {
-      
-    getResultsByTopic$({selectedTopic: item.Value, filterValueList, SortBy});
-
-    searchByQuery$({type: item?.Key, text: item?.Value});
-    navigation?.navigate('Topic', {selectedTopic: item.Value});
+  const onItemPress = (item) => { 
+    if(item.Value?.length > 2){
+      getResultsByTopic$({selectedTopic: item.Value, filterValueList, SortBy});  
+     return navigation?.navigate('Topic', {selectedTopic: item.Value});
+    }
+    AlertHelper.show("error","Please Type...")
+     
   };
   const _renderItem = ({item, index}) => {
     const {Value} = item;
     return (
-      <Pressable
+      <TouchRipple
+        rippleDuration={800} rippleColor={appColors.blue} 
         onPress={() => onItemPress && onItemPress(item)}
         style={{padding: scale(5), borderBottomWidth: scale(0.5)}}>
         <CustomLabel text={Value} />
-      </Pressable>
+      </TouchRipple>
     );
   };
   return (
@@ -83,11 +88,12 @@ function index({
           containerStyle={{width: '90%'}}
           autoFocus
           placeholder={getPlacheHolder()}
+          onSubmitEditing={()=> onItemPress({Value:searchedQuery}) }
         />
       </View>
       <FlatList
         keyExtractor={(item) => `${new Date().getTime()}_${item.Value}_${getUniId()}`}
-        data={[...searchResults]}
+        data={ searchResults }
         renderItem={_renderItem}
       />
     </View>

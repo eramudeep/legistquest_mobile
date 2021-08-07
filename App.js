@@ -28,9 +28,10 @@ const App: () => React$Node = () => {
       <PersistGate loading={null} persistor={persistor}>
       <MainStack/>
       <DropdownAlert
-          defaultContainer={{ padding: 8, paddingTop: StatusBar.currentHeight, flexDirection: 'row',zIndex:100 }}
+          defaultContainer={{ padding: 8, paddingTop: StatusBar.currentHeight , flexDirection: 'row',zIndex:100 }}
           ref={ref => AlertHelper.setDropDown(ref)}
           onClose={() => AlertHelper.invokeOnClose()}
+          endDelta={50}
         />
       </PersistGate>
 </Provider>

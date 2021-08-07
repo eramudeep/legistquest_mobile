@@ -22,17 +22,18 @@ import {
 export function* workerSearchByQuery(action) {
   const QUERY = action.payload;
   const {type, text} = QUERY;
-  //AlertHelper.show("success","search","search started")
-  const results = yield fetch(
-    `${SEARCH_BY_WORD}type=${
+  
+   const URL =   `${SEARCH_BY_WORD}type=${
       type ? type : 'freetext'
-    }&searchString=${text}`,
+    }&searchString=${text}`
+  const results = yield fetch(URL  ,
   ).then((response) => response.text());
+  console.log({URL});
   // console.log("results",JSON.parse( results));
   try {
     //AlertHelper.show("success","Got Result","search started")
     if (results && JSON?.parse(results)) {
-      let size = 50;
+      let size = 550;
       if (JSON?.parse(results).length < size) {
         size = JSON?.parse(results).length - 1;
       }
@@ -120,15 +121,16 @@ export function* workerSearchWithFilters(action) {
   const requestOptions =  getHeaders({...activeFilters}) 
   //console.log( activeFilters );
   yield put({type: IS_LOADING, payload: true});
+  console.log({activeFilters });
   const results = yield fetch(
     SEARCH_RESULT_WITH_FILTERS_API,
     requestOptions,
   ).then(async (response) => response.text());
-  console.log({activeFilters });
+  
   try {
     if (results && JSON.parse(results)) {
       
-      yield put({
+      yield put({ 
         type: SET_RESULT_BY_TOPIC,
         payload: {...JSON.parse(results)},
       });

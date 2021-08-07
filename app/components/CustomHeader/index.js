@@ -22,11 +22,11 @@ function CustomHeader({ showHome,signInLabel, showMenu, showBack, onHome, onMenu
             {showSignin&&<View style={{marginRight:scale(10)}}>
                 <CustomLabel onPress={onSignin} text={signInLabel} labelStyle={{color:appColors.blue,fontWeight:"600"}}/>
             </View>}
-            <View style={styles.icon}>
+            {/* <View style={styles.icon}>
                 {showMenu && <TouchableRipple onPress={onMenu} style={styles.iconS}>
                     <Icon name={"ellipsis-v"}  size={scale(20)}/>
                     </TouchableRipple>}
-            </View>
+            </View> */}
         </View>
     )
 }

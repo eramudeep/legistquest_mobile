@@ -20,7 +20,8 @@ export default function CustomInput({
     leftIcon,
     leftIconColor,
     defaultValue,
-    onFocus,onBlur,autoFocus
+    onFocus,onBlur,autoFocus,
+    onSubmitEditing
  }) {
     return (
         <View style={[styles.container,containerStyle]}>
@@ -43,6 +44,9 @@ export default function CustomInput({
                 onBlur={onBlur}
                 onFocus={onFocus}
                 autoFocus={autoFocus}
+                returnKeyType="search"
+                onSubmitEditing={onSubmitEditing}
+                autoCapitalize='none'
 
             />
             {
