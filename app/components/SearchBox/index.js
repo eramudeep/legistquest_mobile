@@ -114,7 +114,9 @@ function index({
           autoFocus
           placeholder={getPlacheHolder(searchQuery.type)}
           onSubmitEditing={() => {
+            resetSearchResults$()
             /* searchQuery.type != TYPE_ACT && */ onItemPress({Value: searchedQuery});
+            
           }}
         />
       </View>

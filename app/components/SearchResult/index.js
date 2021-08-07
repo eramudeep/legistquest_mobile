@@ -149,10 +149,10 @@ export default function SearchResult({
         labelStyle={styles.bodyText}
       />  */}
       <View style={{flexDirection: 'row', justifyContent: 'space-between',paddingVertical:scale(5)}}>
-        <TouchableOpacity style={styles.footerBtn} onPress={toggleSearchWithin}>
+        {/* <TouchableOpacity style={styles.footerBtn} onPress={toggleSearchWithin}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />
           <CustomLabel text={'Search Within Case'} color={appColors.blue} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             setShowSearchWithIn(false);

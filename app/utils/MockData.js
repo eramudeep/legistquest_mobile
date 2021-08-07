@@ -24,12 +24,12 @@ export const homeData=[{
     key:PARTY_NAME,
     pl:"Petitionar/Respondent"
 },
-{
+/* {
     label:"Act name- Section",
     value:"Act Name",
     key:TYPE_ACT,
     pl:"Act Name"
-},
+}, */
 ]
 export const sortData=[
     {label:"Relevance",value:1},

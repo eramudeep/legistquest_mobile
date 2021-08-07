@@ -119,14 +119,15 @@ export function* workerPageNumberChange(action) {
 export function* workerSearchWithFilters(action) {
   const activeFilters = action.payload;   
   const requestOptions =  getHeaders({...activeFilters}) 
-  //console.log( activeFilters );
+  console.log( activeFilters );
   yield put({type: IS_LOADING, payload: true});
-  console.log({activeFilters });
+  console.log({SEARCH_RESULT_WITH_FILTERS_API });
   const results = yield fetch(
     SEARCH_RESULT_WITH_FILTERS_API,
     requestOptions,
   ).then(async (response) => response.text());
-  
+  console.log({results});
+   
   try {
     if (results && JSON.parse(results)) {
       
@@ -136,8 +137,7 @@ export function* workerSearchWithFilters(action) {
       });
       yield put({type: IS_LOADING, payload: false});
     }
-  } catch (error) {
-    console.log("error in workerPageNumberChange", error);
+  } catch (error) { 
     console.log('error in workerSearchWithFilters', error);
   }
 } 
