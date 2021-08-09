@@ -78,7 +78,7 @@ function Home({
               setSearchTypeLocal(val.key)
               searchByQuery$({ type: val.key, text: "" })
               setSearchType(val.key)
-              return navigation.navigate("SearchBox")
+              return navigation.navigate(key==4?"SearchboxForAct": "SearchBox")
             }}>
               <CustomLabel text={val.label} labelStyle={styles.label} />
               <CustomLabel text={val.value} labelStyle={[styles.label1, val.key === searchType && { color: appColors.green }]} />

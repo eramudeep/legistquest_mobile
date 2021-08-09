@@ -51,9 +51,10 @@ function index({
     debouncedSearch(chnage);
   };
   const onItemPress = (item) => {
+    console.log("item",item);
     const SEARCH_QUERY = item?.Value; // getQuery();
     if (SEARCH_QUERY?.length > 2) {
-      searchByQuery$({type: searchQuery?.type, text: SEARCH_QUERY});
+      searchByQuery$({type: searchQuery?.type, text: SEARCH_QUERY}); 
       getResultsByTopic$({
         selectedTopic: SEARCH_QUERY,
         filterValueList,
