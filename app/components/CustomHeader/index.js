@@ -44,7 +44,7 @@ function CustomHeader({ showHome,signInLabel,showSearch, showMenu, showBack, onH
                     </TouchableRipple>}
             </View>
             {showSignin&&<View style={{marginRight:scale(10)}}>
-                    <MaterialIcons name={!userToken ?"logout" : "login"} size={scale(28)} color={appColors.blue}/>
+                    <MaterialIcons name={userToken ?"logout" : "login"} size={scale(28)} color={appColors.blue}/>
                 {/* <CustomLabel onPress={onSignin} text={userToken ?"Logout" : "Login" } labelStyle={{color:appColors.blue,fontWeight:"600"}}/> */}
             </View>}
             
