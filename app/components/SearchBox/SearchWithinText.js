@@ -96,7 +96,7 @@ function SearchWithinText({navigation, route}) {
           }}
           // searchWords={['ram']}
           searchWords={[...searchedQuery?.split(' ')]}
-          textToHighlight={truncateString(removeHtmlTags(searchwithinResult))}
+          textToHighlight={  removeHtmlTags(searchwithinResult)}
           style={styles.bodyText}
         />
       )}
