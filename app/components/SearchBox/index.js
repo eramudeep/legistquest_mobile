@@ -49,28 +49,20 @@ function index({
   const onChangeText = (chnage) => {
     setSearchedQuery(chnage);
     debouncedSearch(chnage);
-  }; 
+  };
   const onItemPress = (item) => {
-    const SEARCH_QUERY = item?.Value; // getQuery(); 
-    if (SEARCH_QUERY?.length > 2 /* && searchQuery.type != TYPE_ACT */) {
+    const SEARCH_QUERY = item?.Value; // getQuery();
+    if (SEARCH_QUERY?.length > 2) {
+      searchByQuery$({type: searchQuery?.type, text: SEARCH_QUERY});
       getResultsByTopic$({
         selectedTopic: SEARCH_QUERY,
         filterValueList,
         SortBy,
       });
       return navigation?.navigate('Topic', {selectedTopic: SEARCH_QUERY});
-    } /* else if (searchQuery.type === TYPE_ACT && sectionText?.length >=1) {
-      console.log('searchQuery.text', searchQuery.text);
-      getResultsByTopic$({
-        selectedTopic:   searchQuery.text ,
-        filterValueList,
-        SortBy,
-      });
-      return navigation?.navigate('Topic', {selectedTopic: SEARCH_QUERY});
-    }  else if(searchQuery.type != TYPE_ACT){
+    } else {
       AlertHelper.show('error', 'Search should be minimum 3 alphabets...');
-    }   */
-    AlertHelper.show('error', 'Search should be minimum 3 alphabets...');
+    }
   };
   const _renderItem = ({item, index}) => {
     const {Value} = item;
@@ -114,34 +106,12 @@ function index({
           autoFocus
           placeholder={getPlacheHolder(searchQuery.type)}
           onSubmitEditing={() => {
-            resetSearchResults$()
-            /* searchQuery.type != TYPE_ACT && */ onItemPress({Value: searchedQuery});
-            
+            resetSearchResults$();
+            onItemPress({Value: searchedQuery});
           }}
         />
       </View>
-      {/* searchQuery.type === TYPE_ACT && (
-        <CustomInput
-          defaultValue={sectionText}
-          onChangeText={(change) => {
-            setSectionText(change);
-            // onChangeText(`${searchedQuery}+${change}`)
 
-            searchByQuery$({
-              type: searchQuery?.type,
-              text: `${searchedQuery}%20${encodeURIComponent("+")}%20${change}`,
-            });
-          }}
-          onRightIcon={clear}
-          onFocus={() => setIsFocsedSection(true)}
-          onBlur={() => setIsFocsedSection(false)}
-          iconSize={scale(14)}
-          rightIcon={isFocsedSection ? 'times' : false}
-          containerStyle={{width: '90%', left: '4.5%'}}
-          placeholder={'Section'}
-          onSubmitEditing={() => onItemPress()}
-        />
-      ) */}
       <FlatList
         keyExtractor={(item) =>
           `${new Date().getTime()}_${item.Value}_${getUniId()}`

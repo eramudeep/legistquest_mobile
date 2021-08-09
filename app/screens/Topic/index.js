@@ -178,7 +178,7 @@ console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
         </View> */}
           <View
             style={[{
-              marginTop: scale(15),
+              //marginTop: scale(15),
               width: '100%',
               justifyContent: 'space-between',
               flexDirection: 'row',
