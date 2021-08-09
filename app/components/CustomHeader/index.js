@@ -11,8 +11,9 @@ import CustomLabel from '../CustomLabel/CustomLabel'
 import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { AlertHelper } from '../../utils/AlertHelper'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-function CustomHeader({ showHome,signInLabel, showMenu, showBack, onHome, onMenu ,hideLogo,showSignin,  userToken,userLogout$}) {
+function CustomHeader({ showHome,signInLabel,showSearch, showMenu, showBack, onHome, onMenu ,hideLogo,showSignin,  userToken,userLogout$}) {
    
     const navigation = useNavigation();
 
@@ -31,20 +32,22 @@ function CustomHeader({ showHome,signInLabel, showMenu, showBack, onHome, onMenu
     return (
         <View style={styles.header}>
             <View style={styles.icon}>
-                {showHome && <Icon name={"home"} onPress={onHome} size={scale(20)}/>}
+                {showHome && <Icon name={"home"} onPress={onHome} color={appColors.blue} size={scale(20)}/>}
             </View>
             <View style={{ flex: 1, alignItems: "center" }}>
                 {!hideLogo &&
                 <CustomIcon iconStyle={{ width: scale(130), }} />}
             </View>
-            {showSignin&&<View style={{marginRight:scale(10)}}>
-                <CustomLabel onPress={onSignin} text={userToken ?"Logout" : "Login" } labelStyle={{color:appColors.blue,fontWeight:"600"}}/>
-            </View>}
-            {/* <View style={styles.icon}>
-                {showMenu && <TouchableRipple onPress={onMenu} style={styles.iconS}>
-                    <Icon name={"ellipsis-v"}  size={scale(20)}/>
+            <View style={styles.icon}>
+                {showSearch && <TouchableRipple onPress={()=>navigation.navigate("SearchBox")} style={styles.iconS}>
+                    <Icon name={"search"}  size={scale(20)} color={appColors.blue}/>
                     </TouchableRipple>}
-            </View> */}
+            </View>
+            {showSignin&&<View style={{marginRight:scale(10)}}>
+                    <MaterialIcons name={!userToken ?"logout" : "login"} size={scale(28)} color={appColors.blue}/>
+                {/* <CustomLabel onPress={onSignin} text={userToken ?"Logout" : "Login" } labelStyle={{color:appColors.blue,fontWeight:"600"}}/> */}
+            </View>}
+            
         </View>
     )
 }
@@ -72,9 +75,9 @@ const styles = StyleSheet.create({
         width: scale(40),
         alignItems:"center",
         justifyContent:"center",
-        ...shadow,
-        backgroundColor:appColors.white,
-        borderRadius:scale(20),overflow:"hidden"
+        // ...shadow,
+        // backgroundColor:appColors.white,
+        // borderRadius:scale(20),overflow:"hidden"
     },
 })
 //export default React.memo(CustomHeader)

@@ -101,7 +101,7 @@ setShowDownModal(true)
   const _renderIcons = () => {
     return [/* 'download', */ 'moon', /* 'frown' */].map((item, key) => {
    
-      if(isNightmode && key==1){
+      if(isNightmode && key==0){
         return <Pressable onPress={()=>onPressIcon(item)}><Fontisto key={key} name={"day-sunny"} size={15} /></Pressable>;
       }
       return <Pressable onPress={()=>onPressIcon(item)}><FontAwesome5 key={key} name={item} size={15} /></Pressable>;
@@ -195,18 +195,18 @@ setShowDownModal(true)
       <View style={{ flex: 1 }}>
         <Text style={[styles.headingLabels, { alignSelf: "center",color:deciddedBgColor }]}>Advocates List</Text>
         <View style={styles.underLine} />
-        {/* <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
           },
-        }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} /> */}
-        {
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} />
+        {/* {
           viewModel?.Advocates?.split(",")?.map((item,key)=>{ 
             
             return <Badge badgeStyle={{paddingVertical:scale(10),marginBottom:scale(5)}} text={removeHtmlTags(item)} />
           })
-        }
+        } */}
 
       </View>
     );

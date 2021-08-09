@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Platform,
   TextInput,
-  Dimensions
+  Dimensions,
+  Pressable
 } from 'react-native';
 import {scale} from 'react-native-size-matters';
 import {connect} from 'react-redux';
@@ -81,7 +82,12 @@ function CustomAutoComplete({
         InputStyle,
         Platform.OS == 'ios' && {zIndex: 1},
       ]}>
-      <Autocomplete
+        <Pressable style={{flex:1,justifyContent:"center"}} onPress={()=>navigation.navigate("SearchBox")}>
+          <Text style={{color:appColors.grayDark}}>
+            {searchQuery?.text?decodeURIComponent( searchQuery?.text ): getPlacheHolder(searchQuery?.type)}
+          </Text>
+        </Pressable>
+      {/* <Autocomplete
          
         autoCapitalize="none"
         autoCorrect={false}
@@ -94,18 +100,18 @@ function CustomAutoComplete({
            searchByQuery$({type: searchQuery?.type, text: ""});
            onBlur &&onBlur(true)
         }}
-        TextInput={
+        TextInput={ 
          { onBlur:() => {
              console.log("blured ");
             setTyping(false);
           }}
         }
         
-      //  listContainerStyle={{/* paddingHorizontal:0,zIndex:100, *//* backgroundColor:'red', padding:140 */}}
+      //  listContainerStyle={ paddingHorizontal:0,zIndex:100, *//* backgroundColor:'red', padding:140 }
         keyExtractor={(item) => Math.random().toString(36).substring(7)}
         listStyle={[{borderWidth: 0, paddingHorizontal: 0,  marginTop: scale(Platform.OS =="ios" ? 0: 25), maxHeight: scale(350), marginBottom:scale(30) }, Platform.OS =="ios" ? {width:window.width -120,} :{} ]}
         placeholder={searchQuery?.text?decodeURIComponent( searchQuery?.text ): getPlacheHolder(searchQuery?.type) }
-        onChangeText={onChange /* onChangeText */}
+        onChangeText={onChange}
          
         renderItem={({item, i}) => {
           const {Value} = item;
@@ -118,7 +124,7 @@ function CustomAutoComplete({
             </TouchableOpacity>
           );
         }}
-      />
+      /> */}
       {searchIcon && (
         <TouchableOpacity onPress={OnSearchPress} style={styles.iconView}>
           <FontAwesome5Icon

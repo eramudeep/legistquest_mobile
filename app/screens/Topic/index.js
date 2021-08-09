@@ -154,6 +154,7 @@ console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
       showMenu
       showFooter
       showSignin
+      showSearch
       //signInLabel={userToken ?  }
       onHome={() => navigation.navigate('Home')}>
       {isTopicLoading ? (
@@ -165,8 +166,8 @@ console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
           />
         </View>
       ) : (
-        <View style={{flex: 1, paddingTop: scale(20)}}>
-           <CustomAutoComplete navigation={navigation} />
+        <View style={{flex: 1, paddingTop: scale(0)}}>
+           {/* <CustomAutoComplete navigation={navigation} /> */}
 
           {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -184,8 +185,8 @@ console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
               borderWidth: scale(0.5),
               borderColor: appColors.blue,
               backgroundColor:appColors.lighterGray,
-              alignItems:"center"
-            },Platform.OS==="android" &&{height:scale(50),}]}>
+              alignItems:"center",overflow:"hidden"
+            },Platform.OS==="android" &&{height:scale(45),}]}>
             <View style={{width: '50%', borderRightWidth: scale(0.6)}}>
               <Pressable
                 onPress={toggleModal}
