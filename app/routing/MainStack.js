@@ -9,6 +9,7 @@ import Topic from '../screens/Topic';
 import TopicDetail from '../screens/Topic/TopicDetail';
 import SearchBox from '../components/SearchBox';
 import SearchboxForAct from '../components/SearchBox/SearchboxForAct';
+import SearchWithinText from '../components/SearchBox/SearchWithinText';
 //import { navigationRef } from './RootNavigation';
 
 const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ export default function MainStack() {
       <Stack.Screen name="TopicDetail" component={TopicDetail} />
       <Stack.Screen name="SearchBox" component={SearchBox} />
       <Stack.Screen name="SearchboxForAct" component={SearchboxForAct} />
+      <Stack.Screen name="SearchWithinText" component={SearchWithinText} />
       
     </Stack.Navigator>
     </NavigationContainer>

@@ -69,6 +69,7 @@ function Topic({
         searchData={item}
         key={index}
         onSearchCase={toggleSearchWithin}
+        onPressSearchWithin={()=>navigation.navigate("SearchWithinText",{id:item?.EncryptedId})}
         onPress={(LinkText, HighlightedText) =>
           navigation.navigate('TopicDetail', {LinkText, HighlightedText, item})
         }

@@ -25,6 +25,7 @@ export default function SearchResult({
   data,
   onJudges,
   /* onSearchCase, */
+  onPressSearchWithin,
   selectedTopic,
 }) {
   const [showJudges, setShowJudges] = useState(false);
@@ -50,7 +51,8 @@ export default function SearchResult({
     OtherStatusImgUrl,
     DistinguishedImgUrl,
     CaseId,
-    EncryptedId
+    EncryptedId,
+    
   } = searchData;
 
     
@@ -149,10 +151,10 @@ export default function SearchResult({
         labelStyle={styles.bodyText}
       />  */}
       <View style={{flexDirection: 'row', justifyContent: 'space-between',paddingVertical:scale(5)}}>
-        {/* <TouchableOpacity style={styles.footerBtn} onPress={toggleSearchWithin}>
+        <TouchableOpacity style={styles.footerBtn} onPress={onPressSearchWithin}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />
           <CustomLabel text={'Search Within Case'} color={appColors.blue} />
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             setShowSearchWithIn(false);
