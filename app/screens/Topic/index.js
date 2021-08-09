@@ -146,7 +146,7 @@ function Topic({
 
     //getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
   };
-console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
+//console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
   return (
     <Container
       bodyStyle={{padding: scale(0)}}

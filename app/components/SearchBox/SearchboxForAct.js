@@ -62,21 +62,21 @@ function SearchboxForAct({
     const onChangeTextSection = (chnage) => {
         setHasSection(true)
         setSectionText(chnage);
-        debouncedSearch(chnage);
+        //debouncedSearch(chnage);
     };
     const onItemPress = (item) => {
         console.log("item=>",searchedQuery);
         console.log("item section=>",sectionText);
-        return
-        const SEARCH_QUERY = searchedQuery?.Value; // getQuery();
-        if (SEARCH_QUERY?.length > 2) {
-          searchByQuery$({type: searchQuery?.type, text: searchedQuery}); 
+        //return
+        const SEARCH_QUERY = item?.Value; // getQuery();
+        if (SEARCH_QUERY?.length > 0) {
+          searchByQuery$({type: searchQuery?.type, text: `${searchedQuery} + ${sectionText}`}); 
           getResultsByTopic$({
-            selectedTopic: searchedQuery,
+            selectedTopic: `${searchedQuery} ${encodeURIComponent("+")} ${sectionText}`,
             filterValueList,
             SortBy,
           });
-          return navigation?.navigate('Topic', {selectedTopic: searchedQuery});
+          return navigation?.navigate('Topic', {selectedTopic: `${searchedQuery} ${encodeURIComponent("+")} ${sectionText}`});
         } else {
           AlertHelper.show('error', 'Search should be minimum 3 alphabets...');
         }
@@ -126,7 +126,7 @@ function SearchboxForAct({
                     placeholder={getPlacheHolder(searchQuery.type)}
                     onSubmitEditing={() => {
                         resetSearchResults$();
-                        // onItemPress({Value: searchedQuery});
+                         onItemPress({Value: searchedQuery});
                     }}
                 />
             </View>
@@ -134,20 +134,20 @@ function SearchboxForAct({
             <CustomInput
                 defaultValue={sectionText}
                 onChangeText={onChangeTextSection}
-                onRightIcon={clear}
+                //onRightIcon={clear}
                 onFocus={onFocusSection}
                 onBlur={onBlurSection}
                 iconSize={scale(14)}
                 rightIcon={isFocsedSection ? 'times' : false}
                 containerStyle={{ width: '90%', alignSelf: "flex-end" }}
-                showSearch
+                 showSearch
                 onSearch={onItemPress}
-                autoFocus
+                //autoFocus
                 //   placeholder={getPlacheHolder(searchQuery.type)}
                 placeholder={"Section"}
                 onSubmitEditing={() => {
                     resetSearchResults$();
-                    onItemPress({ Value: searchedQuery });
+                    onItemPress({ Value: sectionText });
                 }}
 
             />

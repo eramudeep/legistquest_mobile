@@ -11,6 +11,7 @@ import ByIdraf from './ByIdraf';
 
 import {connect} from 'react-redux';
 import {searchByFilters} from '../../redux/filterActions';
+import { senitizeAnyArray } from '../../utils/common';
 function FilterComp({
   filtersList,
   searchByFilters$,
@@ -27,10 +28,18 @@ function FilterComp({
   };
 
   const applyFilters = (currentFilter) => { 
-   //   console.log("applyFilters" ,{...filtersList,...currentFilter});
-   searchByFilters$({...filtersList,...currentFilter}) 
+    /* const FiLTER_KEY=  Object.keys(currentFilter)[0]
+    const existedFilterValue =filtersList?.[FiLTER_KEY]?.split(",") 
+    const currentFilterValue =currentFilter?.[FiLTER_KEY]?.split(",") 
+    const newFilterValueSent = currentFilterValue[currentFilterValue?.length-1]
+     
+    const ff=  senitizeAnyArray(newFilterValueSent,existedFilterValue)?.filter((item)=> { if(item?.length >=1) return item })
+     */ 
+      //console.log("applyFilters" ,currentFilter,{...filtersList,...currentFilter});
+    searchByFilters$({...filtersList,...currentFilter}) 
   }; 
    
+  
    
   return (
     <ScrollView style={{margin: scale(3)}}>
