@@ -32,7 +32,7 @@ function CustomHeader({ showHome,signInLabel,showSearch, showMenu, showBack, onH
     return (
         <View style={styles.header}>
             <View style={styles.icon}>
-                {showHome && <Icon name={"home"} onPress={onHome} color={appColors.blue} size={scale(20)}/>}
+                {showHome && <Icon name={"home"} onPress={onHome} color={appColors.blue} size={scale(17)}/>}
             </View>
             <View style={{ flex: 1, alignItems: "center" }}>
                 {!hideLogo &&
@@ -40,11 +40,11 @@ function CustomHeader({ showHome,signInLabel,showSearch, showMenu, showBack, onH
             </View>
             <View style={styles.icon}>
                 {showSearch && <TouchableRipple onPress={()=>navigation.navigate("SearchBox")} style={styles.iconS}>
-                    <Icon name={"search"}  size={scale(20)} color={appColors.blue}/>
+                    <Icon name={"search"}  size={scale(17)} color={appColors.blue}/>
                     </TouchableRipple>}
             </View>
-            {showSignin&&<View style={{marginRight:scale(10)}}>
-                    <MaterialIcons onPress={onSignin} name={userToken ?"logout" : "login"} size={scale(28)} color={appColors.blue}/>
+            {showSignin&&<View style={styles.icon}>
+                    <MaterialIcons onPress={onSignin} name={userToken ?"logout" : "login"} size={scale(22)} color={appColors.blue}/>
                 {/* <CustomLabel onPress={onSignin} text={userToken ?"Logout" : "Login" } labelStyle={{color:appColors.blue,fontWeight:"600"}}/> */}
             </View>}
             
