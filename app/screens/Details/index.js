@@ -65,9 +65,9 @@ const [fontsize, setFontsize] = useState(4)
     return query?.split(' ');
   };
 const onDownload=async()=>{
-  // console.log("viewModel",viewModel);
+  // console.log("viewModel ocr status",viewModel?.OcrStatus);
   const{EncryptedId,CourtName,CaseId,CaseNo,PageID,PlainJudgment}=viewModel
-  await downloadFile(PageID,CourtName,fontsize,PlainJudgment)
+  await downloadFile(PageID,CourtName,fontsize,`${PageID}${new Date().toDateString()}`) 
 
 }
   const _renderHeader = () => {
@@ -99,9 +99,9 @@ setShowDownModal(true)
   }
 }
   const _renderIcons = () => {
-    return [/* 'download', */ 'moon', /* 'frown' */].map((item, key) => {
+    return ['download', 'moon', /* 'frown' */].map((item, key) => {
    
-      if(isNightmode && key==0){
+      if(isNightmode && key==1){
         return <Pressable onPress={()=>onPressIcon(item)}><Fontisto key={key} name={"day-sunny"} size={15} /></Pressable>;
       }
       return <Pressable onPress={()=>onPressIcon(item)}><FontAwesome5 key={key} name={item} size={15} /></Pressable>;
@@ -248,10 +248,13 @@ setShowDownModal(true)
            <View style={{marginTop:scale(20)}}>
            <CustomChart dataSet={viewModel?.OcrDtoList} />
            </View>
-          <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />
+         {viewModel?.CitedDtoList.length<1 && <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />}
         </View >
         <View key={2} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
-          {/* <CitiedIn onPress={onPressCitiedCase} data={citiedInData} /> */}
+        <View style={{marginTop:scale(20)}}>
+           <CustomChart dataSet={viewModel?.CitedDtoList} />
+           </View>
+         {viewModel?.CitedDtoList.length>0 && <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />}
         </View>
         <View key={3} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
           {_renderAdvocates()}

@@ -16,7 +16,7 @@ function SearchWithinText({navigation, route}) {
   const {id} = route.params;
   const [isFocsed, setIsFocsed] = useState(false);
   //   const [isFocsedSection, setIsFocsedSection] = useState(false);
-  const [searchedQuery, setSearchedQuery] = useState();
+  const [searchedQuery, setSearchedQuery] = useState('');
   const [searchwithinResult, setSearchwithinResult] = useState('');
   //   const [sectionText, setSectionText] = useState();
 
@@ -25,7 +25,7 @@ function SearchWithinText({navigation, route}) {
   };
 
   const clear = () => {
-    if (isFocsed) setSearchedQuery('');
+    setSearchedQuery("");
     // if (isFocsedSection) setSectionText('');
   };
 
@@ -36,7 +36,7 @@ function SearchWithinText({navigation, route}) {
     // console.log("searchData",searchData);
 
     const URL = `${SEARCH_WITH_IN_CASE}caseId=${id}&searchText=${searchedQuery}`;
-    console.log('=====================================', URL);
+    
     const result = await fetch(URL);
     const {JudgmentText} = await result.json();
     setSearchwithinResult(
@@ -90,19 +90,19 @@ function SearchWithinText({navigation, route}) {
         />
       </View>
       <ScrollView>
-      {searchedQuery && (
+       {searchedQuery?.length>0 && (
         <Highlighter
           highlightStyle={{
             backgroundColor: appColors.yellow,
             fontWeight: '700',
           }}
           // searchWords={['ram']}
-          searchWords={[...searchedQuery?.split(' ')]}
+          searchWords={searchedQuery&&[...searchedQuery?.split(' ')]}
           textToHighlight={  removeHtmlTags(searchwithinResult)}
           style={styles.bodyText}
         />
         
-      )}
+      )} 
       </ScrollView>
       {/* <HTML  source={{ html:searchwithinResult }}  />  */}
       {/* <FlatList
