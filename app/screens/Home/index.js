@@ -15,6 +15,7 @@ import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import { getUserLogout } from '../../redux/actions';
 import { AlertHelper } from '../../utils/AlertHelper';
 import SearchBox from '../../components/SearchBox'
+import IdrafComp from '../../components/IdrafComp';
 
 function Home({
   navigation,
@@ -52,19 +53,9 @@ function Home({
       //isScrollable
       onSignin={onSignin}> 
 
-      <View style={[{ flex: 1 } ,  { justifyContent: 'center'  }]}>
-         {/* <Pressable onPress={()=>navigation.navigate("SearchBox")}>
-           <Text>Click</Text>
-         </Pressable> */}
-          
-        <CustomIcon iconStyle={{ width:  "100%", height: scale(100) }} />
-        { /* 
-          searchType === TYPE_ACT ?
-            <AutoCompleteForAct onBlur={(val) => { setsearching(val) }} navigation={navigation}  />
-            :
-            <CustomAutoComplete onBlur={(val) => { setsearching(val) }} navigation={navigation} />
-         */ }
-
+      <View style={[{ flex: 1 } ,  { justifyContent: 'center'  }]}> 
+        <CustomIcon iconStyle={{ width:  "100%", height: scale(100) }} /> 
+        <IdrafComp />
       <View style={{marginBottom:scale(20)}}>
       <CustomAutoComplete onBlur={(val) => { setsearching(val) }} navigation={navigation} />
       </View>

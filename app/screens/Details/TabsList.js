@@ -30,7 +30,7 @@ export const tabsList = [
     active: false,
   },
   {
-    label: 'Eq Citiation',
+    label: 'Eq Citiations',
     active: false,
   },
 ];
