@@ -215,12 +215,10 @@ setShowDownModal(true)
   const _renderCaseHeading = () => {
     return (
       <View
-        style={{
-          //  padding: scale(20),
+        style={{ 
           justifyContent: 'center',
           alignItems: 'center',
-          marginTop: scale(10),
-           
+          marginTop: scale(10), 
           borderBottomWidth:scale(0.5)
         }}>
         <Text style={[styles.headingLabels, { color: deciddedBgColor }]}>{viewModel?.Petitioner}</Text>

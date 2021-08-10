@@ -18,7 +18,7 @@ export const tabsList = [
     active: false,
   },
   {
-    label: 'Citied In',
+    label: 'Cited In',
     active: false,
   },
   {

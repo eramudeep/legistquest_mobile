@@ -34,7 +34,7 @@ function Login({ navigation,userLogin$ }) {
            navigation.navigate("Home")
         }
         else{
-            AlertHelper.show("error","Error","Login failed. Please try againg later")
+            AlertHelper.show("error","Error","Login failed. Please try again later.")
         }
     }
     const clearState=()=>{
