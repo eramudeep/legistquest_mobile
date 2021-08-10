@@ -14,11 +14,11 @@ export const tabsList = [
     active: true,
   },
   {
-    label: 'Future Refrence',
+    label: 'Future Reference',
     active: false,
   },
   {
-    label: 'Citied In',
+    label: 'Cited In',
     active: false,
   },
   {
