@@ -10,6 +10,7 @@ import HTML from 'react-native-render-html';
 import Highlighter from 'react-native-highlight-words';
 import {appColors} from '../../utils/appColors';
 import {removeHtmlTags, truncateString} from '../../utils/common';
+import { ScrollView } from 'react-native-gesture-handler';
 function SearchWithinText({navigation, route}) {
   console.log(route.params);
   const {id} = route.params;
@@ -73,7 +74,7 @@ function SearchWithinText({navigation, route}) {
         </Pressable>
 
         <CustomInput
-          defaultValue={searchedQuery}
+          defaultValue={searchedQuery||""}
           onChangeText={onChangeText}
           onRightIcon={clear}
           onFocus={onFocus}
@@ -88,6 +89,7 @@ function SearchWithinText({navigation, route}) {
           }}
         />
       </View>
+      <ScrollView>
       {searchedQuery && (
         <Highlighter
           highlightStyle={{
@@ -99,7 +101,9 @@ function SearchWithinText({navigation, route}) {
           textToHighlight={  removeHtmlTags(searchwithinResult)}
           style={styles.bodyText}
         />
+        
       )}
+      </ScrollView>
       {/* <HTML  source={{ html:searchwithinResult }}  />  */}
       {/* <FlatList
         keyExtractor={(item) =>
