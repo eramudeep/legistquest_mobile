@@ -126,7 +126,7 @@ export default function SearchResult({
           searchData?.OtherStatusImgUrl
             ? searchData?.OtherStatusImgUrl
             : searchData?.DistinguishedImgUrl
-            ? searchData?.DistinguishedImgUrl
+            ? searchData?.DistinguishedImgUrl 
             : false
         }
         text={toTitleCase(LinkText)}

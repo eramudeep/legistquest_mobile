@@ -4,8 +4,7 @@ export async function downloadFile(id,cname,fontValue,caseName){
     console.log("id",id,"case",cname,"fontValue",fontValue,"caseName",caseName);
     console.log(`${DOWNLOAD_JUDGEMENT}id=${id}&cname=${encodeURI(cname)}&fontvalue=${fontValue}&caseName=${caseName}`);
     const respo= await fetch(`${DOWNLOAD_JUDGEMENT}id=${id}&cname=${encodeURI(cname)}&fontvalue=${fontValue}&caseName=${caseName}`)
-    .then(respo=>respo.text())
-    .then(res=>console.log("===>>>res",res))
+    .then(respo=>console.log("respo=>",respo.path()))
     .catch(e=>{console.log("download judgement error",e);})
 
 

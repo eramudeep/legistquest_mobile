@@ -14,7 +14,7 @@ export const tabsList = [
     active: true,
   },
   {
-    label: 'Future Refrence',
+    label: 'Future Reference',
     active: false,
   },
   {

@@ -37,7 +37,7 @@ export default function TopicDetail({route, navigation}) {
     const respounce = await fetch(URL);
     // console.log("in get detail 3",respounce);
     const result = await respounce.json();
-    // console.log("result?.viewModel",result);
+    console.log("result?.viewModel",result?.viewModel);
     //>>get citied in<<<
 const citiedUrl=`${GETOCRDATABYCITEDIN}?caseId=${result?.viewModel?.EncryptedId}&status=${result?.viewModel?.Status}`
 console.log("citiedUrl",citiedUrl);
