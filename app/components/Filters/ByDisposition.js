@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import RButton from './RButton';
 import {connect} from 'react-redux';
-import {toggleByDecsion} from '../../redux/filterActions';
-function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus}) {
+import {toggleByDecsion, toggleByDecsionLabel} from '../../redux/filterActions';
+function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus,toggleByDecsionLabel$,selectedByDecStatusLabel}) {
   const [selectedBench, setSelectedBench] = useState();
   const getName = (item) => {
-    const {DecisionStatusName} = item;
+    const {DecisionStatusName,StatusId} = item;
     return DecisionStatusName;
   };
   const getCaseCount = (item) => {
@@ -14,14 +14,14 @@ function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus}
     return CaseCount;
   };
  
-  const _isSelected = (toCompareWith) => {
-    
-    return   selectedByDecStatus?.includes( toCompareWith);
+  const _isSelected = (toCompareWith) => { 
+     return   selectedByDecStatusLabel?.includes( toCompareWith);
+    //return   selectedByDecStatus?.includes( toCompareWith);
   };
   console.log({selectedBench}); 
 
   const toggleSelecttion = (item) => { 
-    const {DecisionStatusName,StatusId} = item; 
+    /* const {DecisionStatusName,StatusId} = item; 
     toggleByDecsion$(DecisionStatusName);  
     if (DecisionStatusName === selectedBench) {
       applyFilters && applyFilters({Decisionarray: ""});
@@ -30,7 +30,21 @@ function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus}
     else{
       applyFilters && applyFilters({Decisionarray: `${StatusId?.toString()},`});
     }
-    setSelectedBench(DecisionStatusName);
+    setSelectedBench(DecisionStatusName); */
+
+    const {DecisionStatusName,StatusId} = item;  
+    toggleByDecsionLabel$(DecisionStatusName);  
+    toggleByDecsion$(StatusId);  
+    if (StatusId === selectedBench) {
+      applyFilters && applyFilters({Decisionarray: ""});
+      return setSelectedBench('');
+    }
+    else{
+      applyFilters && applyFilters({Decisionarray: `${StatusId?.toString()}`});
+    }
+    setSelectedBench(StatusId);
+
+
   };
 
   return (
@@ -53,8 +67,10 @@ function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus}
 
 const mapStateToProps = (state) => ({
   selectedByDecStatus: state.filter.selectedByDecStatus,
+  selectedByDecStatusLabel: state.filter.selectedByDecStatusLabel
 });
 const mapDispatchToProps = {
   toggleByDecsion$: toggleByDecsion,
+  toggleByDecsionLabel$:toggleByDecsionLabel
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ByDisposition);

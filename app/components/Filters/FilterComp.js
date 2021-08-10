@@ -90,21 +90,16 @@ const mapStateToProps = (state) => ({
   filtersList: { 
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
-    Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    //Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    Decisionarray: state.filter.selectedByCourt?.length > 1 ?  state.filter.selectedByDecStatus[state.filter.selectedByDecStatus?.length-1] :`${state.filter.selectedByDecStatus?.toString()}`,
+
     Idrafarray : `${state.filter.selectedByIdraf?.toString()}`, 
     SearchText: state?.search?.searchQuery?.text, 
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
     SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
-    Courtarray: `${state.filter.selectedByCourt?.toString()}`, 
-     
-   /*  SelectedFilter: "benchfilter",
-    PageNo:1,
-    Idrafarray:"",
-    Partyarray:"", 
-    Filter:"", 
-    Courtarray:"",   */
+    Courtarray: `${state.filter.selectedByCourt?.toString()}`,   
   },
 
    

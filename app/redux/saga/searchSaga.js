@@ -104,7 +104,7 @@ export function* workerPageNumberChange(action) {
     SEARCH_RESULT_BY_PAGE_NUMBER,
     requestOptions,
   ).then(async (response) => response.text());
-
+console.log({jsonData});
   try {
     if (results && JSON.parse(results)) { 
         yield put({type: SET_RESULT_BY_TOPIC, payload: {...JSON.parse( results),fromPagination: true }  });

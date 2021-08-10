@@ -92,7 +92,7 @@ function Topic({
       filtersList,
       callback: callbackFromSaga,
     });
-
+    console.log(respo,">>>>",pageNo);
     setPageNo((prev) => prev + 1);
   };
   const toggleModal = () => {
@@ -305,7 +305,7 @@ const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
   searchQuery: state.search.searchQuery,
   isTopicLoading: state.error.isloading,
-  filtersList: {
+  filtersList: { 
     Courtarray: `${state.filter.selectedByCourt?.toString()}`,
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,

@@ -3,6 +3,7 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const ADD_REMOVE_BY_BENCH_FILTER = 'ADD_REMOVE_BY_BENCH_FILTER';
 export const ADD_REMOVE_BY_YEAR_FILTER = 'ADD_REMOVE_BY_YEAR_FILTER';
 export const ADD_REMOVE_BY_DECISION_FILTER = 'ADD_REMOVE_BY_DECISION_FILTER';
+export const ADD_REMOVE_BY_DECISION_LABEL_FILTER = 'ADD_REMOVE_BY_DECISION_LABEL_FILTER';
 export const ADD_REMOVE_BY_COURT_FILTER = 'ADD_REMOVE_BY_COURT_FILTER';
 
 export const ADD_REMOVE_BY_IDRAF = 'ADD_REMOVE_BY_IDRAF';
@@ -42,6 +43,11 @@ export const toggleByDecsion = (decsionValue) => ({
   type: ADD_REMOVE_BY_DECISION_FILTER,
   payload: decsionValue,
 });
+export const toggleByDecsionLabel = (decsionLabel) => ({
+  type: ADD_REMOVE_BY_DECISION_LABEL_FILTER,
+  payload: decsionLabel,
+});
+
 
 export const searchByFilters = (filters) => ({
   type: SEARCH_RESULT_WITH_FILTERS,
