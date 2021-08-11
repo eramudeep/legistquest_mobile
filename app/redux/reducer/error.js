@@ -1,7 +1,8 @@
-const { SET_ERROR_SUCCESS, IS_LOADING } = require("../actionTypes");
+const { SET_ERROR_SUCCESS, IS_LOADING, SET_PAGE_NO } = require("../actionTypes");
 const initialState = {
     hasError: {},
-    isloading:false
+    isloading: false,
+    pageNumber: 1
 }
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -10,12 +11,17 @@ export default function (state = initialState, action) {
                 ...state,
                 hasError: { ...action.payload },
             }
-            case IS_LOADING:
-                return{
-                    ...state,
-                    isloading:action.payload
-                }
+        case IS_LOADING:
+            return {
+                ...state,
+                isloading: action.payload
+            }
+        case SET_PAGE_NO:
+            return {
+                ...state,
+                pageNumber: action.payload
+            }
         default:
-            return  state 
+            return state
     }
 }

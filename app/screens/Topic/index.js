@@ -22,7 +22,7 @@ import SlideModal from '../../components/Modals/SlideModal';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
 import ResultFound from '../../components/ResultFound';
 import Icon from '../../components/CustomIcon/Icon';
-import {getPagination} from '../../redux/actions';
+import {getPagination, setPageNo} from '../../redux/actions';
 import {filterListValues} from '../../utils/appConstants';
 import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
@@ -46,7 +46,9 @@ function Topic({
   navigation,
   isTopicLoading,
   filtersList,
-  userToken
+  userToken,
+  setPageNumber$,
+  pageNumber
 }) {
   const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
@@ -61,6 +63,7 @@ function Topic({
   const toggleSearchWithin = () => {
     setShowSearchWithIn(!showSearchWithIn);
   };
+  console.log("pageNumber",pageNumber);
   // console.log('searchQuery', searchTopicResult?.CaseDetails);
   const _renderSearchResult = ({item, index}) => {
     return (
@@ -84,15 +87,16 @@ function Topic({
     // console.log("searchTopicResult?.CaseCount",searchTopicResult?.CaseCount);
     if (searchTopicResult?.CaseCount <= 10) return;
     setLoadMore(true);
-
+   const page= pageNumber? Number(pageNumber) + 1:2
     const respo = await getPaginationResults$({
       query: searchQuery.text,
       searchType: searchQuery?.type,
-      pageNumber: pageNo + 1,
+      pageNumber: page,
       filtersList,
       callback: callbackFromSaga,
     });
-    console.log(respo,">>>>",pageNo);
+    console.log(respo,">>>>",pageNumber);
+    setPageNumber$(page)
     setPageNo((prev) => prev + 1);
   };
   const toggleModal = () => {
@@ -187,7 +191,7 @@ function Topic({
               borderColor: appColors.blue,
               backgroundColor:appColors.lighterGray,
               alignItems:"center",overflow:"hidden"
-            },Platform.OS==="android" &&{height:scale(45),}]}>
+            },Platform.OS==="android" &&{height:scale(35),}]}>
             <View style={{width: '50%', borderRightWidth: scale(0.6)}}>
               <Pressable
                 onPress={toggleModal}
@@ -305,6 +309,7 @@ const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
   searchQuery: state.search.searchQuery,
   isTopicLoading: state.error.isloading,
+  pageNumber: state.error.pageNumber,
   filtersList: { 
     Courtarray: `${state.filter.selectedByCourt?.toString()}`,
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
@@ -326,6 +331,7 @@ const mapDispatchToProps = {
 
   sortByOnly$: sortByOnly,
   searchByFilters$: searchByFilters,
+  setPageNumber$:setPageNo
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topic);
 

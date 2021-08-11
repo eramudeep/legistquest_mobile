@@ -10,7 +10,7 @@ import {
 import {AlertHelper} from '../../utils/AlertHelper';
 import { getHeaders } from '../../utils/common';
 import {getSearchType} from '../../utils/searchTypeHelper';
-import {GET_PAGINATION, IS_LOADING} from '../actionTypes';
+import {GET_PAGINATION, IS_LOADING, SET_PAGE_NO} from '../actionTypes';
 import { SEARCH_RESULT_WITH_FILTERS,CLEAN_FILTERS, SORT_BY_ONLY, sortByOnly } from '../filterActions';
 import {
   SET_RESULT_BY_TOPIC,
@@ -33,7 +33,7 @@ export function* workerSearchByQuery(action) {
   try {
     //AlertHelper.show("success","Got Result","search started")
     if (results && JSON?.parse(results)) {
-      let size = 550;
+      let size = 20;
       if (JSON?.parse(results).length < size) {
         size = JSON?.parse(results).length - 1;
       }
@@ -59,6 +59,7 @@ export function* workerGetResultsByTopic(action) {
   const {selectedTopic,filterValueList,SortBy,keepFilters} = action.payload; 
   //console.log({filterValueList});
   yield put({type: IS_LOADING, payload: true});
+  yield put({type: SET_PAGE_NO, payload: 1});
   if(!keepFilters)
   yield put({type: CLEAN_FILTERS}); 
   let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=`
@@ -121,6 +122,7 @@ export function* workerSearchWithFilters(action) {
   const requestOptions =  getHeaders({...activeFilters}) 
   console.log( activeFilters );
   yield put({type: IS_LOADING, payload: true});
+  yield put({type: SET_PAGE_NO, payload: 1});
   console.log({SEARCH_RESULT_WITH_FILTERS_API });
   const results = yield fetch(
     SEARCH_RESULT_WITH_FILTERS_API,
