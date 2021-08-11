@@ -1,17 +1,18 @@
 import { DOWNLOAD_JUDGEMENT } from "./ApiList";
 import {PermissionsAndroid, Alert} from "react-native";
+import RNFetchBlob from "rn-fetch-blob";
 
 export async function downloadFile(id,cname,fontValue,caseName){
     console.log("id",id,"case",cname,"fontValue",fontValue,"caseName",caseName);
     console.log(`${DOWNLOAD_JUDGEMENT}id=${id}&cname=${encodeURI(cname)}&fontvalue=${fontValue}&caseName=${caseName}`);
     const respo= await fetch(`${DOWNLOAD_JUDGEMENT}id=${id}&cname=${encodeURI(cname)}&fontvalue=${fontValue}&caseName=${caseName}`)
-    .then(respo=>console.log("respo=>",respo))
+    .then(respo=>console.log("respo=>",respo.path()))
     .catch(e=>{console.log("download judgement error",e);})
 
-
+ 
 }
-const downloadFilePDF = () => {
-    /* try {
+const downloadFilePDF =async () => {
+    try {
         const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           this.actualDownload();
@@ -20,10 +21,12 @@ const downloadFilePDF = () => {
         }
       } catch (err) {
         console.warn(err);
-      }  */
+      } 
   }
-const actualDownload = () => {
+  export const actualDownload = () => {
     const { dirs } = RNFetchBlob.fs;
+    const dirToSave = Platform.OS == 'ios' ? dirs.DocumentDir : dirs.DownloadDir
+    console.log({dirToSave});
    RNFetchBlob.config({
      fileCache: true,
      addAndroidDownloads: {
@@ -31,7 +34,7 @@ const actualDownload = () => {
      notification: true,
      mediaScannable: true,
      title: `test.pdf`,
-     path: `${dirs.DownloadDir}/test.pdf`,
+     path: `${dirToSave}/test.pdf`,
      },
    })
      .fetch('GET', 'http://www.africau.edu/images/default/sample.pdf', {})
