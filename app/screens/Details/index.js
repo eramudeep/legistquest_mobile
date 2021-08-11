@@ -22,6 +22,8 @@ import ReportModal from '../../components/Modals/ReportModal';
 import DownloadModal from '../../components/Modals/DownloadModal';
 import { downloadFile } from '../../services/downloadFile';
 import Badge from '../../components/Badge';
+import { DOWNLOAD_JUDGEMENT } from '../../services/ApiList';
+import { AlertHelper } from '../../utils/AlertHelper';
 // const Child = createReactClass({
 //   onEnter() {
 //     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
@@ -67,8 +69,10 @@ const [fontsize, setFontsize] = useState(4)
 const onDownload=async()=>{
   // console.log("viewModel ocr status",viewModel?.OcrStatus);
   const{EncryptedId,CourtName,CaseId,CaseNo,PageID,PlainJudgment}=viewModel
-  await downloadFile(PageID,CourtName,fontsize,`${PageID}${new Date().toDateString()}`) 
-
+  const dataPath=`${DOWNLOAD_JUDGEMENT}id=${PageID}&cname=${encodeURI(CourtName)}&fontvalue=${fontsize}&caseName=${PageID}`
+  await downloadFile(dataPath) 
+  AlertHelper.show("info","Info","Your file is Downloading")
+   setShowDownModal(false)
 }
   const _renderHeader = () => {
     return (

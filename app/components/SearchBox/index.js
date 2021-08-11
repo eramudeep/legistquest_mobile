@@ -119,6 +119,7 @@ function index({
         }
         data={searchResults}
         renderItem={_renderItem}
+        keyboardShouldPersistTaps={"always"}
       />
     </View>
   );

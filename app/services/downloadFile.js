@@ -1,48 +1,47 @@
 import { DOWNLOAD_JUDGEMENT } from "./ApiList";
 import {PermissionsAndroid, Alert} from "react-native";
 import RNFetchBlob from "rn-fetch-blob";
+import { AlertHelper } from "../utils/AlertHelper";
 
-export async function downloadFile(id,cname,fontValue,caseName){
-    console.log("id",id,"case",cname,"fontValue",fontValue,"caseName",caseName);
-    console.log(`${DOWNLOAD_JUDGEMENT}id=${id}&cname=${encodeURI(cname)}&fontvalue=${fontValue}&caseName=${caseName}`);
-    const respo= await fetch(`${DOWNLOAD_JUDGEMENT}id=${id}&cname=${encodeURI(cname)}&fontvalue=${fontValue}&caseName=${caseName}`)
-    .then(respo=>console.log("respo=>",respo.path()))
-    .catch(e=>{console.log("download judgement error",e);})
+export async function downloadFile(dPath){
+  try {
+    const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      actualDownload(dPath);
+    } else {
+      Alert.alert('Permission Denied!', 'You need to give storage permission to download the file');
+    }
+  } catch (err) {
+    console.warn(err);
+  } 
 
  
 }
-const downloadFilePDF =async () => {
-    try {
-        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          this.actualDownload();
-        } else {
-          Alert.alert('Permission Denied!', 'You need to give storage permission to download the file');
-        }
-      } catch (err) {
-        console.warn(err);
-      } 
-  }
-  export const actualDownload = () => {
+
+  export const actualDownload = (dPath) => {
     const { dirs } = RNFetchBlob.fs;
     const dirToSave = Platform.OS == 'ios' ? dirs.DocumentDir : dirs.DownloadDir
     console.log({dirToSave});
+    const title = new Date().getTime()
+    console.log("dPath",dPath);
    RNFetchBlob.config({
      fileCache: true,
      addAndroidDownloads: {
-     useDownloadManager: true,
+     useDownloadManager: true,  
      notification: true,
      mediaScannable: true,
-     title: `test.pdf`,
-     path: `${dirToSave}/test.pdf`,
+     title: `${title}.pdf`,
+     path: `${dirToSave}/${title}.pdf`
      },
    })
-     .fetch('GET', 'http://www.africau.edu/images/default/sample.pdf', {})
+     .fetch('GET',dPath, {})
      .then((res) => {
        console.log('The file saved to ', res.path());
+       AlertHelper.show("success","Success","download success")
      })
      .catch((e) => {
        console.log(e)
+       AlertHelper.show("error","Error","download Failed")
      });
  }
 

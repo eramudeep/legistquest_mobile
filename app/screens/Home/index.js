@@ -16,7 +16,7 @@ import { getUserLogout } from '../../redux/actions';
 import { AlertHelper } from '../../utils/AlertHelper';
 import SearchBox from '../../components/SearchBox'
 import IdrafComp from '../../components/IdrafComp';
-import { actualDownload } from '../../services/downloadFile';
+import { actualDownload, downloadFilePDF } from '../../services/downloadFile';
 
 function Home({
   navigation,
@@ -56,7 +56,7 @@ function Home({
 
       <View style={[{ flex: 1 } ,  { justifyContent: 'center'  }]}> 
         <CustomIcon iconStyle={{ width:  "100%", height: scale(100) }} /> 
-        <Pressable onPress={()=> actualDownload()}>
+        <Pressable onPress={()=> downloadFilePDF()}>
           <Text>Download</Text>
         </Pressable>
       {/*   <IdrafComp /> */}

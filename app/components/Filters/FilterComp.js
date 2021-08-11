@@ -36,6 +36,7 @@ function FilterComp({
     const ff=  senitizeAnyArray(newFilterValueSent,existedFilterValue)?.filter((item)=> { if(item?.length >=1) return item })
      */ 
       //console.log("applyFilters" ,currentFilter,{...filtersList,...currentFilter});
+    // searchByFilters$({...filtersList}) 
     searchByFilters$({...filtersList,...currentFilter}) 
   }; 
    

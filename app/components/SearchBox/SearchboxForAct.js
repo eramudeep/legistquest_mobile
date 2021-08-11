@@ -52,11 +52,12 @@ function SearchboxForAct({
         searchByQuery$({ type: searchQuery?.type, text: change });
         //setQuery(change);
         // setSearchIcon('spinner');
-    }, 1000);
+    }, 500);
 
     const onChangeText = (chnage) => {
         setHasSection(false)
         setSearchedQuery(chnage);
+        // searchByQuery$({ type: searchQuery?.type, text: chnage });
         debouncedSearch(chnage);
     };
     const onChangeTextSection = (chnage) => {
@@ -69,7 +70,7 @@ function SearchboxForAct({
         console.log("item section=>",sectionText);
         //return
         const SEARCH_QUERY = item?.Value; // getQuery();
-        if (SEARCH_QUERY?.length > 0) {
+        if (searchedQuery?.length > 0) {
           searchByQuery$({type: searchQuery?.type, text: `${searchedQuery} + ${sectionText}`}); 
           getResultsByTopic$({
             selectedTopic: `${searchedQuery} ${encodeURIComponent("+")} ${sectionText}`,
@@ -155,6 +156,7 @@ function SearchboxForAct({
                 keyExtractor={(item) =>
                     `${new Date().getTime()}_${item.Value}_${getUniId()}`
                 }
+                keyboardShouldPersistTaps={"always"}
                 data={searchResults}
                 renderItem={_renderItem}
             />
