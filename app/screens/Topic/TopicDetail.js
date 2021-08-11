@@ -85,7 +85,7 @@ const resultCitied = await respounceCitied.json();
         {isLoading ?  <View style={{backgroundColor:appColors.white,flex:1,justifyContent:"center",alignItems:"center"}}>
           <ActivityIndicator size="large" color={appColors.secondary} />
           </View>
-           : <Details viewModel={viewModel} item={item} citiedInData={citiedInData} onPressCitiedCase={getDetailsScreenData}/>
+           : <Details navigation={navigation}  viewModel={viewModel} item={item} citiedInData={citiedInData} onPressCitiedCase={getDetailsScreenData}/>
           }
 
         

@@ -48,7 +48,7 @@ import { AlertHelper } from '../../utils/AlertHelper';
 
 // }
 const tabs = ['short', 'list']
- function index({ viewModel, item, onPressCitiedCase, citiedInData ,setIsNightMode$,isNightmode}) {
+ function index({ navigation, viewModel, item, onPressCitiedCase, citiedInData ,setIsNightMode$,isNightmode}) {
   const deciddedBgColor =    isNightmode?appColors.white:appColors.black
   const deciddedTextColor =   isNightmode?appColors.black:appColors.white
   console.log({deciddedTextColor});
@@ -114,7 +114,8 @@ setShowDownModal(true)
   };
   const _renderIdraf = () => {
     return (
-      <View style={styles.idrafContainer}>
+        
+      <Pressable onPress={()=>navigation.navigate("Ideaf",{  viewModel}) }  style={styles.idrafContainer}>
         <FontAwesome5 color={appColors.tabLabel} name={'gem'} size={15} />
         <Text
           style={{
@@ -124,7 +125,7 @@ setShowDownModal(true)
           }}>
           Open iDraf
         </Text>
-      </View>
+      </Pressable>
     );
   };
   const _renderJudgement = () => {
@@ -148,13 +149,13 @@ setShowDownModal(true)
         <CustomChart dataSet={viewModel?.OcrDtoList} />
         </View>
         
-        <IdrafComp viewModel={viewModel} judgement={viewModel?.Judgement} />
-        {/* <HTML containerStyle={{ padding: 20,  }} tagsStyles={{
+       {/*  <IdrafComp viewModel={viewModel} judgement={viewModel?.Judgement} /> */}
+          <HTML containerStyle={{ padding: 20,  }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white :appColors.grayDark, 
           },
-        }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} /> */}
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />  
 
       </View>
     );
@@ -239,7 +240,7 @@ setShowDownModal(true)
   }
   return (
     <View style={{ flex: 1 }}>
-      {/* _renderIdraf() */}
+      {_renderIdraf() } 
       {_renderHeader()}
       
 
