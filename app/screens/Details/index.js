@@ -16,12 +16,13 @@ import CitiedIn from './CitiedIn';
 import { WebView } from 'react-native-webview';
 import { connect } from 'react-redux';
 import { setIsNightMode } from '../../redux/actions';
-
+ 
 import CustomChart from '../../components/CustomChart';
 import ReportModal from '../../components/Modals/ReportModal';
 import DownloadModal from '../../components/Modals/DownloadModal';
 import { downloadFile } from '../../services/downloadFile';
 import Badge from '../../components/Badge';
+import IdrafComp from '../../components/IdrafComp';
 import { DOWNLOAD_JUDGEMENT } from '../../services/ApiList';
 import { AlertHelper } from '../../utils/AlertHelper';
 // const Child = createReactClass({
@@ -128,12 +129,8 @@ setShowDownModal(true)
   };
   const _renderJudgement = () => {
     return (
-      <View style={{ flex: 1 }}>
-        {viewModel?.OcrDtoList.length > 0 ?
+      <View style={{ flex: 1 }}> 
 
-          <View />
-
-          : <View />}
         {/* <Highlighter
           highlightStyle={{
             backgroundColor: appColors.higheLight,
@@ -150,13 +147,14 @@ setShowDownModal(true)
         <View style={{marginBottom:scale(20)}}>
         <CustomChart dataSet={viewModel?.OcrDtoList} />
         </View>
-        <HTML containerStyle={{ padding: 20,  }} tagsStyles={{
+        
+        <IdrafComp viewModel={viewModel} judgement={viewModel?.Judgement} />
+        {/* <HTML containerStyle={{ padding: 20,  }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
-            color:isNightmode? appColors.white :appColors.grayDark,
-            //backgroundColor:appColors.lighterGray
+            color:isNightmode? appColors.white :appColors.grayDark, 
           },
-        }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} />
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Judgement }} /> */}
 
       </View>
     );
@@ -243,8 +241,11 @@ setShowDownModal(true)
     <View style={{ flex: 1 }}>
       {/* _renderIdraf() */}
       {_renderHeader()}
+      
+
       <TabsList  >
         <View key={0} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
+        
           {_renderCaseHeading()}
           {viewModel?.Judgement && _renderJudgement()}
         </View>

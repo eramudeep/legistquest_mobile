@@ -48,3 +48,17 @@ export const higheShadow = {
 
   elevation: 23,
 };
+
+export const IDRAF_HIGELIGHT_COLORS = {
+  cited: "#ff8000",
+  referred: "#FFFF00",
+  approved: "#0000FF",
+  distinguished: "#008000",
+  overruled: "#FF0000",
+  issue: "#8fc9f7",
+  facts: "#abe0b2",
+  argofpetitioner: "#eadad7",
+  argofresponder: "#ecead3",
+  reasoning: "#ebdef0",
+  decision: "#edbb99",
+};

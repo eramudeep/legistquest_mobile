@@ -97,7 +97,7 @@ export function multipleyDecider(value) {
   if (value <= 7) {
     return 13;
   }
-  if (value >=50) {
+  if (value >= 50) {
     return 2;
   }
   return 12;
@@ -122,5 +122,22 @@ export function noEmptyElements(array) {
   return filtered;
 }
 
+export const iddrafTabs = [
+  {label: 'IsFoundArgumentsOfPetitioner',  id: "argofpetitioner" },
+  {label: 'IsFoundArgumentsOfResponder',  id: "argofresponder" },
+  {label: 'IsFoundFacts',  id: "facts" },
+  {label: 'IsFoundPrinciple',  id: "principle" },
+  {label: 'IsFoundReasoning',  id: "reasoning" },
+  {label: 'IsFoundDecision',  id: "decision" },
+];
 
- 
+export const getIdrafTabsList = (dataFromApi) => {
+  let tabs = [];
+  iddrafTabs?.map((item) => {
+    const {label,id} =item
+    if (dataFromApi[label]) {
+      tabs.push({id,label: item.label.replace('IsFound', '').trim()});
+    }
+  });
+  return tabs;
+};

@@ -57,7 +57,7 @@ function Home({
       <View style={[{ flex: 1 } ,  { justifyContent: 'center'  }]}> 
         <CustomIcon iconStyle={{ width:  "100%", height: scale(100) }} /> 
         
-      {/*   <IdrafComp /> */}
+          {/* <IdrafComp />   */}
       <View style={{marginBottom:scale(20)}}>
       <CustomAutoComplete onBlur={(val) => { setsearching(val) }} navigation={navigation} />
       </View>
