@@ -28,19 +28,19 @@ function FilterComp({
   };
 
   const applyFilters = (currentFilter) => { 
-    /* const FiLTER_KEY=  Object.keys(currentFilter)[0]
+    //REMOVE FILTER PENDING FOR COURT (ALL COURTS)
+    const FiLTER_KEY=  Object.keys(currentFilter)[0]
     const existedFilterValue =filtersList?.[FiLTER_KEY]?.split(",") 
     const currentFilterValue =currentFilter?.[FiLTER_KEY]?.split(",") 
-    const newFilterValueSent = currentFilterValue[currentFilterValue?.length-1]
-     
-    const ff=  senitizeAnyArray(newFilterValueSent,existedFilterValue)?.filter((item)=> { if(item?.length >=1) return item })
-     */ 
-      //console.log("applyFilters" ,currentFilter,{...filtersList,...currentFilter});
-    searchByFilters$({...filtersList,...currentFilter}) 
+    const newFilterValueSent = currentFilterValue[currentFilterValue?.length-1] 
+    const ff=  senitizeAnyArray(newFilterValueSent,existedFilterValue,true)?.filter((item)=> { if(item?.length >=1) return item })
+    filtersList[FiLTER_KEY]  = ff?.toString()
+     //console.log( {FiLTER_KEY,ff,filtersList});
+     searchByFilters$({...filtersList/* ,...currentFilter */}) 
   }; 
    
   
-   
+    
   return (
     <ScrollView style={{margin: scale(3)}}>
       <Pressable onPress={onPress} style={styles.pressableContainer}>

@@ -26,8 +26,9 @@ const downloadFilePDF =async () => {
   export const actualDownload = () => {
     const { dirs } = RNFetchBlob.fs;
     const dirToSave = Platform.OS == 'ios' ? dirs.DocumentDir : dirs.DownloadDir
-    console.log({dirToSave});
+    //console.log({dirToSave});
    RNFetchBlob.config({
+    IOSBackgroundTask:true,
      fileCache: true,
      addAndroidDownloads: {
      useDownloadManager: true,
@@ -37,8 +38,10 @@ const downloadFilePDF =async () => {
      path: `${dirToSave}/test.pdf`,
      },
    })
-     .fetch('GET', 'http://www.africau.edu/images/default/sample.pdf', {})
+     .fetch('GET', 'http://legitquest.com/api/v1.0/download-judgment?id=1ABB&cname=supreme%20court%20of%20india&fontvalue=4&caseName=7777', {})
      .then((res) => {
+      //RNFetchBlob.ios.openDocument(res.data);
+      console.log({res});
        console.log('The file saved to ', res.path());
      })
      .catch((e) => {
