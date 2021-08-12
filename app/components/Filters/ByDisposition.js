@@ -3,8 +3,8 @@ import {View, ScrollView} from 'react-native';
 import RButton from './RButton';
 import {connect} from 'react-redux';
 import {toggleByDecsion, toggleByDecsionLabel} from '../../redux/filterActions';
-function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus,toggleByDecsionLabel$,selectedByDecStatusLabel}) {
-  const [selectedBench, setSelectedBench] = useState();
+function ByDisposition({onRemove,applyFilters,list, toggleByDecsion$,selectedByDecStatus,toggleByDecsionLabel$,selectedByDecStatusLabel}) {
+  const [selectedBench, setSelectedBench] = useState(  selectedByDecStatus[selectedByDecStatus?.length-1]  ); 
   const getName = (item) => {
     const {DecisionStatusName,StatusId} = item;
     return DecisionStatusName;
@@ -18,7 +18,7 @@ function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus,
      return   selectedByDecStatusLabel?.includes( toCompareWith);
     //return   selectedByDecStatus?.includes( toCompareWith);
   };
-  console.log({selectedBench}); 
+  //console.log({selectedBench}); 
 
   const toggleSelecttion = (item) => { 
     /* const {DecisionStatusName,StatusId} = item; 
@@ -35,11 +35,13 @@ function ByDisposition({applyFilters,list, toggleByDecsion$,selectedByDecStatus,
     const {DecisionStatusName,StatusId} = item;  
     toggleByDecsionLabel$(DecisionStatusName);  
     toggleByDecsion$(StatusId);  
-    if (StatusId === selectedBench) {
-      applyFilters && applyFilters({Decisionarray: ""});
-      return setSelectedBench('');
+    if (StatusId === selectedBench) { 
+      //applyFilters && applyFilters({Decisionarray: ""});
+       onRemove && onRemove("Decisionarray")
+       setSelectedBench('');
     }
     else{
+       
       applyFilters && applyFilters({Decisionarray: `${StatusId?.toString()}`});
     }
     setSelectedBench(StatusId);

@@ -4,8 +4,8 @@ import RButton from './RButton';
 import {connect} from 'react-redux';
 import {toggleByBench, toggleByIdraf} from '../../redux/filterActions';
 
-function ByIdraf({selectedByIdraf,selectedByBenchs,applyFilters, list, toggleByIdraf$}) {
-  const [selectedIdraf, setSelectedIdraf] = useState();
+function ByIdraf({onRemove,selectedByIdraf,selectedByBenchs,applyFilters, list, toggleByIdraf$}) {
+  const [selectedIdraf, setSelectedIdraf] = useState(selectedByIdraf[selectedByIdraf?.length-1]  ); 
   const getName = (item) => {
     const {CaseCount} = item; 
     return CaseCount;
@@ -23,7 +23,10 @@ function ByIdraf({selectedByIdraf,selectedByBenchs,applyFilters, list, toggleByI
     const {CaseCount} = item; 
      toggleByIdraf$(CaseCount); 
      applyFilters && applyFilters({Idrafarray: CaseCount?.toString()});
-    if (CaseCount === selectedIdraf) return setSelectedIdraf('');
+    if (CaseCount === selectedIdraf) {
+      onRemove && onRemove("Idrafarray")
+      return setSelectedIdraf('');
+    }
     setSelectedIdraf(CaseCount);
   }; 
   return (

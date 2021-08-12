@@ -39,8 +39,9 @@ function FilterComp({
      searchByFilters$({...filtersList  ,...currentFilter     }) 
   }; 
    
-  const onRemove = (Bench)=>{
-    console.log("remove",Bench);
+  const onRemove = (Bench)=>{ 
+    console.log("onRemove");
+    searchByFilters$({...filtersList  ,[Bench]: ""     }) 
   }
   
     
@@ -62,13 +63,13 @@ function FilterComp({
               <ByBench onRemove={onRemove} applyFilters={applyFilters} list={Court} />
             )} 
             {label == 'Year' && (
-              <ByYear applyFilters={applyFilters} list={Court} />
+              <ByYear onRemove={onRemove}  applyFilters={applyFilters} list={Court} />
             )}
             {label == 'Dispositions' && (
-              <ByDisposition applyFilters={applyFilters} list={Court} />
+              <ByDisposition   onRemove={onRemove}  applyFilters={applyFilters} list={Court} />
             )}
             {label == 'iDRAF' && (
-              <ByIdraf applyFilters={applyFilters} list={Court} />
+              <ByIdraf  onRemove={onRemove}   applyFilters={applyFilters} list={Court} />
             )}
              
           </Pressable>

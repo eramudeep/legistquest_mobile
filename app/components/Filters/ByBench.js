@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {toggleByBench} from '../../redux/filterActions';
 
 function ByBench({onRemove, selectedByBenchs,applyFilters, list, toggleByBench$}) {
-  const [selectedBench, setSelectedBench] = useState();
+  const [selectedBench, setSelectedBench] = useState(selectedByBenchs[selectedByBenchs?.length-1] );
   const getName = (item) => {
     const {Bench} = item;
     return Bench;
@@ -26,9 +26,8 @@ function ByBench({onRemove, selectedByBenchs,applyFilters, list, toggleByBench$}
     toggleByBench$(Bench);
     
     applyFilters && applyFilters({BenchArray: `${Bench?.toString()},`});
-    if (Bench === selectedBench) { 
-      console.log("onRemove",onRemove);
-      onRemove && onRemove(Bench)
+    if (Bench === selectedBench) {  
+        onRemove && onRemove("BenchArray")
         setSelectedBench('')
     };
     setSelectedBench(Bench);
