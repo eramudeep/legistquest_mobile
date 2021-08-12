@@ -29,16 +29,19 @@ function FilterComp({
 
   const applyFilters = (currentFilter) => { 
     //REMOVE FILTER PENDING FOR COURT (ALL COURTS)
-    const FiLTER_KEY=  Object.keys(currentFilter)[0]
+    /* const FiLTER_KEY=  Object.keys(currentFilter)[0]
     const existedFilterValue =filtersList?.[FiLTER_KEY]?.split(",") 
     const currentFilterValue =currentFilter?.[FiLTER_KEY]?.split(",") 
     const newFilterValueSent = currentFilterValue[currentFilterValue?.length-1] 
     const ff=  senitizeAnyArray(newFilterValueSent,existedFilterValue,true)?.filter((item)=> { if(item?.length >=1) return item })
     filtersList[FiLTER_KEY]  = ff?.toString()
-     //console.log( {FiLTER_KEY,ff,filtersList});
-     searchByFilters$({...filtersList   /* ,...currentFilter   */ }) 
+      */
+     searchByFilters$({...filtersList  ,...currentFilter     }) 
   }; 
    
+  const onRemove = (Bench)=>{
+    console.log("remove",Bench);
+  }
   
     
   return (
@@ -49,14 +52,14 @@ function FilterComp({
           size={scale(20)}
         />
         <CustomLabel text={`By ${label}`} labelStyle={styles.itemLabel} />
-      </Pressable>
+      </Pressable> 
  
       {isFilterOpen() && (
         <View>
           <Pressable style={{margin: scale(10)}}>
             {label == 'Court' && <RadioGroup applyFilters={applyFilters} list={Court} />}
             {label == 'Bench' && (
-              <ByBench applyFilters={applyFilters} list={Court} />
+              <ByBench onRemove={onRemove} applyFilters={applyFilters} list={Court} />
             )} 
             {label == 'Year' && (
               <ByYear applyFilters={applyFilters} list={Court} />
@@ -88,7 +91,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   filtersList: { 
-    BenchArray: `${state.filter.selectedByBench?.toString()},`,
+    BenchArray: `${state.filter.selectedByBench?.toString()}` ,//  state.filter.selectedByBench?.length > 0 ?   `${state.filter.selectedByBench?.toString()}` :`${state.filter.selectedByBench?.toString()},` ,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
     //Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
     Decisionarray: state.filter.selectedByCourt?.length > 1 ?  state.filter.selectedByDecStatus[state.filter.selectedByDecStatus?.length-1] :`${state.filter.selectedByDecStatus?.toString()}`,

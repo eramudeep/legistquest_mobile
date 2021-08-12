@@ -123,7 +123,7 @@ export function* workerSearchWithFilters(action) {
   console.log( activeFilters );
   yield put({type: IS_LOADING, payload: true});
   yield put({type: SET_PAGE_NO, payload: 1});
-  console.log({SEARCH_RESULT_WITH_FILTERS_API });
+  //console.log({SEARCH_RESULT_WITH_FILTERS_API });
   const results = yield fetch(
     SEARCH_RESULT_WITH_FILTERS_API,
     requestOptions,

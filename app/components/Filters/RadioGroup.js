@@ -29,10 +29,10 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
   };
 
   const toggleSelecttion = (item) => {
-    const {SubCourtName, CourtName,CaseIds,SubCourtCaseIds} = item;
-    console.log({item});
+    const {SubCourtName, CourtName,CaseIds,SubCourtCaseIds} = item; 
     
     if (CourtName) {
+       //for first selection/level
       setCaseIds(CaseIds)
       applyFilters && applyFilters({Courtarray:  CaseIds?.toString()}); 
       setSelectedSubCourt(undefined);   
@@ -40,22 +40,24 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
       toggleByCourt$(getName(item))
       toggleByCourt$(CaseIds)
       return setSelected(getName(item));
-    } else {
+    }  else {
       if(selectedSubCourt){
         console.log("in 1 else");
-        applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()},${selectedSubSubCourt?.toString()}`});
+        /* applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()},${selectedSubSubCourt?.toString()}`});
         setSelectedSubSubCourt(SubCourtName)
-        toggleByCourt$(SubCourtName) 
+        toggleByCourt$(SubCourtName)  */
         
-      }else{
+      }  else{
+        //level 2
         console.log("in 2 else");
         applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()},${SubCourtName?.toString()}`});
         toggleByCourt$(SubCourtName)
        return setSelectedSubCourt(SubCourtName)
-      }
-      //applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
-      //return setSelectedSubCourt(SubCourtName);
-    }
+      } 
+      
+    }  
+     /* applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
+       return setSelectedSubCourt(SubCourtName); */
     /* if (CourtName) 
         return  setUniversalSelectedCourt([CourtName]) 
         const tmpUniversalSelectedCourt =universalSelectedCourt
