@@ -11,7 +11,7 @@ export default function IdrafComp({viewModel, judgement}) {
     const buttons = getIdrafTabsList(viewModel).map(
       (item) =>
         `<button  id="${item.label?.toLowerCase()}-1" class="btn btn-light mr-3 p-3"> ${
-          item.label
+          item.label.replace(/([A-Z])/g, ' $1').trim()
         } </button>`,
     );
     const tmpbuttons = buttons?.toString();
