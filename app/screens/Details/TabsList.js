@@ -10,7 +10,7 @@ import {scale} from 'react-native-size-matters';
 import {appColors} from '../../utils/appColors';
 export const tabsList = [
   {
-    label: 'Judgement',
+    label: 'Judgment',
     active: true,
   },
   {

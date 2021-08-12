@@ -34,16 +34,16 @@ export default function IdrafComp({viewModel, judgement}) {
       display: none;
       position: fixed;
       bottom: 20px;
-      right: 30px;
+      right: 10px;
       z-index: 99;
-      font-size: 18px;
+      font-size: 14px;
       border: none;
       outline: none;
-      background-color: #ed7e1f;
+      background-color:#4f60ea; 
       color: white;
       cursor: pointer;
-      padding: 15px;
-      border-radius: 4px;
+      padding: 10px;
+      border-radius: 30px;
     }
     
     #myBtn:hover {
@@ -72,7 +72,7 @@ export default function IdrafComp({viewModel, judgement}) {
  <div style="margin-top:100px;">
  ${judgement}
  </div>
- <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+ <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
  </body> 
 </html>
 `;
