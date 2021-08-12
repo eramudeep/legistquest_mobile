@@ -126,7 +126,7 @@ export const iddrafTabs = [
   {label: 'IsFoundArgumentsOfPetitioner',  id: "argofpetitioner" },
   {label: 'IsFoundArgumentsOfResponder',  id: "argofresponder" },
   {label: 'IsFoundFacts',  id: "facts" },
-  {label: 'IsFoundPrinciple',  id: "principle" },
+  {label: 'IsFoundPrinciple',  id: "issue" }, //principle
   {label: 'IsFoundReasoning',  id: "reasoning" },
   {label: 'IsFoundDecision',  id: "decision" },
 ];

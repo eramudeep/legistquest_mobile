@@ -55,12 +55,12 @@ export default function IdrafComp({viewModel, judgement}) {
       border-radius: 0;
       margin-right:5px;
     }
-    .container-outer { overflow: scroll; width: 500px; height: 50px;  }
-    .container-inner { width: 600px; }
+    .container-outer { position:fixed;background-color:#fff;  /* overflow: scroll; width: 500px; height: 50px;  */ }
+    /* .container-inner { width: 600px; } */
  
     </style>
     </head>
-<body> 
+<body style="max-width: 100%;overflow-x:hidden;"> 
 <div class="container-outer">
    <div class="container-inner">
    ${getIdrafTabButtons(viewModel)}
@@ -69,7 +69,9 @@ export default function IdrafComp({viewModel, judgement}) {
 
  
 </br>
+ <div style="margin-top:100px;">
  ${judgement}
+ </div>
  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
  </body> 
 </html>
@@ -107,9 +109,8 @@ const getStyleRemover =()=>{
       (item) =>
         (scriptString += `
       document.getElementById('${item.label?.toLowerCase()}-1').onclick = function changeContent() {   
-        
-        location.href = "#selected${item.id?.toLowerCase()}-1";   
-        
+        getStyleRemover()
+        location.href = "#selected${item.id?.toLowerCase()}-1";    
         document.getElementById('selected${item.id?.toLowerCase()}-1').style.backgroundColor = '${
           IDRAF_HIGELIGHT_COLORS[item.id]
         }' ;  
@@ -124,9 +125,10 @@ const getStyleRemover =()=>{
      ${generateDynamicJavasciptToInject()} 
     true;
   `;
+    console.log({run});
     setTimeout(() => {
       webView?.current?.injectJavaScript(run);
-    }, 300);
+    }, 500);
   }, []);
   const runFirst = `
       document.body.style.backgroundColor = 'red';

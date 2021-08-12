@@ -47,7 +47,7 @@ function Home({
     <Container
       showFooter
       showHome
-      showMenu
+      //showMenu
       hideLogo
       showSignin
       signInLabel={userToken ? "Logout" : "Sign In"}

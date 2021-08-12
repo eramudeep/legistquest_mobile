@@ -36,7 +36,7 @@ function FilterComp({
     const ff=  senitizeAnyArray(newFilterValueSent,existedFilterValue,true)?.filter((item)=> { if(item?.length >=1) return item })
     filtersList[FiLTER_KEY]  = ff?.toString()
      //console.log( {FiLTER_KEY,ff,filtersList});
-     searchByFilters$({...filtersList/* ,...currentFilter */}) 
+     searchByFilters$({...filtersList   /* ,...currentFilter   */ }) 
   }; 
    
   
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   filtersList: { 
-    BenchArray: `${state.filter.selectedByBench?.toString()}`,
+    BenchArray: `${state.filter.selectedByBench?.toString()},`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
     //Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
     Decisionarray: state.filter.selectedByCourt?.length > 1 ?  state.filter.selectedByDecStatus[state.filter.selectedByDecStatus?.length-1] :`${state.filter.selectedByDecStatus?.toString()}`,

@@ -33,13 +33,13 @@ function CustomHeader({ showHome,signInLabel,showSearch, showMenu, showBack, onH
         <View style={styles.header}>
             
 
-            <View style={styles.icon}>
+           {showBack&& <View style={styles.icon}>
                 {showBack && <Icon name={"arrow-left"} onPress={()=> navigation.goBack() } color={appColors.blue} size={scale(17)}/>}
-            </View>
+            </View>}
 
-            <View style={styles.icon}>
+           {showHome&& <View style={styles.icon}>
                 {showHome && <Icon name={"home"} onPress={onHome} color={appColors.blue} size={scale(17)}/>}
-            </View>
+            </View>}
             <View style={{ flex: 1, alignItems: "center" }}>
                 {!hideLogo &&
                 <CustomIcon iconStyle={{ width: scale(130), }} />}
