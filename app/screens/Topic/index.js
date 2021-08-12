@@ -248,7 +248,7 @@ function Topic({
               paddingHorizontal: scale(10),
               backgroundColor: appColors.white,
               marginBottom: scale(5),
-              ...shadowLight,
+              // ...shadowLight,
             }}>
             <FilterWithIn />
             <ResultFound />
