@@ -239,9 +239,11 @@ setShowDownModal(true)
     children[from].onLeave();
   }
   return (
-    <View style={{ flex: 1 }}>
-      {_renderIdraf() } 
+    <View style={{ flex: 1, }}>
+     <View style={{flexDirection:"row",alignItems:"center"}}>
+     {_renderIdraf() } 
       {_renderHeader()}
+     </View>
       
 
       <TabsList  >
@@ -314,12 +316,12 @@ const styles = StyleSheet.create({
   },
   idrafContainer: {
     flexDirection: 'row',
-    marginBottom: scale(10),
+    // marginBottom: scale(10),
     height: scale(40),
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: scale(0.5),
-    borderBottomColor: appColors.gray,
+    // borderBottomWidth: scale(0.5),
+    // borderBottomColor: appColors.gray,
 
   },
   caseTitle: {
