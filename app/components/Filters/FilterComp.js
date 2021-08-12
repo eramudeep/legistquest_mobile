@@ -41,7 +41,7 @@ function FilterComp({
    
   const onRemove = (Bench)=>{ 
     console.log("onRemove");
-    searchByFilters$({...filtersList  ,[Bench]: ""     }) 
+    searchByFilters$({...filtersList  ,[Bench]: "" }) 
   }
   
     
@@ -57,8 +57,8 @@ function FilterComp({
  
       {isFilterOpen() && (
         <View>
-          <Pressable style={{margin: scale(10)}}>
-            {label == 'Court' && <RadioGroup applyFilters={applyFilters} list={Court} />}
+          <Pressable style={{margin: scale(10)}}> 
+            {label == 'Court' && <RadioGroup onRemove ={onRemove} applyFilters={applyFilters} list={Court} />}
             {label == 'Bench' && (
               <ByBench onRemove={onRemove} applyFilters={applyFilters} list={Court} />
             )} 

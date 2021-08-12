@@ -120,7 +120,7 @@ console.log({jsonData});
 export function* workerSearchWithFilters(action) {
   const activeFilters = action.payload;   
   const requestOptions =  getHeaders({...activeFilters}) 
-  console.log( activeFilters );
+  //console.log( activeFilters );
   yield put({type: IS_LOADING, payload: true});
   yield put({type: SET_PAGE_NO, payload: 1});
   //console.log({SEARCH_RESULT_WITH_FILTERS_API });
@@ -128,7 +128,7 @@ export function* workerSearchWithFilters(action) {
     SEARCH_RESULT_WITH_FILTERS_API,
     requestOptions,
   ).then(async (response) => response.text());
-   console.log({activeFilters});
+   //console.log({activeFilters});
    
   try {
     if (results && JSON.parse(results)) {

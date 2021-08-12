@@ -4,13 +4,13 @@ import {scale} from 'react-native-size-matters';
 import RButton from './RButton';
 import {connect} from 'react-redux';
 import { toggleByCourt } from '../../redux/filterActions';
-function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
-   console.log("listlistlist");
+function RadioGroup({onRemove, selectedByCourt,toggleByCourt$,applyFilters, list}) { 
   const [selected, setSelected] = useState();
   const [CaseIdss, setCaseIds] = useState()
   const [selectedSubCourt, setSelectedSubCourt] = useState();
   const [selectedSubSubCourt, setSelectedSubSubCourt] = useState();
   const [universalSelectedCourt, setUniversalSelectedCourt] = useState([]);
+  console.log({selectedByCourt});
   const _isSelected = (toCompareWith) => {
    return selectedByCourt?.includes(toCompareWith)
     //return selected === toCompareWith || selectedSubCourt === toCompareWith || selectedSubSubCourt === toCompareWith ;
@@ -30,29 +30,67 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
 
   const toggleSelecttion = (item) => {
     const {SubCourtName, CourtName,CaseIds,SubCourtCaseIds} = item; 
+     
+  if(CourtName ){
+    //level 1
+     if(!_isSelected(CourtName)){
+       //add
+
+       setCaseIds(CaseIds)
+       applyFilters && applyFilters({Courtarray:  CaseIds?.toString()}); 
+       //setSelectedSubCourt(undefined);   
+       setSelectedSubSubCourt(undefined)
+       toggleByCourt$(getName(item))
+       toggleByCourt$(CaseIds)
+       return setSelected(getName(item));
+
+     }else{
+       //remove
+       onRemove && onRemove("Courtarray")
+       toggleByCourt$(getName(item))
+       toggleByCourt$(CaseIds)
+     }
+
+  }else{
+
+     if(!_isSelected(SubCourtName)){
+       //add
+       applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()},${SubCourtName?.toString()}`});
+        toggleByCourt$(SubCourtName)
+     }else{
+       //remove
+       toggleByCourt$(SubCourtName)
+       applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()}`});
+     }
+    
+  }
+
+    return;
     
     if (CourtName) {
        //for first selection/level
+       console.log("Level 1");
       setCaseIds(CaseIds)
       applyFilters && applyFilters({Courtarray:  CaseIds?.toString()}); 
-      setSelectedSubCourt(undefined);   
+      //setSelectedSubCourt(undefined);   
       setSelectedSubSubCourt(undefined)
       toggleByCourt$(getName(item))
       toggleByCourt$(CaseIds)
       return setSelected(getName(item));
     }  else {
       if(selectedSubCourt){
-        console.log("in 1 else");
+        console.log("Level 3");
         /* applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()},${selectedSubSubCourt?.toString()}`});
         setSelectedSubSubCourt(SubCourtName)
         toggleByCourt$(SubCourtName)  */
         
       }  else{
         //level 2
-        console.log("in 2 else");
+        
+        console.log("Level 2");
         applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()},${SubCourtName?.toString()}`});
         toggleByCourt$(SubCourtName)
-       return setSelectedSubCourt(SubCourtName)
+       //return setSelectedSubCourt(SubCourtName)
       } 
       
     }  
