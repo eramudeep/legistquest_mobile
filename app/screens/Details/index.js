@@ -241,7 +241,7 @@ setShowDownModal(true)
   return (
     <View style={{ flex: 1, }}>
      <View style={{flexDirection:"row",alignItems:"center"}}>
-     {_renderIdraf() } 
+     {viewModel?.JudgmentTabs && _renderIdraf() } 
       {_renderHeader()}
      </View>
       
