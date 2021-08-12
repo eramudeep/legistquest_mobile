@@ -136,7 +136,13 @@ export const getIdrafTabsList = (dataFromApi) => {
   iddrafTabs?.map((item) => {
     const {label,id} =item
     if (dataFromApi[label]) {
-      tabs.push({id,label: item.label.replace('IsFound', '').trim()});
+      if(label==="IsFoundPrinciple"){/// replacing with issues 
+        tabs.push({id,label: "Issues" });
+      }
+      else{
+          tabs.push({id,label: item.label.replace('IsFound', '').trim()});
+      }
+      
     }
   });
   return tabs;

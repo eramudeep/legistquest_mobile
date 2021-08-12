@@ -125,7 +125,7 @@ const getStyleRemover =()=>{
      ${generateDynamicJavasciptToInject()} 
     true;
   `;
-    console.log({run});
+     
     setTimeout(() => {
       webView?.current?.injectJavaScript(run);
     }, 500);
