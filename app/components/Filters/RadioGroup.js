@@ -10,6 +10,7 @@ function RadioGroup({onRemove, selectedByCourt,toggleByCourt$,applyFilters, list
   const [selectedSubCourt, setSelectedSubCourt] = useState();
   const [selectedSubSubCourt, setSelectedSubSubCourt] = useState();
   const [universalSelectedCourt, setUniversalSelectedCourt] = useState([]);
+  const [servedSubScourt, setServedSubScourt] = useState(false)
   console.log({selectedByCourt});
   const _isSelected = (toCompareWith) => {
    return selectedByCourt?.includes(toCompareWith)

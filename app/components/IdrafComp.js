@@ -55,7 +55,7 @@ export default function IdrafComp({viewModel, judgement}) {
       border-radius: 0;
       margin-right:5px;
     }
-    .container-outer { position:fixed;background-color:#fff;  /* overflow: scroll; width: 500px; height: 50px;  */ }
+    .container-outer {  background-color:#fff;  /* overflow: scroll; width: 500px; height: 50px;  */ }
     /* .container-inner { width: 600px; } */
  
     </style>
@@ -69,7 +69,7 @@ export default function IdrafComp({viewModel, judgement}) {
 
  
 </br>
- <div style="margin-top:100px;">
+ <div style="margin-top:20px;font-size: 1.5rem;font-weight: 300 !important;line-height: 2.2rem;font-family: 'Gelasio'; ">
  ${judgement}
  </div>
  <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
@@ -111,7 +111,7 @@ const getStyleRemover =()=>{
       document.getElementById('${item.label?.toLowerCase()}-1').onclick = function changeContent() {   
         getStyleRemover()
         location.href = "#selected${item.id?.toLowerCase()}-1";    
-        document.getElementById('selected${item.id?.toLowerCase()}-1').style.backgroundColor = '${
+         document.getElementById('selected${item.id?.toLowerCase()}-1').style.backgroundColor = '${
           IDRAF_HIGELIGHT_COLORS[item.id]
         }' ;  
         
@@ -119,7 +119,9 @@ const getStyleRemover =()=>{
     );
     return scriptString;
   };
-  
+  //location.href = "#selected${item.id?.toLowerCase()}-1";    
+  //document .getElementById("selected${item.id?.toLowerCase()}-1") .scrollIntoView({ behavior: "smooth", block: "center" });
+
   useEffect(() => {
     const run = `
      ${generateDynamicJavasciptToInject()} 
