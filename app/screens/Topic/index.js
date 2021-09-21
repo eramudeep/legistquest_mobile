@@ -7,29 +7,37 @@ import {
   View,
   ActivityIndicator,
   Pressable,
+  Platform,
 } from 'react-native';
 import {scale} from 'react-native-size-matters';
-import Badge from '../../components/Badge';
+
 import Container from '../../components/Container';
-import CustomInput from '../../components/CustomInput';
+
 import SearchResult from '../../components/SearchResult';
 import {getResultsByTopic} from '../../redux/searchActions';
-import ScrollableTab from '../../routing/ScrollableTab';
+
 import {connect} from 'react-redux';
-import {appColors} from '../../utils/appColors';
+import {appColors, shadowLight} from '../../utils/appColors';
 import SlideModal from '../../components/Modals/SlideModal';
 import CustomAutoComplete from '../../components/CustomAutoComplete';
 import ResultFound from '../../components/ResultFound';
 import Icon from '../../components/CustomIcon/Icon';
-import {getPagination} from '../../redux/actions';
+import {getPagination, setPageNo} from '../../redux/actions';
 import {filterListValues} from '../../utils/appConstants';
 import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import FilterWithIn from '../../components/Filters/FilterWithIn';
-import ChartWebview from '../../components/Highcharts/ChartWebview'
- 
-const coutLists=["SupremeCourtList", "HighCourtList","OtherCourtList"]
+
+import RNPickerSelect from 'react-native-picker-select';
+import {sortData} from '../../utils/MockData';
+import {searchByFilters, sortByOnly} from '../../redux/filterActions';
+import CustomLabel from '../../components/CustomLabel/CustomLabel';
+
+const courtLists = ['SupremeCourtList', 'HighCourtList', 'OtherCourtList'];
 function Topic({
+  sortByF,
+  searchByFilters$,
+  sortByOnly$,
   searchTopicResult,
   searchQuery,
   getResultsByTopic$,
@@ -38,18 +46,33 @@ function Topic({
   navigation,
   isTopicLoading,
   filtersList,
+  userToken,
+  setPageNumber$,
+  pageNumber
 }) {
   const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
   const [modalVisible, setModalVisible] = useState(false);
   const [pageNo, setPageNo] = useState(1);
-  //console.log('searchQuery', searchQuery);
+  const [showSearchWithIn, setShowSearchWithIn] = useState(false);
+  const [
+    onEndReachedCalledDuringMomentum,
+    setOnEndReachedCalledDuringMomentum,
+  ] = useState(true);
+  const [sortBy, setSortBy] = useState(sortByF);
+  const toggleSearchWithin = () => {
+    setShowSearchWithIn(!showSearchWithIn);
+  };
+  console.log("pageNumber",pageNumber);
+  // console.log('searchQuery', searchTopicResult?.CaseDetails);
   const _renderSearchResult = ({item, index}) => {
     return (
       <SearchResult
         selectedTopic={selectedTopic}
         searchData={item}
         key={index}
+        onSearchCase={toggleSearchWithin}
+        onPressSearchWithin={()=>navigation.navigate("SearchWithinText",{id:item?.EncryptedId})}
         onPress={(LinkText, HighlightedText) =>
           navigation.navigate('TopicDetail', {LinkText, HighlightedText, item})
         }
@@ -62,17 +85,18 @@ function Topic({
   };
   const getLoadMoreResults = async () => {
     // console.log("searchTopicResult?.CaseCount",searchTopicResult?.CaseCount);
-    if(searchTopicResult?.CaseCount<=10) return
+    if (searchTopicResult?.CaseCount <= 10) return;
     setLoadMore(true);
-
+   const page= pageNumber? Number(pageNumber) + 1:2
     const respo = await getPaginationResults$({
       query: searchQuery.text,
       searchType: searchQuery?.type,
-      pageNumber: pageNo + 1,
+      pageNumber: page,
       filtersList,
       callback: callbackFromSaga,
     });
-
+    console.log(respo,">>>>",pageNumber);
+    setPageNumber$(page)
     setPageNo((prev) => prev + 1);
   };
   const toggleModal = () => {
@@ -80,43 +104,63 @@ function Topic({
   };
 
   const seniTizeCourtFilters = () => {
-    let filters = {
-        
-    };
+    let filters = {};
     // console.log("searchTopicResult",searchTopicResult);
-    let Court=[]
-    coutLists?.map((courtName)=>{
-        if(searchTopicResult?.[courtName]){
-            const { CourtName ,  CaseCount , CaseIds,CaseListViewModel} =searchTopicResult?.[courtName]
-            Court.push({ CourtName ,  CaseCount , CaseIds,SubCourtList:CaseListViewModel })
-        }
-    }) 
-    filters={...filters,Court}
+    let Court = [];
+    courtLists?.map((courtName) => {
+      if (searchTopicResult?.[courtName]) {
+        const {CourtName, CaseCount, CaseIds, CaseListViewModel} =
+          searchTopicResult?.[courtName];
+        Court.push({
+          CourtName,
+          CaseCount,
+          CaseIds,
+          SubCourtList: CaseListViewModel,
+        });
+      }
+    });
+    filters = {...filters, Court};
 
     //filters.Court=Court
     filterListValues?.map((item) => {
-      const {key, label} = item; 
+      const {key, label} = item;
       if (searchTopicResult?.[label]) {
         filters[key] = [...searchTopicResult?.[label]];
       }
     });
 
-    let IdrafList=[]
-    if(searchTopicResult?.IdrafList?.length > 0){
-      searchTopicResult?.IdrafList?.map(item=>{
-        IdrafList.push( {CaseCount:item, StatusId:item})
-      }) 
-      filters.iDRAF =IdrafList
+    let IdrafList = [];
+    if (searchTopicResult?.IdrafList?.length > 0) {
+      searchTopicResult?.IdrafList?.map((item) => {
+        IdrafList.push({CaseCount: item, StatusId: item});
+      });
+      filters.iDRAF = IdrafList;
     }
     // console.log({IdrafList});
     return filters;
   };
+
+  const onChangePicker = (value) => {
+    sortByOnly$({
+      sortBy: value,
+    });
+    setSortBy(value);
+    //console.log({filtersList});
+    searchByFilters$({...filtersList, SortBy: value?.toString()});
+
+    //getResultsByTopic$({selectedTopic: searchQuery?.text,filterValueList:[ ...filterWithInResult]?.toString(), SortBy :value?.toString(), keepFilters:true});
+  };
+//console.log("Mmmmmmmmm",searchTopicResult?.CaseDetails);
   return (
     <Container
-    isScrollable
+      bodyStyle={{padding: scale(0)}}
+      //isScrollable
       showHome
       showMenu
       showFooter
+      showSignin
+      showSearch
+      //signInLabel={userToken ?  }
       onHome={() => navigation.navigate('Home')}>
       {isTopicLoading ? (
         <View>
@@ -127,13 +171,8 @@ function Topic({
           />
         </View>
       ) : (
-        <View style={{flex: 1}}>
-          <ChartWebview/>
-          {searchQuery?.type === TYPE_ACT ? (
-            <AutoCompleteForAct navigation={navigation} />
-          ) : (
-            <CustomAutoComplete navigation={navigation} />
-          )}
+        <View style={{flex: 1, paddingTop: scale(0)}}>
+           {/* <CustomAutoComplete navigation={navigation} /> */}
 
           {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -142,36 +181,111 @@ function Topic({
             })}
           </ScrollView>
         </View> */}
-         <View style={{width:'30%'}}>
-         <Pressable
-            onPress={toggleModal}
-            style={{
-              backgroundColor: appColors.lighterGray,
-              alignItems: 'center',
-              paddingVertical: scale(5),
-              justifyContent: 'center',
+          <View
+            style={[{
+              //marginTop: scale(15),
+              width: '100%',
+              justifyContent: 'space-between',
               flexDirection: 'row',
-            }}>
-            <Icon name={'filter'} size={scale(15)} color={appColors.blue} />
-            <Text
-              style={{
-                fontSize: scale(14),
-                marginLeft: scale(10),
-                color: appColors.blue,
-              }}>
-              Filters
-            </Text>
-          </Pressable>
-         </View>
-          <FilterWithIn />
-          <ResultFound />
+              borderWidth: scale(0.5),
+              borderColor: appColors.blue,
+              backgroundColor:appColors.lighterGray,
+              alignItems:"center",overflow:"hidden"
+            },Platform.OS==="android" &&{height:scale(35),}]}>
+            <View style={{width: '50%', borderRightWidth: scale(0.6)}}>
+              <Pressable
+                onPress={toggleModal}
+                style={{
+                  backgroundColor: appColors.lighterGray,
+                  alignItems: 'center',
+                  paddingVertical: scale(5),
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                }}>
+                <Icon name={'filter'} size={scale(15)} color={appColors.blue} />
+                <Text
+                  style={{
+                    fontSize: scale(14),
+                    marginLeft: scale(10),
+                    color: appColors.blue,
+                  }}>
+                  Filters
+                </Text>
+              </Pressable>
+            </View>
 
+            <View
+              style={[{
+                flex:1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                // alignContent: 'center',
+                backgroundColor: appColors.lighterGray,
+                  flexDirection: 'row',
+              },Platform.OS==="android"&&{flexDirection:"column"}]}>
+                
+              <RNPickerSelect
+                 
+                onValueChange={(value) => {
+                  onChangePicker(value);
+                }}
+                items={sortData}
+                value={sortBy}
+                Icon={() =><Icon name={'sort'} size={scale(15)} color={appColors.blue} />}
+                style={{
+                  inputAndroid: {color: appColors.blue},
+                  iconContainer: {marginRight: scale(30)}, 
+                  viewContainer: {justifyContent: 'center',marginLeft:Platform.OS==="android"?scale(20):0 },
+                  inputIOS: {fontSize: scale(14), color: appColors.blue},
+                }}
+                fixAndroidTouchableBug
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              paddingTop: scale(10),
+              paddingHorizontal: scale(10),
+              backgroundColor: appColors.white,
+              marginBottom: scale(5),
+              // ...shadowLight,
+            }}>
+            <FilterWithIn />
+            <ResultFound />
+          </View>
+          {/* <Filters  Court={seniTizeCourtFilters()}/> */}
           <FlatList
-            data={searchTopicResult?.CaseDetails}
+            ListEmptyComponent={() => (
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: scale(500),
+                }}>
+                <CustomLabel
+                  text={`No result found for query '${ searchQuery?.text}'`}
+                  labelStyle={{color: appColors.tabLabel}}
+                />
+              </View>
+            )}
+            data={searchTopicResult?.CaseDetails /* | [...searchTopicResult?.CaseDetails] */}
             renderItem={_renderSearchResult}
-            keyExtractor={(item) => item.Id}
-            onEndReached={getLoadMoreResults}
-            // onEndReachedThreshold={0.1}
+            keyExtractor={(item) =>
+              `${new Date().getTime()}_${item.Id}_${item.EncryptedId}_${
+                item.CaseId
+              }`
+            }
+            onMomentumScrollBegin={() => {
+              setOnEndReachedCalledDuringMomentum(false);
+            }}
+            onEndReached={({distanceFromEnd}) => {
+              if (!onEndReachedCalledDuringMomentum) {
+                getLoadMoreResults();
+                setOnEndReachedCalledDuringMomentum(true);
+              }
+            }}
+            //onEndReached={getLoadMoreResults}
+            onEndReachedThreshold={0.5}
           />
         </View>
       )}
@@ -182,11 +296,11 @@ function Topic({
           color={appColors.black}
         />
       </View>
-       <SlideModal
+      <SlideModal
         filterCourt={seniTizeCourtFilters()}
         visible={modalVisible}
         onClose={toggleModal}
-      />  
+      />
     </Container>
   );
 }
@@ -195,20 +309,29 @@ const mapStateToProps = (state) => ({
   searchTopicResult: state.search.searchTopicResult,
   searchQuery: state.search.searchQuery,
   isTopicLoading: state.error.isloading,
-  filtersList: {
+  pageNumber: state.error.pageNumber,
+  filtersList: { 
+    Courtarray: `${state.filter.selectedByCourt?.toString()}`,
     BenchArray: `${state.filter.selectedByBench?.toString()}`,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
     Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    Idrafarray: `${state.filter.selectedByIdraf?.toString()}`,
     SearchText: state?.search?.searchQuery?.text,
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
-    SortBy: state.filter.sortBy?.toString() 
+    SortBy: state.filter.sortBy?.toString(),
   },
+  sortByF: state.filter.sortBy,
+  userToken: state.auth.userData?.data?.userToken
 });
 const mapDispatchToProps = {
   getResultsByTopic$: getResultsByTopic,
   getPaginationResults$: getPagination,
+
+  sortByOnly$: sortByOnly,
+  searchByFilters$: searchByFilters,
+  setPageNumber$:setPageNo
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topic);
 

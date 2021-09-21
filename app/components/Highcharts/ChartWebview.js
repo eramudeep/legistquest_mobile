@@ -81,20 +81,10 @@ export default function ChartWebview({html}) {
         
     </figure>`
     return (
-        <WebView style={{flex:1, height:500, width:500}} source={{ html: renderHtml }} 
-        injectedJavaScript={renderJS}
-
-       // injectJavaScript={()=>{return renderJS}}
-
-        originWhitelist={["*"]}
-        automaticallyAdjustContentInsets={true}
-        allowFileAccess={true}
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        useWebKit={true}
-        scrollEnabled={false}
-        mixedContentMode='always'
-          />
+        <View style={{flex:1}}>
+            <Text>cjart</Text>
+            <WebView  source={{html: ``}}  style={{flex:1}}/>
+        </View>
     )
 }
 

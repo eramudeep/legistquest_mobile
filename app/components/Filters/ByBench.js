@@ -4,8 +4,8 @@ import RButton from './RButton';
 import {connect} from 'react-redux';
 import {toggleByBench} from '../../redux/filterActions';
 
-function ByBench({selectedByBenchs,applyFilters, list, toggleByBench$}) {
-  const [selectedBench, setSelectedBench] = useState();
+function ByBench({onRemove, selectedByBenchs,applyFilters, list, toggleByBench$}) {
+  const [selectedBench, setSelectedBench] = useState(selectedByBenchs[selectedByBenchs?.length-1] );
   const getName = (item) => {
     const {Bench} = item;
     return Bench;
@@ -24,8 +24,12 @@ function ByBench({selectedByBenchs,applyFilters, list, toggleByBench$}) {
   const toggleSelecttion = (item) => {
     const {Bench} = item;
     toggleByBench$(Bench);
-    applyFilters && applyFilters({BenchArray: Bench?.toString()});
-    if (Bench === selectedBench) return setSelectedBench('');
+    
+    applyFilters && applyFilters({BenchArray: `${Bench?.toString()},`});
+    if (Bench === selectedBench) {  
+        onRemove && onRemove("BenchArray")
+        setSelectedBench('')
+    };
     setSelectedBench(Bench);
   };
 

@@ -8,7 +8,7 @@ import {
 const initialState = {
   searchResults: [],
   searchTopicResult: [],
-  searchQuery: '',
+  searchQuery: {type:"freetext", text:""},
 };
 export default function (state = initialState, action) {
   switch (action.type) {

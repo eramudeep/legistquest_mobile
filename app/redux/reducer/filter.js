@@ -5,6 +5,7 @@ const {
   ADD_REMOVE_BY_BENCH_FILTER,
   ADD_REMOVE_BY_YEAR_FILTER,
   ADD_REMOVE_BY_DECISION_FILTER,
+  ADD_REMOVE_BY_DECISION_LABEL_FILTER,
   CLEAN_FILTERS,
   SORT_BY_ONLY,
   TOGGLE_FILTER_WITH_IN_RESULT,
@@ -16,6 +17,7 @@ const initialState = {
   selectedByBench: [], // use as a comma seprated string
   selectedByYear: [], // use as a comma seprated string
   selectedByDecStatus: [], // use as a comma seprated string
+  selectedByDecStatusLabel: [], // use as a comma seprated string
   selectedByCourt: [], // use as a comma seprated string
   selectedByIdraf: [], // use as a comma seprated string
   sortBy: 1,
@@ -31,11 +33,9 @@ export default function (state = initialState, action) {
         selectedByBench: [],
         selectedByYear: [],
         selectedByDecStatus: [],
+        selectedByDecStatusLabel: [],
         sortBy: 1,
-        selectedByBench: [],
-        selectedByYear: [],
         selectedByCourt: [],
-
         selectedByIdraf: [],
         filters: [],
         filterWithInResult: action?.payload?.keepWithInResultFilter
@@ -72,6 +72,16 @@ export default function (state = initialState, action) {
         ...state,
         selectedByIdraf,
       };
+    case ADD_REMOVE_BY_DECISION_LABEL_FILTER:
+      const selectedByDecStatusLabel = senitizeAnyArray(
+        action.payload,
+        state.selectedByDecStatusLabel,
+        true,
+      );
+      return {
+        ...state,
+        selectedByDecStatusLabel,
+      };
 
     case ADD_REMOVE_BY_DECISION_FILTER:
       const selectedByDecStatus = senitizeAnyArray(
@@ -101,6 +111,7 @@ export default function (state = initialState, action) {
         state.selectedByBench,
         true,
       );
+
       return {
         ...state,
         selectedByBench,

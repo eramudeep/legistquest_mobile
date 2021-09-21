@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, Pressable, StyleSheet, ScrollView, FlatList} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import RButton from './RButton';
 import {connect} from 'react-redux';
 import { toggleByCourt } from '../../redux/filterActions';
-function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
-  console.log("listlistlist",list);
+function RadioGroup({onRemove, selectedByCourt,toggleByCourt$,applyFilters, list}) { 
   const [selected, setSelected] = useState();
   const [CaseIdss, setCaseIds] = useState()
   const [selectedSubCourt, setSelectedSubCourt] = useState();
   const [selectedSubSubCourt, setSelectedSubSubCourt] = useState();
   const [universalSelectedCourt, setUniversalSelectedCourt] = useState([]);
+  const [servedSubScourt, setServedSubScourt] = useState(false)
+  console.log({selectedByCourt});
   const _isSelected = (toCompareWith) => {
    return selectedByCourt?.includes(toCompareWith)
     //return selected === toCompareWith || selectedSubCourt === toCompareWith || selectedSubSubCourt === toCompareWith ;
@@ -29,31 +30,73 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
   };
 
   const toggleSelecttion = (item) => {
-    const {SubCourtName, CourtName,CaseIds,SubCourtCaseIds} = item;
-    console.log({item});
+    const {SubCourtName, CourtName,CaseIds,SubCourtCaseIds} = item; 
+     
+  if(CourtName ){
+    //level 1
+     if(!_isSelected(CourtName)){
+       //add
+
+       setCaseIds(CaseIds)
+       applyFilters && applyFilters({Courtarray:  CaseIds?.toString()}); 
+       //setSelectedSubCourt(undefined);   
+       setSelectedSubSubCourt(undefined)
+       toggleByCourt$(getName(item))
+       toggleByCourt$(CaseIds)
+       return setSelected(getName(item));
+
+     }else{
+       //remove
+       onRemove && onRemove("Courtarray")
+       toggleByCourt$(getName(item))
+       toggleByCourt$(CaseIds)
+     }
+
+  }else{
+
+     if(!_isSelected(SubCourtName)){
+       //add
+       applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()},${SubCourtName?.toString()}`});
+        toggleByCourt$(SubCourtName)
+     }else{
+       //remove
+       toggleByCourt$(SubCourtName)
+       applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()}`});
+     }
+    
+  }
+
+    return;
     
     if (CourtName) {
+       //for first selection/level
+       console.log("Level 1");
       setCaseIds(CaseIds)
       applyFilters && applyFilters({Courtarray:  CaseIds?.toString()}); 
-      setSelectedSubCourt(undefined);   
+      //setSelectedSubCourt(undefined);   
       setSelectedSubSubCourt(undefined)
       toggleByCourt$(getName(item))
       toggleByCourt$(CaseIds)
       return setSelected(getName(item));
-    } else {
+    }  else {
       if(selectedSubCourt){
-        applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()},${selectedSubSubCourt?.toString()}`});
+        console.log("Level 3");
+        /* applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()},${selectedSubSubCourt?.toString()}`});
         setSelectedSubSubCourt(SubCourtName)
-        toggleByCourt$(SubCourtName) 
+        toggleByCourt$(SubCourtName)  */
         
-      }else{
-        applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
+      }  else{
+        //level 2
+        
+        console.log("Level 2");
+        applyFilters && applyFilters({Courtarray:  `${selectedByCourt?.toString()},${SubCourtName?.toString()}`});
         toggleByCourt$(SubCourtName)
-       return setSelectedSubCourt(SubCourtName)
-      }
-      //applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
-      //return setSelectedSubCourt(SubCourtName);
-    }
+       //return setSelectedSubCourt(SubCourtName)
+      } 
+      
+    }  
+     /* applyFilters && applyFilters({Courtarray:  `${CaseIdss?.toString()},${SubCourtName?.toString()}`});
+       return setSelectedSubCourt(SubCourtName); */
     /* if (CourtName) 
         return  setUniversalSelectedCourt([CourtName]) 
         const tmpUniversalSelectedCourt =universalSelectedCourt
@@ -63,7 +106,9 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
   };
 
   const RenderRadio = ({item}) => {
-    const {IsHaveSegregation, SubCourtList} = item;
+     
+    const {IsHaveSegregation, SubCourtList,CourtName} = item;
+    //console.log({CourtName});
     return (
       <>
         <RButton
@@ -75,11 +120,11 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
           IsHaveSegregation={IsHaveSegregation==="Y"}
         />
 
-        {_isSelected(getName(item)) && (
+        {CourtName !="SUPREME COURT" && _isSelected(getName(item)) && (
           <View style={{marginLeft: scale(10)}}>
             {SubCourtList?.map((subCourt, key) => {
               return (
-                <RenderRadio /// recursion :)
+                <RenderRadio  
                   item={subCourt}
                   key={key}
                 />
@@ -89,14 +134,8 @@ function RadioGroup({selectedByCourt,toggleByCourt$,applyFilters, list}) {
         )}
       </>
     );
-  };
-  return (
-    <ScrollView nestedScrollEnabled>
-      {list?.map((item, key) => {
-        return <RenderRadio item={item} key={key} />;
-      })}
-    </ScrollView>
-  );
+  }; 
+  return <FlatList keyExtractor={(item,index)=>  `${new Date().getTime()}_${item.CourtName}`}   renderItem={({item,index})=><RenderRadio item={item} key={index} /> } data={list}  />
 }
 
 const mapStateToProps = (state) => ({
@@ -106,4 +145,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   toggleByCourt$: toggleByCourt,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo( RadioGroup));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(RadioGroup));

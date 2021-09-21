@@ -50,7 +50,7 @@ function AutoCompleteForAct({
     setSearchIcon('spinner');
   }, 1000);
 
-  const itemOnPress = (item) => {
+  const itemOnPress = (item,navigateNow=true) => {
     onBlur&&onBlur(false)
     getResultsByTopic$({selectedTopic: item.Value});
     Keyboard.dismiss();
@@ -58,24 +58,26 @@ function AutoCompleteForAct({
     //console.log("item",item);
     searchByQuery$({type: searchQuery?.type, text: `${item?.Value}${sectionName?`+ ${sectionName}`:""}`});
     setSearchIcon('search');
-    navigation?.navigate('Topic', {selectedTopic: item.Value});
+    if(navigateNow)
+     navigation?.navigate('Topic', {selectedTopic: item.Value});
   };
 
   const OnSearchPress = () => {
-    getResultsByTopic$({selectedTopic: searchQuery?.text+sectionName});
+    getResultsByTopic$({selectedTopic: encodeURI( searchQuery?.text+sectionName)});
 
     navigation?.navigate('Topic', {selectedTopic: searchQuery?.text});
   };
 
   //console.log({searchQuery});
   return (
-      <View style={{flexDirection:"row",margin:scale(5)}}>
+      <View style={{margin:scale(5)}}>
     <View
       style={[
         styles.container,
         styles.shadow,
         InputStyle,
-        Platform.OS == 'ios' && {zIndex: 1},
+        Platform.OS == 'ios' && {zIndex: 10},
+         
       ]}>
       <Autocomplete
          
@@ -94,10 +96,10 @@ function AutoCompleteForAct({
             setTyping(false);
           }}
         }
-        
-      //  listContainerStyle={{/* paddingHorizontal:0,zIndex:100, *//* backgroundColor:'red', padding:140 */}}
+         
+        //listContainerStyle={{backgroundColor:'red'/* paddingHorizontal:0,zIndex:100, *//* backgroundColor:'red', padding:140 */}}
         keyExtractor={(item) => Math.random().toString(36).substring(7)}
-        listStyle={[{borderWidth: 0, paddingHorizontal: 0,  marginTop: scale(Platform.OS =="ios" ? 0: 25), maxHeight: scale(350), marginBottom:scale(30) }, Platform.OS =="ios" ? {width:window.width -120,} :{} ]}
+        listStyle={[{   borderWidth: 0, paddingHorizontal: 0,  marginTop: scale(Platform.OS =="ios" ? 0: 25), maxHeight: scale(350), marginBottom:scale(30) }, Platform.OS =="ios" ? {width:window.width -120,} :{} ]}
         placeholder={getPlacheHolder(searchQuery?.type) }
         onChangeText={onChange /* onChangeText */}
          
@@ -106,8 +108,9 @@ function AutoCompleteForAct({
           return (
             <TouchableOpacity
               key={i}
-              style={{ padding: scale(5)}}
-              onPress={() => itemOnPress(item)}>
+              style={ { padding: scale(5)}}
+              onPress={() => itemOnPress(item,false)}
+              >
               <Text style={{padding:5}}>{Value}</Text>
             </TouchableOpacity>
           );
@@ -190,6 +193,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+     
     // fontFamily: 'Roboto-Regular',
     //fontSize: scale(14),
     borderWidth: 0,

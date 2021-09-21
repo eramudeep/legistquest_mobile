@@ -11,6 +11,7 @@ import ByIdraf from './ByIdraf';
 
 import {connect} from 'react-redux';
 import {searchByFilters} from '../../redux/filterActions';
+import { senitizeAnyArray } from '../../utils/common';
 function FilterComp({
   filtersList,
   searchByFilters$,
@@ -27,11 +28,23 @@ function FilterComp({
   };
 
   const applyFilters = (currentFilter) => { 
-    //console.log({...filtersList,...currentFilter});
-     searchByFilters$({...filtersList,...currentFilter}) 
+    //REMOVE FILTER PENDING FOR COURT (ALL COURTS)
+    /* const FiLTER_KEY=  Object.keys(currentFilter)[0]
+    const existedFilterValue =filtersList?.[FiLTER_KEY]?.split(",") 
+    const currentFilterValue =currentFilter?.[FiLTER_KEY]?.split(",") 
+    const newFilterValueSent = currentFilterValue[currentFilterValue?.length-1] 
+    const ff=  senitizeAnyArray(newFilterValueSent,existedFilterValue,true)?.filter((item)=> { if(item?.length >=1) return item })
+    filtersList[FiLTER_KEY]  = ff?.toString()
+      */
+     searchByFilters$({...filtersList  ,...currentFilter     }) 
   }; 
    
-   
+  const onRemove = (Bench)=>{ 
+    console.log("onRemove");
+    searchByFilters$({...filtersList  ,[Bench]: "" }) 
+  }
+  
+    
   return (
     <ScrollView style={{margin: scale(3)}}>
       <Pressable onPress={onPress} style={styles.pressableContainer}>
@@ -40,23 +53,23 @@ function FilterComp({
           size={scale(20)}
         />
         <CustomLabel text={`By ${label}`} labelStyle={styles.itemLabel} />
-      </Pressable>
+      </Pressable> 
  
       {isFilterOpen() && (
         <View>
-          <Pressable style={{margin: scale(10)}}>
-            {label == 'Court' && <RadioGroup applyFilters={applyFilters} list={Court} />}
+          <Pressable style={{margin: scale(10)}}> 
+            {label == 'Court' && <RadioGroup onRemove ={onRemove} applyFilters={applyFilters} list={Court} />}
             {label == 'Bench' && (
-              <ByBench applyFilters={applyFilters} list={Court} />
-            )}
+              <ByBench onRemove={onRemove} applyFilters={applyFilters} list={Court} />
+            )} 
             {label == 'Year' && (
-              <ByYear applyFilters={applyFilters} list={Court} />
+              <ByYear onRemove={onRemove}  applyFilters={applyFilters} list={Court} />
             )}
-            {label == 'Dispotions' && (
-              <ByDisposition applyFilters={applyFilters} list={Court} />
+            {label == 'Dispositions' && (
+              <ByDisposition   onRemove={onRemove}  applyFilters={applyFilters} list={Court} />
             )}
             {label == 'iDRAF' && (
-              <ByIdraf applyFilters={applyFilters} list={Court} />
+              <ByIdraf  onRemove={onRemove}   applyFilters={applyFilters} list={Court} />
             )}
              
           </Pressable>
@@ -78,23 +91,19 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  filtersList: {
-    BenchArray: `${state.filter.selectedByBench?.toString()}`,
+  filtersList: { 
+    BenchArray: `${state.filter.selectedByBench?.toString()}` ,//  state.filter.selectedByBench?.length > 0 ?   `${state.filter.selectedByBench?.toString()}` :`${state.filter.selectedByBench?.toString()},` ,
     Yeararray: `${state.filter.selectedByYear?.toString()}`,
-    Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
-    SearchText: state?.search?.searchQuery?.text,
+    //Decisionarray: `${state.filter.selectedByDecStatus?.toString()}`,
+    Decisionarray: state.filter.selectedByCourt?.length > 1 ?  state.filter.selectedByDecStatus[state.filter.selectedByDecStatus?.length-1] :`${state.filter.selectedByDecStatus?.toString()}`,
+
+    Idrafarray : `${state.filter.selectedByIdraf?.toString()}`, 
+    SearchText: state?.search?.searchQuery?.text, 
     SearchType: state?.search?.searchQuery?.type,
     RemoveFilter: '',
     FilterValueList: `${state.filter.filterWithInResult?.toString()}`,
     SortBy: state.filter.sortBy?.toString(), // HARD CODING FOR NOW, NEED TO SYNC WITH `ResultFound.js` Component, 
-    Courtarray: `${state.filter.selectedByCourt?.toString()}`, 
-    Idrafarray:""
-   /*  SelectedFilter: "benchfilter",
-    PageNo:1,
-    Idrafarray:"",
-    Partyarray:"", 
-    Filter:"", 
-    Courtarray:"",   */
+    Courtarray: `${state.filter.selectedByCourt?.toString()}`,   
   },
 
    

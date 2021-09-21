@@ -19,7 +19,11 @@ export default function CustomInput({
     iconColor,
     leftIcon,
     leftIconColor,
-    defaultValue
+    defaultValue,
+    onFocus,onBlur,autoFocus,
+    onSubmitEditing,
+    showSearch,
+    onSearch
  }) {
     return (
         <View style={[styles.container,containerStyle]}>
@@ -39,12 +43,25 @@ export default function CustomInput({
                 secureTextEntry={secureText}
                 value={value}
                 defaultValue={defaultValue}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                autoFocus={autoFocus}
+                returnKeyType="search"
+                onSubmitEditing={onSubmitEditing}
+                autoCapitalize='none'
 
             />
+             
             {
                 rightIcon &&
                 <TouchableOpacity style={{ marginLeft: scale(5),justifyContent:"center",width:scale(30),alignItems:"center"  }} onPress={onRightIcon}>
                     <Icon name={rightIcon} size={iconSize} color={iconColor}  />
+                </TouchableOpacity>
+            }
+            {
+                showSearch &&
+                <TouchableOpacity style={{ marginLeft: scale(5),justifyContent:"center",width:scale(30),alignItems:"center"  }} onPress={onSearch}>
+                    <Icon name={"search"} size={iconSize} color={iconColor}  />
                 </TouchableOpacity>
             }
         </View>

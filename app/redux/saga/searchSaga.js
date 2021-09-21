@@ -10,7 +10,7 @@ import {
 import {AlertHelper} from '../../utils/AlertHelper';
 import { getHeaders } from '../../utils/common';
 import {getSearchType} from '../../utils/searchTypeHelper';
-import {GET_PAGINATION, IS_LOADING} from '../actionTypes';
+import {GET_PAGINATION, IS_LOADING, SET_PAGE_NO} from '../actionTypes';
 import { SEARCH_RESULT_WITH_FILTERS,CLEAN_FILTERS, SORT_BY_ONLY, sortByOnly } from '../filterActions';
 import {
   SET_RESULT_BY_TOPIC,
@@ -22,17 +22,18 @@ import {
 export function* workerSearchByQuery(action) {
   const QUERY = action.payload;
   const {type, text} = QUERY;
-  //AlertHelper.show("success","search","search started")
-  const results = yield fetch(
-    `${SEARCH_BY_WORD}type=${
+  
+   const URL =   `${SEARCH_BY_WORD}type=${
       type ? type : 'freetext'
-    }&searchString=${text}`,
+    }&searchString=${text}`
+  const results = yield fetch(URL  ,
   ).then((response) => response.text());
+  //console.log({URL});
   // console.log("results",JSON.parse( results));
   try {
     //AlertHelper.show("success","Got Result","search started")
     if (results && JSON?.parse(results)) {
-      let size = 50;
+      let size = 20;
       if (JSON?.parse(results).length < size) {
         size = JSON?.parse(results).length - 1;
       }
@@ -56,12 +57,13 @@ export function* workerGetResultsByTopic(action) {
   
   const searchType = yield getSearchType();
   const {selectedTopic,filterValueList,SortBy,keepFilters} = action.payload; 
-  console.log({filterValueList});
+  //console.log({filterValueList});
   yield put({type: IS_LOADING, payload: true});
+  yield put({type: SET_PAGE_NO, payload: 1});
   if(!keepFilters)
-  yield put({type: CLEAN_FILTERS});
+  yield put({type: CLEAN_FILTERS}); 
   let URL = `${CASE_TEXT_API_URL}type=${searchType}&caseText=${selectedTopic}&sortBy=${SortBy ? SortBy : 1}&formattedCitation=&removeFilter=`
-  //console.log("URL",URL);
+  console.log("URL",URL);
    if(  filterValueList?.length >0){
     if(filterValueList?.length <2)
       URL=`${URL}&filter=${filterValueList ? filterValueList[filterValueList?.length-1] :''}`
@@ -71,7 +73,7 @@ export function* workerGetResultsByTopic(action) {
   const results = yield fetch(
     URL,
   ).then((response) => response.text());
-
+ 
   try {
     if (results && JSON.parse(results)) {
       yield put({type: SET_RESULT_BY_TOPIC, payload: JSON.parse(results)});
@@ -103,7 +105,7 @@ export function* workerPageNumberChange(action) {
     SEARCH_RESULT_BY_PAGE_NUMBER,
     requestOptions,
   ).then(async (response) => response.text());
-
+console.log({jsonData});
   try {
     if (results && JSON.parse(results)) { 
         yield put({type: SET_RESULT_BY_TOPIC, payload: {...JSON.parse( results),fromPagination: true }  });
@@ -120,21 +122,24 @@ export function* workerSearchWithFilters(action) {
   const requestOptions =  getHeaders({...activeFilters}) 
   //console.log( activeFilters );
   yield put({type: IS_LOADING, payload: true});
+  yield put({type: SET_PAGE_NO, payload: 1});
+  //console.log({SEARCH_RESULT_WITH_FILTERS_API });
   const results = yield fetch(
     SEARCH_RESULT_WITH_FILTERS_API,
     requestOptions,
   ).then(async (response) => response.text());
-  //console.log({results});
+   //console.log({activeFilters});
+   
   try {
     if (results && JSON.parse(results)) {
-      yield put({
+      
+      yield put({ 
         type: SET_RESULT_BY_TOPIC,
         payload: {...JSON.parse(results)},
       });
       yield put({type: IS_LOADING, payload: false});
     }
-  } catch (error) {
-    console.log("error in workerPageNumberChange", error);
+  } catch (error) { 
     console.log('error in workerSearchWithFilters', error);
   }
 } 

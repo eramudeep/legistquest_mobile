@@ -37,9 +37,6 @@ export const senitizeAnyArray = (
   }
 };
 export const getPlacheHolder = (searchType) => {
-
- 
-
   switch (searchType) {
     case TYPE_ACT:
       return 'Act Name';
@@ -51,7 +48,7 @@ export const getPlacheHolder = (searchType) => {
       return 'Judge Name';
     case CITATION:
       return 'Search through citation';
-      default:
+    default:
       return 'Search free text..';
   }
 };
@@ -69,24 +66,84 @@ export const getHeaders = (jsonData) => {
   return requestOptions;
 };
 
-
 export function toTitleCase(str) {
-  return str.replace(
-    /\w\S*/g,
-    function(txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    }
-  );
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
-
 
 export function cleanString(params) {
-  return  params.replace(/;\s*$/, "");
-  }
-
+  return params.replace(/;\s*$/, '');
+}
 
 export function truncateString(params) {
-  
-var length = 203; 
- return params.substring(0,length);
+  var length = 203;
+  return params.substring(0, length);
 }
+
+export function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+export function multipleyDecider(value) {
+  if (value < 5) {
+    return 15;
+  }
+  if (value <= 7) {
+    return 13;
+  }
+  if (value >= 50) {
+    return 2;
+  }
+  return 12;
+}
+
+export function getUniId(length = 5) {
+  var result = '';
+  var characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+export function noEmptyElements(array) {
+  var filtered = array.filter(function (el) {
+    return el != null || el === '';
+  });
+
+  return filtered;
+}
+
+export const iddrafTabs = [
+  {label: 'IsFoundArgumentsOfPetitioner',  id: "argofpetitioner" },
+  {label: 'IsFoundArgumentsOfResponder',  id: "argofresponder" },
+  {label: 'IsFoundFacts',  id: "facts" },
+  {label: 'IsFoundPrinciple',  id: "issue" }, //principle
+  {label: 'IsFoundReasoning',  id: "reasoning" },
+  {label: 'IsFoundDecision',  id: "decision" },
+];
+
+export const getIdrafTabsList = (dataFromApi) => {
+  let tabs = [];
+  iddrafTabs?.map((item) => {
+    const {label,id} =item
+    if (dataFromApi[label]) {
+      if(label==="IsFoundPrinciple"){/// replacing with issues 
+        tabs.push({id,label: "Issues" });
+      }
+      else{
+          tabs.push({id,label: item.label.replace('IsFound', '').trim()});
+      }
+      
+    }
+  });
+  return tabs;
+};

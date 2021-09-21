@@ -45,7 +45,7 @@ function SlideModal({
     resetFilters$({keepWithInResultFilter: true});
     getResultsByTopic$({
       selectedTopic: searchQuery?.text,
-      filterValueList: [filterVal, ...filterWithInResult],
+      filterValueList: [/* filterVal, ...filterWithInResult */],
       SortBy: SortBy?.toString(),
       keepFilters: true,
     });
@@ -110,6 +110,7 @@ function SlideModal({
             onRightIcon={onSearchWithin}
             defaultValue={filterVal}
           />
+           
           <Filters Court={filterCourt} />
         </View>
       </View>
@@ -137,4 +138,4 @@ const mapDispatchToProps = {
   getResultsByTopic$: getResultsByTopic,
   resetFilters$: resetFilters,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SlideModal);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo( SlideModal));
