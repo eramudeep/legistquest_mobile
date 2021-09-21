@@ -26,6 +26,7 @@ import {filterListValues} from '../../utils/appConstants';
 import {TYPE_ACT} from '../../services/ApiList';
 import AutoCompleteForAct from '../../components/AutoCompleteForAct';
 import FilterWithIn from '../../components/Filters/FilterWithIn';
+import ChartWebview from '../../components/Highcharts/ChartWebview'
  
 const coutLists=["SupremeCourtList", "HighCourtList","OtherCourtList"]
 function Topic({
@@ -127,6 +128,7 @@ function Topic({
         </View>
       ) : (
         <View style={{flex: 1}}>
+          <ChartWebview/>
           {searchQuery?.type === TYPE_ACT ? (
             <AutoCompleteForAct navigation={navigation} />
           ) : (

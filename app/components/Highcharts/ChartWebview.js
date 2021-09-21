@@ -70,19 +70,31 @@ export default function ChartWebview({html}) {
     
         }]
     });`
-    const renderHtml=`<script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script type = "text/javascript">
-            ${renderJS}
-  </script>
+    const renderHtml=`<script defer src="https://code.highcharts.com/highcharts.js"></script>
+    <script defer src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script defer src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script defer src="https://code.highcharts.com/modules/accessibility.js"></script>
+   
     <figure class="highcharts-figure">
+    <p>shammi</p>
         <div id="container"></div>
         
     </figure>`
     return (
-        <WebView source={{ html: renderHtml }} />
+        <WebView style={{flex:1, height:500, width:500}} source={{ html: renderHtml }} 
+        injectedJavaScript={renderJS}
+
+       // injectJavaScript={()=>{return renderJS}}
+
+        originWhitelist={["*"]}
+        automaticallyAdjustContentInsets={true}
+        allowFileAccess={true}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        useWebKit={true}
+        scrollEnabled={false}
+        mixedContentMode='always'
+          />
     )
 }
 
