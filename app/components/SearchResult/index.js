@@ -18,6 +18,7 @@ import HTML from 'react-native-render-html';
 import {SEARCH_WITH_IN_CASE} from '../../services/ApiList';
 import CustomInput from '../CustomInput';
 import CustomButton from '../CustomButton';
+import Snapshot from './Snapshot';
 
 export default function SearchResult({
   searchData,
@@ -32,6 +33,7 @@ export default function SearchResult({
   const [showSearchWithIn, setShowSearchWithIn] = useState(false);
   const [searchWithiNQuery, setSearchWithiNQuery] = useState();
   const [searchWithinResults, setSearchWithinResults] = useState();
+  const [showSnapshot, setShowSnapshot] = useState(false);
 
   
   const toggleSearchWithin = () => {
@@ -52,10 +54,10 @@ export default function SearchResult({
     DistinguishedImgUrl,
     CaseId,
     EncryptedId,
+    SnapShot
     
-  } = searchData;
-
-    
+  } = searchData; 
+    console.log({SnapShot});
   const _renderJudge = ({item, index}) => {
     return (
       <Badge key={index} text={item} labelStyle={{color: appColors.black}} />
@@ -88,7 +90,7 @@ export default function SearchResult({
       </View>
     );
   };
-
+ 
   const _renderSearchWithinCase = () => {
     return (
       <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
@@ -150,7 +152,7 @@ export default function SearchResult({
         text={HighlightedText?.replace(/<[^>]*>?/gm, '')}
         labelStyle={styles.bodyText}
       />  */}
-      <View style={{flexDirection: 'row', justifyContent: 'space-between',paddingVertical:scale(5)}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between',paddingVertical:scale(5), flexWrap:'wrap'}}>
         <TouchableOpacity style={styles.footerBtn} onPress={onPressSearchWithin}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />
           <CustomLabel text={'Search Within Case'} color={appColors.blue} />
@@ -158,15 +160,31 @@ export default function SearchResult({
         <TouchableOpacity
           onPress={() => {
             setShowSearchWithIn(false);
+            setShowSnapshot(false)
             setShowJudges(!showJudges);
           }}
           style={styles.footerBtn}>
           <Icon name={'user-tie'} size={scale(14)} color={appColors.blue} />
           <CustomLabel text={'Judges'} color={appColors.blue} />
         </TouchableOpacity>
+
+        {SnapShot&& <TouchableOpacity
+          onPress={() => {
+            setShowSearchWithIn(false);
+            setShowJudges(false);
+            setShowSnapshot(!showSnapshot)
+          }}
+          style={styles.footerBtn}>
+          <Icon name={'camera'} size={scale(14)} color={appColors.blue} />
+          <CustomLabel text={'Snapshot'} color={appColors.blue} />
+        </TouchableOpacity>}
+
+
       </View>
       {showJudges && _renderJudges()}
       {showSearchWithIn && _renderSearchWithinCase()}
+      {showSnapshot&& <Snapshot text={SnapShot} />}
+
       {/* <HTML  source={{ html:searchWithinResults }}  />  */}
       {searchWithiNQuery && showSearchWithIn && (
         <Highlighter

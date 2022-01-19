@@ -66,11 +66,12 @@ function Topic({
   console.log("pageNumber",pageNumber);
   // console.log('searchQuery', searchTopicResult?.CaseDetails);
   const _renderSearchResult = ({item, index}) => {
+    const {EncryptedId} =item
     return (
       <SearchResult
         selectedTopic={selectedTopic}
         searchData={item}
-        key={index}
+        key={`case_${EncryptedId}_${index}`}
         onSearchCase={toggleSearchWithin}
         onPressSearchWithin={()=>navigation.navigate("SearchWithinText",{id:item?.EncryptedId})}
         onPress={(LinkText, HighlightedText) =>
