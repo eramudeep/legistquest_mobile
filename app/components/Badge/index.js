@@ -5,9 +5,9 @@ import TouchableRipple from 'react-native-touch-ripple'
 import { appColors } from '../../utils/appColors'
 import CustomLabel from '../CustomLabel/CustomLabel'
 import HTML from "react-native-render-html";
-export default function Badge({renderHtml,badgeStyle,  text,labelStyle,contentWidth}) {
+export default function Badge({renderHtml,badgeStyle,  text,labelStyle,contentWidth,onPress}) {
     return (
-        <TouchableRipple style={[styles.badge,badgeStyle]}>
+        <TouchableRipple onPress={onPress} style={[styles.badge,badgeStyle]}>
 
             {renderHtml ?  <HTML  source={{ html:text }} contentWidth={contentWidth}  />  :<CustomLabel text={text ? text : ""} labelStyle={[styles.label,labelStyle]}/>}
         </TouchableRipple>

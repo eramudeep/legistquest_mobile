@@ -32,7 +32,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import {sortData} from '../../utils/MockData';
 import {searchByFilters, sortByOnly} from '../../redux/filterActions';
 import CustomLabel from '../../components/CustomLabel/CustomLabel';
-
+import ScMat from '../../components/ScMat';
 const courtLists = ['SupremeCourtList', 'HighCourtList', 'OtherCourtList'];
 function Topic({
   sortByF,
@@ -162,6 +162,7 @@ function Topic({
       showSearch
       //signInLabel={userToken ?  }
       onHome={() => navigation.navigate('Home')}>
+        
       {isTopicLoading ? (
         <View>
           <ActivityIndicator
@@ -172,8 +173,9 @@ function Topic({
         </View>
       ) : (
         <View style={{flex: 1, paddingTop: scale(0)}}>
+          
            {/* <CustomAutoComplete navigation={navigation} /> */}
-
+          
           {/* <View style={{flexDirection: 'row', paddingBottom: scale(10)}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {[1, 2, 3, 4, 5, 6, 7].map((val, key) => {
@@ -241,7 +243,9 @@ function Topic({
                 fixAndroidTouchableBug
               />
             </View>
+             
           </View>
+         
           <View
             style={{
               paddingTop: scale(10),
@@ -250,10 +254,13 @@ function Topic({
               marginBottom: scale(5),
               // ...shadowLight,
             }}>
+              <ScMat />
             <FilterWithIn />
             <ResultFound />
           </View>
+          
           {/* <Filters  Court={seniTizeCourtFilters()}/> */}
+          
           <FlatList
             ListEmptyComponent={() => (
               <View
@@ -301,6 +308,7 @@ function Topic({
         visible={modalVisible}
         onClose={toggleModal}
       />
+      
     </Container>
   );
 }
