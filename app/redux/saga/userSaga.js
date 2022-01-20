@@ -1,5 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects'
-import { LOGIN_API, LOGOUT_API } from '../../services/ApiList';
+import { LOGIN_API, LOGIN_CORP_API, LOGOUT_API } from '../../services/ApiList';
 import { AlertHelper } from '../../utils/AlertHelper';
 import {  SET_ERROR, USER_LOGIN, USER_LOGIN_SUCCESS, USER_LOGOUT } from '../actionTypes';
 export function* workerUserLogin(action) {
@@ -11,7 +11,8 @@ export function* workerUserLogin(action) {
       else BodyData={email,password}
       console.log("body Data is",BodyData);
     //   return
-   yield fetch(LOGIN_API, {
+//    
+   yield fetch(customerCode ? LOGIN_CORP_API: LOGIN_API, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

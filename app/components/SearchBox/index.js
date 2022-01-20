@@ -46,7 +46,8 @@ function index({
     // setSearchIcon('spinner');
   }, 1000);
 
-  const onChangeText = (chnage) => {
+  const onChangeText = (chnage_) => { 
+    const  chnage = chnage_?.replace(/[^a-zA-Z ]/g, "")
     setSearchedQuery(chnage);
     debouncedSearch(chnage);
   };

@@ -46,25 +46,16 @@ const [fontsize, setFontsize] = useState(4)
   const keywordToHigeLight = (query) => {
     return query?.split(' ');
   };
-const onDownload=async()=>{
-  // console.log("viewModel ocr status",viewModel?.OcrStatus);
+const onDownload=async()=>{ 
   const{EncryptedId,CourtName,CaseId,CaseNo,PageID,PlainJudgment}=viewModel
-  const dataPath=`${DOWNLOAD_JUDGEMENT}id=${PageID}&cname=${encodeURI(CourtName)}&fontvalue=${fontsize}&caseName=${PageID}`
- /* let formData = new FormData() 
- formData?.append("id",PageID)
- formData?.append("cname",CourtName)
- formData?.append("fontvalue",fontsize)
-  formData?.append("data",PlainJudgment) */
+  const dataPath=`${DOWNLOAD_JUDGEMENT}id=${PageID}&cname=${encodeURI(CourtName)}&fontvalue=${fontsize}&caseName=${PageID}` 
  let formData = [ 
  {name: "id", data:PageID},
  {name: "cname", data:CourtName},
  {name: "fontvalue", data:fontsize},
   {name: "data", data:PlainJudgment},
- ]
-  
- console.log({formData});
-  await FileDownloader(DOWNLOAD_JUDGEMENT,formData)
-  //await downloadFile(dataPath) 
+ ] 
+  await FileDownloader(DOWNLOAD_JUDGEMENT,formData) 
   AlertHelper.show("info","Info","Your file is Downloading")
    setShowDownModal(false)
 }
@@ -173,9 +164,9 @@ setShowDownModal(true)
   const _renderCitiation = () => {
     return (
       <View style={{ flex: 1 }}>
-        <Text style={[styles.headingLabels, { alignSelf: "center",color:deciddedBgColor }]}>Eq Citation</Text>
-        <View style={styles.underLine} />
-        <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+        <Text style={[styles.headingLabels, {alignSelf: "center",color:deciddedBgColor }]}>Eq Citation</Text>
+        <View style={[styles.underLine,]} />
+        <HTML baseStyle= {{ padding: 20 }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
@@ -195,7 +186,7 @@ setShowDownModal(true)
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
-          },
+          }, 
         }} contentWidth={contentWidth} source={{ html: viewModel?.Advocates }} />
         {/* {
           viewModel?.Advocates?.split(",")?.map((item,key)=>{ 

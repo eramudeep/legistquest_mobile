@@ -54,21 +54,22 @@ function SearchboxForAct({
         // setSearchIcon('spinner');
     }, 500);
 
-    const onChangeText = (chnage) => {
+    const onChangeText = (chnage_) => {
+       const  chnage = chnage_?.replace(/[^a-zA-Z ]/g, "")
         setHasSection(false)
         setSearchedQuery(chnage);
         // searchByQuery$({ type: searchQuery?.type, text: chnage });
         debouncedSearch(chnage);
     };
-    const onChangeTextSection = (chnage) => {
+    const onChangeTextSection = (chnage_) => {
+        const  chnage = chnage_?.replace(/[^a-zA-Z ]/g, "")
         setHasSection(true)
         setSectionText(chnage);
         //debouncedSearch(chnage);
     };
     const onItemPress = (item) => {
-        console.log("item=>",searchedQuery);
-        console.log("item section=>",sectionText);
-        //return
+         
+         
         const SEARCH_QUERY = item?.Value; // getQuery();
         if (searchedQuery?.length > 0) {
           searchByQuery$({type: searchQuery?.type, text: `${searchedQuery} + ${sectionText}`}); 

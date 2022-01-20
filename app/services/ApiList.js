@@ -14,8 +14,11 @@ export const GETOCRDATABYCITEDIN=`${BASE_URL}GetOcrDataByCitedIn`
 export const GET_OCR_DATA_BY_CITATION=`${BASE_URL}GetOcrDataByCitation`
 
 export const SEARCH_WITH_IN_CASE=`${BASE_URL}GetResultByCaseIdForSearchWithinCase?`//caseId=1454CC&searchText=indian 
-export const LOGIN_API=`https://login.legitquest.com/api/v1.0/customers/login`
+export const LOGIN_API=`https://login.legitquest.com/api/v1.0/customers/login` 
+export const LOGIN_CORP_API=`https://www.legitquest.com/api/v1.0/getcorporateUserapi` 
 export const LOGOUT_API=`https://login.legitquest.com/api/v1.0/customers/logout`
+
+//
 /**
  * {
  * 
