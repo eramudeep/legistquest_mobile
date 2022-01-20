@@ -5,9 +5,36 @@ import {
   TYPE_ACT,
   TYPE_FREE_TEXT,
 } from '../services/ApiList';
-
+import {PermissionsAndroid, Platform} from 'react-native';
 export const removeHtmlTags = (replaceFrom) => {
   return replaceFrom?.replace(/<[^>]*>?/gm, '');
+};
+
+
+
+export const requestWriteStoeagePermission = async () => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      {
+        title: 'Ieltsify write storage',
+        message:
+          'Ieltsify needs access to your storage ' +
+          'so you can download pictures.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('You can download photos');
+      return true;
+    } else {
+      console.log('storage permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
 };
 
 /**

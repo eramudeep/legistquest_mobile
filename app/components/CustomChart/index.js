@@ -24,7 +24,7 @@ export default function index({onPress,dataSet}) {
           <Pressable onPress={() => onPress && onPress(label, value)} />
         </Animated.View>
 
-        <Text>{label}</Text>
+        <Text style={{color: appColors.gray}} >{label}</Text>
       </View>
     );
   }; 

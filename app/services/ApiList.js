@@ -16,4 +16,14 @@ export const GET_OCR_DATA_BY_CITATION=`${BASE_URL}GetOcrDataByCitation`
 export const SEARCH_WITH_IN_CASE=`${BASE_URL}GetResultByCaseIdForSearchWithinCase?`//caseId=1454CC&searchText=indian 
 export const LOGIN_API=`https://login.legitquest.com/api/v1.0/customers/login`
 export const LOGOUT_API=`https://login.legitquest.com/api/v1.0/customers/logout`
-export const DOWNLOAD_JUDGEMENT=`${BASE_URL}download-judgment?`
+/**
+ * {
+ * 
+    id: F6159
+    cname: high court of himachal pradesh
+    fontvalue: 14
+    data: judgement html
+}
+ */
+export const DOWNLOAD_JUDGEMENT=`${BASE_URL}download-judgment?` 
+ 

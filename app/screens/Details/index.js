@@ -25,6 +25,7 @@ import Badge from '../../components/Badge';
 import IdrafComp from '../../components/IdrafComp';
 import { DOWNLOAD_JUDGEMENT } from '../../services/ApiList';
 import { AlertHelper } from '../../utils/AlertHelper'; 
+import FileDownloader from '../../utils/FileDownload';
 const tabs = ['short', 'list']
  function index({ navigation, viewModel, item, onPressCitiedCase,futureRefData, citiedInData ,setIsNightMode$,isNightmode}) {
   const deciddedBgColor =    isNightmode?appColors.white:appColors.black
@@ -49,7 +50,21 @@ const onDownload=async()=>{
   // console.log("viewModel ocr status",viewModel?.OcrStatus);
   const{EncryptedId,CourtName,CaseId,CaseNo,PageID,PlainJudgment}=viewModel
   const dataPath=`${DOWNLOAD_JUDGEMENT}id=${PageID}&cname=${encodeURI(CourtName)}&fontvalue=${fontsize}&caseName=${PageID}`
-  await downloadFile(dataPath) 
+ /* let formData = new FormData() 
+ formData?.append("id",PageID)
+ formData?.append("cname",CourtName)
+ formData?.append("fontvalue",fontsize)
+  formData?.append("data",PlainJudgment) */
+ let formData = [ 
+ {name: "id", data:PageID},
+ {name: "cname", data:CourtName},
+ {name: "fontvalue", data:fontsize},
+  {name: "data", data:PlainJudgment},
+ ]
+  
+ console.log({formData});
+  await FileDownloader(DOWNLOAD_JUDGEMENT,formData)
+  //await downloadFile(dataPath) 
   AlertHelper.show("info","Info","Your file is Downloading")
    setShowDownModal(false)
 }
