@@ -57,7 +57,7 @@ export default function SearchResult({
     SnapShot
     
   } = searchData; 
-    console.log({SnapShot});
+     
   const _renderJudge = ({item, index}) => {
     return (
       <Badge key={index} text={item} labelStyle={{color: appColors.black}} />

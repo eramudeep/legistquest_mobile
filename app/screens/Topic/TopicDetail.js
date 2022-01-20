@@ -4,7 +4,7 @@ import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 import CustomLabel from '../../components/CustomLabel/CustomLabel';
 import Details from '../Details';
-import {DETAILS_API, GETOCRDATABYCITEDIN} from '../../services/ApiList';
+import {DETAILS_API, GETOCRDATABYCITEDIN, GET_OCR_DATA_BY_CITATION} from '../../services/ApiList';
 import LoadingModal from '../../components/Modals/LoadingModal';
 import { appColors } from '../../utils/appColors';
 
@@ -14,9 +14,9 @@ export default function TopicDetail({route, navigation}) {
   const [viewModel, setViewModel] = useState();
   const [isLoading, setIsLoading] = useState(true)
   const [citiedInData, setCitiedInData] = useState()
-  const getDetailsScreenData = async (data) => {
-    setIsLoading(true)
-    console.log("in get detail");
+  const [futureRefData, setfutureRefData] = useState()
+  const getDetailsScreenData = async (data,paramStatus) => {
+    setIsLoading(true) 
     let Ltext
     let EncID
     if(data){
@@ -30,22 +30,25 @@ export default function TopicDetail({route, navigation}) {
       Ltext=LinkText
       EncID=EncryptedId
     }
-    console.log("in get detail 2",Ltext,EncID);
+     
     const label = parseParam(Ltext);
-    const URL = `${DETAILS_API}${label}/${EncID}`;
-
-    const respounce = await fetch(URL);
-    // console.log("in get detail 3",respounce);
+    const URL = `${DETAILS_API}${label}/${EncID}`; 
+    const respounce = await fetch(URL); 
     const result = await respounce.json();
-    console.log("result?.viewModel",result?.viewModel);
-    //>>get citied in<<<
-const citiedUrl=`${GETOCRDATABYCITEDIN}?caseId=${result?.viewModel?.EncryptedId}&status=${result?.viewModel?.Status}`
-console.log("citiedUrl",citiedUrl);
+     console.log("result?.viewModel?.Status",result?.viewModel?.Status,{paramStatus});
+     
+const citiedUrl=`${paramStatus? GET_OCR_DATA_BY_CITATION:  GETOCRDATABYCITEDIN}?caseId=${result?.viewModel?.EncryptedId}&status=${paramStatus? paramStatus:result?.viewModel?.Status}`
+ 
 const respounceCitied = await fetch(citiedUrl);
 const resultCitied = await respounceCitied.json();
-// console.log("resss",respounceCitied);
+  console.log("resss",resultCitied,{citiedUrl});
     setViewModel(result?.viewModel);
-    setCitiedInData(resultCitied)
+    if(paramStatus){
+      setfutureRefData(resultCitied)
+    }
+    else{
+      setCitiedInData(resultCitied)
+    }
     setIsLoading(false)
     console.log("end get detail");
   }; 
@@ -53,17 +56,11 @@ const resultCitied = await respounceCitied.json();
     str?.replace(/./g, '');
     return str?.replace(/\s/g, '-');
   };
-  // useEffect(
-  //   () => {
-  //     let timer1 = setTimeout(() => setIsLoading(false),4000);
-  //     return () => {
-  //       clearTimeout(timer1);
-  //     };
-  //   },
-  //   []
-  // );
+   
   useEffect(() => {
     getDetailsScreenData();
+    getDetailsScreenData(null,"Cited(Total)&citation=all");
+     
   }, [LinkText, HighlightedText]);
   return (
     <Container
@@ -85,7 +82,7 @@ const resultCitied = await respounceCitied.json();
         {isLoading ?  <View style={{backgroundColor:appColors.white,flex:1,justifyContent:"center",alignItems:"center"}}>
           <ActivityIndicator size="large" color={appColors.secondary} />
           </View>
-           : <Details navigation={navigation}  viewModel={viewModel} item={item} citiedInData={citiedInData} onPressCitiedCase={getDetailsScreenData}/>
+           : <Details navigation={navigation}  viewModel={viewModel} item={item} futureRefData={futureRefData} citiedInData={citiedInData} onPressCitiedCase={getDetailsScreenData}/>
           }
 
         

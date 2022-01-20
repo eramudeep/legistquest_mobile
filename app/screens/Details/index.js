@@ -24,31 +24,9 @@ import { downloadFile } from '../../services/downloadFile';
 import Badge from '../../components/Badge';
 import IdrafComp from '../../components/IdrafComp';
 import { DOWNLOAD_JUDGEMENT } from '../../services/ApiList';
-import { AlertHelper } from '../../utils/AlertHelper';
-// const Child = createReactClass({
-//   onEnter() {
-//     console.log('enter: ' + this.props.i); // eslint-disable-line no-console
-//   },
-
-//   onLeave() {
-//     console.log('leave: ' + this.props.i); // eslint-disable-line no-console
-//   },
-
-//   render() {
-//     const i = this.props.i;
-//     return <Text key={i}>{`rertab${i}`}</Text>;
-//   },
-// });
-// const Child=(props)=> {
-//   console.log("props child",props);
-//   return <View style={{height:200}}>
-//     <Text style={{fontSize:20}}>{`rertab`}</Text>;
-//   </View>
-
-
-// }
+import { AlertHelper } from '../../utils/AlertHelper'; 
 const tabs = ['short', 'list']
- function index({ navigation, viewModel, item, onPressCitiedCase, citiedInData ,setIsNightMode$,isNightmode}) {
+ function index({ navigation, viewModel, item, onPressCitiedCase,futureRefData, citiedInData ,setIsNightMode$,isNightmode}) {
   const deciddedBgColor =    isNightmode?appColors.white:appColors.black
   const deciddedTextColor =   isNightmode?appColors.black:appColors.white
   console.log({deciddedTextColor});
@@ -255,6 +233,7 @@ setShowDownModal(true)
         <View key={1} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
            <View style={{marginTop:scale(20)}}>
            <CustomChart dataSet={viewModel?.OcrDtoList} />
+            <CitiedIn   data={futureRefData} />
            </View>
          {viewModel?.CitedDtoList.length<1 && <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />}
         </View >
