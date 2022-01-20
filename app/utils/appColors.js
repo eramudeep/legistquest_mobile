@@ -61,4 +61,6 @@ export const IDRAF_HIGELIGHT_COLORS = {
   argofresponder: "#ecead3",
   reasoning: "#ebdef0",
   decision: "#edbb99",
+  casescitedinthiscase: 'rgb(52, 152, 219)'
+
 };

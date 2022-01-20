@@ -71,6 +71,10 @@ export function toTitleCase(str) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
 }
+export function removeAllSpaces(params) {
+  return params.replace(/ /g,'');
+}
+
 
 export function cleanString(params) {
   return params.replace(/;\s*$/, '');

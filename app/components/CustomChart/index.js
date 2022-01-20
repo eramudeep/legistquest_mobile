@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, Pressable, Animated} from 'react-native';
 import {scale} from 'react-native-size-matters';
-import {appColors,shadowLight} from '../../utils/appColors';
-import {getRandomColor, multipleyDecider} from '../../utils/common';
+import {appColors,IDRAF_HIGELIGHT_COLORS,shadowLight} from '../../utils/appColors';
+import {cleanString, getRandomColor, multipleyDecider, removeAllSpaces} from '../../utils/common';
 
 export default function index({onPress,dataSet}) {
   let collapse = new Animated.Value(1);
@@ -19,7 +19,7 @@ export default function index({onPress,dataSet}) {
               outputRange: [0, value * 2],
             }), */
             width: scale(  30 ),
-            backgroundColor: color ? color : getRandomColor(),
+            backgroundColor: color ? color :  IDRAF_HIGELIGHT_COLORS?.[removeAllSpaces( label?.toLowerCase())],
           }}>
           <Pressable onPress={() => onPress && onPress(label, value)} />
         </Animated.View>
@@ -27,7 +27,7 @@ export default function index({onPress,dataSet}) {
         <Text>{label}</Text>
       </View>
     );
-  };
+  }; 
   const sentiseData = ()=>{
     const data = dataSet?.map((item)=> {
       return {
