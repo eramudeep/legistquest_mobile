@@ -37,11 +37,11 @@ export default function TopicDetail({route, navigation}) {
     const result = await respounce.json();
      console.log("result?.viewModel?.Status",result?.viewModel?.Status,{paramStatus});
      
-const citiedUrl=`${paramStatus? GET_OCR_DATA_BY_CITATION:  GETOCRDATABYCITEDIN}?caseId=${result?.viewModel?.EncryptedId}&status=${paramStatus? paramStatus:result?.viewModel?.Status}`
+const citiedUrl=`${paramStatus? GET_OCR_DATA_BY_CITATION:  GETOCRDATABYCITEDIN}?caseId=${result?.viewModel?.EncryptedId}&status=${paramStatus? paramStatus:'Cases Cited In'}`
  
 const respounceCitied = await fetch(citiedUrl);
 const resultCitied = await respounceCitied.json();
-  console.log("resss",resultCitied,{citiedUrl});
+  //console.log("resss",resultCitied,{citiedUrl});
     setViewModel(result?.viewModel);
     if(paramStatus){
       setfutureRefData(resultCitied)
@@ -50,7 +50,7 @@ const resultCitied = await respounceCitied.json();
       setCitiedInData(resultCitied)
     }
     setIsLoading(false)
-    console.log("end get detail");
+    //console.log("end get detail");
   }; 
   const parseParam = (str) => {
     str?.replace(/./g, '');
@@ -58,10 +58,11 @@ const resultCitied = await respounceCitied.json();
   };
    
   useEffect(() => {
-    getDetailsScreenData();
-    getDetailsScreenData(null,"Cited(Total)&citation=all");
+    getDetailsScreenData( );
+    getDetailsScreenData(null,"referred");
      
   }, [LinkText, HighlightedText]);
+  console.log({viewModel,item});
   return (
     <Container
       isScrollable

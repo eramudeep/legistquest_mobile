@@ -108,6 +108,7 @@ export default function SearchResult({
       </View>
     );
   };
+  //console.log({HighlightedText,selectedTopic});
   return (
     <View
       style={{
@@ -138,20 +139,16 @@ export default function SearchResult({
         text={`${CourtName} | ${DateOfJudgment}`}
         labelStyle={styles.subTitle}
       />
-      <Highlighter
+     { <Highlighter
         highlightStyle={{
           backgroundColor: appColors.higheLight,
           fontWeight: '700',
         }}
-        searchWords={[...selectedTopic?.split(' ')]}
+        searchWords={[...selectedTopic?.replace(/[^a-zA-Z ]/g, "")?.split(' ')]}
         textToHighlight={truncateString(removeHtmlTags(HighlightedText))}
         style={styles.bodyText}
-      />
-
-      {/* <CustomLabel
-        text={HighlightedText?.replace(/<[^>]*>?/gm, '')}
-        labelStyle={styles.bodyText}
-      />  */}
+      />}
+ 
       <View style={{flexDirection: 'row', justifyContent: 'space-between',paddingVertical:scale(5), flexWrap:'wrap'}}>
         <TouchableOpacity style={styles.footerBtn} onPress={onPressSearchWithin}>
           <Icon name={'search'} size={scale(14)} color={appColors.blue} />

@@ -55,14 +55,14 @@ function SearchboxForAct({
     }, 500);
 
     const onChangeText = (chnage_) => {
-       const  chnage = chnage_?.replace(/[^a-zA-Z ]/g, "")
+       const  chnage = chnage_//?.replace(/[^a-zA-Z ]/g, "")
         setHasSection(false)
         setSearchedQuery(chnage);
         // searchByQuery$({ type: searchQuery?.type, text: chnage });
         debouncedSearch(chnage);
     };
     const onChangeTextSection = (chnage_) => {
-        const  chnage = chnage_?.replace(/[^a-zA-Z ]/g, "")
+        const  chnage = chnage_//?.replace(/[^a-zA-Z ]/g, "")
         setHasSection(true)
         setSectionText(chnage);
         //debouncedSearch(chnage);

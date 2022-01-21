@@ -47,9 +47,9 @@ function index({
   }, 1000);
 
   const onChangeText = (chnage_) => { 
-    const  chnage = chnage_?.replace(/[^a-zA-Z ]/g, "")
+    const  chnage = chnage_;//?.replace(/[^a-zA-Z ]/g, "")
     setSearchedQuery(chnage);
-    debouncedSearch(chnage);
+    debouncedSearch(chnage); 
   };
   const onItemPress = (item) => {
     console.log("item",item);
