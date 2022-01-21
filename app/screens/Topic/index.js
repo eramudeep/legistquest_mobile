@@ -287,7 +287,7 @@ function Topic({
               setOnEndReachedCalledDuringMomentum(false);
             }}
             onEndReached={({distanceFromEnd}) => {
-              if (!onEndReachedCalledDuringMomentum) {
+              if (!onEndReachedCalledDuringMomentum && searchTopicResult?.CaseDetails?.length >=10) {
                 getLoadMoreResults();
                 setOnEndReachedCalledDuringMomentum(true);
               }

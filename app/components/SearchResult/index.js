@@ -57,7 +57,7 @@ export default function SearchResult({
     SnapShot
     
   } = searchData; 
-     
+     console.log({SnapShot});
   const _renderJudge = ({item, index}) => {
     return (
       <Badge key={index} text={item} labelStyle={{color: appColors.black}} />
@@ -168,7 +168,7 @@ export default function SearchResult({
           <CustomLabel text={'Judges'} color={appColors.blue} />
         </TouchableOpacity>
 
-        {SnapShot&& <TouchableOpacity
+        {SnapShot&& SnapShot!='null'&& <TouchableOpacity
           onPress={() => {
             setShowSearchWithIn(false);
             setShowJudges(false);

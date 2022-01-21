@@ -38,10 +38,10 @@ async function downloader(url,formdata) {
  
 
 
-          await config(options).fetch('POST', url,{
+          await config(options).fetch('GET', url/* ,{
             'Content-Type' : 'multipart/form-data',
 
-          },formdata).then((res) => {
+          },formdata */).then((res) => {
               
               if(Platform.OS =="ios"){
                 RNFetchBlob.ios.previewDocument(res?.data)

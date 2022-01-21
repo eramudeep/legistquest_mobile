@@ -40,6 +40,7 @@ const tabs = ['short', 'list']
   const [citation, setCitation] = useState(false)
   const [other, setOther] = useState(false)
   const [showDownModal, setShowDownModal] = useState(false)
+   
 const [discription, setDiscription] = useState()
 const [fontsize, setFontsize] = useState(4)
   const contentWidth = useWindowDimensions().width;
@@ -55,7 +56,7 @@ const onDownload=async()=>{
  {name: "fontvalue", data:fontsize},
   {name: "data", data:PlainJudgment},
  ] 
-  await FileDownloader(DOWNLOAD_JUDGEMENT,formData) 
+  await FileDownloader(dataPath,formData) 
   AlertHelper.show("info","Info","Your file is Downloading")
    setShowDownModal(false)
 }
@@ -238,8 +239,8 @@ setShowDownModal(true)
         </View>
         <View key={1} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
            <View style={{marginTop:scale(20)}}>
-           <CustomChart dataSet={viewModel?.OcrDtoList} />
-            <CitiedIn   data={futureRefData} />
+           <CustomChart onPress={(info)=> console.log({info})} dataSet={viewModel?.OcrDtoList} />
+            <CitiedIn  onPress={onPressCitiedCase} data={futureRefData} />
            </View>
          {viewModel?.CitedDtoList.length<1 && <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />}
         </View >

@@ -10,7 +10,7 @@ export default function index({onPress,dataSet}) {
   const RenderColumn = ({label, value, color, onPress}) => {
      
     return (
-      <View style={{alignItems: 'center'}}>
+      <Pressable onPress={() => onPress && onPress(label, value)}  style={{alignItems: 'center'}}>
         <Text>{value} </Text>
         <Animated.View
           style={{
@@ -21,11 +21,11 @@ export default function index({onPress,dataSet}) {
             width: scale(  30 ),
             backgroundColor: color ? color :  IDRAF_HIGELIGHT_COLORS?.[removeAllSpaces( label?.toLowerCase())],
           }}>
-          <Pressable onPress={() => onPress && onPress(label, value)} />
+           
         </Animated.View>
 
         <Text style={{color: appColors.gray}} >{label}</Text>
-      </View>
+      </Pressable>
     );
   }; 
   const sentiseData = ()=>{

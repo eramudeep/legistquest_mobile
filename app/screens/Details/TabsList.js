@@ -34,9 +34,9 @@ export const tabsList = [
     active: false,
   },
 ];
-export default function TabsList({children}) {
+export default function TabsList({children,activeTabIndex}) {
   console.log('children');
-  const [currentTab, setCurrentTab] = useState(0);
+  const [currentTab, setCurrentTab] = useState(activeTabIndex? activeTabIndex: 0);
   const _renderTab = (item, key) => {
     const {label, active} = item;
     return (
