@@ -10,21 +10,21 @@ function index(props) {
   return (
     <Container showSearch   showBack > 
     <View style={styles.row}>
-        <Image resizeMode='contain' source={{uri:data?.image}} style={{height:scale(50), width:scale(50)}} />
+        <Image resizeMode='contain' source={{uri:data?.image}} style={{height:scale(80), width:scale(80)}} />
       </View> 
 
       <View style={styles.row}>
-        <Text>Name</Text>
+        <Text style={styles.label} >Name : </Text>
         <Text>{`${data?.firstName} ${data?.lastName}`}</Text>
       </View> 
       <View style={styles.row}>
-        <Text>Mobile</Text>
+        <Text style={styles.label}>Mobile : </Text>
         <Text>{ data?.mobile  }</Text>
       </View>
       
 
       <View style={styles.row}>
-        <Text>Email</Text>
+        <Text style={styles.label}>Email : </Text>
         <Text>{ data?.email  }</Text>
       </View>
 
@@ -36,7 +36,12 @@ export default ReduxWrapper(index);
 const styles =StyleSheet.create({
    row: {
        flexDirection:'row', 
-       justifyContent:'space-around',
+       //justifyContent:'space-around',
        paddingVertical:scale(10)
+    },
+    label:{
+    //  paddingHorizontal:scale(20)
+    marginRight:scale(20),
+    //fontSize:scale(16)
     }
 })
