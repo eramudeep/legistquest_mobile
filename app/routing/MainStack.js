@@ -11,6 +11,7 @@ import SearchBox from '../components/SearchBox';
 import SearchboxForAct from '../components/SearchBox/SearchboxForAct';
 import SearchWithinText from '../components/SearchBox/SearchWithinText';
 import Ideaf from '../screens/Details/Ideaf';
+import Profile from '../screens/Profile';
 
 //import { navigationRef } from './RootNavigation';
 
@@ -30,6 +31,8 @@ export default function MainStack() {
       <Stack.Screen name="SearchboxForAct" component={SearchboxForAct} />
       <Stack.Screen name="SearchWithinText" component={SearchWithinText} />
       <Stack.Screen name="Ideaf" component={Ideaf} />
+      <Stack.Screen name="Profile" component={Profile} />
+      
       
       
     </Stack.Navigator>

@@ -51,6 +51,7 @@ function Home({
       hideLogo
       showSignin
       signInLabel={userToken ? "Logout" : "Sign In"}
+      showProfile={userToken}
       //isScrollable
       onSignin={onSignin}> 
 

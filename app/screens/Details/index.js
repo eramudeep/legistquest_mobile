@@ -130,7 +130,7 @@ setShowDownModal(true)
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
         <View style={{marginBottom:scale(20)}}>
-        <CustomChart dataSet={viewModel?.OcrDtoList} />
+        <CustomChart dataSet={viewModel?.OcrDtoList}  />
         </View>
         
        {/*  <IdrafComp viewModel={viewModel} judgement={viewModel?.Judgement} /> */}

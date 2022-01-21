@@ -19,7 +19,8 @@ export default function Container({
   showSignin,
   onSignin,
   signInLabel,
-  showSearch
+  showSearch,
+  showProfile
 }) {
   return (
     <View style={styles.container}>
@@ -34,6 +35,7 @@ export default function Container({
           showSignin={showSignin}
           signInLabel={signInLabel}
           showSearch={showSearch}
+          showProfile={showProfile}
         />
       )}
       {isScrollable ? (
