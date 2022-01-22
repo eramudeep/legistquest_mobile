@@ -255,7 +255,7 @@ function Topic({
               marginBottom: scale(5),
               // ...shadowLight,
             }}>
-              <ScMat />
+              {/* <ScMat /> */}
             <FilterWithIn />
             <ResultFound />
           </View>

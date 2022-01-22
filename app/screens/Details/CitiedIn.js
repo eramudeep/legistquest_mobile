@@ -51,7 +51,7 @@ import { connect } from 'react-redux';
               
             <DynamicTabs tabs={tabs}>
                 {tabsData.map((val, key) => {
-                    console.log("val", val);
+                    //console.log("val", val);
                     return (
                         <View key={key}>
                             {val?.map((data, key) => {

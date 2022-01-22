@@ -35,7 +35,7 @@ export default function DynamicTabs({children,tabs}) {
     // const { label, active } = item
     return (
       <TouchableOpacity onPress={() => setCurrentTab(key)} key={key} style={[styles.tabContiner, currentTab == key ? styles.activeTabStyle : {}]}>
-        <Text style={styles.tabLabl}>{item}</Text>
+        <Text style={styles.tabLabl}>{item === "Others" ? "Tribunal" :item }</Text>
       </TouchableOpacity>
     );
   };

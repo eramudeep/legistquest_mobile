@@ -11,10 +11,23 @@ import { appColors } from '../../utils/appColors';
 
 export default function TopicDetail({route, navigation}) {
   const {LinkText, HighlightedText, item} = route.params;
+ 
   const [viewModel, setViewModel] = useState();
   const [isLoading, setIsLoading] = useState(true)
   const [citiedInData, setCitiedInData] = useState()
   const [futureRefData, setfutureRefData] = useState()
+  const getViewModel = async ()=>{
+    const {LinkText, EncryptedId} = item;
+    const Ltext=LinkText
+    const EncID=EncryptedId
+
+    const label = parseParam(Ltext);
+    const URL = `${DETAILS_API}${label}/${EncID}`; 
+    const respounce = await fetch(URL); 
+    const result = await respounce.json();
+    setViewModel(result?.viewModel);
+     //console.log("result?.viewModel?.Status",result?.viewModel?.Status,{paramStatus});
+  }
   const getDetailsScreenData = async (data,paramStatus) => {
     setIsLoading(true) 
     let Ltext
@@ -42,7 +55,7 @@ const citiedUrl=`${paramStatus? GET_OCR_DATA_BY_CITATION:  GETOCRDATABYCITEDIN}?
 const respounceCitied = await fetch(citiedUrl);
 const resultCitied = await respounceCitied.json();
   //console.log("resss",resultCitied,{citiedUrl});
-    setViewModel(result?.viewModel);
+    //setViewModel(result?.viewModel);
     if(paramStatus){
       setfutureRefData(resultCitied)
     }
@@ -58,12 +71,18 @@ const resultCitied = await respounceCitied.json();
   };
    
   useEffect(() => {
+    getViewModel()
+  }, [ ]);
+  
+  useEffect(() => {
     getDetailsScreenData( );
-    getDetailsScreenData(null,"referred");
+    getDetailsScreenData(null,viewModel?.OcrDtoList?.[0]?.caseStatus? viewModel?.OcrDtoList?.[0]?.caseStatus: "referred");//OcrDtoList
      
-  }, [LinkText, HighlightedText]);
+  }, [LinkText, HighlightedText,viewModel]);
   console.log({viewModel,item});
-  return (
+
+    
+  return ( 
     <Container
       isScrollable
       showHome

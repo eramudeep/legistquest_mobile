@@ -9,7 +9,7 @@ function index(props) {
     console.log({data});
   return (
     <Container showSearch   showBack > 
-    <View style={styles.row}>
+    <View style={[styles.row,{justifyContent:'center'}]}>
         <Image resizeMode='contain' source={{uri:data?.image}} style={{height:scale(80), width:scale(80)}} />
       </View> 
 
@@ -36,7 +36,7 @@ export default ReduxWrapper(index);
 const styles =StyleSheet.create({
    row: {
        flexDirection:'row', 
-       //justifyContent:'space-around',
+        //justifyContent:'space-around',
        paddingVertical:scale(10)
     },
     label:{

@@ -77,6 +77,16 @@ function CustomHeader({
         {!hideLogo && <CustomIcon iconStyle={{width: scale(130)}} />}
       </View>
 
+     
+      <View style={styles.icon}>
+        {showSearch && (
+          <TouchableRipple
+            onPress={() => navigation.navigate('SearchBox')}
+            style={styles.iconS}>
+            <Icon name={'search'} size={scale(17)} color={appColors.blue} />
+          </TouchableRipple>
+        )}
+      </View>
       {showProfile && (
         <View style={styles.icon}>
           <TouchableRipple
@@ -87,15 +97,6 @@ function CustomHeader({
         </View>
       )}
 
-      <View style={styles.icon}>
-        {showSearch && (
-          <TouchableRipple
-            onPress={() => navigation.navigate('SearchBox')}
-            style={styles.iconS}>
-            <Icon name={'search'} size={scale(17)} color={appColors.blue} />
-          </TouchableRipple>
-        )}
-      </View>
       {showSignin && (
         <View style={styles.icon}>
           <MaterialIcons

@@ -151,13 +151,13 @@ setShowDownModal(true)
       <View style={{ flex: 1 }}>
         <Text style={[styles.headingLabels, { alignSelf: "center",color:deciddedBgColor }]}>Bench List</Text>
         <View style={styles.underLine} />
-        {/* <HTML containerStyle={{ padding: 20 }} tagsStyles={{
+         <HTML containerStyle={{ padding: 20 }} tagsStyles={{
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
           },
-        }} contentWidth={contentWidth} source={{ html: viewModel?.Bench }} /> */}
-         <Badge badgeStyle={{paddingVertical:scale(10),marginBottom:scale(5)}}  text={removeHtmlTags( viewModel?.Bench)} />
+        }} contentWidth={contentWidth} source={{ html: viewModel?.Bench }} />  
+        {/*  <Badge badgeStyle={{paddingVertical:scale(10),marginBottom:scale(5)}}  text={removeHtmlTags( viewModel?.Bench)} /> */}
 
       </View>
     );
@@ -171,7 +171,8 @@ setShowDownModal(true)
           body: {
             whiteSpace: 'normal',
             color:isNightmode? appColors.white:appColors.black
-          },
+          } 
+            
         }} contentWidth={contentWidth} source={{ html: viewModel?.Citation }} />
 
       </View>
@@ -223,6 +224,7 @@ setShowDownModal(true)
     children[i].onEnter();
     children[from].onLeave();
   }
+  //console.log("viewModel?.OcrDtoList===>",viewModel?.OcrDtoList);
   return (
     <View style={{ flex: 1, }}>
      <View style={{flexDirection:"row",alignItems:"center"}}>
@@ -237,13 +239,13 @@ setShowDownModal(true)
           {_renderCaseHeading()}
           {viewModel?.Judgement && _renderJudgement()}
         </View>
-        <View key={1} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
+        {viewModel?.OcrDtoList.length > 0 &&<View key={1} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
            <View style={{marginTop:scale(20)}}>
-           <CustomChart onPress={(info)=> console.log({info})} dataSet={viewModel?.OcrDtoList} />
+            <CustomChart onPress={(info)=> console.log({info})} dataSet={viewModel?.OcrDtoList} />
             <CitiedIn  onPress={onPressCitiedCase} data={futureRefData} />
            </View>
-         {viewModel?.CitedDtoList.length<1 && <CitiedIn onPress={onPressCitiedCase} data={citiedInData} />}
-        </View >
+          
+        </View >}
         <View key={2} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
         <View style={{marginTop:scale(20)}}>
            <CustomChart dataSet={viewModel?.CitedDtoList} />
