@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import {
   FlatList,
   ScrollView,
@@ -14,7 +14,7 @@ import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 
 import SearchResult from '../../components/SearchResult';
-import {getResultsByTopic} from '../../redux/searchActions';
+import {getResultsByTopic, searchByQuery} from '../../redux/searchActions';
 
 import {connect} from 'react-redux';
 import {appColors, shadowLight} from '../../utils/appColors';
@@ -48,7 +48,8 @@ function Topic({
   filtersList,
   userToken,
   setPageNumber$,
-  pageNumber
+  pageNumber,
+  searchByQuery$
 }) {
   const [loadMore, setLoadMore] = useState(false);
   const {selectedTopic} = route.params;
@@ -63,8 +64,14 @@ function Topic({
   const toggleSearchWithin = () => {
     setShowSearchWithIn(!showSearchWithIn);
   };
-  console.log("pageNumber",pageNumber);
-  // console.log('searchQuery', searchTopicResult?.CaseDetails);
+   
+   useEffect(() => {
+     return  navigation?.addListener('blur',()=>{
+        //console.log("asdasdas===>");
+        searchByQuery$({type: searchQuery?.type, text: undefined});
+      })
+   }, [ ]);
+   
   const _renderSearchResult = ({item, index}) => {
     const {EncryptedId} =item
     return (
@@ -340,7 +347,8 @@ const mapDispatchToProps = {
 
   sortByOnly$: sortByOnly,
   searchByFilters$: searchByFilters,
-  setPageNumber$:setPageNo
+  setPageNumber$:setPageNo,
+  searchByQuery$: searchByQuery,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topic);
 

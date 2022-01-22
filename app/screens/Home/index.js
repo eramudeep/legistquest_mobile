@@ -28,8 +28,8 @@ function Home({
   const [searchType, setSearchType] = useState(TYPE_FREE_TEXT)
   const [searching, setsearching] = useState(false)
   //const [searchResultsFiltred, setSearchResultsFiltred] = useState(searchResults)
-
-  console.log("userData====", userToken);
+ 
+ 
   const onSignin = () => {
     if (userToken) {
       userLogout$({ usertoken: userToken, callback })

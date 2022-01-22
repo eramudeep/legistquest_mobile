@@ -30,7 +30,8 @@ const tabs = ['short', 'list']
  function index({ navigation, viewModel, item, onPressCitiedCase,futureRefData, citiedInData ,setIsNightMode$,isNightmode}) {
   const deciddedBgColor =    isNightmode?appColors.white:appColors.black
   const deciddedTextColor =   isNightmode?appColors.black:appColors.white
-  console.log({deciddedTextColor});
+   const [activeTabIndex, setActiveTabIndex] = useState(0);
+    
   const [isVisible, setIsVisible] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
   const [content, setContent] = useState(false)
@@ -131,7 +132,7 @@ setShowDownModal(true)
           textToHighlight={removeHtmlTags(viewModel?.Judgement)}
         /> */}
         <View style={{marginBottom:scale(20)}}>
-        <CustomChart dataSet={viewModel?.OcrDtoList}  />
+        <CustomChart dataSet={viewModel?.OcrDtoList} onPress={(info)=> setActiveTabIndex(1)} />
         </View>
         
        {/*  <IdrafComp viewModel={viewModel} judgement={viewModel?.Judgement} /> */}
@@ -233,7 +234,7 @@ setShowDownModal(true)
      </View>
       
 
-      <TabsList  >
+      <TabsList activeTabIndex={activeTabIndex} >
         <View key={0} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
         
           {_renderCaseHeading()}
@@ -241,7 +242,7 @@ setShowDownModal(true)
         </View>
         {viewModel?.OcrDtoList.length > 0 &&<View key={1} style={{...styles.tabComp,backgroundColor:deciddedTextColor}}>
            <View style={{marginTop:scale(20)}}>
-            <CustomChart onPress={(info)=> console.log({info})} dataSet={viewModel?.OcrDtoList} />
+            <CustomChart  dataSet={viewModel?.OcrDtoList} /> 
             <CitiedIn  onPress={onPressCitiedCase} data={futureRefData} />
            </View>
           

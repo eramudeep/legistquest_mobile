@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import {
   View,
   Text,
@@ -35,8 +35,9 @@ export const tabsList = [
   },
 ];
 export default function TabsList({children,activeTabIndex}) {
-  console.log('children');
-  const [currentTab, setCurrentTab] = useState(activeTabIndex? activeTabIndex: 0);
+   
+  const [currentTab, setCurrentTab] = useState(activeTabIndex? activeTabIndex:0);
+   console.log({activeTabIndex,currentTab});
   const _renderTab = (item, key) => {
     const {label, active} = item;
     return (
@@ -45,7 +46,7 @@ export default function TabsList({children,activeTabIndex}) {
         key={key}
         style={[
           styles.tabContiner,
-          currentTab == key ? styles.activeTabStyle : {},
+           currentTab == key   ? styles.activeTabStyle : {},
         ]}>
         <Text style={styles.tabLabl}>{label}</Text>
       </TouchableOpacity>
@@ -73,6 +74,7 @@ export default function TabsList({children,activeTabIndex}) {
       </ScrollView>
     );
   };
+ 
   return (
     <View style={{}}>
       {_renderTabs()}

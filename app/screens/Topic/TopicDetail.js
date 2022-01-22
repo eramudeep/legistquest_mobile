@@ -88,6 +88,7 @@ const resultCitied = await respounceCitied.json();
       showHome
       showMenu
       showSignin
+      showSearch 
       //bodyStyle={{backgroundColor:appColors.lighterGray}}
       onHome={() => navigation.navigate('Home')}>
       <View>
